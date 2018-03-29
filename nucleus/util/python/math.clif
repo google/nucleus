@@ -1,0 +1,27 @@
+# Copyright 2018 Google Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+from "nucleus/util/math.h":
+  namespace `nucleus`:
+    def `Log10PTrueToPhred` as log10_ptrue_to_phred(
+        log10_ptrue: float, value_if_not_finite: float) -> float
+    def `PhredToPError` as phred_to_perror(phred: int) -> float
+    def `PhredToLog10PError` as phred_to_log10_perror(phred: int) -> float
+    def `PErrorToLog10PError` as perror_to_log10_perror(perror: float) -> float
+    def `PErrorToPhred` as perror_to_phred(perror: float) -> float
+    def `Log10PErrorToPhred` as log10_perror_to_phred(log10_perror: float) -> float
+    def `PErrorToRoundedPhred` as perror_to_rounded_phred(perror: float) -> int
+    def `Log10PErrorToRoundedPhred` as log10_perror_to_rounded_phred(log10_perror: float) -> int
+    def `Log10ToReal` as log10_perror_to_perror(log10_perror: float) -> float
+    def `ZeroShiftLikelihoods` as zero_shift_log10_probs(log10_probs: list<float>) -> list<float>
