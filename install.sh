@@ -211,7 +211,7 @@ note_build_stage "Download and build TensorFlow"
 note_build_stage "Building Nucleus"
 
 COPT_FLAGS="--copt=-msse4.1 --copt=-msse4.2 --copt=-mavx --copt=-O3"
-bazel build -c opt ${COPT_FLAGS} nucleus:all
+bazel build -c opt ${COPT_FLAGS} nucleus/...
 
 bazel build :licenses_zip
 

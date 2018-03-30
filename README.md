@@ -10,6 +10,7 @@ TensorFlow tfrecords file may be substituted.
 
 For Ubuntu 14, Ubuntu 16 and Debian 9 systems, installation is easy:
 just run
+
 ```shell
 source install.sh
 ```
@@ -24,6 +25,14 @@ Finally, Nucleus depends on TensorFlow and by default, install.sh will
 install a CPU-only version of TensorFlow using a nightly wheel.  If that isn't
 what you want, there are seven other installation options that can be enabled
 with a simple edit to install.sh.
+
+Running ``install.sh`` will build all of Nucleus's programs and libraries.
+You can find the generated  binaries under ``bazel-bin/nucleus``.  If in
+addition to installing Nucleus you would like to run its tests, simply execute
+
+```shell
+bazel test -c opt $COPT_FLAGS nucleus/...
+```
 
 ## Documentation
 
