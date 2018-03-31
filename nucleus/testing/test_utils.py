@@ -31,6 +31,11 @@ from nucleus.protos import variants_pb2
 from nucleus.util import cigar as _cigar
 from tensorflow.python.platform import gfile
 
+try:
+    integer_types = (int, long)  # Python 2
+except NameError:
+    integer_types = (int, )      # Python 3
+
 FLAGS = flags.FLAGS
 
 # In the OSS version these will be ''.
@@ -112,7 +117,7 @@ def set_list_values(list_value, values):
       return struct_pb2.Value(string_value=value)
     elif isinstance(value, float):
       return struct_pb2.Value(number_value=value)
-    elif isinstance(value, (int, long)):
+    elif isinstance(value, integer_types):
       return struct_pb2.Value(int_value=value)
     else:
       raise ValueError('Unsupported type ', value)

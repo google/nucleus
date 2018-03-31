@@ -31,6 +31,11 @@ from nucleus.util import io_utils
 from nucleus.util import ranges
 from tensorflow.python.platform import gfile
 
+try:
+    integer_types = (int, long)  # Python 2
+except NameError:
+    integer_types = (int, )      # Python 3
+
 
 class SamReaderTests(parameterized.TestCase):
   """Test the iteration functionality provided by io.SamReader."""
@@ -54,7 +59,7 @@ class SamReaderTests(parameterized.TestCase):
     with reader:
       iterable = reader.iterate()
       # We expect 106 records in total.
-      for _ in xrange(10):
+      for _ in range(10):
         results = list(itertools.islice(iterable, 10))
         self.assertEqual(len(results), 10)
       results = list(itertools.islice(iterable, 10))
@@ -179,7 +184,7 @@ class SamReaderTests(parameterized.TestCase):
                                               expected_values):
         if isinstance(expected_value, float):
           self.assertAlmostEqual(actual_value.number_value, expected_value)
-        elif isinstance(expected_value, (int, long)):
+        elif isinstance(expected_value, integer_types):
           self.assertEqual(actual_value.int_value, expected_value)
         elif isinstance(expected_value, str):
           self.assertEqual(actual_value.string_value, expected_value)

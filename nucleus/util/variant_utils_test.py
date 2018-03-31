@@ -32,6 +32,11 @@ from nucleus.util import ranges
 from nucleus.util import struct_utils
 from nucleus.util import variant_utils
 
+try:
+    xrange          # Python 2
+except NameError:
+    xrange = range  # Python 3
+
 NO_MISMATCH = set()
 EVAL_DUP = variant_utils.AlleleMismatchType.duplicate_eval_alleles
 TRUE_DUP = variant_utils.AlleleMismatchType.duplicate_true_alleles

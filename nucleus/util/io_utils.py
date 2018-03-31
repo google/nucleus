@@ -30,12 +30,15 @@ import math
 import os
 import re
 
-
-
 import contextlib2
 
 from tensorflow.core.example import example_pb2
 from tensorflow.python.lib.io import python_io
+
+try:
+    basestring            # Python 2
+except NameError:
+    basestring = (str, )  # Python 3
 
 SHARD_SPEC_PATTERN = re.compile(R'((.*)\@(\d*[1-9]\d*)(?:\.(.+))?)')
 

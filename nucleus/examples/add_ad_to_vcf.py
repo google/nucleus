@@ -34,6 +34,11 @@ from nucleus.util import variant_utils
 from nucleus.util import variantcall_utils
 from nucleus.util import vcf_constants
 
+try:
+    xrange          # Python 2
+except NameError:
+    xrange = range  # Python 3
+
 
 def get_variant_ad(variant):
   """Returns the allele depth for the Variant, calculated across its calls."""
