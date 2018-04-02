@@ -33,8 +33,6 @@ using std::vector;
 
 using ::testing::Pointwise;
 
-// using nucleus::genomics::v1::FastqRecord;
-
 constexpr char kFastqFilename[] = "test_reads.fastq";
 constexpr char kGzippedFastqFilename[] = "test_reads.fastq.gz";
 
