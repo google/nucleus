@@ -20,7 +20,7 @@ from __future__ import print_function
 
 import os
 
-
+from six import integer_types
 from tensorflow import flags
 from absl.testing import absltest
 
@@ -30,11 +30,6 @@ from nucleus.protos import struct_pb2
 from nucleus.protos import variants_pb2
 from nucleus.util import cigar as _cigar
 from tensorflow.python.platform import gfile
-
-try:
-    integer_types = (int, long)  # Python 2
-except NameError:
-    integer_types = (int, )      # Python 3
 
 FLAGS = flags.FLAGS
 

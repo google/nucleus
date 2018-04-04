@@ -24,6 +24,7 @@ import itertools
 from absl.testing import absltest
 from absl.testing import parameterized
 import mock
+from six.moves import xrange
 
 from nucleus.protos import struct_pb2
 from nucleus.protos import variants_pb2
@@ -31,11 +32,6 @@ from nucleus.testing import test_utils
 from nucleus.util import ranges
 from nucleus.util import struct_utils
 from nucleus.util import variant_utils
-
-try:
-    xrange          # Python 2
-except NameError:
-    xrange = range  # Python 3
 
 NO_MISMATCH = set()
 EVAL_DUP = variant_utils.AlleleMismatchType.duplicate_eval_alleles

@@ -29,12 +29,8 @@ from nucleus.protos import reference_pb2
 from nucleus.testing import test_utils
 from nucleus.util import io_utils
 from nucleus.util import ranges
+from six import integer_types
 from tensorflow.python.platform import gfile
-
-try:
-    integer_types = (int, long)  # Python 2
-except NameError:
-    integer_types = (int, )      # Python 3
 
 
 class SamReaderTests(parameterized.TestCase):

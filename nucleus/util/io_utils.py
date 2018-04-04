@@ -32,13 +32,9 @@ import re
 
 import contextlib2
 
+from six import string_types
 from tensorflow.core.example import example_pb2
 from tensorflow.python.lib.io import python_io
-
-try:
-    basestring            # Python 2
-except NameError:
-    basestring = (str, )  # Python 3
 
 SHARD_SPEC_PATTERN = re.compile(R'((.*)\@(\d*[1-9]\d*)(?:\.(.+))?)')
 
@@ -238,9 +234,9 @@ def maybe_generate_sharded_filenames(filespec):
     A list of file paths.
 
   Raises:
-    TypeError: if filespec is not valid basestring type.
+    TypeError: if filespec is not in valid string_types.
   """
-  if not isinstance(filespec, basestring):
+  if not isinstance(filespec, string_types):
     raise TypeError('Invalid filespec: %s' % filespec)
   if IsShardedFileSpec(filespec):
     return GenerateShardedFilenames(filespec)

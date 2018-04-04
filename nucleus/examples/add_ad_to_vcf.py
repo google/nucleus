@@ -33,11 +33,7 @@ from nucleus.io import vcf
 from nucleus.util import variant_utils
 from nucleus.util import variantcall_utils
 from nucleus.util import vcf_constants
-
-try:
-    xrange          # Python 2
-except NameError:
-    xrange = range  # Python 3
+from six.moves import xrange
 
 
 def get_variant_ad(variant):
