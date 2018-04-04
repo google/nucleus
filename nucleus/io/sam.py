@@ -42,6 +42,8 @@ from nucleus.io import genomics_writer
 from nucleus.io.python import sam_reader
 from nucleus.protos import index_pb2
 from nucleus.protos import reads_pb2
+from nucleus.util import ranges
+from nucleus.util import utils
 
 
 class NativeSamReader(genomics_reader.GenomicsReader):
@@ -189,3 +191,41 @@ class SamWriter(genomics_writer.DispatchingGenomicsWriter):
 
   def _native_writer(self, output_path, header):
     return NativeSamWriter(output_path, header)
+
+
+class InMemorySamReader(object):
+  """Python interface class for in-memory sam reader.
+
+  Attributes:
+    reads: [third_party.nucleus.protos.Read], the list of in-memory reads.
+    is_sorted: bool, if reads are sorted.
+  """
+
+  def __init__(self, reads, is_sorted=False):
+    self.replace_reads(reads, is_sorted=is_sorted)
+
+  def replace_reads(self, reads, is_sorted=False):
+    """Replace the reads stored by this reader."""
+    self.reads = reads
+    self.is_sorted = is_sorted
+
+  def iterate(self):
+    """Iterate over all records in the reads.
+
+    Returns:
+      An iterator over third_party.nucleus.protos.Read.
+    """
+    return self.reads
+
+  def query(self, region):
+    """Iterate over records overlapping a query region.
+
+    Args:
+      region: third_party.nucleus.protos.Range, query region.
+
+    Returns:
+      An iterator over third_party.nucleus.protos.Read
+    """
+    # redacted
+    return (read for read in self.reads
+            if ranges.ranges_overlap(region, utils.read_range(read)))

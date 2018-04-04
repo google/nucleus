@@ -77,7 +77,8 @@ py_library(
         "//nucleus/io/python:sam_reader",
         "//nucleus/protos:index_py_pb2",
         "//nucleus/protos:reads_py_pb2",
-        # "//third_party/py/tfbam_lib",
+        "//nucleus/util:py_utils",
+        "//nucleus/util:ranges",
     ],
 )
 
