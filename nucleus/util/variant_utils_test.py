@@ -24,6 +24,7 @@ import itertools
 from absl.testing import absltest
 from absl.testing import parameterized
 import mock
+from six.moves import xrange
 
 from nucleus.protos import struct_pb2
 from nucleus.protos import variants_pb2

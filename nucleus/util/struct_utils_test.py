@@ -24,6 +24,11 @@ from nucleus.util import struct_utils
 from nucleus.protos import struct_pb2
 from nucleus.protos import variants_pb2
 
+try:
+    long        # Python 2
+except NameError:
+    long = int  # Python 3
+
 
 def _set_protomap_from_dict(d):
   """Returns a proto Map(str --> ListValue) with the given fields set.
@@ -174,8 +179,8 @@ class StructUtilsTest(parameterized.TestCase):
       dict(value=[], is_single_field=False, expected=[]),
       dict(value=[], is_single_field=True, expected=[]),
       dict(value=[1], is_single_field=False, expected=[1]),
-      dict(value=[1L], is_single_field=True, expected=1),
-      dict(value=[1, 2L], is_single_field=False, expected=[1, 2]),
+      dict(value=[long(1)], is_single_field=True, expected=1),
+      dict(value=[1, long(2)], is_single_field=False, expected=[1, 2]),
       dict(value=[1, 2], is_single_field=True, expected=1),
   )
   def test_get_int_field(self, value, is_single_field, expected):

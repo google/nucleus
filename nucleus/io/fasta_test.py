@@ -26,6 +26,8 @@ from nucleus.io import fasta
 from nucleus.testing import test_utils
 from nucleus.util import ranges
 
+from six import string_types
+
 
 class RefFastaReaderTests(parameterized.TestCase):
 
@@ -117,8 +119,8 @@ class InMemoryRefReaderTests(parameterized.TestCase):
       self.assertContigsAreEqual(self.in_mem.contig(contig.name), contig)
 
   def test_str_and_repr(self):
-    self.assertIsInstance(str(self.in_mem), basestring)
-    self.assertIsInstance(repr(self.in_mem), basestring)
+    self.assertIsInstance(str(self.in_mem), string_types)
+    self.assertIsInstance(repr(self.in_mem), string_types)
 
   def test_unknown_contig(self):
     for reader in [self.fasta_reader, self.in_mem]:

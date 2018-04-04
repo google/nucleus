@@ -20,7 +20,7 @@ from __future__ import print_function
 
 import os
 
-
+from six import integer_types
 from tensorflow import flags
 from absl.testing import absltest
 
@@ -112,7 +112,7 @@ def set_list_values(list_value, values):
       return struct_pb2.Value(string_value=value)
     elif isinstance(value, float):
       return struct_pb2.Value(number_value=value)
-    elif isinstance(value, (int, long)):
+    elif isinstance(value, integer_types):
       return struct_pb2.Value(int_value=value)
     else:
       raise ValueError('Unsupported type ', value)
