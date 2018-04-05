@@ -676,3 +676,8 @@ def span(regions):
     start = min(r.start for r in regions)
     end = max(r.end for r in regions)
     return make_range(regions[0].reference_name, start, end)
+
+
+def length(region):
+  """Returns the length in basepairs of region."""
+  return region.end - region.start
