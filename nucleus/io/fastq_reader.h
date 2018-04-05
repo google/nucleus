@@ -17,13 +17,10 @@
 #ifndef THIRD_PARTY_NUCLEUS_IO_FASTQ_READER_H_
 #define THIRD_PARTY_NUCLEUS_IO_FASTQ_READER_H_
 
+#include "htslib/hts.h"
 #include "nucleus/io/reader_base.h"
 #include "nucleus/protos/fastq.pb.h"
 #include "nucleus/vendor/statusor.h"
-#include "nucleus/vendor/zlib_inputstream.h"
-#include "tensorflow/core/lib/io/buffered_inputstream.h"
-#include "tensorflow/core/lib/io/random_inputstream.h"
-#include "tensorflow/core/platform/file_system.h"
 #include "tensorflow/core/platform/types.h"
 
 namespace nucleus {
@@ -83,27 +80,21 @@ class FastqReader : public Reader {
     return options_;
   }
 
-  // Populates the three string pointers with values from the input stream.
-  tensorflow::Status Next(string* header, string* sequence, string* pad,
-                          string* quality) const;
+  // Populates the four kstring_t pointers with values from the input file.
+  tensorflow::Status Next(kstring_t* header, kstring_t* sequence,
+                          kstring_t* pad, kstring_t* quality) const;
 
  private:
   // Private constructor; use FromFile to safely create a FastqReader from a
   // file.
-  FastqReader(tensorflow::RandomAccessFile* fp,
+  FastqReader(htsFile* fp,
               const nucleus::genomics::v1::FastqReaderOptions& options);
 
   // Our options that control the behavior of this class.
   const nucleus::genomics::v1::FastqReaderOptions options_;
 
-  // The file pointer for the given FASTQ path. The FastqReader owns its file
-  // pointer and is responsible for its deletion.
-  tensorflow::RandomAccessFile* src_;
-  // Must outlive buffered_inputstream_.
-  std::unique_ptr<tensorflow::io::RandomAccessInputStream> file_stream_;
-  // Must outlive buffered_inputstream_.
-  std::unique_ptr<tensorflow::io::ZlibInputStream> zlib_stream_;
-  std::unique_ptr<tensorflow::io::BufferedInputStream> buffered_inputstream_;
+  // A pointer to the htslib file used to access the FASTQ data.
+  htsFile* fp_;
 };
 
 }  // namespace nucleus

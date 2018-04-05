@@ -258,12 +258,12 @@ cc_library(
     srcs = ["fastq_reader.cc"],
     hdrs = ["fastq_reader.h"],
     deps = [
+        ":hts_path",
         ":reader_base",
         "//nucleus/protos:fastq_cc_pb2",
         "//nucleus/util:cpp_utils",
         "//nucleus/vendor:statusor",
-        "//nucleus/vendor:zlib_compression_options",
-        "//nucleus/vendor:zlib_inputstream",
+        "@htslib",
         "@org_tensorflow//tensorflow/core:lib",
         "@protobuf_archive//:protobuf",
     ],
@@ -282,7 +282,6 @@ cc_test(
         "//nucleus/util:cpp_utils",
         "//nucleus/vendor:status_matchers",
         "@com_google_googletest//:gtest_main",
-        "@org_tensorflow//tensorflow/core:lib",
         "@org_tensorflow//tensorflow/core:test",
     ],
 )
