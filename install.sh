@@ -98,7 +98,7 @@ sudo -H pip install --upgrade pip
 sudo -H pip install contextlib2
 sudo -H pip install intervaltree
 sudo -H pip install 'mock>=2.0.0'
-sudo -H pip install 'numpy==1.12'
+sudo -H pip install 'numpy==1.14'
 sudo -H pip install 'scipy==1.0'
 
 # Install Java (required for Bazel)
