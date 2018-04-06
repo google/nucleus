@@ -20,8 +20,6 @@ from __future__ import print_function
 
 import re
 
-
-
 from nucleus.protos import cigar_pb2
 
 # A frozenset of all CigarUnit.Operation enum values at advance the alignment

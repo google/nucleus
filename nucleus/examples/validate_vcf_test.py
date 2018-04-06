@@ -19,8 +19,6 @@ from __future__ import print_function
 
 import sys
 
-
-
 from absl.testing import absltest
 import mock
 from nucleus.examples import validate_vcf

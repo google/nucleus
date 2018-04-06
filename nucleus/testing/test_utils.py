@@ -20,7 +20,6 @@ from __future__ import print_function
 
 import os
 
-
 from tensorflow import flags
 from absl.testing import absltest
 

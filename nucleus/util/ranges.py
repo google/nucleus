@@ -21,8 +21,6 @@ import collections
 import gzip
 import re
 
-
-
 import intervaltree
 
 from nucleus.protos import position_pb2

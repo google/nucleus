@@ -34,8 +34,6 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-
-
 from nucleus.io import genomics_reader
 from nucleus.io import genomics_writer
 from nucleus.io.python import vcf_reader

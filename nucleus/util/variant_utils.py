@@ -19,8 +19,6 @@ from __future__ import print_function
 
 import itertools
 
-
-
 import enum
 
 from nucleus.protos import variants_pb2

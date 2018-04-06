@@ -30,7 +30,6 @@ from __future__ import print_function
 
 import collections
 
-
 from nucleus.io import genomics_reader
 from nucleus.io.python import reference_fai
 from nucleus.protos import reference_pb2
