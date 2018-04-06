@@ -17,7 +17,6 @@
 
 #include "nucleus/testing/test_utils.h"
 
-
 #include "nucleus/protos/cigar.pb.h"
 #include "nucleus/util/utils.h"
 #include "tensorflow/core/lib/io/path.h"
