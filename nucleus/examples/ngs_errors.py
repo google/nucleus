@@ -83,9 +83,9 @@ samtools faidx /tmp/hs37d5.fa.gz
 
 ## Build and run
 
-blaze build -c opt //third_party/nucleus/examples:ngs_errors
+bazel build -c opt $COPT_FLAGS nucleus/examples:ngs_errors
 
-./blaze-bin/third_party/nucleus/examples/ngs_errors \
+bazel-bin/nucleus/examples/ngs_errors \
   --alsologtostderr \
   --ref /tmp/hs37d5.fa.gz \
   --vcf /tmp/NA12878_calls.vcf.gz \

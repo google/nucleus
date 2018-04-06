@@ -51,7 +51,7 @@ def decode_variants(encoded_iter):
       third_party.nucleus.protos.Variant strings.
 
   Yields:
-    A parsed third_party.nucleus.protos.Variant for each
+    A parsed nucleus.genomics.v1.Variant for each
     encoded element of encoded_iter
     in order.
   """
