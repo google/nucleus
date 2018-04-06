@@ -69,7 +69,7 @@ def genomics_testdata(path, datadir=DATADIR):
   return os.path.join(test_srcdir, datadir, path)
 
 
-# redacted
+# TODO(mdepristo): is this necessary?
 def genomics_core_testdata(filename):
   """Gets the path to a testdata named filename in util/testdata.
 
@@ -242,7 +242,7 @@ def iterable_len(iterable):
   return sum(1 for _ in iterable)
 
 
-# redacted
+# TODO(b/63955799): remove and replace uses when bug is fixed in mock.
 def assert_not_called_workaround(mock):
   """Asserts that a mock has not been called.
 
@@ -277,7 +277,7 @@ def assert_not_called_workaround(mock):
                          .format(mock.name, mock.call_count))
 
 
-# redacted
+# TODO(b/63955799): remove and replace uses when bug is fixed in mock.
 def assert_called_once_workaround(mock):
   """Asserts that a mock has been called exactly once.
 

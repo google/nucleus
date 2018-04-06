@@ -195,7 +195,7 @@ int ComparePositions(const Position& pos1, const Position& pos2) {
   return result;
 }
 
-// redacted
+// TODO(mdepristo): should compare ranges, implement compare range
 int ComparePositions(const Variant& variant1, const Variant& variant2) {
   return ComparePositions(MakePosition(variant1), MakePosition(variant2));
 }
@@ -229,7 +229,7 @@ bool ReadSatisfiesRequirements(const Read& read,
                                        requirements.min_mapping_quality());
 }
 
-// redacted
+// TODO(scotts): replace when absl is oss.
 inline StringPiece ClippedSubstr(StringPiece s, size_t pos, size_t n) {
   pos = std::min(pos, static_cast<size_t>(s.size()));
   return s.substr(pos, n);

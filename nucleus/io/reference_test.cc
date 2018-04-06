@@ -39,7 +39,7 @@ using ::testing::Not;
 using ::testing::UnorderedElementsAre;
 
 TEST_P(GenomeReferenceTest, TestBasic) {
-  // redacted
+  // TODO(mdepristo): fai index needs to copy the fasta...
   //   EXPECT_EQ(Ref().FastaPath(), TestFastaPath());
   EXPECT_THAT(Ref().Info(), Not(IsEmpty()));
 

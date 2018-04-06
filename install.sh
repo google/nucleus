@@ -55,7 +55,7 @@ function pip_install_tensorflow {
   # sudo -H pip install --upgrade tensorflow
 
   # 6) Install a Google Cloud Platform optimized CPU-only version of TensorFlow.
-  # redacted
+  # TODO(thomaswc): Check to see if there are more recent versions of this wheel
   # and also whether this wheel even works (i.e., it isn't too old).
   # curl https://storage.googleapis.com/deepvariant/packages/tensorflow/tensorflow-1.4.1.deepvariant_gcp-cp27-none-linux_x86_64.whl > /tmp/my.whl && sudo -H pip install --upgrade /tmp/my.whl
 

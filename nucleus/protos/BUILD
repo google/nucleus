@@ -101,8 +101,8 @@ proto_library(
     srcs = ["range.proto"],
 )
 
-# redacted
-# redacted
+# TODO(mdepristo): everyone needs to use this style.
+# TODO(mdepristo): use our own cc_proto_rule that adds this boilerplate.
 cc_proto_library(
     name = "range_cc_pb2",
     srcs = ["range.proto"],

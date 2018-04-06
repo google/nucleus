@@ -29,7 +29,7 @@ ANSI_BOLD = '\033[1m'
 ANSI_RED = '\033[91m'
 ANSI_OFF = '\033[0m'
 
-# redacted
+# TODO(thomaswc): Also have this print out the reference sequence at the
 # top if a reference fasta file is supplied.
 
 

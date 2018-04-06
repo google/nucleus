@@ -6,7 +6,7 @@ package(
     ],
 )
 
-# redacted
+# TODO(thomaswc): Add smoke tests for Nucleus.
 
 filegroup(
     name = "libraries",
@@ -22,7 +22,7 @@ filegroup(
     name = "licenses",
     srcs = [
         ":LICENSE",
-        "//third_party:abseil_cpp.LICENSE",  # redacted
+        "//third_party:abseil_cpp.LICENSE",  # TODO(b/69856150)
         "@com_google_protobuf//:LICENSE",
         "@com_googlesource_code_re2//:LICENSE",
         "@htslib//:LICENSE",

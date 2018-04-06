@@ -332,7 +332,7 @@ tf::Status ParseAuxFields(const bam1_t* b, const SamReaderOptions& options,
           return tf::errors::DataLoss("data too short for tag " + tag);
         const int n_elements = le_to_u32(s);
         if (n_elements == 0) return tf::errors::DataLoss("n_elements is zero");
-        // redacted
+        // TODO(b/62929115): parse byte-array field here.
         // We need to skip len * element size in bytes to clear the array
         // itself, and 4 more bytes for n_elements int that occurs before the
         // array.
@@ -389,7 +389,7 @@ tf::Status ConvertToPb(const bam_hdr_t* h, const bam1_t* b,
     // Convert the qual field.
     uint8_t* quals = bam_get_qual(b);
     if (quals[0] != 0xff) {  // Not missing
-      // redacted
+      // TODO(b/35950011): Is there a more efficient way to do this?
       RepeatedField<int32>* quality = read_message->mutable_aligned_quality();
       quality->Reserve(c->l_qseq);
       for (int i = 0; i < c->l_qseq; ++i) {
@@ -559,7 +559,7 @@ StatusOr<std::unique_ptr<SamReader>> SamReader::FromFile(
   hts_idx_t* idx = nullptr;
   if (options.index_mode() ==
       nucleus::genomics::v1::IndexHandlingMode::INDEX_BASED_ON_FILENAME) {
-    // redacted
+    // TODO(b/35950011): use hts_idx_load after htslib upgrade.
     idx = sam_index_load(fp, fp->fn);
     if (idx == nullptr) {
       return tf::errors::NotFound(StrCat("No index found for ", fp->fn));
@@ -679,7 +679,7 @@ SamFullFileIterable::SamFullFileIterable(const SamReader* reader,
       bam1_(bam_init1())
 {}
 
-// redacted
+// TODO(mdepristo): Would be better to merge this into a simple shared iterator
 // class that only differs in sam_itr_next vs sam_read1 calls.
 StatusOr<bool> SamQueryIterable::Next(Read* out) {
   TF_RETURN_IF_ERROR(CheckIsAlive());

@@ -199,8 +199,8 @@ def is_indel(variant):
     True if the alleles in variant indicate an insertion/deletion event
     occurs at this site.
   """
-  # redacted
-  # redacted
+  # TODO(b/27246467): Handle block records.
+  # TODO(b/27244091): Handle symbolic alleles.
   return (not is_ref(variant) and
           (len(variant.reference_bases) > 1 or
            any(len(alt) > 1 for alt in variant.alternate_bases)))
@@ -719,7 +719,7 @@ def allele_indices_for_genotype_likelihood_index(gl_index, ploidy=2):
   if ploidy == 1:
     return gl_index
   elif ploidy == 2:
-    # redacted
+    # TODO(cym): Implement using algorithm described at
     # https://genome.sph.umich.edu/wiki/Relationship_between_Ploidy,_Alleles_and_Genotypes
     # rather than creating all genotypes explicitly.
     num_alts = 1

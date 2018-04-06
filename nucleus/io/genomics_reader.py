@@ -120,7 +120,7 @@ class TFRecordReader(GenomicsReader):
     self.tf_options = tf_options
 
   def iterate(self):
-    # redacted
+    # TODO(thomaswc): Support max_records?
     for buf in python_io.tf_record_iterator(self.input_path, self.tf_options):
       yield self.proto.FromString(buf)
 

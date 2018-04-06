@@ -224,6 +224,6 @@ class InMemorySamReader(object):
     Returns:
       An iterator over third_party.nucleus.protos.Read
     """
-    # redacted
+    # TODO(b/37353140): Add a faster query version for sorted reads.
     return (read for read in self.reads
             if ranges.ranges_overlap(region, utils.read_range(read)))

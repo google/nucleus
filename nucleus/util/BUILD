@@ -16,7 +16,7 @@ cc_library(
     hdrs = ["port.h"],
 )
 
-# redacted
+# TODO(thomaswc): Consider deleting core_py, or moving it out of
 # /util.
 py_library(
     name = "core_py",

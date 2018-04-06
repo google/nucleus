@@ -18,7 +18,7 @@ Important: Please keep this module free of TensorFlow c++ extensions.
 This makes it easy to build pure python packages for training that work with
 CMLE.
 
-redacted
+TODO(b/64588828) Write a test to ensure model_train remains pure python.
 """
 
 from __future__ import absolute_import
@@ -142,13 +142,13 @@ def IsShardedFileSpec(spec):  # pylint:disable=invalid-name
 VCF_EXTENSIONS = frozenset(['.vcf', '.vcf.gz'])
 
 
-# redacted
+# TODO(mdepristo): retire when GenerateShardedFilename is add to library.
 def sharded_filename(spec, i):
   """Gets a path appropriate for writing the ith file of a sharded spec."""
   return GenerateShardedFilenames(spec)[i]
 
 
-# redacted
+# TODO(b/64046543): Improve the return value (instead of using tuple). It hurts
 # readability when there are multiple input filespecs.
 def resolve_filespecs(shard, *filespecs):
   """Transforms potentially sharded filespecs into their paths for single shard.
@@ -422,7 +422,7 @@ def make_proto_writer(outfile):
   return writer, write_fn
 
 
-# redacted
+# TODO(b/37426304): Harmonize writer API, replacing writer / write_fn style with
 # this class wrapper.
 class RawProtoWriterAdaptor(object):
   """Adaptor class wrapping a low-level bytes writer with a write(proto) method.

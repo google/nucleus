@@ -34,7 +34,7 @@ from nucleus.io import genomics_reader
 from nucleus.io.python import reference_fai
 from nucleus.protos import reference_pb2
 
-# redacted
+# TODO(thomaswc): Replace this with a real protocol buffer definition.
 RefFastaHeader = collections.namedtuple(
     'RefFastaHeader', ['contigs'])
 
@@ -63,7 +63,7 @@ class RefFastaReader(genomics_reader.GenomicsReader):
       self._reader = reference_fai.GenomeReferenceFai.from_file(
           fasta_path, fai_path, cache_size)
 
-    # redacted
+    # TODO(thomaswc): Define a RefFastaHeader proto, and use it instead of this.
     self.header = RefFastaHeader(contigs=self._reader.contigs)
 
   def iterate(self):

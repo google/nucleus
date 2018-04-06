@@ -42,7 +42,7 @@ using nucleus::genomics::v1::Variant;
 using nucleus::genomics::v1::VariantCall;
 using std::vector;
 
-// redacted
+// TODO(dhalexander): we should factor out a testdata.h
 
 // Note that test_likelihoods_output.vcf is different from
 // test_likelihoods_input.vcf because our VCF writer writes genotype likelihoods

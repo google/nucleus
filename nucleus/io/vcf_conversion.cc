@@ -50,7 +50,7 @@ std::vector<std::vector<ValueType>> ReadFormatValues(const bcf_hdr_t* h,
   int n_values, n_dst = 0;
   ValueType* dst = nullptr;
   n_values = VT::GetFormatValues(h, v, tag, &dst, &n_dst);
-  // redacted
+  // TODO(b/69332066): cleanup error handling.
   CHECK_GE(n_values, 0);
   CHECK(dst != nullptr);
 
@@ -233,7 +233,7 @@ std::vector<ValueType> ReadInfoValue(const bcf_hdr_t* h,
   int n_values, n_dst = 0;
   ValueType* dst = nullptr;
   n_values = VT::GetInfoValues(h, v, tag, &dst, &n_dst);
-  // redacted
+  // TODO(b/69332066): cleanup error handling.
   CHECK_GE(n_values, 0);
   CHECK(dst != nullptr);
 
@@ -254,7 +254,7 @@ std::vector<string> ReadInfoValue(const bcf_hdr_t* h,
   int n_dst = 0;
   char* dst = nullptr;
   if (bcf_get_info_string(h, const_cast<bcf1_t*>(v), tag, &dst, &n_dst) < 0) {
-    // redacted
+    // TODO(b/69332066): cleanup error handling.
     LOG(FATAL) << "Failure to get INFO string";
   }
   std::string string_value(dst);
@@ -274,7 +274,7 @@ std::vector<bool> ReadInfoValue(const bcf_hdr_t* h,
   } else if (rc == 0) {
     return {false};
   } else {
-    // redacted
+    // TODO(b/69332066): cleanup error handling.
     LOG(FATAL) << "Failure to get INFO flag.";
   }
 }
@@ -360,7 +360,7 @@ tensorflow::Status VcfFormatFieldAdapter::EncodeValues(
   return tensorflow::Status::OK();
 }
 
-// redacted
+// TODO(dhalexander): consider eliminating this templated function by making
 // the intermediate vectors contain variant objects (Value).
 template <class T> tensorflow::Status VcfFormatFieldAdapter::EncodeValues(
     const nucleus::genomics::v1::Variant& variant,
@@ -541,7 +541,7 @@ VcfRecordConverter::VcfRecordConverter(
         formats_to_exclude.end())
       continue;
 
-    // redacted
+    // TODO(dhalexander): how do we really want to encode the type here?
     int vcf_type;
     if (type == "Integer") {
       vcf_type = BCF_HT_INT;
