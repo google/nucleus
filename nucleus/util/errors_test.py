@@ -21,10 +21,10 @@ from __future__ import print_function
 import errno
 import sys
 
+from absl import logging
 from absl.testing import absltest
 from absl.testing import parameterized
 import mock
-from absl import logging
 from nucleus.util import errors
 
 
