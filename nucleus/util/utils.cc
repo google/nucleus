@@ -229,7 +229,8 @@ bool ReadSatisfiesRequirements(const Read& read,
                                        requirements.min_mapping_quality());
 }
 
-// TODO(scotts): replace when absl is oss.
+// TODO(scotts): Replace with ABSL version when we move from TensorFlow
+// StringPiece to ABSL string_view.
 inline StringPiece ClippedSubstr(StringPiece s, size_t pos, size_t n) {
   pos = std::min(pos, static_cast<size_t>(s.size()));
   return s.substr(pos, n);

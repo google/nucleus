@@ -211,7 +211,7 @@ class InMemorySamReader(object):
     """Iterate over all records in the reads.
 
     Returns:
-      An iterator over third_party.nucleus.protos.Read.
+      An iterator over nucleus.genomics.v1.Read's.
     """
     return self.reads
 
@@ -219,10 +219,10 @@ class InMemorySamReader(object):
     """Iterate over records overlapping a query region.
 
     Args:
-      region: third_party.nucleus.protos.Range, query region.
+      region: nucleus.genomics.v1.Range, the query region.
 
     Returns:
-      An iterator over third_party.nucleus.protos.Read
+      An iterator over nucleus.genomics.v1.Read's.
     """
     # TODO(b/37353140): Add a faster query version for sorted reads.
     return (read for read in self.reads
