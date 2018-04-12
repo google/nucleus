@@ -2,15 +2,22 @@
 
 # Label for our OSS CLIF binary pyclif.
 CLIF_PYCLIF = "@clif//:pyclif"
+
 # Label for our OSS CLIF protobuf compiler.
 CLIF_PROTO = "@clif//:proto"
+
 # Label for our OSS CLIF C++ runtime headers and sources.
 CLIF_CPP_RUNTIME = "@clif//:cpp_runtime"
+
 # The CLIF generated code only compiles with C++11.
-EXTRA_CC_FLAGS = ["-std=c++11",]
+EXTRA_CC_FLAGS = ["-std=c++11"]
+
 _PROTO_LIBRARY_SUFFIX = "_pyclif"
+
 PYCLIF_PYEXT_SUFFIX = ".so"
+
 PYCLIF_CC_LIB_SUFFIX = "_cclib"
+
 PYCLIF_WRAP_SUFFIX = "_clif_wrap"
 
 
@@ -67,37 +74,34 @@ def _clif_wrap_cc_impl(ctx):
 
 
 _clif_wrap_cc = rule(
-    attrs={
-        "srcs":
-            attr.label_list(
-                mandatory=True,
-                allow_files=True,),
-        "deps":
-            attr.label_list(
-                allow_files=True,
-                providers=["cc"],),
-        "toolchain_deps":
-            attr.label_list(
-                allow_files=True,),
+    attrs = {
+        "srcs": attr.label_list(
+            mandatory = True,
+            allow_files = True,
+        ),
+        "deps": attr.label_list(
+            allow_files = True,
+            providers = ["cc"],
+        ),
+        "toolchain_deps": attr.label_list(
+            allow_files = True,
+        ),
         # For rule "//foo/python:bar_clif" this should be "bar".
-        "module_name":
-            attr.string(mandatory=True),
+        "module_name": attr.string(mandatory = True),
         # For rule "//foo/python:bar_clif" this should be "foo/python".
-        "package_name":
-            attr.string(mandatory=True),
-        "clif_deps":
-            attr.label_list(allow_files=True),
+        "package_name": attr.string(mandatory = True),
+        "clif_deps": attr.label_list(allow_files = True),
         # Hidden attribute: the Label for our PYCLIF binary itself.
-        "_clif":
-            attr.label(
-                default=Label(CLIF_PYCLIF),
-                executable=True,
-                cfg="host",),
+        "_clif": attr.label(
+            default = Label(CLIF_PYCLIF),
+            executable = True,
+            cfg = "host",
+        ),
         # Hidden attribute: The label to the C++ CLIF header files.
-        "_cliflib":
-            attr.label(
-                default=Label(CLIF_CPP_RUNTIME),
-                allow_files=True,),
+        "_cliflib": attr.label(
+            default = Label(CLIF_CPP_RUNTIME),
+            allow_files = True,
+        ),
     },
     output_to_genfiles = True,
     outputs = {
@@ -105,7 +109,8 @@ _clif_wrap_cc = rule(
         "h_out": "%{module_name}.h",
         "ccinit_out": "%{module_name}_init.cc",
     },
-    implementation=_clif_wrap_cc_impl,)
+    implementation = _clif_wrap_cc_impl,
+)
 
 
 def _get_repository_roots(ctx, files):
@@ -317,9 +322,9 @@ _run_clif_proto_parser_rule = rule(
         "cc": attr.output(),
         "deps": attr.label_list(),
         "parser": attr.label(
-            executable=True,
-            default=Label(CLIF_PROTO),
-            cfg="host",
+            executable = True,
+            default = Label(CLIF_PROTO),
+            cfg = "host",
         ),
     },
     output_to_genfiles = True,
