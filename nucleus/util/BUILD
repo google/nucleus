@@ -151,6 +151,7 @@ py_library(
     name = "ranges",
     srcs = ["ranges.py"],
     deps = [
+        "//nucleus/io:bed",
         "//nucleus/protos:position_py_pb2",
         "//nucleus/protos:range_py_pb2",
     ],
