@@ -100,6 +100,7 @@ sudo -H pip install intervaltree
 sudo -H pip install 'mock>=2.0.0'
 sudo -H pip install 'numpy==1.14'
 sudo -H pip install 'scipy==1.0'
+sudo -H pip install 'six>=1.11.0'
 
 # Install Java (required for Bazel)
 ################################################################################

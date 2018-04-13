@@ -28,7 +28,7 @@ from __future__ import print_function
 import sys
 
 from absl import app
-
+import six
 from nucleus.io import vcf
 from nucleus.util import variant_utils
 from nucleus.util import variantcall_utils
@@ -41,7 +41,8 @@ def get_variant_ad(variant):
   call_ads = [variantcall_utils.get_format(vc, 'AD') for vc in
               variant.calls]
   assert(len(call_ad) == num_alleles for call_ad in call_ads)
-  return [sum(call_ad[i] for call_ad in call_ads) for i in xrange(num_alleles)]
+  return [sum(call_ad[i] for call_ad in call_ads)
+          for i in six.moves.xrange(num_alleles)]
 
 
 def main(argv):
