@@ -37,35 +37,14 @@ function pip_install_tensorflow {
   # The true is necessary; bash doesn't like empty functions.
   # true
 
-  # 2) Install a GPU-enabled version from a nightly wheel.
-  # sudo -H pip install --upgrade tf_nightly_gpu
+  # 2) Install a GPU-enabled version.
+  # sudo -H pip install --upgrade 'tensorflow-gpu==1.7'
 
-  # 3) Install a CPU-enabled version from a nightly wheel.
-  # This is the default option.
-  sudo -H pip install --upgrade tf_nightly
+  # 3) Install a CPU-enabled version.  This is the default option.
+  sudo -H pip install --upgrade 'tensorflow==1.7'
 
-  # 4) Install the latest GPU-enabled official release.
-  # Note that the difference between this latest release (which we use for
-  # the Python packages) and the latest source (which we use for the C++
-  # part of Nucleus) can cause build or runtime failures.
-  # sudo -H pip install --upgrade tensorflow-gpu
-
-  # 5) Install the latest CPU-enabled official release.
-  # The above warning about temporal skew applies here as well.
-  # sudo -H pip install --upgrade tensorflow
-
-  # 6) Install a Google Cloud Platform optimized CPU-only version of TensorFlow.
-  # TODO(thomaswc): Check to see if there are more recent versions of this wheel
-  # and also whether this wheel even works (i.e., it isn't too old).
-  # curl https://storage.googleapis.com/deepvariant/packages/tensorflow/tensorflow-1.4.1.deepvariant_gcp-cp27-none-linux_x86_64.whl > /tmp/my.whl && sudo -H pip install --upgrade /tmp/my.whl
-
-  # 7) Install a GPU-enabled pip built from the TensorFlow sources.
-  # This and #8 the safest options, but slow.
-  # bazel build --config=opt --config=cuda //tensorflow/tools/pip_package:build_pip_package && bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg && sudo pip install /tmp/tensorflow_pkg/tensorflow-*.whl
-
-  # 8) Install a CPU-only pip built from the TensorFlow sources.
-  # This and #7 are the safest options, but slow.
-  # bazel build --config=opt //tensorflow/tools/pip_package:build_pip_package && bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg && sudo pip install /tmp/tensorflow_pkg/tensorflow-*.whl
+  # 4) Install a Google Cloud Platform optimized CPU-only version of TensorFlow.
+  # curl https://storage.googleapis.com/deepvariant/packages/tensorflow/tensorflow-1.7.0.deepvariant_gcp-cp27-none-linux_x86_64.whl > /tmp/my.whl && sudo -H pip install --upgrade /tmp/my.whl
 }
 
 function note_build_stage {
@@ -198,6 +177,7 @@ note_build_stage "Download and build TensorFlow"
 (cd .. &&
  git clone https://github.com/tensorflow/tensorflow &&
  cd tensorflow &&
+ git checkout v1.7.0 &&
  echo | ./configure &&
  pip_install_tensorflow
  )
