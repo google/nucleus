@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# Usage:  ./install.sh
+# Usage:  source install.sh
 #
 # This script installs all the packages required to build Nucleus, and
 # then builds Nucleus.
