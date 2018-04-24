@@ -13,6 +13,8 @@
 // limitations under the License.
 syntax = "proto3";
 
+import "nucleus/protos/range.proto";
+
 package nucleus.genomics.v1;
 
 option cc_enable_arenas = true;
@@ -53,4 +55,13 @@ message ContigInfo {
   // have position 0.
   // TODO(mdepristo): rename to something more generic.
   int32 pos_in_fasta = 4;
+}
+
+// A full, or partial, sequence of bases from a contig in a reference genome.
+message ReferenceSequence {
+  // The location on the genome this sequence of bases comes from.
+  Range region = 1;
+
+  // The bases of this part of the reference genome.
+  string bases = 2;
 }
