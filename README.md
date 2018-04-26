@@ -6,6 +6,21 @@ In addition, Nucleus enables painless integration with the TensorFlow machine
 learning framework, as anywhere a genomics file is consumed or produced, a
 TensorFlow tfrecords file may be substituted.
 
+## Poll
+
+Which of these would most increase your usage of Nucleus?
+
+[![](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Support%20for%20CRAM)](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Support%20for%20CRAM/vote)
+[![](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Improved%20Speed)](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Improved%20Speed/vote)
+[![](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Support%20for%20BigWig%E2%88%95BigBed)](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Support%20for%20BigWig%E2%88%95BigBed/vote)
+[![](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Better%20TensorFlow%20integration)](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Better%20TensorFlow%20integration/vote)
+[![](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Support%20for%20writing%20BAM%E2%88%95SAM%20files)](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Support%20for%20writing%20BAM%E2%88%95SAM%20files/vote)
+[![](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Spark%20integration)](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Spark%20integration/vote)
+[![](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Support%20for%20GTF%E2%88%95GFF)](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Support%20for%20GTF%E2%88%95GFF/vote)
+[![](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Beam%20integration)](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Beam%20integration/vote)
+[![](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Support%20for%20another%20unlisted%20file%20type)](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Support%20for%20another%20unlisted%20file%20type/vote)
+[![](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Improved%20documentation)](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Improved%20documentation/vote)
+
 ## Installation
 
 For Ubuntu 14, Ubuntu 16 and Debian 9 systems, installation is easy:
