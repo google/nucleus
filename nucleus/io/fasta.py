@@ -83,7 +83,8 @@ class RefFastaReader(genomics_reader.GenomicsReader):
     """Returns a ContigInfo proto for contig_name."""
     return self._reader.contig(contig_name)
 
-  def get_c_reader(self):
+  @property
+  def c_reader(self):
     """Returns the underlying C++ reader."""
     return self._reader
 
@@ -157,7 +158,8 @@ class InMemoryRefReader(genomics_reader.GenomicsReader):
     """Returns a ContigInfo proto for contig_name."""
     return self._reader.contig(contig_name)
 
-  def get_c_reader(self):
+  @property
+  def c_reader(self):
     """Returns the underlying C++ reader."""
     return self._reader
 
