@@ -101,6 +101,7 @@ from __future__ import print_function
 from absl import app
 from tensorflow import flags
 from absl import logging
+import six
 
 from nucleus.io import fasta
 from nucleus.io import genomics_writer
@@ -194,14 +195,16 @@ def make_example(read, ref_bases):
   # Note that the str(...) calls are necessary because proto string fields are
   # unicode objects and we can only add bytes to the bytes_list.
   features = example.features
-  features.feature['read_name'].bytes_list.value.append(str(read.fragment_name))
+  features.feature['read_name'].bytes_list.value.append(
+      six.b(str(read.fragment_name)))
   features.feature['cigar'].bytes_list.value.append(
-      cigar.format_cigar_units(read.alignment.cigar))
+      six.b(cigar.format_cigar_units(read.alignment.cigar)))
   features.feature['read_sequence'].bytes_list.value.append(
-      str(read.aligned_sequence))
+      six.b(str(read.aligned_sequence)))
   features.feature['read_qualities'].int64_list.value.extend(
       read.aligned_quality)
-  features.feature['true_sequence'].bytes_list.value.append(ref_bases)
+  features.feature['true_sequence'].bytes_list.value.append(
+      six.b(str(ref_bases)))
 
   return example
 

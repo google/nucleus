@@ -19,12 +19,13 @@ from __future__ import print_function
 
 from absl.testing import absltest
 from absl.testing import parameterized
-import tensorflow as tf
 
 from nucleus.io.python import bed_writer
 from nucleus.protos import bed_pb2
 from nucleus.testing import test_utils
 from nucleus.util import io_utils
+from tensorflow.python.platform import gfile
+
 
 _DOUBLE_CLOSE_ERROR = 'Cannot close an already closed BedWriter'
 _WRITE_TO_CLOSED_ERROR = 'Cannot write to closed BED stream'
@@ -60,7 +61,7 @@ class WrapBedWriterTest(parameterized.TestCase):
       for record in bed_records:
         writer.write(record)
 
-    with tf.gfile.GFile(out_fname, 'r') as f:
+    with gfile.GFile(out_fname, 'r') as f:
       self.assertEqual(f.readlines(), self.expected_bed_content)
 
   def test_context_manager(self):

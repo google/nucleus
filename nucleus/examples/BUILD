@@ -1,4 +1,5 @@
 # Example programs for demonstrating Nucleus's APIs.
+# load("//devtools/python/blaze:python3.bzl", "py2and3_test")
 
 package(
     default_visibility = [

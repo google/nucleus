@@ -1,4 +1,5 @@
 # Code for reading and writing genomics data.
+# load("//devtools/python/blaze:python3.bzl", "py2and3_test")
 
 package(
     default_visibility = [
@@ -382,7 +383,7 @@ cc_library(
 
 cc_test(
     name = "vcf_reader_test",
-    size = "small",
+    size = "medium",
     srcs = ["vcf_reader_test.cc"],
     data = ["//nucleus/testdata"],
     deps = [

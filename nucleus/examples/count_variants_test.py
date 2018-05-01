@@ -17,10 +17,9 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import __builtin__
-
 from absl.testing import absltest
 import mock
+import six
 
 from nucleus.examples import count_variants
 from nucleus.testing import test_utils
@@ -30,7 +29,7 @@ class CountVariantsTest(absltest.TestCase):
 
   def test_main(self):
     in_fname = test_utils.genomics_core_testdata('test_allele_depth.vcf')
-    with mock.patch.object(__builtin__, 'print') as mock_print:
+    with mock.patch.object(six.moves.builtins, 'print') as mock_print:
       count_variants.main(['count_variants', in_fname])
       self.assertEqual([
           mock.call('# variants: 5'),

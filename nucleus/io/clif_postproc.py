@@ -17,6 +17,8 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+import six
+
 
 def ValueErrorOnFalse(ok, *args):
   """Returns None / arg / (args,...) if ok."""
@@ -30,7 +32,7 @@ def ValueErrorOnFalse(ok, *args):
   return None
 
 
-class WrappedCppIterable(object):
+class WrappedCppIterable(six.Iterator):
   """This class gives Python iteration semantics on top of a C++ 'Iterable'."""
 
   def __init__(self, cc_iterable):
@@ -46,7 +48,7 @@ class WrappedCppIterable(object):
   def __iter__(self):
     return self
 
-  def next(self):
+  def __next__(self):
     not_done, record = self._cc_iterable.Next()
     if not_done:
       return record

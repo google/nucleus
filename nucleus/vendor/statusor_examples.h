@@ -19,10 +19,12 @@
 #define THIRD_PARTY_NUCLEUS_VENDOR_STATUSOR_EXAMPLES_H_
 
 #include "nucleus/vendor/statusor.h"
+#include "tensorflow/core/platform/types.h"
 
 namespace nucleus {
 
 using tensorflow::Status;
+using tensorflow::string;
 
 static StatusOr<int> MakeIntOK() {
   return 42;
@@ -30,6 +32,18 @@ static StatusOr<int> MakeIntOK() {
 
 static StatusOr<int> MakeIntFail() {
   return Status(tensorflow::error::INVALID_ARGUMENT, "MakeIntFail");
+}
+
+static StatusOr<string> MakeStrOK() {
+  return string("hello");
+}
+
+static StatusOr<string> MakeStrOKStrippedType() {
+  return string("hello");
+}
+
+static StatusOr<string> MakeStrFail() {
+  return Status(tensorflow::error::INVALID_ARGUMENT, "MakeStrFail");
 }
 
 static StatusOr<std::unique_ptr<int>> MakeIntUniquePtrOK() {
