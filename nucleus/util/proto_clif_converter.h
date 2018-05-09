@@ -19,7 +19,7 @@
 
 #include "clif/python/types.h"
 #include "google/protobuf/message.h"
-#include "net/proto2/python/public/python_protobuf.h"
+#include "nucleus/vendor/python_protobuf.h"
 #include "nucleus/util/proto_ptr.h"
 
 namespace clif {
@@ -35,7 +35,7 @@ template <typename T>
 bool Clif_PyObjAs(PyObject* py, nucleus::ProtoPtr<T>* c) {
   CHECK(c != nullptr);
 
-  ::google::protobuf::Message* cpb = google::protobuf::python::MutableCProtoInsidePyProto(py);
+  ::proto2::Message* cpb = google::protobuf::MutableCProtoInsidePyProto(py);
   if (cpb == nullptr) {
     // Clients might depend on our non-copying semantics, so we can't fall
     // back on CLIF here but instead must fail loudly.

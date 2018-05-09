@@ -381,6 +381,7 @@ cc_library(
     hdrs = ["proto_clif_converter.h"],
     deps = [
         ":proto_ptr",
+        "//nucleus/vendor:python_protobuf",
         "@clif//:cpp_runtime",
         "@protobuf_archive//:protobuf",
     ],
