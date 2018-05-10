@@ -383,6 +383,7 @@ cc_library(
         ":proto_ptr",
         "//nucleus/vendor:python_protobuf",
         "@clif//:cpp_runtime",
+        "@org_tensorflow//tensorflow/core:lib",
         "@protobuf_archive//:protobuf",
     ],
 )

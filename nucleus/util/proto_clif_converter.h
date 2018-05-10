@@ -21,6 +21,7 @@
 #include "google/protobuf/message.h"
 #include "nucleus/vendor/python_protobuf.h"
 #include "nucleus/util/proto_ptr.h"
+#include "tensorflow/core/platform/logging.h"
 
 namespace clif {
 
