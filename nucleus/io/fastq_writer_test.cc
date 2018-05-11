@@ -25,7 +25,6 @@
 
 #include "tensorflow/core/lib/core/status.h"
 #include "tensorflow/core/lib/core/stringpiece.h"
-#include "tensorflow/core/platform/env.h"
 
 #include "tensorflow/core/platform/test.h"
 
