@@ -21,9 +21,6 @@
 #include "nucleus/io/text_reader.h"
 #include "nucleus/protos/bed.pb.h"
 #include "nucleus/vendor/statusor.h"
-#include "tensorflow/core/lib/io/buffered_inputstream.h"
-#include "tensorflow/core/lib/io/random_inputstream.h"
-#include "tensorflow/core/platform/file_system.h"
 #include "tensorflow/core/platform/types.h"
 
 namespace nucleus {
