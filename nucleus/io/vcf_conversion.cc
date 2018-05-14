@@ -21,7 +21,6 @@
 #include "nucleus/util/math.h"
 #include "nucleus/util/utils.h"
 #include "tensorflow/core/lib/strings/str_util.h"
-#include "tensorflow/core/lib/strings/strcat.h"
 
 namespace nucleus {
 

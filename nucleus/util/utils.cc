@@ -22,11 +22,12 @@
 
 #include "nucleus/util/utils.h"
 
+#include "absl/strings/substitute.h"
+
 #include "nucleus/protos/cigar.pb.h"
 #include "nucleus/protos/reads.pb.h"
 
 #include "tensorflow/core/lib/core/stringpiece.h"
-#include "tensorflow/core/lib/strings/strcat.h"
 #include "tensorflow/core/platform/logging.h"
 
 namespace nucleus {
@@ -38,7 +39,7 @@ using nucleus::genomics::v1::Read;
 using nucleus::genomics::v1::ReadRequirements;
 using nucleus::genomics::v1::Variant;
 
-using tensorflow::strings::StrCat;
+using absl::Substitute;
 using tensorflow::StringPiece;
 
 namespace {
@@ -142,9 +143,12 @@ string MakeIntervalStr(StringPiece chr, const int64 start, const int64 end,
                        bool base_zero) {
   int offset = base_zero ? 1 : 0;
   if (start == end) {
-    return StrCat(chr, ":", start + offset);
+    // TODO(b/79165137): remove string conversion
+    return Substitute("$0:$1", string(chr.ToString()), start + offset);
   } else {
-    return StrCat(chr, ":", start + offset, "-", end + offset);
+    // TODO(b/79165137): remove string conversion
+    return Substitute("$0:$1-$2", string(chr.ToString()), start + offset,
+                      end + offset);
   }
 }
 

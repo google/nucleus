@@ -21,12 +21,13 @@
 #include <utility>
 #include <vector>
 
+#include "absl/strings/str_cat.h"
+
 #include "nucleus/io/reference_test.h"
 #include "nucleus/testing/test_utils.h"
 #include "nucleus/util/utils.h"
 #include "nucleus/vendor/status_matchers.h"
 
-#include "tensorflow/core/lib/strings/strcat.h"
 #include "tensorflow/core/platform/logging.h"
 
 #include <gmock/gmock-generated-matchers.h>
@@ -35,8 +36,8 @@
 
 #include "tensorflow/core/platform/test.h"
 
+using absl::StrCat;
 using std::make_pair;
-using tensorflow::strings::StrCat;
 using testing::Eq;
 using testing::StartsWith;
 
