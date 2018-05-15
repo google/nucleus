@@ -18,9 +18,10 @@
 #include "nucleus/io/vcf_conversion.h"
 
 #include "absl/memory/memory.h"
+#include "absl/strings/str_join.h"
 #include "nucleus/util/math.h"
 #include "nucleus/util/utils.h"
-#include "tensorflow/core/lib/strings/str_util.h"
+
 
 namespace nucleus {
 
@@ -718,8 +719,7 @@ tensorflow::Status VcfRecordConverter::ConvertFromPb(
   // Some variants don't have names; these will get the placeholder "." in the
   // ID column
   if (variant_message.names_size() > 0) {
-    string combined_names =
-        tensorflow::str_util::Join(variant_message.names(), ";");
+    string combined_names = absl::StrJoin(variant_message.names(), ";");
     v->d.id = strdup(combined_names.c_str());
   }
 

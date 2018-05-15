@@ -375,6 +375,7 @@ cc_library(
         "//nucleus/util:cpp_utils",
         "//nucleus/util:samplers",
         "//nucleus/vendor:statusor",
+        "@com_google_absl//absl/strings",
         "@htslib",
         "@org_tensorflow//tensorflow/core:lib",
         "@protobuf_archive//:protobuf",
@@ -416,7 +417,6 @@ cc_library(
         "//nucleus/vendor:statusor",
         "@htslib",
         "@org_tensorflow//tensorflow/core:lib",
-        "@protobuf_archive//:protobuf",
     ],
 )
 
@@ -513,6 +513,7 @@ cc_library(
         ":reference",
         "//nucleus/util:cpp_utils",
         "//nucleus/vendor:statusor",
+        "@com_google_absl//absl/strings",
         "@htslib",
         "@org_tensorflow//tensorflow/core:lib",
     ],
@@ -582,6 +583,7 @@ cc_library(
         "//nucleus/util:cpp_utils",
         "//nucleus/vendor:statusor",
         "@com_google_absl//absl/memory",
+        "@com_google_absl//absl/strings",
         "@htslib",
         "@org_tensorflow//tensorflow/core:lib",
     ],
