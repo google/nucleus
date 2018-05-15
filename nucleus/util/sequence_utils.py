@@ -11,15 +11,15 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """Utility functions for manipulating DNA sequences."""
+
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
 
 class Error(Exception):
-  pass
+  """Base error class."""
 
 
 def _add_lowercase(d):
@@ -68,8 +68,9 @@ def reverse_complement(sequence, complement_dict=None):
   passed in for more permissive matching.
 
   Args:
-    sequence: The input sequence to reverse complement.
-    complement_dict: The lookup dictionary holding the complement base pairs.
+    sequence: str. The input sequence to reverse complement.
+    complement_dict: dict[str, str]. The lookup dictionary holding the
+      complement base pairs.
 
   Returns:
     The reverse complement DNA sequence.
@@ -83,5 +84,5 @@ def reverse_complement(sequence, complement_dict=None):
   try:
     return ''.join(complement_dict[nt] for nt in reversed(sequence))
   except KeyError:
-    raise Error('Unknown base in %s, cannot reverse complement using %s' %
-                (sequence, str(complement_dict)))
+    raise Error('Unknown base in {}, cannot reverse complement using {}'.format(
+        sequence, str(complement_dict)))

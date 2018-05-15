@@ -34,6 +34,7 @@ ANSI_OFF = '\033[0m'
 
 
 def print_read(left_pos, start, highlight_position, seq):
+  """Prints an ASCII representation of a sequence to stdout."""
   s = ' ' * (start - left_pos)
   i = highlight_position - start
   j = i + 1

@@ -11,23 +11,42 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Class for reading FASTQ files.
+"""Classes for reading and writing FASTQ files.
+
+The FASTQ format is described at
+https://en.wikipedia.org/wiki/FASTQ_format
 
 API for reading:
-  with FastqReader(input_path) as reader:
-    for record in reader:
-      print(record)
+
+```python
+from nucleus.io import fastq
+
+with fastq.FastqReader(input_path) as reader:
+  for record in reader:
+    print(record)
+```
+
+where `record` is a `nucleus.genomics.v1.FastqRecord` protocol buffer.
 
 API for writing:
-  with FastqWriter(output_path) as writer:
-    for record in records:
-      writer.write(record)
 
-where `record` is a nucleus.genomics.v1.FastqRecord protocol buffer.
+```python
+from nucleus.io import fastq
 
-If the path contains '.tfrecord' as an extension, a TFRecord file is
-assumed.  Otherwise, it is treated as a true FASTQ file.  In either case,
-an extension of '.gz' will cause the file to be treated as compressed.
+# records is an iterable of nucleus.genomics.v1.FastqRecord protocol buffers.
+records = ...
+
+with fastq.FastqWriter(output_path) as writer:
+  for record in records:
+    writer.write(record)
+```
+
+For both reading and writing, if the path provided to the constructor contains
+'.tfrecord' as an extension, a `TFRecord` file is assumed and attempted to be
+read or written. Otherwise, the filename is treated as a true FASTQ file.
+
+Files that end in a '.gz' suffix cause the file to be treated as compressed
+(with BGZF if it is a true FASTQ file, and with gzip if it is a TFRecord file).
 """
 
 from __future__ import absolute_import
@@ -53,7 +72,7 @@ class NativeFastqReader(genomics_reader.GenomicsReader):
     """Initializes a NativeFastqReader.
 
     Args:
-      input_path: string. A path to a resource containing FASTQ records.
+      input_path: str. A path to a resource containing FASTQ records.
     """
     super(NativeFastqReader, self).__init__()
 
@@ -62,7 +81,12 @@ class NativeFastqReader(genomics_reader.GenomicsReader):
     self._reader = fastq_reader.FastqReader.from_file(fastq_path, options)
     self.header = None
 
-  def query(self):
+  def query(self, region):
+    """Returns an iterator for going through the records in the region.
+
+    NOTE: This function is not implemented by NativeFastqReader as there is no
+    concept of genome ordering in the FASTQ format.
+    """
     raise NotImplementedError('Can not query a FASTQ file')
 
   def iterate(self):
