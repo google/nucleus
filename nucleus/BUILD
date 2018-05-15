@@ -42,6 +42,5 @@ cc_library(
         "//nucleus/util:cpp_utils",
         "//nucleus/util:port",
         "//nucleus/util:samplers",
-        "//nucleus/util:tf_str",
     ],
 )
