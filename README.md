@@ -37,13 +37,13 @@ Note that install.sh extensively depends on apt-get, so it is unlikely
 to run without extensive modifications on non-Debian-based systems.
 
 Finally, Nucleus depends on TensorFlow and by default, install.sh will
-install a CPU-only version of TensorFlow using a nightly wheel.  If that isn't
-what you want, there are several other installation options that can be enabled
-with a simple edit to install.sh.
+install a CPU-only version of a stable TensorFlow release (currently 1.7).
+If that isn't what you want, there are several other installation options that
+can be enabled with a simple edit to ``install.sh``.
 
 Running ``install.sh`` will build all of Nucleus's programs and libraries.
 You can find the generated  binaries under ``bazel-bin/nucleus``.  If in
-addition to installing Nucleus you would like to run its tests, simply execute
+addition to installing Nucleus you would like to run its tests, execute
 
 ```shell
 bazel test -c opt $COPT_FLAGS nucleus/...
@@ -53,6 +53,7 @@ bazel test -c opt $COPT_FLAGS nucleus/...
 
 * [Overview](https://github.com/google/nucleus/blob/master/docs/overview.md).
 * [Summary of example programs](https://github.com/google/nucleus/blob/master/docs/examples.md).
+* [Python API Reference](https://github.com/google/nucleus/blob/master/docs/source/doc_index.md).
 
 ## Contributing
 

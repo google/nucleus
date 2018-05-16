@@ -1,9 +1,8 @@
 # Example programs
 
-After running ``source install.sh``, the executable versions of the
-example programs can be located in ``bazel-bin/nucleus/examples/``.
-For example, to run ``ascii_pileup``, you would actually run a command
-like
+After running `source install.sh`, the executable versions of the example
+programs are located in `bazel-bin/nucleus/examples/`. For example, to run
+`ascii_pileup`, you would actually run a command like
 
 ```shell
 bazel-bin/nucleus/examples/ascii_pileup input.sam chr3:99393
