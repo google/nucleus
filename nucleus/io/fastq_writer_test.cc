@@ -24,7 +24,6 @@
 #include "nucleus/vendor/status_matchers.h"
 
 #include "tensorflow/core/lib/core/status.h"
-#include "tensorflow/core/lib/core/stringpiece.h"
 
 #include "tensorflow/core/platform/test.h"
 
@@ -41,11 +40,6 @@ void CreateRecord(const string& id, const string& description,
   record->set_quality(quality);
 }
 
-bool IsGzipped(const StringPiece& input) {
-  const char gzip_magic[2] = {'\x1f', '\x8b'};
-  return (input.size() >= 2 && input[0] == gzip_magic[0] &&
-          input[1] == gzip_magic[1]);
-}
 
 class FastqWriterTest : public ::testing::Test {
  protected:

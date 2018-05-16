@@ -284,7 +284,6 @@ cc_test(
     data = ["//nucleus/testdata"],
     deps = [
         ":bed_writer",
-        "//nucleus/protos:bed_cc_pb2",
         "//nucleus/testing:cpp_test_utils",
         "//nucleus/util:cpp_utils",
         "//nucleus/vendor:status_matchers",
@@ -349,7 +348,6 @@ cc_test(
     data = ["//nucleus/testdata"],
     deps = [
         ":fastq_writer",
-        "//nucleus/protos:fastq_cc_pb2",
         "//nucleus/testing:cpp_test_utils",
         "//nucleus/util:cpp_utils",
         "//nucleus/vendor:status_matchers",
@@ -395,7 +393,6 @@ cc_test(
         "//nucleus/util:cpp_utils",
         "//nucleus/vendor:status_matchers",
         "@com_google_googletest//:gtest_main",
-        "@org_tensorflow//tensorflow/core:lib",
         "@org_tensorflow//tensorflow/core:test",
     ],
 )

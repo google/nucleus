@@ -71,6 +71,7 @@ cc_library(
         "//nucleus/protos:reference_cc_pb2",
         "//nucleus/util:cpp_utils",
         "//nucleus/vendor:statusor",
+        "@com_google_absl//absl/strings",
         "@org_tensorflow//tensorflow/core:lib",
         "@org_tensorflow//tensorflow/core:test",
     ],

@@ -25,8 +25,6 @@
 #include "nucleus/util/utils.h"
 #include "nucleus/vendor/status_matchers.h"
 
-#include "tensorflow/core/lib/core/stringpiece.h"
-
 #include <gmock/gmock-generated-matchers.h>
 #include <gmock/gmock-matchers.h>
 #include <gmock/gmock-more-matchers.h>
@@ -42,7 +40,6 @@ using nucleus::genomics::v1::SamReaderOptions;
 using nucleus::proto::IgnoringFieldPaths;
 using nucleus::proto::Partially;
 using std::vector;
-using tensorflow::StringPiece;
 using ::testing::Eq;
 using ::testing::IsEmpty;
 using ::testing::Pointwise;
