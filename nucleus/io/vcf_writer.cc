@@ -36,7 +36,6 @@
 #include "nucleus/util/utils.h"
 
 #include "tensorflow/core/lib/core/errors.h"
-#include "tensorflow/core/lib/core/stringpiece.h"
 #include "tensorflow/core/platform/logging.h"
 
 namespace nucleus {

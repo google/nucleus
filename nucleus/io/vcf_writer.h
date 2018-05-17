@@ -25,7 +25,6 @@
 #include "nucleus/protos/range.pb.h"
 #include "nucleus/protos/variants.pb.h"
 #include "nucleus/vendor/statusor.h"
-#include "tensorflow/core/lib/core/stringpiece.h"
 #include "tensorflow/core/platform/types.h"
 
 namespace nucleus {

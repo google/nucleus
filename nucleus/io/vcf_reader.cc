@@ -71,8 +71,9 @@ void AddContigInfo(const bcf_idpair_t& idPair,
       if (string(hrec0->keys[j]) != "ID" &&
           string(hrec0->keys[j]) != "length" &&
           string(hrec0->keys[j]) != "IDX") {
+        // TODO(b/79165137): remove string conversion.
         (*contig->mutable_extra())[hrec0->keys[j]] =
-            Unquote(hrec0->vals[j]).ToString();
+            string(Unquote(hrec0->vals[j]));
       }
     }
   }
@@ -85,7 +86,8 @@ void AddFilterInfo(const bcf_hrec_t* hrec,
       string(hrec->keys[1]) == "Description") {
     filter->set_id(hrec->vals[0]);
     // "Unquote" the description identifier.
-    filter->set_description(Unquote(hrec->vals[1]).ToString());
+    // TODO(b/79165137): remove string conversion
+    filter->set_description(string(Unquote(hrec->vals[1])));
   } else {
     LOG(WARNING) << "Malformed FILTER field detected in header, leaving this "
                     "filter empty";
@@ -100,12 +102,13 @@ void AddInfo(const bcf_hrec_t* hrec, nucleus::genomics::v1::VcfInfo* info) {
     info->set_id(hrec->vals[0]);
     info->set_number(hrec->vals[1]);
     info->set_type(hrec->vals[2]);
-    info->set_description(Unquote(hrec->vals[3]).ToString());
+    // TODO(b/79165137): remove string conversions below.
+    info->set_description(string(Unquote(hrec->vals[3])));
     for (int i = 4; i < hrec->nkeys; i++) {
       if (string(hrec->keys[i]) == "Source") {
-        info->set_source(Unquote(hrec->vals[i]).ToString());
+        info->set_source(string(Unquote(hrec->vals[i])));
       } else if (string(hrec->keys[i]) == "Version") {
-        info->set_version(Unquote(hrec->vals[i]).ToString());
+        info->set_version(string(Unquote(hrec->vals[i])));
       }
     }
   } else {
@@ -123,7 +126,8 @@ void AddFormatInfo(const bcf_hrec_t* hrec,
     format->set_id(hrec->vals[0]);
     format->set_number(hrec->vals[1]);
     format->set_type(hrec->vals[2]);
-    format->set_description(Unquote(hrec->vals[3]).ToString());
+    // TODO(b/79165137): remove string conversion.
+    format->set_description(string(Unquote(hrec->vals[3])));
   } else {
     LOG(WARNING) << "Malformed FORMAT field detected in header, leaving this "
                     "format empty";
@@ -137,7 +141,8 @@ void AddStructuredExtra(const bcf_hrec_t* hrec,
   for (int i = 0; i < hrec->nkeys; i++) {
     nucleus::genomics::v1::VcfExtra& toAdd = *extra->mutable_fields()->Add();
     toAdd.set_key(hrec->keys[i]);
-    toAdd.set_value(Unquote(hrec->vals[i]).ToString());
+    // TODO(b/79165137): remove string conversion.
+    toAdd.set_value(string(Unquote(hrec->vals[i])));
   }
 }
 
