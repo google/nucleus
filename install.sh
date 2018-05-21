@@ -75,6 +75,10 @@ sudo -H pip install --upgrade pip
 # Install python packages used by Nucleus
 ################################################################################
 sudo -H pip install contextlib2
+# sortedcontainers>=2.0.0 breaks intervaltree=2.1.0
+# Remove this when https://github.com/chaimleib/intervaltree/pull/69
+# is resolved.  Tracked internally at b/80085543.
+sudo -H pip install 'sortedcontainers==1.5.3'
 sudo -H pip install intervaltree
 sudo -H pip install 'mock>=2.0.0'
 sudo -H pip install 'numpy==1.14'
