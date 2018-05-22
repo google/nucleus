@@ -45,21 +45,6 @@ cc_library(
     hdrs = ["port.h"],
 )
 
-# TODO(thomaswc): Consider deleting core_py, or moving it out of
-# /util.
-py_library(
-    name = "core_py",
-    srcs = [],
-    deps = [
-        ":io_utils",
-        ":ranges",
-        ":variant_utils",
-        "//nucleus/io:fasta",
-        "//nucleus/io:sam",
-        "//nucleus/io:vcf",
-    ],
-)
-
 cc_library(
     name = "cpp_utils",
     srcs = ["utils.cc"],
