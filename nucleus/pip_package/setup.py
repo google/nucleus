@@ -90,11 +90,8 @@ TensorFlow tfrecords file may be substituted.
     # TODO(thomaswc): Consider adding some version requirements to
     # these install_requires.
     install_requires=['contextlib2', 'intervaltree', 'absl-py',
-                      'mock', 'numpy', 'scipy', 'six'],
-
-    extras_require={
-        'tensorflow': ['tensorflow>=1.7.0'],
-    },
+                      'mock', 'numpy', 'scipy', 'six',
+                      'tensorflow>=1.7.0'],
 
     headers=headers,
 
