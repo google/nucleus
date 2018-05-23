@@ -17,7 +17,8 @@
 # Usage:  source install.sh
 #
 # This script installs all the packages required to build Nucleus, and
-# then builds Nucleus.
+# then builds Nucleus.  If the flag "--prereqs_only" is passed, only
+# the prereqs will be installed and the nucleus build will be skipped.
 #
 # This script will run as-is on Ubuntu 14, Ubuntu 16, and Debian 9 systems.
 # On all other systems, you will need to first install CLIF by following the
@@ -187,16 +188,20 @@ note_build_stage "Download and build TensorFlow"
  )
 
 
-# Build Nucleus
-################################################################################
-note_build_stage "Building Nucleus"
+echo "Done installing prereqs at $(date)!"
 
-COPT_FLAGS="--copt=-msse4.1 --copt=-msse4.2 --copt=-mavx --copt=-O3"
-bazel build -c opt ${COPT_FLAGS} nucleus/...
+if [[ "$1" != "--prereqs_only" ]]; then
+  # Build Nucleus
+  ################################################################################
+  note_build_stage "Building Nucleus"
 
-bazel build :licenses_zip
+  COPT_FLAGS="--copt=-msse4.1 --copt=-msse4.2 --copt=-mavx --copt=-O3"
+  bazel build -c opt ${COPT_FLAGS} nucleus/...
+
+  bazel build :licenses_zip
+
+fi
 
 # Done!
 ################################################################################
-
 echo "Installation complete at $(date)!"
