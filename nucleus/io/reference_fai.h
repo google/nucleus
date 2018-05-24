@@ -21,10 +21,10 @@
 
 #include <vector>
 
+#include "absl/types/optional.h"
 #include "htslib/faidx.h"
 #include "nucleus/io/reference.h"
 #include "nucleus/vendor/statusor.h"
-#include "tensorflow/core/lib/gtl/optional.h"
 #include "tensorflow/core/platform/types.h"
 
 namespace nucleus {
@@ -120,8 +120,7 @@ class GenomeReferenceFai : public GenomeReference {
 
   // The range that is held in the cache, or "empty" if there is no range cached
   // yet.  Range must be <= kFastaCacheSize in length.
-  mutable tensorflow::gtl::optional<
-      nucleus::genomics::v1::Range> cached_range_;
+  mutable absl::optional<nucleus::genomics::v1::Range> cached_range_;
 };
 
 }  // namespace nucleus

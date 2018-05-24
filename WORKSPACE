@@ -9,6 +9,16 @@ git_repository(
 )
 # Note: com_google_absl (the C++ abseil library) is provided by TensorFlow.
 
+# CCTZ (Time-zone framework).
+# TODO(b/80245980): transitive WORKSPACE dependency resolution doesn't
+# work in bazel, so we need to include this to enable use of
+# //absl/{time,synchronization}
+http_archive(
+    name = "com_googlesource_code_cctz",
+    urls = ["https://github.com/google/cctz/archive/master.zip"],
+    strip_prefix = "cctz-master",
+)
+
 # Note: we are using a post-1.6 build release that fixes a double-free.
 new_http_archive(
     name = "htslib",

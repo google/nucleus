@@ -511,6 +511,7 @@ cc_library(
         "//nucleus/util:cpp_utils",
         "//nucleus/vendor:statusor",
         "@com_google_absl//absl/strings",
+        "@com_google_absl//absl/types:optional",
         "@htslib",
         "@org_tensorflow//tensorflow/core:lib",
     ],
@@ -554,6 +555,7 @@ cc_library(
     deps = [
         "//nucleus/util:proto_ptr",
         "//nucleus/vendor:statusor",
+        "@com_google_absl//absl/synchronization",
         "@org_tensorflow//tensorflow/core:lib",
     ],
 )

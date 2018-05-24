@@ -19,7 +19,6 @@
 
 #include "nucleus/protos/cigar.pb.h"
 #include "nucleus/util/utils.h"
-#include "tensorflow/core/lib/io/path.h"
 
 #include "absl/strings/str_join.h"
 
