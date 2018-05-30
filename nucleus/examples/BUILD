@@ -19,6 +19,7 @@ py_binary(
         "//nucleus/util:variant_utils",
         "//nucleus/util:variantcall_utils",
         "//nucleus/util:vcf_constants",
+        "@com_google_absl_py//absl:app",
     ],
 )
 
@@ -44,6 +45,7 @@ py_binary(
     deps = [
         "//nucleus/io:sam",
         "//nucleus/util:ranges",
+        "@com_google_absl_py//absl:app",
     ],
 )
 
@@ -53,6 +55,7 @@ py_binary(
     deps = [
         "//nucleus/io:vcf",
         "//nucleus/util:variant_utils",
+        "@com_google_absl_py//absl:app",
     ],
 )
 
@@ -75,6 +78,7 @@ py_binary(
     srcs = ["filter_vcf.py"],
     deps = [
         "//nucleus/io:vcf",
+        "@com_google_absl_py//absl:app",
     ],
 )
 
@@ -100,6 +104,7 @@ py_binary(
         "//nucleus/io:fasta",
         "//nucleus/io:vcf",
         "//nucleus/util:variant_utils",
+        "@com_google_absl_py//absl:app",
     ],
 )
 
@@ -132,6 +137,7 @@ py_binary(
         "//nucleus/util:py_utils",
         "//nucleus/util:ranges",
         "//nucleus/util:variant_utils",
+        "@com_google_absl_py//absl:app",
     ],
 )
 
