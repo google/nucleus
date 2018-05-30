@@ -153,7 +153,7 @@ class SamReader : public Reader {
   nucleus::genomics::v1::SamHeader sam_header_;
 
   // For downsampling reads.
-  mutable PhiloxFractionalSampler sampler_;
+  mutable FractionalSampler sampler_;
 };
 
 }  // namespace nucleus
