@@ -21,14 +21,19 @@ transitive_hdrs(
 filegroup(
     name = "licenses",
     data = [
-        # TODO(thomaswc): Find a way to include all of LICENSE files used
-        # by Nucleus dependencies, including:
-        # "//nucleus/opensource_only/third_party/abseil_cpp.LICENSE",
-        # "//nucleus/LICENSE",
-        # "//third_party/htslib/LICENSE",
-        # "@clif//:LICENSE",
+        "//third_party:abseil_cpp.LICENSE",
+        "//third_party:bazel.LICENSE",
+        "//third_party:clif.LICENSE",
+        "//:LICENSE",
+        "@htslib//:LICENSE",
+        # The following dependencies contain LICENSE files, but
+        # don't define proper BUILD files and/or don't export the LICENSE files.
+        # TODO(thomaswc): Copy these LICENSES to third_party, or
+        # write pull requests for exporting them.
         # "@com_google_absl_py//:LICENSE",
         # "@com_google_googletest//:LICENSE",
+        # "@com_googlesource_code_cctz//:LICENSE.txt",
+        # "@io_bazel_rules_closure//:LICENSE",
         "@org_tensorflow//:LICENSE",
         "@protobuf_archive//:LICENSE",
     ],
