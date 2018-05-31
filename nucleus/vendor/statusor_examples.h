@@ -19,12 +19,11 @@
 #define THIRD_PARTY_NUCLEUS_VENDOR_STATUSOR_EXAMPLES_H_
 
 #include "nucleus/vendor/statusor.h"
-#include "tensorflow/core/platform/types.h"
+#include "nucleus/platform/types.h"
 
 namespace nucleus {
 
 using tensorflow::Status;
-using tensorflow::string;
 
 static StatusOr<int> MakeIntOK() {
   return 42;

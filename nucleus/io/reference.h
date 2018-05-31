@@ -47,10 +47,7 @@
 #include "nucleus/protos/range.pb.h"
 #include "nucleus/protos/reference.pb.h"
 #include "nucleus/vendor/statusor.h"
-#include "tensorflow/core/platform/types.h"
-
-using tensorflow::string;
-using tensorflow::int64;
+#include "nucleus/platform/types.h"
 
 namespace nucleus {
 

@@ -50,6 +50,7 @@ cc_library(
     srcs = ["utils.cc"],
     hdrs = ["utils.h"],
     deps = [
+        "//nucleus/platform:types",
         "//nucleus/protos:cigar_cc_pb2",
         "//nucleus/protos:position_cc_pb2",
         "//nucleus/protos:range_cc_pb2",
@@ -313,7 +314,10 @@ py_test(
 cc_library(
     name = "samplers",
     hdrs = ["samplers.h"],
-    deps = ["@org_tensorflow//tensorflow/core:lib"],
+    deps = [
+        "//nucleus/platform:types",
+        "@org_tensorflow//tensorflow/core:lib",
+    ],
 )
 
 cc_test(

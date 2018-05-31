@@ -21,11 +21,10 @@
 #include "tensorflow/core/platform/test.h"
 #include "nucleus/io/reference.h"
 #include "nucleus/testing/test_utils.h"
-#include "tensorflow/core/platform/types.h"
+#include "nucleus/platform/types.h"
 
 namespace nucleus {
 
-using tensorflow::string;
 
 string TestFastaPath() { return GetTestData("test.fasta"); }
 

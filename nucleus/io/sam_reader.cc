@@ -34,7 +34,7 @@
 #include "tensorflow/core/lib/core/errors.h"
 #include "tensorflow/core/lib/core/status.h"
 #include "tensorflow/core/platform/logging.h"
-#include "tensorflow/core/platform/types.h"
+#include "nucleus/platform/types.h"
 
 namespace nucleus {
 
@@ -51,7 +51,6 @@ using nucleus::genomics::v1::SamReaderOptions;
 using std::vector;
 
 using tensorflow::WARNING;
-using tensorflow::int32;
 
 using google::protobuf::RepeatedField;
 
@@ -407,8 +406,8 @@ tf::Status ConvertToPb(const bam_hdr_t* h, const bam1_t* b,
     linear_alignment->set_mapping_quality(c->qual);
 
     if (c->n_cigar) {  // Convert our Cigar.
-      uint32_t* cigar = bam_get_cigar(b);
-      for (uint32_t i = 0; i < c->n_cigar; ++i) {
+      uint32* cigar = bam_get_cigar(b);
+      for (uint32 i = 0; i < c->n_cigar; ++i) {
         CigarUnit* cigar_unit = linear_alignment->add_cigar();
         cigar_unit->set_operation(kHtslibCigarToProto[bam_cigar_op(cigar[i])]);
         cigar_unit->set_operation_length(bam_cigar_oplen(cigar[i]));

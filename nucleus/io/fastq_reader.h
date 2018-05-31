@@ -21,11 +21,10 @@
 #include "nucleus/io/text_reader.h"
 #include "nucleus/protos/fastq.pb.h"
 #include "nucleus/vendor/statusor.h"
-#include "tensorflow/core/platform/types.h"
+#include "nucleus/platform/types.h"
 
 namespace nucleus {
 
-using tensorflow::string;
 
 // Alias for the abstract base class for FASTQ record iterables.
 using FastqIterable = Iterable<nucleus::genomics::v1::FastqRecord>;

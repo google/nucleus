@@ -32,12 +32,9 @@
 #include "nucleus/protos/struct.pb.h"
 #include "nucleus/protos/variants.pb.h"
 #include "tensorflow/core/platform/logging.h"
-#include "tensorflow/core/platform/types.h"
+#include "nucleus/platform/types.h"
 
 namespace nucleus {
-
-using tensorflow::int64;
-using tensorflow::string;
 
 // Enum specifying a group of canonical DNA sequence bases.
 enum class CanonicalBases {

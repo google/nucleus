@@ -29,11 +29,10 @@
 #include "nucleus/protos/reference.pb.h"
 #include "nucleus/protos/variants.pb.h"
 #include "nucleus/vendor/statusor.h"
-#include "tensorflow/core/platform/types.h"
+#include "nucleus/platform/types.h"
 
 namespace nucleus {
 
-using tensorflow::string;
 
 // Alias for the abstract base class for VCF record iterables.
 using VariantIterable = Iterable<nucleus::genomics::v1::Variant>;

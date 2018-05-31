@@ -32,12 +32,10 @@
 #include "tensorflow/core/lib/core/status.h"
 #include "tensorflow/core/lib/io/record_reader.h"
 #include "tensorflow/core/lib/io/record_writer.h"
-#include "tensorflow/core/platform/types.h"
+#include "nucleus/platform/types.h"
 
 namespace nucleus {
 
-using tensorflow::string;
-using tensorflow::uint64;
 
 constexpr char kBioTFCoreTestDataDir[] = "nucleus/testdata";
 

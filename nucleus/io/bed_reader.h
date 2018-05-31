@@ -21,11 +21,10 @@
 #include "nucleus/io/text_reader.h"
 #include "nucleus/protos/bed.pb.h"
 #include "nucleus/vendor/statusor.h"
-#include "tensorflow/core/platform/types.h"
+#include "nucleus/platform/types.h"
 
 namespace nucleus {
 
-using tensorflow::string;
 
 // Alias for the abstract base class for BED record iterables.
 using BedIterable = Iterable<nucleus::genomics::v1::BedRecord>;

@@ -26,7 +26,7 @@
 #include "nucleus/vendor/status_matchers.h"
 
 #include "tensorflow/core/lib/core/status.h"
-#include "tensorflow/core/platform/types.h"
+#include "nucleus/platform/types.h"
 
 #include <gmock/gmock-generated-matchers.h>
 #include <gmock/gmock-matchers.h>
@@ -39,7 +39,6 @@ namespace nucleus {
 using nucleus::genomics::v1::Variant;
 using nucleus::genomics::v1::VariantCall;
 using std::vector;
-using tensorflow::string;
 
 // TODO(dhalexander): we should factor out a testdata.h
 

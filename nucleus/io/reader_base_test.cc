@@ -20,9 +20,9 @@
 #include <iostream>
 
 #include "tensorflow/core/platform/test.h"
+#include "nucleus/platform/types.h"
 #include "nucleus/vendor/status_matchers.h"
 
-using tensorflow::string;
 
 namespace nucleus {
 
@@ -52,7 +52,7 @@ class ToyReader : public Reader {
 class ToyIterable : public Iterable<string>  {
  private:
   const std::vector<string>& toys_;
-  uint32_t pos_;
+  uint32 pos_;
 
  public:
   StatusOr<bool> Next(string* out) override {

@@ -22,11 +22,10 @@
 #include "nucleus/io/text_writer.h"
 #include "nucleus/protos/fastq.pb.h"
 #include "nucleus/vendor/statusor.h"
-#include "tensorflow/core/platform/types.h"
+#include "nucleus/platform/types.h"
 
 namespace nucleus {
 
-using tensorflow::string;
 
 // A FASTQ writer, allowing us to write FASTQ files.
 //

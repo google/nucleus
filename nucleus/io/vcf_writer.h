@@ -25,11 +25,10 @@
 #include "nucleus/protos/range.pb.h"
 #include "nucleus/protos/variants.pb.h"
 #include "nucleus/vendor/statusor.h"
-#include "tensorflow/core/platform/types.h"
+#include "nucleus/platform/types.h"
 
 namespace nucleus {
 
-using tensorflow::string;
 
 // A VCF writer, allowing us to write VCF files.
 class VcfWriter {

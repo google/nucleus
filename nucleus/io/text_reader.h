@@ -20,12 +20,12 @@
 
 #include "absl/memory/memory.h"
 #include "htslib/hts.h"
+#include "nucleus/platform/types.h"
 #include "nucleus/vendor/statusor.h"
 #include "tensorflow/core/lib/core/status.h"
 
 namespace nucleus {
 
-using tensorflow::string;
 
 // The TextReader class allows reading text from a (possibly compressed) file.
 class TextReader {

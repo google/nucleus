@@ -25,6 +25,7 @@ cc_library(
         "statusor.h",
     ],
     deps = [
+        "//nucleus/platform:types",
         "@org_tensorflow//tensorflow/core:lib",
     ],
 )
@@ -70,7 +71,7 @@ cc_library(
     hdrs = ["statusor_examples.h"],
     deps = [
         ":statusor",
-        "@org_tensorflow//tensorflow/core:lib",
+        "//nucleus/platform:types",
     ],
 )
 

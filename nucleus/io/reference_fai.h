@@ -25,13 +25,12 @@
 #include "htslib/faidx.h"
 #include "nucleus/io/reference.h"
 #include "nucleus/vendor/statusor.h"
-#include "tensorflow/core/platform/types.h"
+#include "nucleus/platform/types.h"
 
 namespace nucleus {
 
 constexpr int REFERENCE_FAI_DEFAULT_CACHE_SIZE = 64 * 1024;
 
-using tensorflow::string;
 
 // A FASTA reader backed by a htslib FAI index.
 //
@@ -116,7 +115,7 @@ class GenomeReferenceFai : public GenomeReference {
   const int cache_size_bases_;
 
   // Cache of the last "small" read from the FASTA (<= kFastaCacheSize).
-  mutable std::string small_read_cache_;
+  mutable string small_read_cache_;
 
   // The range that is held in the cache, or "empty" if there is no range cached
   // yet.  Range must be <= kFastaCacheSize in length.
