@@ -32,9 +32,6 @@ namespace nucleus {
 
 namespace tf = tensorflow;
 
-// 256 KB read buffer.
-constexpr int READER_BUFFER_SIZE = 256 * 1024;
-
 // BED-specific attributes.
 constexpr char BED_COMMENT_PREFIX[] = "#";
 
