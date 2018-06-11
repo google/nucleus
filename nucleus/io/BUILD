@@ -701,3 +701,33 @@ py_test(
         "@com_google_absl_py//absl/testing:absltest",
     ],
 )
+
+cc_library(
+    name = "gff_reader",
+    srcs = ["gff_reader.cc"],
+    hdrs = ["gff_reader.h"],
+    deps = [
+        ":reader_base",
+        ":text_reader",
+        "//nucleus/platform:types",
+        "//nucleus/protos:gff_cc_pb2",
+        "//nucleus/protos:range_cc_pb2",
+        "//nucleus/vendor:statusor",
+        "@com_google_absl//absl/strings",
+        "@org_tensorflow//tensorflow/core:lib",
+    ],
+)
+
+cc_test(
+    name = "gff_reader_test",
+    srcs = ["gff_reader_test.cc"],
+    data = ["//nucleus/testdata"],
+    deps = [
+        ":gff_reader",
+        "//nucleus/protos:gff_cc_pb2",
+        "//nucleus/protos:range_cc_pb2",
+        "//nucleus/testing:cpp_test_utils",
+        "//nucleus/testing:gunit_extras",
+        "@com_google_googletest//:gtest_main",
+    ],
+)

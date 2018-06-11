@@ -21,12 +21,12 @@
 #include "absl/strings/numbers.h"
 #include "absl/strings/str_split.h"
 
+#include "nucleus/platform/types.h"
 #include "nucleus/protos/bed.pb.h"
 #include "nucleus/util/utils.h"
 #include "tensorflow/core/lib/core/errors.h"
 #include "tensorflow/core/lib/core/status.h"
 #include "tensorflow/core/platform/logging.h"
-#include "nucleus/platform/types.h"
 
 namespace nucleus {
 
@@ -49,8 +49,7 @@ bool ValidNumBedFields(const int fields) {
 }
 
 // Read the next non-comment line.
-tf::Status NextNonCommentLine(TextReader& text_reader,
-                              string* line) {
+tf::Status NextNonCommentLine(TextReader& text_reader, string* line) {
   CHECK(line != nullptr);
   string tmp;
   do {
@@ -119,8 +118,8 @@ tf::Status ConvertToPb(const string& line, const int desiredNumFields,
 
 // Peeks into the path to the first BED record and returns the number of fields
 // in the record.
-// NOTE: This is quite heavyweight. Reading upon initialization and then
-// rewinding the stream to 0 would be a nicer solution.
+// TODO(b/109754425): this is quite heavyweight. Reading upon initialization and
+// then rewinding the stream to 0 would be a nicer solution.
 tf::Status GetNumFields(const string& path, int* numFields) {
   CHECK(numFields != nullptr);
   string line;
@@ -169,8 +168,9 @@ StatusOr<std::unique_ptr<BedReader>> BedReader::FromFile(
 BedReader::BedReader(std::unique_ptr<TextReader> text_reader,
                      const nucleus::genomics::v1::BedReaderOptions& options,
                      const nucleus::genomics::v1::BedHeader& header)
-    : options_(options), header_(header), text_reader_(std::move(text_reader))
-{}
+    : options_(options),
+      header_(header),
+      text_reader_(std::move(text_reader)) {}
 
 BedReader::~BedReader() {
   if (text_reader_) {
