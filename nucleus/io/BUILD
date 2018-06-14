@@ -24,6 +24,7 @@ py_library(
         ":fastq",
         ":genomics_reader",
         ":genomics_writer",
+        ":gff",
         ":sam",
         ":vcf",
     ],
@@ -189,6 +190,20 @@ py_test(
         "//nucleus/testing:py_test_utils",
         "@com_google_absl_py//absl/testing:absltest",
         "@com_google_absl_py//absl/testing:parameterized",
+    ],
+)
+
+py_library(
+    name = "gff",
+    srcs = ["gff.py"],
+    deps = [
+        ":genomics_reader",
+        ":genomics_writer",
+        "//nucleus/io/python:gff_reader",
+        "//nucleus/protos:gff_py_pb2",
+        "//nucleus/protos:range_py_pb2",
+        "//nucleus/util:py_utils",
+        "//nucleus/util:ranges",
     ],
 )
 
