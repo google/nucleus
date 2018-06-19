@@ -74,11 +74,3 @@ cc_library(
         "//nucleus/platform:types",
     ],
 )
-
-cc_library(
-    name = "python_protobuf",
-    hdrs = ["python_protobuf.h"],
-    deps = [
-        "//external:python_headers",
-    ],
-)

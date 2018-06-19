@@ -15,8 +15,8 @@ git_repository(
 # //absl/{time,synchronization}
 http_archive(
     name = "com_googlesource_code_cctz",
-    urls = ["https://github.com/google/cctz/archive/master.zip"],
     strip_prefix = "cctz-master",
+    urls = ["https://github.com/google/cctz/archive/master.zip"],
 )
 
 # Note: we are using a post-1.6 build release that fixes a double-free.
@@ -26,7 +26,7 @@ new_http_archive(
     sha256 = "7743e379fa27fdbaa81d4efc97adc5e0b2c5ade3cd09a93e311ea0c6b3a4ddf6",
     strip_prefix = "htslib-57fa9be5255475b2cf9331db32848590a8ea8eb9",
     urls = [
-        "https://github.com/samtools/htslib/archive/57fa9be5255475b2cf9331db32848590a8ea8eb9.zip"
+        "https://github.com/samtools/htslib/archive/57fa9be5255475b2cf9331db32848590a8ea8eb9.zip",
     ],
 )
 
@@ -45,6 +45,21 @@ http_archive(
     urls = [
         "https://mirror.bazel.build/github.com/bazelbuild/rules_closure/archive/08039ba8ca59f64248bb3b6ae016460fe9c9914f.tar.gz",
         "https://github.com/bazelbuild/rules_closure/archive/08039ba8ca59f64248bb3b6ae016460fe9c9914f.tar.gz",  # 2018-01-16
+    ],
+)
+
+# We need a protobuf version at this hash or later because we need the API
+# introduced in
+# https://github.com/google/protobuf/pull/4698 with bug fix at
+# https://github.com/google/protobuf/pull/4725
+http_archive(
+    name = "protobuf_archive",
+    sha256 = "135d1105838932d04be79c06f429250531a73e699bd95aed83489aab9caa8622",
+    strip_prefix = "protobuf-2efcec95b6d42e66ada2a14f3fbf38762c52641c",
+    urls = [
+        # TODO(thomaswc): Restore this URL when it is up on the mirror.
+        # "https://mirror.bazel.build/github.com/google/protobuf/archive/a0e82dbe569552ac848d088391b63aaa1108d1a3.tar.gz",
+        "https://github.com/cmclean/protobuf/archive/2efcec95b6d42e66ada2a14f3fbf38762c52641c.tar.gz",
     ],
 )
 
