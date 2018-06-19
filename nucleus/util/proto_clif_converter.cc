@@ -17,22 +17,22 @@
 #include "nucleus/util/proto_clif_converter.h"
 #include "clif/python/types.h"
 #include "google/protobuf/message.h"
-#include "net/proto2/python/public/proto_api.h"
+#include "python/google/protobuf/proto_api.h"
 
 namespace clif {
 
-static const google::protobuf::python::PyProto_API* py_proto_api = nullptr;
+static const proto2::python::PyProto_API* py_proto_api = nullptr;
 
-const ::google::protobuf::Message* GetPyProtoMessagePointer(PyObject* py) {
+const ::proto2::Message* GetPyProtoMessagePointer(PyObject* py) {
   if (py_proto_api == nullptr) {
-    py_proto_api = static_cast<const google::protobuf::python::PyProto_API*>(
-        PyCapsule_Import(google::protobuf::python::PyProtoAPICapsuleName(), 0));
+    py_proto_api = static_cast<const proto2::python::PyProto_API*>(
+        PyCapsule_Import(proto2::python::PyProtoAPICapsuleName(), 0));
     if (py_proto_api == nullptr) {
       return nullptr;
     }
   }
 
-  const ::google::protobuf::Message* cpb = py_proto_api->GetMessagePointer(py);
+  const ::proto2::Message* cpb = py_proto_api->GetMessagePointer(py);
   return cpb;
 }
 
