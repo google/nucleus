@@ -13,4 +13,4 @@ RUN rm -rf /opt/nucleus
 
 ENV PATH /root/bin:$PATH
 
-ENTRYPOINT /bin/bash
+CMD /bin/bash
