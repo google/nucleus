@@ -25,17 +25,12 @@
 #include "absl/strings/string_view.h"
 #include "absl/strings/strip.h"
 #include "absl/types/optional.h"
+
+#include "nucleus/platform/types.h"
 #include "nucleus/protos/range.pb.h"
 
 #include "tensorflow/core/lib/core/status.h"
 #include "tensorflow/core/platform/logging.h"
-
-// Constants
-// TODO(dhalexander): share these with the writer
-constexpr char kGffCommentPrefix[] = "#";
-constexpr char kGffMissingField[] = ".";
-constexpr double kGffMissingDouble = -std::numeric_limits<double>::infinity();
-constexpr int32 kGffMissingInt32 = -1;
 
 namespace tf = tensorflow;
 
@@ -44,6 +39,13 @@ using nucleus::genomics::v1::GffReaderOptions;
 using nucleus::genomics::v1::GffRecord;
 
 namespace nucleus {
+
+// Constants
+// TODO(dhalexander): share these with the writer
+constexpr char kGffCommentPrefix[] = "#";
+constexpr char kGffMissingField[] = ".";
+constexpr double kGffMissingDouble = -std::numeric_limits<double>::infinity();
+constexpr int32 kGffMissingInt32 = -1;
 
 namespace {
 
