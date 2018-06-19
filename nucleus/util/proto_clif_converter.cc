@@ -23,17 +23,12 @@ namespace clif {
 
 static const proto2::python::PyProto_API* py_proto_api = nullptr;
 
-const ::proto2::Message* GetPyProtoMessagePointer(PyObject* py) {
+const proto2::python::PyProto_API* GetPyProtoApi(PyObject* py) {
   if (py_proto_api == nullptr) {
     py_proto_api = static_cast<const proto2::python::PyProto_API*>(
         PyCapsule_Import(proto2::python::PyProtoAPICapsuleName(), 0));
-    if (py_proto_api == nullptr) {
-      return nullptr;
-    }
   }
-
-  const ::proto2::Message* cpb = py_proto_api->GetMessagePointer(py);
-  return cpb;
+  return py_proto_api;
 }
 
 }  // namespace clif
