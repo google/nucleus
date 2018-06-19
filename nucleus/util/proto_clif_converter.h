@@ -19,7 +19,6 @@
 
 #include "clif/python/types.h"
 #include "google/protobuf/message.h"
-#include "net/proto2/python/public/proto_api.h"
 #include "nucleus/util/proto_ptr.h"
 #include "tensorflow/core/platform/logging.h"
 
@@ -29,7 +28,7 @@ namespace clif {
 // CLIF use `nucleus::EmptyProtoPtr` as EmptyProtoPtr
 // CLIF use `nucleus::ConstProtoPtr` as ConstProtoPtr
 
-const proto2::python::PyProto_API* py_proto_api = nullptr;
+const ::proto2::Message* GetPyProtoMessagePointer(PyObject* py);
 
 // Convert from Python protocol buffer object py to a C++ pointer.
 // Unlike the conversions that CLIF automatically generates for protocol
@@ -39,24 +38,15 @@ template <typename T>
 bool Clif_PyObjAs(PyObject* py, nucleus::EmptyProtoPtr<T>* c) {
   CHECK(c != nullptr);
 
-  if (py_proto_api == nullptr) {
-    py_proto_api = static_cast<const proto2::python::PyProto_API*>(
-        PyCapsule_Import(proto2::python::PyProtoAPICapsuleName(), 0));
-    if (py_proto_api == nullptr) {
-      return false;
-    }
-  }
-
-  ::proto2::Message* cpb = py_proto_api->GetMutableMessagePointer(py);
+  const ::proto2::Message* cpb = GetPyProtoMessagePointer(py);
   if (cpb == nullptr) {
     // Clients might depend on our non-copying semantics, so we can't fall
     // back on CLIF here but instead must fail loudly.
     return false;
+  } else {
+    c->p_ = dynamic_cast<T*>(cpb);
+    return true;
   }
-
-  c->p_ = dynamic_cast<T*>(cpb);
-
-  return true;
 }
 
 // Convert from Python protocol buffer object py to a C++ pointer.
@@ -67,24 +57,15 @@ template <typename T>
 bool Clif_PyObjAs(PyObject* py, nucleus::ConstProtoPtr<T>* c) {
   CHECK(c != nullptr);
 
-  if (py_proto_api == nullptr) {
-    py_proto_api = static_cast<const proto2::python::PyProto_API*>(
-        PyCapsule_Import(proto2::python::PyProtoAPICapsuleName(), 0));
-    if (py_proto_api == nullptr) {
-      return false;
-    }
-  }
-
-  const ::proto2::Message* cpb = py_proto_api->GetMessagePointer(py);
+  const ::proto2::Message* cpb = GetPyProtoMessagePointer(py);
   if (cpb == nullptr) {
     // Clients might depend on our non-copying semantics, so we can't fall
     // back on CLIF here but instead must fail loudly.
     return false;
+  } else {
+    c->p_ = dynamic_cast<T*>(cpb);
+    return true;
   }
-
-  c->p_ = dynamic_cast<T*>(cpb);
-
-  return true;
 }
 
 }  // namespace clif
