@@ -749,3 +749,35 @@ cc_test(
         "@com_google_googletest//:gtest_main",
     ],
 )
+
+cc_library(
+    name = "gff_writer",
+    srcs = ["gff_writer.cc"],
+    hdrs = ["gff_writer.h"],
+    deps = [
+        ":text_writer",
+        "//nucleus/platform:types",
+        "//nucleus/protos:gff_cc_pb2",
+        "//nucleus/protos:range_cc_pb2",
+        "//nucleus/util:cpp_utils",
+        "//nucleus/vendor:statusor",
+        "@com_google_absl//absl/memory",
+        "@com_google_absl//absl/strings",
+        "@org_tensorflow//tensorflow/core:lib",
+    ],
+)
+
+cc_test(
+    name = "gff_writer_test",
+    srcs = ["gff_writer_test.cc"],
+    deps = [
+        ":gff_writer",
+        "//nucleus/platform:types",
+        "//nucleus/protos:gff_cc_pb2",
+        "//nucleus/testing:cpp_test_utils",
+        "//nucleus/vendor:status_matchers",
+        "//nucleus/vendor:statusor",
+        "@com_google_googletest//:gtest_main",
+        "@protobuf_archive//:protobuf",
+    ],
+)
