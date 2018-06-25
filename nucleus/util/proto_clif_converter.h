@@ -41,6 +41,7 @@ bool Clif_PyObjAs(PyObject* py, nucleus::EmptyProtoPtr<T>* c) {
 
   auto* py_proto_api = GetPyProtoApi(py);
   if (py_proto_api == nullptr) {
+    PyErr_SetString(PyExc_RuntimeError, "Could not load PyProto API");
     return false;
   }
 
@@ -48,6 +49,8 @@ bool Clif_PyObjAs(PyObject* py, nucleus::EmptyProtoPtr<T>* c) {
   if (cpb == nullptr) {
     // Clients might depend on our non-copying semantics, so we can't fall
     // back on CLIF here but instead must fail loudly.
+    PyErr_SetString(PyExc_RuntimeError,
+                    "Python protobuf did not contain a mutable C++ protobuf");
     return false;
   } else {
     c->p_ = dynamic_cast<T*>(cpb);
@@ -65,6 +68,7 @@ bool Clif_PyObjAs(PyObject* py, nucleus::ConstProtoPtr<T>* c) {
 
   auto* py_proto_api = GetPyProtoApi(py);
   if (py_proto_api == nullptr) {
+    PyErr_SetString(PyExc_RuntimeError, "Could not load PyProto API");
     return false;
   }
 
@@ -72,6 +76,8 @@ bool Clif_PyObjAs(PyObject* py, nucleus::ConstProtoPtr<T>* c) {
   if (cpb == nullptr) {
     // Clients might depend on our non-copying semantics, so we can't fall
     // back on CLIF here but instead must fail loudly.
+    PyErr_SetString(PyExc_RuntimeError,
+                    "Python protobuf did not contain a C++ protobuf");
     return false;
   } else {
     c->p_ = dynamic_cast<T*>(cpb);
