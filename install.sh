@@ -39,13 +39,13 @@ function pip_install_tensorflow {
   # true
 
   # 2) Install a GPU-enabled version.
-  # sudo -H pip install --upgrade 'tensorflow-gpu==1.7'
+  # pip install --user --upgrade 'tensorflow-gpu==1.7'
 
   # 3) Install a CPU-enabled version.  This is the default option.
-  sudo -H pip install --upgrade 'tensorflow==1.7'
+  pip install --user --upgrade 'tensorflow==1.7'
 
   # 4) Install a Google Cloud Platform optimized CPU-only version of TensorFlow.
-  # curl https://storage.googleapis.com/deepvariant/packages/tensorflow/tensorflow-1.7.0.deepvariant_gcp-cp27-none-linux_x86_64.whl > /tmp/my.whl && sudo -H pip install --upgrade /tmp/my.whl
+  # curl https://storage.googleapis.com/deepvariant/packages/tensorflow/tensorflow-1.7.0.deepvariant_gcp-cp27-none-linux_x86_64.whl > /tmp/my.whl && pip install --user --upgrade /tmp/my.whl
 }
 
 function note_build_stage {
@@ -71,20 +71,21 @@ sudo -H apt-get -y install libssl-dev libcurl4-openssl-dev liblz-dev libbz2-dev 
 ################################################################################
 note_build_stage "Update pip"
 sudo -H apt-get -y install python-dev python-pip python-wheel
-sudo -H pip install --upgrade pip
+# pip 10.0 is broken, see https://github.com/pypa/pip/issues/5240
+pip install --user --upgrade pip=9.0.3
 
 # Install python packages used by Nucleus
 ################################################################################
-sudo -H pip install contextlib2
+pip install --user contextlib2
 # sortedcontainers>=2.0.0 breaks intervaltree=2.1.0
 # Remove this when https://github.com/chaimleib/intervaltree/pull/69
 # is resolved.  Tracked internally at b/80085543.
-sudo -H pip install 'sortedcontainers==1.5.3'
-sudo -H pip install intervaltree
-sudo -H pip install 'mock>=2.0.0'
-sudo -H pip install 'numpy==1.14'
-sudo -H pip install 'scipy==1.0'
-sudo -H pip install 'six>=1.11.0'
+pip install --user 'sortedcontainers==1.5.3'
+pip install --user intervaltree
+pip install --user 'mock>=2.0.0'
+pip install --user 'numpy==1.14'
+pip install --user 'scipy==1.0'
+pip install --user 'six>=1.11.0'
 
 # Install Java (required for Bazel)
 ################################################################################
