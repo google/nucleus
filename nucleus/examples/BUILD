@@ -19,7 +19,7 @@ py_binary(
         "//nucleus/util:variant_utils",
         "//nucleus/util:variantcall_utils",
         "//nucleus/util:vcf_constants",
-        "@com_google_absl_py//absl:app",
+        "@io_abseil_py//absl:app",
     ],
 )
 
@@ -35,7 +35,7 @@ py_test(
         ":add_ad_to_vcf",
         "//nucleus/io:vcf",
         "//nucleus/testing:py_test_utils",
-        "@com_google_absl_py//absl/testing:absltest",
+        "@io_abseil_py//absl/testing:absltest",
     ],
 )
 
@@ -45,7 +45,7 @@ py_binary(
     deps = [
         "//nucleus/io:sam",
         "//nucleus/util:ranges",
-        "@com_google_absl_py//absl:app",
+        "@io_abseil_py//absl:app",
     ],
 )
 
@@ -55,7 +55,7 @@ py_binary(
     deps = [
         "//nucleus/io:vcf",
         "//nucleus/util:variant_utils",
-        "@com_google_absl_py//absl:app",
+        "@io_abseil_py//absl:app",
     ],
 )
 
@@ -69,7 +69,7 @@ py_test(
     deps = [
         ":count_variants",
         "//nucleus/testing:py_test_utils",
-        "@com_google_absl_py//absl/testing:absltest",
+        "@io_abseil_py//absl/testing:absltest",
     ],
 )
 
@@ -78,7 +78,7 @@ py_binary(
     srcs = ["filter_vcf.py"],
     deps = [
         "//nucleus/io:vcf",
-        "@com_google_absl_py//absl:app",
+        "@io_abseil_py//absl:app",
     ],
 )
 
@@ -93,7 +93,7 @@ py_test(
         ":filter_vcf",
         "//nucleus/io:vcf",
         "//nucleus/testing:py_test_utils",
-        "@com_google_absl_py//absl/testing:absltest",
+        "@io_abseil_py//absl/testing:absltest",
     ],
 )
 
@@ -104,7 +104,7 @@ py_binary(
         "//nucleus/io:fasta",
         "//nucleus/io:vcf",
         "//nucleus/util:variant_utils",
-        "@com_google_absl_py//absl:app",
+        "@io_abseil_py//absl:app",
     ],
 )
 
@@ -120,7 +120,7 @@ py_test(
         "//nucleus/protos:reference_py_pb2",
         "//nucleus/protos:variants_py_pb2",
         "//nucleus/testing:py_test_utils",
-        "@com_google_absl_py//absl/testing:absltest",
+        "@io_abseil_py//absl/testing:absltest",
     ],
 )
 
@@ -137,7 +137,7 @@ py_binary(
         "//nucleus/util:py_utils",
         "//nucleus/util:ranges",
         "//nucleus/util:variant_utils",
-        "@com_google_absl_py//absl:app",
+        "@io_abseil_py//absl:app",
     ],
 )
 
@@ -151,6 +151,6 @@ py_test(
         ":ngs_errors",
         "//nucleus/io:genomics_reader",
         "//nucleus/testing:py_test_utils",
-        "@com_google_absl_py//absl/testing:absltest",
+        "@io_abseil_py//absl/testing:absltest",
     ],
 )

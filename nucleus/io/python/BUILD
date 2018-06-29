@@ -40,7 +40,7 @@ py_test(
         "//nucleus/protos:variants_py_pb2",
         "//nucleus/testing:py_test_utils",
         "//nucleus/util:ranges",
-        "@com_google_absl_py//absl/testing:absltest",
+        "@io_abseil_py//absl/testing:absltest",
     ],
 )
 
@@ -69,8 +69,8 @@ py_test(
         "//nucleus/protos:variants_py_pb2",
         "//nucleus/testing:py_test_utils",
         "//nucleus/util:io_utils",
-        "@com_google_absl_py//absl/testing:absltest",
-        "@com_google_absl_py//absl/testing:parameterized",
+        "@io_abseil_py//absl/testing:absltest",
+        "@io_abseil_py//absl/testing:parameterized",
     ],
 )
 
@@ -105,7 +105,7 @@ py_test(
         "//nucleus/protos:reference_py_pb2",
         "//nucleus/testing:py_test_utils",
         "//nucleus/util:ranges",
-        "@com_google_absl_py//absl/testing:absltest",
+        "@io_abseil_py//absl/testing:absltest",
     ],
 )
 
@@ -144,8 +144,8 @@ py_test(
         ":reference_fai",
         "//nucleus/testing:py_test_utils",
         "//nucleus/util:ranges",
-        "@com_google_absl_py//absl/testing:absltest",
-        "@com_google_absl_py//absl/testing:parameterized",
+        "@io_abseil_py//absl/testing:absltest",
+        "@io_abseil_py//absl/testing:parameterized",
     ],
 )
 
@@ -186,8 +186,8 @@ py_test(
         ":bed_reader",
         "//nucleus/protos:bed_py_pb2",
         "//nucleus/testing:py_test_utils",
-        "@com_google_absl_py//absl/testing:absltest",
-        "@com_google_absl_py//absl/testing:parameterized",
+        "@io_abseil_py//absl/testing:absltest",
+        "@io_abseil_py//absl/testing:parameterized",
     ],
 )
 
@@ -214,8 +214,8 @@ py_test(
         "//nucleus/protos:bed_py_pb2",
         "//nucleus/testing:py_test_utils",
         "//nucleus/util:io_utils",
-        "@com_google_absl_py//absl/testing:absltest",
-        "@com_google_absl_py//absl/testing:parameterized",
+        "@io_abseil_py//absl/testing:absltest",
+        "@io_abseil_py//absl/testing:parameterized",
     ],
 )
 
@@ -244,8 +244,8 @@ py_test(
         ":fastq_reader",
         "//nucleus/protos:fastq_py_pb2",
         "//nucleus/testing:py_test_utils",
-        "@com_google_absl_py//absl/testing:absltest",
-        "@com_google_absl_py//absl/testing:parameterized",
+        "@io_abseil_py//absl/testing:absltest",
+        "@io_abseil_py//absl/testing:parameterized",
     ],
 )
 
@@ -273,8 +273,8 @@ py_test(
         "//nucleus/protos:fastq_py_pb2",
         "//nucleus/testing:py_test_utils",
         "//nucleus/util:io_utils",
-        "@com_google_absl_py//absl/testing:absltest",
-        "@com_google_absl_py//absl/testing:parameterized",
+        "@io_abseil_py//absl/testing:absltest",
+        "@io_abseil_py//absl/testing:parameterized",
     ],
 )
 
@@ -293,7 +293,7 @@ py_test(
     srcs_version = "PY2AND3",
     deps = [
         ":hts_verbose",
-        "@com_google_absl_py//absl/testing:absltest",
+        "@io_abseil_py//absl/testing:absltest",
     ],
 )
 
@@ -322,8 +322,8 @@ py_test(
         ":gff_reader",
         "//nucleus/protos:gff_py_pb2",
         "//nucleus/testing:py_test_utils",
-        "@com_google_absl_py//absl/testing:absltest",
-        "@com_google_absl_py//absl/testing:parameterized",
+        "@io_abseil_py//absl/testing:absltest",
+        "@io_abseil_py//absl/testing:parameterized",
     ],
 )
 
@@ -354,7 +354,7 @@ py_test(
         "//nucleus/testing:py_test_utils",
         "//nucleus/util:io_utils",
         "//nucleus/util:ranges",
-        "@com_google_absl_py//absl/testing:absltest",
-        "@com_google_absl_py//absl/testing:parameterized",
+        "@io_abseil_py//absl/testing:absltest",
+        "@io_abseil_py//absl/testing:parameterized",
     ],
 )
