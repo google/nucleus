@@ -123,14 +123,12 @@ on the filename's extensions.
 
 #### Methods:
 <a name="__init__"></a>
-##### `__init__(self, input_path, use_index=True, excluded_info_fields=None, excluded_format_fields=None)`
+##### `__init__(self, input_path, excluded_info_fields=None, excluded_format_fields=None)`
 ```
 Initializer for NativeVcfReader.
 
 Args:
   input_path: str. The path to the VCF file to read.
-  use_index: bool. If True, the input is assumed to be bgzipped and tabix
-    indexed, and the `query` functionality is supported.
   excluded_info_fields: list(str). A list of INFO field IDs that should not
     be parsed into the Variants. If None, all INFO fields are included.
   excluded_format_fields: list(str). A list of FORMAT field IDs that should

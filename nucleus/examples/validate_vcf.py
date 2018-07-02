@@ -70,7 +70,7 @@ def main(argv):
   in_vcf = argv[2]
 
   with fasta.RefFastaReader(in_ref) as ref_reader:
-    with vcf.VcfReader(in_vcf, use_index=False) as vcf_reader:
+    with vcf.VcfReader(in_vcf) as vcf_reader:
       validate_contigs(ref_reader.header.contigs, vcf_reader.header.contigs)
       for variant in vcf_reader:
         validate_variant(ref_reader, variant)

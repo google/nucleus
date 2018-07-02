@@ -101,17 +101,13 @@ on the filename's extensions.
 
 #### Methods:
 <a name="__init__"></a>
-##### `__init__(self, input_path, use_index=True, read_requirements=None, parse_aux_fields=False, hts_block_size=None, downsample_fraction=None, random_seed=None)`
+##### `__init__(self, input_path, read_requirements=None, parse_aux_fields=False, hts_block_size=None, downsample_fraction=None, random_seed=None)`
 ```
 Initializes a NativeSamReader.
 
 Args:
   input_path: str. A path to a resource containing SAM/BAM records.
     Currently supports SAM text format and BAM binary format.
-  use_index: optional bool, defaulting to True. If True, we will attempt to
-    load an index file for input_path to enable the query() API call. If
-    True an index file must exist. If False, we will not attempt to load an
-    index for input_path, disabling the query() call.
   read_requirements: optional ReadRequirement proto. If not None, this proto
     is used to control which reads are filtered out by the reader before
     they are passed to the client.

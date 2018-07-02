@@ -31,7 +31,7 @@ class FilterVcfTest(absltest.TestCase):
     out_fname = test_utils.test_tmpfile('output.vcf')
     filter_vcf.main(['filter_vcf', in_fname, out_fname])
 
-    with vcf.VcfReader(out_fname, use_index=False) as reader:
+    with vcf.VcfReader(out_fname) as reader:
       variants = list(reader)
       self.assertEqual(3, len(variants))
       self.assertEqual(['DogSNP4', 'DogSNP5', 'DogSNP6'],

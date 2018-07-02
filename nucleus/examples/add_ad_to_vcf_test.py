@@ -32,7 +32,7 @@ class AddAdToVcfTest(absltest.TestCase):
     out_fname = test_utils.test_tmpfile('output.vcf')
     add_ad_to_vcf.main(['add_ad_to_vcf', in_fname, out_fname])
 
-    with vcf.VcfReader(out_fname, use_index=False) as reader:
+    with vcf.VcfReader(out_fname) as reader:
       info_ids = [info.id for info in reader.header.infos]
       self.assertTrue('AD' in info_ids)
       variant1 = next(reader)

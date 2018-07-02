@@ -38,12 +38,12 @@ particular input file is compressed, and deal with that transparently.
 Of course, vcf files don't have to be compressed; `VcfReader` would have
 accepted an uncompressed `/tmp/example2.vcf` just as well.
 
-By default, we *do* assume that VCF files come along with a
-[TABIX](http://www.htslib.org/doc/tabix.html) index that allows us to
-efficiently do random access queries on genomic ranges.  For
+In order to use the range query functionality of VCF, we assume that BGZIP'd VCF
+files come along with a [TABIX](http://www.htslib.org/doc/tabix.html) index that
+allows us to efficiently do random access queries on genomic ranges. For
 `/tmp/example.vcf.gz` we would assume the index is in the file
-`/tmp/example.vcf.gz.tbi`.  To turn off this assumption, pass the
-`use_index=False` keyword parameter to `VcfReader`.
+`/tmp/example.vcf.gz.tbi`.  The `query` method will raise an exception if there
+is no index file present (or if the file is text VCF, which is not indexable).
 
 ```python
   print('Sample names in VCF: ', ' '.join(reader.header.sample_names))

@@ -34,7 +34,7 @@ def main(argv):
 
   # Please try to keep the following part in sync with the documenation in
   # g3doc/overview.md.
-  with vcf.VcfReader(in_vcf, use_index=False) as reader:
+  with vcf.VcfReader(in_vcf) as reader:
     print('Sample names in VCF: ', ' '.join(reader.header.sample_names))
     with vcf.VcfWriter(out_vcf, header=reader.header) as writer:
       for variant in reader:

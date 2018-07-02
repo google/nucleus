@@ -35,7 +35,7 @@ def main(argv):
   by_type = collections.defaultdict(int)
   by_ref = collections.defaultdict(int)
 
-  with vcf.VcfReader(in_vcf, use_index=False) as reader:
+  with vcf.VcfReader(in_vcf) as reader:
     for variant in reader:
       total += 1
       by_type[variant_utils.variant_type(variant)] += 1

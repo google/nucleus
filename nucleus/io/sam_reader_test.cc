@@ -19,7 +19,6 @@
 
 #include <string>
 
-#include "nucleus/protos/index.pb.h"
 #include "nucleus/testing/protocol-buffer-matchers.h"
 #include "nucleus/testing/test_utils.h"
 #include "nucleus/util/utils.h"
@@ -135,8 +134,6 @@ TEST(SamReaderTest, TestHeaderlessSamIsNotOkay) {
 class SamReaderQueryTest : public ::testing::Test {
  protected:
   void SetUp() override {
-    options_.set_index_mode(
-        nucleus::genomics::v1::IndexHandlingMode::INDEX_BASED_ON_FILENAME);
     indexed_bam_ = GetTestData(kBamTestFilename);
     RecreateReader();
   }

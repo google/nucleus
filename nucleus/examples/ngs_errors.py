@@ -240,8 +240,7 @@ def make_ngs_error_examples(ref_path,
   # values of ReadRequirements. Also explicitly allow the reader to access an
   # unindexed BAM, so only the iterate() function is enabled.
   read_requirements = reads_pb2.ReadRequirements()
-  sam_reader = sam.SamReader(
-      bam_path, use_index=False, read_requirements=read_requirements)
+  sam_reader = sam.SamReader(bam_path, read_requirements=read_requirements)
 
   # Create our TFRecordWriter where we'll send our tf.Examples.
   examples_out = genomics_writer.TFRecordWriter(examples_out_path)

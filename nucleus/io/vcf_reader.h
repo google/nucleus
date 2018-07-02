@@ -25,7 +25,6 @@
 #include "htslib/vcf.h"
 #include "nucleus/io/reader_base.h"
 #include "nucleus/io/vcf_conversion.h"
-#include "nucleus/protos/index.pb.h"
 #include "nucleus/protos/range.pb.h"
 #include "nucleus/protos/reference.pb.h"
 #include "nucleus/protos/variants.pb.h"
@@ -65,8 +64,9 @@ class VcfReader : public Reader {
   // variantsPath must point to an existing VCF formatted file (text or
   // bgzip compressed VCF file).
   //
-  // If options.index_mode indicates we should load an index, this constructor
-  // will attempt to load an Tabix index from file variantsPath + '.tbi'.
+  // If the filetype is indexable (BGZF'd vcf.gz) his constructor will attempt
+  // to load an Tabix index from file variantsPath + '.tbi', to support
+  // subsequent Query operations.
   //
   // Returns a StatusOr that is OK if the VcfReader could be successfully
   // created or an error code indicating the error that occurred.

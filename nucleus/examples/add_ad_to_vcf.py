@@ -52,7 +52,7 @@ def main(argv):
   in_vcf = argv[1]
   out_vcf = argv[2]
 
-  with vcf.VcfReader(in_vcf, use_index=False) as reader:
+  with vcf.VcfReader(in_vcf) as reader:
     if 'AD' in [info.id for info in reader.header.infos]:
       print('%s already contains AD field.' % in_vcf)
       sys.exit(-1)
