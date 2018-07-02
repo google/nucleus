@@ -180,14 +180,17 @@ fi
 ################################################################################
 note_build_stage "Download and build TensorFlow"
 
-(cd .. &&
- git clone https://github.com/tensorflow/tensorflow &&
- cd tensorflow &&
+if [[ ! -d ../tensorflow ]]; then
+  note_build_stage "Cloning TensorFlow from github as ../tensorflow doesn't exist"
+  (cd .. &&
+   git clone https://github.com/tensorflow/tensorflow)
+fi
+
+(cd ../tensorflow &&
  git checkout v1.7.0 &&
  echo | ./configure &&
  pip_install_tensorflow
  )
-
 
 echo "Done installing prereqs at $(date)!"
 
