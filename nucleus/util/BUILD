@@ -170,6 +170,7 @@ py_library(
         "//nucleus/io:bed",
         "//nucleus/protos:position_py_pb2",
         "//nucleus/protos:range_py_pb2",
+        "@io_abseil_py//absl/logging",
     ],
 )
 
