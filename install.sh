@@ -72,7 +72,7 @@ sudo -H apt-get -y install libssl-dev libcurl4-openssl-dev liblz-dev libbz2-dev 
 note_build_stage "Update pip"
 sudo -H apt-get -y install python-dev python-pip python-wheel
 # pip 10.0 is broken, see https://github.com/pypa/pip/issues/5240
-pip install --user --upgrade pip=9.0.3
+pip install --user --upgrade 'pip==9.0.3'
 
 # Install python packages used by Nucleus
 ################################################################################
