@@ -25,6 +25,8 @@
 
 [`nucleus.io.genomics_writer`](nucleus/io/genomics_writer.md)
 
+[`nucleus.io.gff`](nucleus/io/gff.md)
+
 [`nucleus.io.sam`](nucleus/io/sam.md)
 
 [`nucleus.io.vcf`](nucleus/io/vcf.md)
