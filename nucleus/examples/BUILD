@@ -154,3 +154,26 @@ py_test(
         "@io_abseil_py//absl/testing:absltest",
     ],
 )
+
+py_binary(
+    name = "convert_genomics_file",
+    srcs = ["convert_genomics_file.py"],
+    deps = [
+        "//nucleus/io:io_py",
+        "@io_abseil_py//absl:app",
+        "@io_abseil_py//absl/logging",
+    ],
+)
+
+py_test(
+    name = "convert_genomics_file_test",
+    srcs = ["convert_genomics_file_test.py"],
+    data = ["//nucleus/testdata"],
+    deps = [
+        ":convert_genomics_file",
+        "//nucleus/testing:py_test_utils",
+        "@io_abseil_py//absl/logging",
+        "@io_abseil_py//absl/testing:absltest",
+        "@io_abseil_py//absl/testing:parameterized",
+    ],
+)
