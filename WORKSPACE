@@ -49,16 +49,16 @@ http_archive(
 
 # We need a protobuf version at this hash or later because we need the API
 # introduced in
-# https://github.com/google/protobuf/pull/4698 with bug fixes at
-# 4725, 4835, and 4836.
+# https://github.com/google/protobuf/pull/4698 with bug fix at
+# https://github.com/google/protobuf/pull/4725
 http_archive(
     name = "protobuf_archive",
-    sha256 = "ab811441e16acd6e6d19abb9fd266b0acbd7c14be331de9da7f0bdb3683ae39f",
-    strip_prefix = "protobuf-79700b56b99fa5c8c22ddef78e6c9557ff711379",
+    sha256 = "135d1105838932d04be79c06f429250531a73e699bd95aed83489aab9caa8622",
+    strip_prefix = "protobuf-2efcec95b6d42e66ada2a14f3fbf38762c52641c",
     urls = [
         # TODO(thomaswc): Restore this URL when it is up on the mirror.
         # "https://mirror.bazel.build/github.com/google/protobuf/archive/a0e82dbe569552ac848d088391b63aaa1108d1a3.tar.gz",
-        "https://github.com/google/protobuf/archive/79700b56b99fa5c8c22ddef78e6c9557ff711379.tar.gz",
+        "https://github.com/cmclean/protobuf/archive/2efcec95b6d42e66ada2a14f3fbf38762c52641c.tar.gz",
     ],
 )
 
