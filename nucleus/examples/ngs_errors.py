@@ -99,7 +99,7 @@ from __future__ import division
 from __future__ import print_function
 
 from absl import app
-from tensorflow import flags
+from absl import flags
 from absl import logging
 import six
 
