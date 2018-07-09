@@ -29,7 +29,7 @@ import unittest
 from absl import logging
 from absl.testing import absltest
 from absl.testing import parameterized
-from nucleus.examples import convert_genomics_file
+from nucleus.io import converter
 from nucleus.testing import test_utils
 
 basename = os.path.basename
@@ -50,7 +50,7 @@ class ConvertGenomicsFileTest(parameterized.TestCase):
   def _convert(self, src, dest):
     logging.info("#### Converting: %s --> %s ... ", basename(src),
                  basename(dest))
-    convert_genomics_file.convert(src, dest)
+    converter.convert(src, dest)
 
   @parameterized.parameters(*ORIGINAL_TEST_FILES)
   def test_conversion_to_tfrecord_and_back(self, original_input_file):
@@ -73,7 +73,7 @@ class ConvertGenomicsFileTest(parameterized.TestCase):
     if any(
         native_output_path.endswith(ext) for ext in FORMATS_REQUIRING_HEADER):
       with self.assertRaisesRegexp(
-          convert_genomics_file.ConversionError,
+          converter.ConversionError,
           "Input file does not have a header, which is needed to construct "
           "output file"):
         self._convert(tfrecord_output_path, native_output_path)
@@ -84,3 +84,4 @@ class ConvertGenomicsFileTest(parameterized.TestCase):
 
 if __name__ == "__main__":
   absltest.main()
+ 
