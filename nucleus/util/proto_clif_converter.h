@@ -54,6 +54,10 @@ bool Clif_PyObjAs(PyObject* py, nucleus::EmptyProtoPtr<T>* c) {
     return false;
   } else {
     c->p_ = dynamic_cast<T*>(cpb);
+    if (c->p_ == nullptr) {
+      PyErr_SetString(PyExc_RuntimeError, "Dynamic cast failed");
+      return false;
+    }
     return true;
   }
 }
@@ -81,6 +85,10 @@ bool Clif_PyObjAs(PyObject* py, nucleus::ConstProtoPtr<T>* c) {
     return false;
   } else {
     c->p_ = dynamic_cast<T*>(cpb);
+    if (c->p_ == nullptr) {
+      PyErr_SetString(PyExc_RuntimeError, "Dynamic cast failed");
+      return false;
+    }
     return true;
   }
 }
