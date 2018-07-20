@@ -36,6 +36,7 @@
 # ------------------------------------------------------------------------------
 
 NUCLEUS_BAZEL_VERSION="0.15.0"
+NUCLEUS_TENSORFLOW_VERSION="1.7.1"
 
 # ------------------------------------------------------------------------------
 
@@ -48,13 +49,15 @@ function pip_install_tensorflow {
   # true
 
   # 2) Install a GPU-enabled version.
-  # pip install --user --upgrade 'tensorflow-gpu==1.7'
+  # pip install --user --upgrade tensorflow-gpu==${NUCLEUS_TENSORFLOW_VERSION}
 
   # 3) Install a CPU-enabled version.  This is the default option.
-  pip install --user --upgrade 'tensorflow==1.7'
+  pip install --user --upgrade tensorflow==${NUCLEUS_TENSORFLOW_VERSION}
 
   # 4) Install a Google Cloud Platform optimized CPU-only version of TensorFlow.
-  # curl https://storage.googleapis.com/deepvariant/packages/tensorflow/tensorflow-1.7.0.deepvariant_gcp-cp27-none-linux_x86_64.whl > /tmp/my.whl && pip install --user --upgrade /tmp/my.whl
+  # For TensorFlow 1.7.1, this wheel file doesn't actually exist yet.
+  # TODO(thomaswc): Create the wheel file for TF 1.7.1.
+  # curl https://storage.googleapis.com/deepvariant/packages/tensorflow/tensorflow-${NUCLEUS_TENSORFLOW_VERSION}.deepvariant_gcp-cp27-none-linux_x86_64.whl > /tmp/my.whl && pip install --user --upgrade /tmp/my.whl
 }
 
 function note_build_stage {
@@ -195,7 +198,7 @@ if [[ ! -d ../tensorflow ]]; then
 fi
 
 (cd ../tensorflow &&
- git checkout v1.7.0 &&
+ git checkout v${NUCLEUS_TENSORFLOW_VERSION} &&
  echo | ./configure &&
  pip_install_tensorflow
  )
