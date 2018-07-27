@@ -2,6 +2,8 @@
 # be separately open source.
 # load("//devtools/python/blaze:python3.bzl", "py2and3_test")
 
+load("//:tools/nucleus.bzl", "nucleus_py_library", "nucleus_py_extension", "nucleus_py_binary")
+
 package(default_visibility = ["//visibility:public"])
 
 licenses(["notice"])  # Apache License 2.0
@@ -24,7 +26,7 @@ cc_library(
     ],
 )
 
-py_library(
+nucleus_py_library(
     name = "testing_py",
     testonly = True,
     deps = [
@@ -81,7 +83,7 @@ cc_library(
     ],
 )
 
-py_library(
+nucleus_py_library(
     name = "py_test_utils",
     testonly = True,
     srcs = ["test_utils.py"],

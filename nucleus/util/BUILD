@@ -1,5 +1,6 @@
 # Utility routines for working with genomics data and genomics protobufs.
 # load("//devtools/python/blaze:python3.bzl", "py2and3_test")
+load("//:tools/nucleus.bzl", "nucleus_py_library", "nucleus_py_extension", "nucleus_py_binary")
 
 package(
     default_visibility = [
@@ -11,7 +12,7 @@ licenses(["notice"])  # Apache License 2.0
 
 exports_files(["LICENSE"])
 
-py_library(
+nucleus_py_library(
     name = "util_py",
     deps = [
         ":cigar",
@@ -79,7 +80,7 @@ cc_test(
     ],
 )
 
-py_library(
+nucleus_py_library(
     name = "py_utils",
     srcs = ["utils.py"],
     deps = [
@@ -88,7 +89,7 @@ py_library(
     ],
 )
 
-py_library(
+nucleus_py_library(
     name = "cigar",
     srcs = ["cigar.py"],
     deps = ["//nucleus/protos:cigar_py_pb2"],
@@ -120,7 +121,7 @@ py_test(
     ],
 )
 
-py_library(
+nucleus_py_library(
     name = "proto_utils",
     srcs = ["proto_utils.py"],
     deps = [
@@ -148,7 +149,7 @@ cc_test(
     ],
 )
 
-py_library(
+nucleus_py_library(
     name = "genomics_math",
     srcs = ["genomics_math.py"],
     deps = ["//nucleus/util/python:math"],
@@ -165,7 +166,7 @@ py_test(
     ],
 )
 
-py_library(
+nucleus_py_library(
     name = "ranges",
     srcs = ["ranges.py"],
     deps = [
@@ -192,7 +193,7 @@ py_test(
     ],
 )
 
-py_library(
+nucleus_py_library(
     name = "variantcall_utils",
     srcs = ["variantcall_utils.py"],
     deps = [
@@ -215,7 +216,7 @@ py_test(
     ],
 )
 
-py_library(
+nucleus_py_library(
     name = "variant_utils",
     srcs = ["variant_utils.py"],
     deps = [
@@ -240,7 +241,7 @@ py_test(
     ],
 )
 
-py_library(
+nucleus_py_library(
     name = "struct_utils",
     srcs = ["struct_utils.py"],
     deps = [
@@ -260,7 +261,7 @@ py_test(
     ],
 )
 
-py_library(
+nucleus_py_library(
     name = "vcf_constants",
     srcs = ["vcf_constants.py"],
     deps = [
@@ -281,7 +282,7 @@ py_test(
     ],
 )
 
-py_library(
+nucleus_py_library(
     name = "io_utils",
     srcs = ["io_utils.py"],
 )
@@ -300,7 +301,7 @@ py_test(
     ],
 )
 
-py_library(
+nucleus_py_library(
     name = "errors",
     srcs = ["errors.py"],
     deps = [
@@ -339,7 +340,7 @@ cc_test(
     ],
 )
 
-py_library(
+nucleus_py_library(
     name = "sequence_utils",
     srcs = ["sequence_utils.py"],
 )
