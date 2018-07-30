@@ -1,3 +1,6 @@
-licenses(["notice"])  # Apache License 2.0
+licenses(["notice"])
 
-exports_files(["zip_dir.bzl"])
+exports_files([
+    "nucleus.bzl",
+    "zip_dir.bzl",
+])
