@@ -1,5 +1,5 @@
 load("//tools:zip_dir.bzl", "zip_dir")
-load("//:tools/nucleus.bzl", "nucleus_py_library", "nucleus_py_extension", "nucleus_py_binary")
+# KEEP THIS LINE to import nucleus.bzl externally
 
 package(
     default_visibility = [
@@ -12,8 +12,8 @@ package(
 filegroup(
     name = "libraries",
     srcs = [
-        "//nucleus",
-        "//nucleus:nucleus_py",
+        "//third_party/nucleus",
+        "//third_party/nucleus:nucleus_py",
     ],
 )
 
