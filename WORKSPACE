@@ -3,8 +3,8 @@ workspace(name = "nucleus")
 # Abseil libraries
 git_repository(
     name = "io_abseil_py",
-    tag = "pypi-v0.2.2",
     remote = "https://github.com/abseil/abseil-py.git",
+    tag = "pypi-v0.2.2",
 )
 # Note: com_google_absl (the C++ abseil library) is provided by TensorFlow.
 
@@ -51,8 +51,11 @@ http_archive(
 # introduced in
 # https://github.com/google/protobuf/pull/4698 with bug fixes at
 # 4725, 4835, and 4836.
-http_archive(
+# We also use our own BUILD file to take advantage of the nucleus_py_* targets.
+# It must be kept in sync with the version of protobuf used.
+new_http_archive(
     name = "protobuf_archive",
+    build_file = "third_party/protobuf.BUILD",
     sha256 = "ab811441e16acd6e6d19abb9fd266b0acbd7c14be331de9da7f0bdb3683ae39f",
     strip_prefix = "protobuf-79700b56b99fa5c8c22ddef78e6c9557ff711379",
     urls = [
