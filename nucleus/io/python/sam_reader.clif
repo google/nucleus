@@ -33,7 +33,8 @@ from "nucleus/io/sam_reader.h":
 
     class SamReader:
       @classmethod
-      def `FromFile` as from_file(cls, readsPath: str, options: SamReaderOptions)
+      def `FromFile` as from_file(
+          cls, reads_path: str, ref_path: str, options: SamReaderOptions)
         -> StatusOr<SamReader>
 
       def `Iterate` as iterate(self) -> StatusOr<SamIterable>:
