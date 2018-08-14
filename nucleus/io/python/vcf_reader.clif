@@ -17,6 +17,7 @@ from "nucleus/protos/reference_pyclif.h" import *
 from "nucleus/protos/variants_pyclif.h" import *
 from "nucleus/vendor/statusor_clif_converters.h" import *
 
+from nucleus.io.clif_postproc import ValueErrorOnFalse
 from nucleus.io.clif_postproc import WrappedCppIterable
 
 
@@ -40,6 +41,13 @@ from "nucleus/io/vcf_reader.h":
         return WrappedCppIterable(...)
       def `Query` as query(self, region: Range) -> StatusOr<VariantIterable>:
         return WrappedCppIterable(...)
+
+      def `FromStringPython` as from_string(self, vcf_line: str) -> (status: StatusOr<bool>, variant: Variant):
+        # If status is an error object, the statusor_clif_converters
+        # will have already converted it into a Python error message.
+        # We call ValueErrorOnFalse here so that users only see a single
+        # return object (the Variant).
+        return ValueErrorOnFalse(...)
 
       @__enter__
       def PythonEnter(self) -> Status
