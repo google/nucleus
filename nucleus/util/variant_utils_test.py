@@ -219,6 +219,8 @@ class VariantUtilsTests(parameterized.TestCase):
       (test_utils.make_variant(alleles=['A', 'C', 'AT']), False),
       (test_utils.make_variant(alleles=['A']), False),
       (test_utils.make_variant(alleles=['A', '.']), False),
+      (test_utils.make_variant(alleles=['A', 'C', '<*>']), True),
+      (test_utils.make_variant(alleles=['A', 'AT', '<*>']), False),
   )
   def test_is_snp(self, variant, expected):
     self.assertEqual(variant_utils.is_snp(variant), expected)
@@ -232,6 +234,8 @@ class VariantUtilsTests(parameterized.TestCase):
       (test_utils.make_variant(alleles=['A', 'C', 'AT']), True),
       (test_utils.make_variant(alleles=['A']), False),
       (test_utils.make_variant(alleles=['A', '.']), False),
+      (test_utils.make_variant(alleles=['A', 'C', 'AT', '<*>']), True),
+      (test_utils.make_variant(alleles=['A', 'C', '<*>']), False),
   )
   def test_is_indel(self, variant, expected):
     self.assertEqual(variant_utils.is_indel(variant), expected)
