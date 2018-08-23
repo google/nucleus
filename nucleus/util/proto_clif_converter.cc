@@ -14,12 +14,12 @@
  * limitations under the License.
  *
  */
-#include "nucleus/util/proto_clif_converter.h"
-#include "clif/python/types.h"
 #include "google/protobuf/message.h"
 #include "python/google/protobuf/proto_api.h"
+#include "clif/python/types.h"
+#include "nucleus/util/proto_clif_converter.h"
 
-namespace clif {
+namespace nucleus {
 
 static const proto2::python::PyProto_API* py_proto_api = nullptr;
 
@@ -31,4 +31,4 @@ const proto2::python::PyProto_API* GetPyProtoApi(PyObject* py) {
   return py_proto_api;
 }
 
-}  // namespace clif
+}  // namespace nucleus

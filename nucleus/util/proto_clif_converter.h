@@ -17,26 +17,26 @@
 #ifndef THIRD_PARTY_NUCLEUS_UTIL_PROTO_CLIF_CONVERTER_H_
 #define THIRD_PARTY_NUCLEUS_UTIL_PROTO_CLIF_CONVERTER_H_
 
-#include "clif/python/types.h"
 #include "google/protobuf/message.h"
 #include "python/google/protobuf/proto_api.h"
+#include "clif/python/types.h"
 #include "nucleus/util/proto_ptr.h"
 #include "tensorflow/core/platform/logging.h"
 
-namespace clif {
+namespace nucleus {
 
 // Note: the comments below are instructions to CLIF.
-// CLIF use `nucleus::EmptyProtoPtr` as EmptyProtoPtr
-// CLIF use `nucleus::ConstProtoPtr` as ConstProtoPtr
+// CLIF use `::nucleus::EmptyProtoPtr` as EmptyProtoPtr
+// CLIF use `::nucleus::ConstProtoPtr` as ConstProtoPtr
 
-const proto2::python::PyProto_API* GetPyProtoApi(PyObject* py);
+const ::proto2::python::PyProto_API* GetPyProtoApi(PyObject* py);
 
 // Convert from Python protocol buffer object py to a C++ pointer.
 // Unlike the conversions that CLIF automatically generates for protocol
 // buffers, this one does no copying if the Python protocol buffer uses
 // the C++ memory layout.
 template <typename T>
-bool Clif_PyObjAs(PyObject* py, nucleus::EmptyProtoPtr<T>* c) {
+bool Clif_PyObjAs(PyObject* py, EmptyProtoPtr<T>* c) {
   CHECK(c != nullptr);
 
   auto* py_proto_api = GetPyProtoApi(py);
@@ -67,7 +67,7 @@ bool Clif_PyObjAs(PyObject* py, nucleus::EmptyProtoPtr<T>* c) {
 // buffers, this one does no copying if the Python protocol buffer uses
 // the C++ memory layout.
 template <typename T>
-bool Clif_PyObjAs(PyObject* py, nucleus::ConstProtoPtr<T>* c) {
+bool Clif_PyObjAs(PyObject* py, ConstProtoPtr<T>* c) {
   CHECK(c != nullptr);
 
   auto* py_proto_api = GetPyProtoApi(py);
@@ -93,5 +93,6 @@ bool Clif_PyObjAs(PyObject* py, nucleus::ConstProtoPtr<T>* c) {
   }
 }
 
-}  // namespace clif
+}  // namespace nucleus
+
 #endif  // THIRD_PARTY_NUCLEUS_UTIL_PROTO_CLIF_CONVERTER_H_
