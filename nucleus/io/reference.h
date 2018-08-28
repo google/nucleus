@@ -44,14 +44,20 @@
 
 #include <vector>
 
+#include "nucleus/io/reader_base.h"
+#include "nucleus/platform/types.h"
 #include "nucleus/protos/range.pb.h"
 #include "nucleus/protos/reference.pb.h"
 #include "nucleus/vendor/statusor.h"
-#include "nucleus/platform/types.h"
 
 namespace nucleus {
 
-class GenomeReference {
+// Alias for the abstract base class for FASTA record iterables, which
+// corresponds to (name, sequence) pairs.
+using GenomeReferenceRecord = std::pair<string, string>;
+using GenomeReferenceRecordIterable = Iterable<GenomeReferenceRecord>;
+
+class GenomeReference : public Reader {
  public:
   GenomeReference(const GenomeReference&) = delete;
   GenomeReference& operator=(const GenomeReference&) = delete;
@@ -88,6 +94,14 @@ class GenomeReference {
   // the length of chr, returns a value whose status is not ok().
   virtual StatusOr<string> GetBases(
       const nucleus::genomics::v1::Range& range) const = 0;
+
+  // Gets all of the FASTA records in this file in order.
+  //
+  // The specific parsing, filtering, etc behavior is determined by the options
+  // provided during construction. Returns an OK status if the iterable can be
+  // constructed, or not OK otherwise.
+  virtual StatusOr<std::shared_ptr<GenomeReferenceRecordIterable>> Iterate()
+      const = 0;
 
   // Returns true iff the Range chr:start-end is a valid interval on chr and chr
   // is a known contig in this reference.

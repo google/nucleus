@@ -494,6 +494,7 @@ cc_library(
     srcs = ["reference.cc"],
     hdrs = ["reference.h"],
     deps = [
+        ":reader_base",
         "//nucleus/platform:types",
         "//nucleus/protos:range_cc_pb2",
         "//nucleus/protos:reference_cc_pb2",
@@ -569,6 +570,19 @@ cc_library(
         "//nucleus/util:cpp_utils",
         "//nucleus/vendor:statusor",
         "@org_tensorflow//tensorflow/core:lib",
+    ],
+)
+
+cc_test(
+    name = "fasta_reader_test",
+    size = "small",
+    srcs = ["fasta_reader_test.cc"],
+    deps = [
+        ":fasta_reader",
+        "//nucleus/testing:cpp_test_utils",
+        "//nucleus/util:cpp_utils",
+        "@com_google_googletest//:gtest_main",
+        "@org_tensorflow//tensorflow/core:test",
     ],
 )
 
