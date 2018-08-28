@@ -146,7 +146,7 @@ nucleus_py_library(
     deps = [
         ":genomics_reader",
         "//nucleus/io/python:fasta_reader",
-        "//nucleus/io/python:reference_fai",
+        "//nucleus/io/python:indexed_fasta_reader",
         "//nucleus/util:ranges",
     ],
 )
@@ -225,9 +225,9 @@ cc_library(
         ":gff_writer",
         ":hts_path",
         ":hts_verbose",
+        ":indexed_fasta_reader",
         ":reader_base",
         ":reference",
-        ":reference_fai",
         ":sam_reader",
         ":text_reader",
         ":text_writer",
@@ -525,9 +525,9 @@ cc_library(
 )
 
 cc_library(
-    name = "reference_fai",
-    srcs = ["reference_fai.cc"],
-    hdrs = ["reference_fai.h"],
+    name = "indexed_fasta_reader",
+    srcs = ["indexed_fasta_reader.cc"],
+    hdrs = ["indexed_fasta_reader.h"],
     deps = [
         ":hts_path",
         ":reference",
@@ -542,11 +542,11 @@ cc_library(
 )
 
 cc_test(
-    name = "reference_fai_test",
+    name = "indexed_fasta_reader_test",
     size = "small",
-    srcs = ["reference_fai_test.cc"],
+    srcs = ["indexed_fasta_reader_test.cc"],
     deps = [
-        ":reference_fai",
+        ":indexed_fasta_reader",
         ":reference_test",
         "//nucleus/testing:cpp_test_utils",
         "//nucleus/util:cpp_utils",

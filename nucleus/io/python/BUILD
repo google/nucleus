@@ -125,13 +125,13 @@ py_clif_cc(
 )
 
 py_clif_cc(
-    name = "reference_fai",
-    srcs = ["reference_fai.clif"],
+    name = "indexed_fasta_reader",
+    srcs = ["indexed_fasta_reader.clif"],
     clif_deps = [
         ":reference",
     ],
     deps = [
-        "//nucleus/io:reference_fai",
+        "//nucleus/io:indexed_fasta_reader",
         "//nucleus/vendor:statusor_clif_converters",
     ],
 )
@@ -143,7 +143,7 @@ py_test(
     data = ["//nucleus/testdata"],
     srcs_version = "PY2AND3",
     deps = [
-        ":reference_fai",
+        ":indexed_fasta_reader",
         "//nucleus/testing:py_test_utils",
         "//nucleus/util:ranges",
         "@io_abseil_py//absl/testing:absltest",
