@@ -230,7 +230,7 @@ def make_ngs_error_examples(ref_path,
   """
 
   # Create a ref_reader backed by ref.
-  ref_reader = fasta.RefFastaReader(ref_path)
+  ref_reader = fasta.IndexedFastaReader(ref_path)
 
   # Create a vcf_reader backed by vcf.
   vcf_reader = vcf.VcfReader(vcf_path)

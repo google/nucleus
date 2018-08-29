@@ -13,7 +13,7 @@ API for reading:
 from nucleus.io import fasta
 from nucleus.protos import range_pb2
 
-with fasta.RefFastaReader(input_path) as reader:
+with fasta.IndexedFastaReader(input_path) as reader:
   region = range_pb2.Range(reference_name='chrM', start=1, end=6)
   basepair_string = reader.query(region)
   print(basepair_string)
@@ -24,17 +24,24 @@ files are assumed to be indexed with the index file located at
 `input_path + '.fai'`.
 
 ## Classes overview
-Name | Description
------|------------
-[`InMemoryRefReader`](#inmemoryrefreader) | A `RefFastaReader` getting its bases from an in-memory data structure.
-[`RefFastaReader`](#reffastareader) | Class for reading from FASTA files containing a reference genome.
+
+| Name                                      | Description                      |
+| ----------------------------------------- | -------------------------------- |
+| [`InMemoryRefReader`](#inmemoryrefreader) | A `IndexedFastaReader` getting   |
+:                                           : its bases from an in-memory data :
+:                                           : structure.                       :
+| [`IndexedFastaReader`](#reffastareader)   | Class for reading from FASTA     |
+:                                           : files containing a reference     :
+:                                           : genome.                          :
 
 ## Classes
-### InMemoryRefReader
-```
-A `RefFastaReader` getting its bases from an in-memory data structure.
 
-An `InMemoryRefReader` provides the same API as `RefFastaReader` but doesn't
+### InMemoryRefReader
+
+```
+A `IndexedFastaReader` getting its bases from an in-memory data structure.
+
+An `InMemoryRefReader` provides the same API as `IndexedFastaReader` but doesn't
 fetch its data from an on-disk FASTA file but rather fetches the bases from an
 in-memory cache containing (chromosome, start, bases) tuples.
 
@@ -98,16 +105,20 @@ each contig defined in the header.
 Returns the base pairs (as a string) in the given region.
 ```
 
-### RefFastaReader
+### IndexedFastaReader
+
 ```
 Class for reading from FASTA files containing a reference genome.
 ```
 
 #### Methods:
+
 <a name="__init__"></a>
+
 ##### `__init__(self, input_path, cache_size=None)`
+
 ```
-Initializes a RefFastaReader.
+Initializes a IndexedFastaReader.
 
 Args:
   input_path: string. A path to a resource containing FASTA records.
