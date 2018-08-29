@@ -27,7 +27,7 @@ files are assumed to be indexed with the index file located at
 
 | Name                                      | Description                      |
 | ----------------------------------------- | -------------------------------- |
-| [`InMemoryRefReader`](#inmemoryrefreader) | A `IndexedFastaReader` getting   |
+| [`InMemoryRefReader`](#inmemoryrefreader) | An `IndexedFastaReader` getting  |
 :                                           : its bases from an in-memory data :
 :                                           : structure.                       :
 | [`IndexedFastaReader`](#reffastareader)   | Class for reading from FASTA     |
@@ -39,7 +39,7 @@ files are assumed to be indexed with the index file located at
 ### InMemoryRefReader
 
 ```
-A `IndexedFastaReader` getting its bases from an in-memory data structure.
+An `IndexedFastaReader` getting its bases from an in-memory data structure.
 
 An `InMemoryRefReader` provides the same API as `IndexedFastaReader` but doesn't
 fetch its data from an on-disk FASTA file but rather fetches the bases from an
@@ -118,7 +118,7 @@ Class for reading from FASTA files containing a reference genome.
 ##### `__init__(self, input_path, cache_size=None)`
 
 ```
-Initializes a IndexedFastaReader.
+Initializes an IndexedFastaReader.
 
 Args:
   input_path: string. A path to a resource containing FASTA records.
@@ -147,11 +147,7 @@ Returns whether the region is contained in this FASTA file.
 <a name="iterate"></a>
 ##### `iterate(self)`
 ```
-Returns an iterator for going through all bases in the file.
-
-NOTE: This function is not implemented for this data type. Retrieving all
-base pairs in the genome can be performed by querying for the full range of
-each contig defined in the header.
+Returns an iterable of (name, bases) tuples contained in this file.
 ```
 
 <a name="query"></a>
