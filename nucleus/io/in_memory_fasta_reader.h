@@ -14,11 +14,11 @@
  * limitations under the License.
  *
  */
-#ifndef THIRD_PARTY_NUCLEUS_IO_FASTA_READER_H_
-#define THIRD_PARTY_NUCLEUS_IO_FASTA_READER_H_
+#ifndef THIRD_PARTY_NUCLEUS_IO_IN_MEMORY_FASTA_READER_H_
+#define THIRD_PARTY_NUCLEUS_IO_IN_MEMORY_FASTA_READER_H_
 
-#include <vector>
 #include <unordered_map>
+#include <vector>
 
 #include "nucleus/io/reference.h"
 #include "nucleus/platform/types.h"
@@ -46,16 +46,16 @@ namespace nucleus {
 // base is at position 10. This makes it straightforward to cache a small region
 // of a full chromosome without having to store the entire chromosome sequence
 // in memory (potentially big!).
-class InMemoryGenomeReference : public GenomeReference {
+class InMemoryFastaReader : public GenomeReference {
  public:
-  // Creates a new InMemoryGenomeReference backed by ReferenceSequence protos.
-  static StatusOr<std::unique_ptr<InMemoryGenomeReference>> Create(
+  // Creates a new InMemoryFastaReader backed by ReferenceSequence protos.
+  static StatusOr<std::unique_ptr<InMemoryFastaReader>> Create(
       const std::vector<nucleus::genomics::v1::ContigInfo>& contigs,
       const std::vector<nucleus::genomics::v1::ReferenceSequence>& seqs);
 
   // Disable copy and assignment operations
-  InMemoryGenomeReference(const InMemoryGenomeReference& other) = delete;
-  InMemoryGenomeReference& operator=(const InMemoryGenomeReference&) = delete;
+  InMemoryFastaReader(const InMemoryFastaReader& other) = delete;
+  InMemoryFastaReader& operator=(const InMemoryFastaReader&) = delete;
 
   const std::vector<nucleus::genomics::v1::ContigInfo>& Contigs()
       const override {
@@ -63,7 +63,7 @@ class InMemoryGenomeReference : public GenomeReference {
   }
 
   const std::unordered_map<string, nucleus::genomics::v1::ReferenceSequence>&
-      ReferenceSequences() const {
+  ReferenceSequences() const {
     return seqs_;
   }
 
@@ -78,7 +78,7 @@ class InMemoryGenomeReference : public GenomeReference {
   friend class FastaFullFileIterable;
 
   // Must use one of the static factory methods.
-  InMemoryGenomeReference(
+  InMemoryFastaReader(
       const std::vector<nucleus::genomics::v1::ContigInfo>& contigs,
       std::unordered_map<string, nucleus::genomics::v1::ReferenceSequence> seqs)
       : contigs_(contigs), seqs_(seqs) {}
@@ -90,4 +90,4 @@ class InMemoryGenomeReference : public GenomeReference {
 
 }  // namespace nucleus
 
-#endif  // THIRD_PARTY_NUCLEUS_IO_FASTA_READER_H_
+#endif  // THIRD_PARTY_NUCLEUS_IO_IN_MEMORY_FASTA_READER_H_
