@@ -18,6 +18,14 @@
 // Implementation of vcf_reader.h
 #include "nucleus/io/vcf_reader.h"
 
+#include <stddef.h>
+#include <stdint.h>
+#include <stdlib.h>
+#include <string.h>
+#include <vector>
+
+#include "google/protobuf/map.h"
+#include "google/protobuf/repeated_field.h"
 #include "htslib/kstring.h"
 #include "htslib/vcf.h"
 #include "nucleus/io/hts_path.h"

@@ -18,15 +18,19 @@
 #ifndef THIRD_PARTY_NUCLEUS_IO_SAM_READER_H_
 #define THIRD_PARTY_NUCLEUS_IO_SAM_READER_H_
 
+#include <memory>
+#include <string>
+
 #include "htslib/hts.h"
 #include "htslib/sam.h"
 #include "nucleus/io/reader_base.h"
+#include "nucleus/platform/types.h"
 #include "nucleus/protos/range.pb.h"
 #include "nucleus/protos/reads.pb.h"
 #include "nucleus/protos/reference.pb.h"
 #include "nucleus/util/samplers.h"
 #include "nucleus/vendor/statusor.h"
-#include "nucleus/platform/types.h"
+#include "tensorflow/core/lib/core/status.h"
 
 namespace nucleus {
 

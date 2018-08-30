@@ -17,8 +17,12 @@
 
 #include "nucleus/io/in_memory_fasta_reader.h"
 
-#include <algorithm>
+#include <stddef.h>
+#include <utility>
 
+#include "nucleus/io/reader_base.h"
+#include "nucleus/protos/range.pb.h"
+#include "nucleus/protos/reference.pb.h"
 #include "nucleus/util/utils.h"
 #include "tensorflow/core/lib/core/errors.h"
 

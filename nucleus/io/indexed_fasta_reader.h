@@ -19,13 +19,18 @@
 #ifndef THIRD_PARTY_NUCLEUS_IO_INDEXED_FASTA_READER_H_
 #define THIRD_PARTY_NUCLEUS_IO_INDEXED_FASTA_READER_H_
 
+#include <memory>
+#include <string>
 #include <vector>
 
 #include "absl/types/optional.h"
 #include "htslib/faidx.h"
 #include "nucleus/io/reference.h"
 #include "nucleus/platform/types.h"
+#include "nucleus/protos/range.pb.h"
+#include "nucleus/protos/reference.pb.h"
 #include "nucleus/vendor/statusor.h"
+#include "tensorflow/core/lib/core/status.h"
 
 namespace nucleus {
 

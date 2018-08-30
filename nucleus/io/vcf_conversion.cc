@@ -17,11 +17,19 @@
 
 #include "nucleus/io/vcf_conversion.h"
 
+#include <stddef.h>
+#include <stdlib.h>
+#include <string.h>
+#include <algorithm>
+#include <memory>
+
+#include "google/protobuf/map.h"
+#include "google/protobuf/repeated_field.h"
 #include "absl/memory/memory.h"
 #include "absl/strings/str_join.h"
+#include "nucleus/platform/types.h"
 #include "nucleus/util/math.h"
 #include "nucleus/util/utils.h"
-
 
 namespace nucleus {
 

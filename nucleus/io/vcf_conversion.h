@@ -18,7 +18,11 @@
 #ifndef THIRD_PARTY_NUCLEUS_IO_VCF_CONVERSION_H_
 #define THIRD_PARTY_NUCLEUS_IO_VCF_CONVERSION_H_
 
+#include <string>
+#include <vector>
+
 #include "htslib/vcf.h"
+#include "nucleus/platform/types.h"
 #include "nucleus/protos/variants.pb.h"
 #include "nucleus/vendor/statusor.h"
 #include "tensorflow/core/lib/core/errors.h"

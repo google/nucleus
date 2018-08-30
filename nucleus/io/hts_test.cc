@@ -16,11 +16,17 @@
  */
 
 #include "htslib/hts.h"
+
+#include <errno.h>
+#include <stdlib.h>
+#include <string>
+
 #include "tensorflow/core/platform/test.h"
 #include "absl/strings/str_cat.h"
 #include "htslib/hts_log.h"
 #include "htslib/kstring.h"
 #include "nucleus/io/hts_path.h"
+#include "nucleus/platform/types.h"
 #include "nucleus/testing/test_utils.h"
 #include "nucleus/util/port.h"
 

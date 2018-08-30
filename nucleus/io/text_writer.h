@@ -19,12 +19,13 @@
 #define THIRD_PARTY_NUCLEUS_IO_TEXT_WRITER_H_
 
 #include <memory>
+#include <string>
 
 #include "htslib/hts.h"
+#include "nucleus/platform/types.h"
 #include "nucleus/vendor/statusor.h"
 #include "tensorflow/core/lib/core/errors.h"
 #include "tensorflow/core/lib/core/status.h"
-#include "nucleus/platform/types.h"
 
 namespace nucleus {
 

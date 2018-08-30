@@ -18,10 +18,13 @@
 #include "nucleus/io/in_memory_fasta_reader.h"
 
 #include <string>
-
-#include "nucleus/util/utils.h"
+#include <utility>
 
 #include "tensorflow/core/platform/test.h"
+#include "nucleus/io/reader_base.h"
+#include "nucleus/protos/range.pb.h"
+#include "nucleus/protos/reference.pb.h"
+#include "nucleus/util/utils.h"
 
 namespace nucleus {
 

@@ -17,14 +17,16 @@
 // Implementation of bed_writer.h
 #include "nucleus/io/bed_writer.h"
 
+#include <utility>
+
 #include "absl/memory/memory.h"
 #include "absl/strings/str_cat.h"
+#include "nucleus/platform/types.h"
 #include "nucleus/protos/bed.pb.h"
 #include "nucleus/util/utils.h"
 #include "tensorflow/core/lib/core/errors.h"
 #include "tensorflow/core/lib/core/status.h"
 #include "tensorflow/core/platform/logging.h"
-#include "nucleus/platform/types.h"
 
 namespace nucleus {
 

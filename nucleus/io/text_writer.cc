@@ -18,10 +18,15 @@
 // Implementation of TextWriter class.
 #include "nucleus/io/text_writer.h"
 
+#include <stddef.h>
+#include <string.h>
+#include <sys/types.h>
+#include <utility>
+
 #include "absl/memory/memory.h"
 #include "absl/strings/match.h"
-#include "htslib/hfile.h"
 #include "htslib/bgzf.h"
+#include "htslib/hfile.h"
 #include "nucleus/io/hts_path.h"
 #include "tensorflow/core/platform/logging.h"
 

@@ -18,21 +18,23 @@
 #include "nucleus/io/vcf_writer.h"
 
 #include <memory>
+#include <utility>
 #include <vector>
 
-#include "nucleus/protos/variants.pb.h"
-#include "nucleus/testing/test_utils.h"
-#include "nucleus/util/utils.h"
-#include "nucleus/vendor/status_matchers.h"
-
-#include "tensorflow/core/lib/core/status.h"
-#include "nucleus/platform/types.h"
-
+#include "google/protobuf/repeated_field.h"
 #include <gmock/gmock-generated-matchers.h>
 #include <gmock/gmock-matchers.h>
 #include <gmock/gmock-more-matchers.h>
 
 #include "tensorflow/core/platform/test.h"
+#include "nucleus/platform/types.h"
+#include "nucleus/protos/reference.pb.h"
+#include "nucleus/protos/variants.pb.h"
+#include "nucleus/testing/test_utils.h"
+#include "nucleus/util/utils.h"
+#include "nucleus/vendor/status_matchers.h"
+#include "tensorflow/core/lib/core/status.h"
+#include "tensorflow/core/platform/env.h"
 
 namespace nucleus {
 

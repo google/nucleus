@@ -18,11 +18,15 @@
 #ifndef THIRD_PARTY_NUCLEUS_IO_GFF_READER_H_
 #define THIRD_PARTY_NUCLEUS_IO_GFF_READER_H_
 
+#include <memory>
+#include <string>
+
 #include "nucleus/io/reader_base.h"
 #include "nucleus/io/text_reader.h"
 #include "nucleus/platform/types.h"
 #include "nucleus/protos/gff.pb.h"
 #include "nucleus/vendor/statusor.h"
+#include "tensorflow/core/lib/core/status.h"
 
 namespace nucleus {
 

@@ -17,13 +17,16 @@
 // Implementation of fastq_reader.h
 #include "nucleus/io/fastq_reader.h"
 
+#include <stddef.h>
+#include <utility>
+
 #include "absl/strings/string_view.h"
+#include "nucleus/platform/types.h"
 #include "nucleus/protos/fastq.pb.h"
 #include "nucleus/util/utils.h"
 #include "tensorflow/core/lib/core/errors.h"
 #include "tensorflow/core/lib/core/status.h"
 #include "tensorflow/core/platform/logging.h"
-#include "nucleus/platform/types.h"
 
 namespace nucleus {
 

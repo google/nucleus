@@ -17,10 +17,14 @@
 #ifndef THIRD_PARTY_NUCLEUS_IO_BED_WRITER_H_
 #define THIRD_PARTY_NUCLEUS_IO_BED_WRITER_H_
 
+#include <memory>
+#include <string>
+
 #include "nucleus/io/text_writer.h"
+#include "nucleus/platform/types.h"
 #include "nucleus/protos/bed.pb.h"
 #include "nucleus/vendor/statusor.h"
-#include "nucleus/platform/types.h"
+#include "tensorflow/core/lib/core/status.h"
 
 namespace nucleus {
 

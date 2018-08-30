@@ -18,10 +18,14 @@
 #ifndef THIRD_PARTY_NUCLEUS_IO_REFERENCE_TEST_H_
 #define THIRD_PARTY_NUCLEUS_IO_REFERENCE_TEST_H_
 
+#include <memory>
+#include <string>
+#include <utility>
+
 #include "tensorflow/core/platform/test.h"
 #include "nucleus/io/reference.h"
-#include "nucleus/testing/test_utils.h"
 #include "nucleus/platform/types.h"
+#include "nucleus/testing/test_utils.h"
 
 namespace nucleus {
 

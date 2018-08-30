@@ -19,17 +19,15 @@
 
 #include <vector>
 
-#include "nucleus/io/reference_test.h"
-#include "nucleus/util/utils.h"
-#include "nucleus/vendor/status_matchers.h"
-
-#include "tensorflow/core/platform/logging.h"
-
 #include <gmock/gmock-generated-matchers.h>
 #include <gmock/gmock-matchers.h>
 #include <gmock/gmock-more-matchers.h>
 
 #include "tensorflow/core/platform/test.h"
+#include "nucleus/io/reference_test.h"
+#include "nucleus/util/utils.h"
+#include "nucleus/vendor/status_matchers.h"
+#include "tensorflow/core/platform/logging.h"
 
 namespace nucleus {
 

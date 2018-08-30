@@ -18,14 +18,22 @@
 // Implementation of sam_reader.h
 #include "nucleus/io/sam_reader.h"
 
+#include <errno.h>
+#include <stdint.h>
+#include <map>
+#include <utility>
+#include <vector>
+
 #include "google/protobuf/repeated_field.h"
 #include "absl/strings/numbers.h"
 #include "absl/strings/str_split.h"
+#include "absl/strings/string_view.h"
 #include "htslib/cram.h"
 #include "htslib/hts.h"
 #include "htslib/hts_endian.h"
 #include "htslib/sam.h"
 #include "nucleus/io/hts_path.h"
+#include "nucleus/platform/types.h"
 #include "nucleus/protos/cigar.pb.h"
 #include "nucleus/protos/position.pb.h"
 #include "nucleus/protos/range.pb.h"
@@ -34,7 +42,6 @@
 #include "tensorflow/core/lib/core/errors.h"
 #include "tensorflow/core/lib/core/status.h"
 #include "tensorflow/core/platform/logging.h"
-#include "nucleus/platform/types.h"
 
 namespace nucleus {
 

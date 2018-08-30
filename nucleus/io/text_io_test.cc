@@ -14,19 +14,19 @@
  * limitations under the License.
  *
  */
-#include "nucleus/io/text_reader.h"
-#include "nucleus/io/text_writer.h"
-
 #include <fstream>
-
-#include <gmock/gmock-generated-matchers.h>
-#include <gmock/gmock-matchers.h>
-#include <gmock/gmock-more-matchers.h>
+#include <memory>
+#include <string>
+#include <utility>
 
 #include "tensorflow/core/platform/test.h"
+#include "nucleus/io/text_reader.h"
+#include "nucleus/io/text_writer.h"
 #include "nucleus/platform/types.h"
 #include "nucleus/testing/test_utils.h"
-
+#include "nucleus/vendor/statusor.h"
+#include "tensorflow/core/lib/core/errors.h"
+#include "tensorflow/core/lib/core/status.h"
 
 namespace tf = tensorflow;
 

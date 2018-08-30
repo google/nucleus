@@ -16,7 +16,13 @@
  */
 
 #include "nucleus/io/text_reader.h"
+
+#include <stdlib.h>
+#include <utility>
+
+#include "absl/memory/memory.h"
 #include "nucleus/io/hts_path.h"
+#include "tensorflow/core/lib/core/errors.h"
 
 namespace tf = tensorflow;
 
