@@ -42,7 +42,7 @@ class FastaFullFileIterable : public GenomeReferenceRecordIterable {
   ~FastaFullFileIterable() override;
 
  private:
-  int pos_ = 0;
+  size_t pos_ = 0;
 };
 
 // Initializes an InMemoryFastaReader from contigs and seqs.
