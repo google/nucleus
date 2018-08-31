@@ -537,17 +537,28 @@ VcfRecordConverter::VcfRecordConverter(
   }
 
   // Install adapters for FORMAT fields.
+  want_pl_ = false;
+  want_gl_ = false;
   for (const auto& format_spec : vcf_header.formats()) {
     string tag = format_spec.id();
     string type = format_spec.type();
-
-    // These fields are handled specially.
-    if (tag == "GT" || tag == "GL" || tag == "PL") continue;
 
     // Check if configuration has disabled this FORMAT field.
     if (std::find(formats_to_exclude.begin(), formats_to_exclude.end(), tag) !=
         formats_to_exclude.end())
       continue;
+
+    // These fields are handled specially.
+    if (tag == "GT") continue;
+
+    if (tag == "GL") {
+      want_gl_ = true;
+      continue;
+    }
+    if (tag == "PL") {
+      want_pl_ = true;
+      continue;
+    }
 
     // TODO(dhalexander): how do we really want to encode the type here?
     int vcf_type;
@@ -572,11 +583,6 @@ VcfRecordConverter::VcfRecordConverter(
   want_genotypes_ =
       std::find(formats_to_exclude.begin(), formats_to_exclude.end(), "GT") ==
       formats_to_exclude.end();
-  want_genotype_likelihoods_ =
-      (std::find(formats_to_exclude.begin(), formats_to_exclude.end(), "GL") ==
-       formats_to_exclude.end()) ||
-      (std::find(formats_to_exclude.begin(), formats_to_exclude.end(), "PL") ==
-       formats_to_exclude.end());
 }
 
 
@@ -676,7 +682,7 @@ tensorflow::Status VcfRecordConverter::ConvertToPb(
       nucleus::genomics::v1::VariantCall* call =
           variant_message->mutable_calls(i);
 
-      if (want_genotype_likelihoods_) {
+      if (want_gl_ || want_pl_) {
         // If GL and PL are *both* present, we populate the genotype_likelihood
         // fields with the GL values per the variants.proto spec, since PLs are
         // a lower resolution version of the same information.
@@ -820,6 +826,7 @@ tensorflow::Status VcfRecordConverter::ConvertFromPb(
       const nucleus::genomics::v1::VariantCall& vc = variant_message.calls(c);
       if (vc.genotype_likelihood_size() > 0) {
         has_ll = true;
+        break;
       }
     }
 
@@ -827,11 +834,24 @@ tensorflow::Status VcfRecordConverter::ConvertFromPb(
       TF_RETURN_IF_ERROR(field.EncodeValues(variant_message, &h, v));
     }
 
-    std::vector<std::vector<int>> ll_values_phred;
-    for (int c = 0; c < nCalls; c++) {
-      const nucleus::genomics::v1::VariantCall& vc = variant_message.calls(c);
-      // loglikelihood
-      if (has_ll) {
+    if (want_gl_ && has_ll) {
+      std::vector<std::vector<float>> gl_values;
+      for (int c = 0; c < nCalls; c++) {
+        const nucleus::genomics::v1::VariantCall& vc = variant_message.calls(c);
+        std::vector<float> gl_this_call;
+        for (double ll_val : vc.genotype_likelihood()) {
+          gl_this_call.push_back(ll_val);
+        }
+        // Do we need to zero-shift?
+        gl_values.push_back(gl_this_call);
+      }
+      TF_RETURN_IF_ERROR(EncodeFormatValues(gl_values, "GL", &h, v));
+    }
+
+    if (want_pl_ && has_ll) {
+      std::vector<std::vector<int>> ll_values_phred;
+      for (int c = 0; c < nCalls; c++) {
+        const nucleus::genomics::v1::VariantCall& vc = variant_message.calls(c);
         bool ll_not_missing = vc.genotype_likelihood_size() > 0;
         if (ll_not_missing) {
           std::vector<double> lls_this_call;
@@ -852,9 +872,9 @@ tensorflow::Status VcfRecordConverter::ConvertFromPb(
           ll_values_phred.push_back({});
         }
       }
-    }
 
-    TF_RETURN_IF_ERROR(EncodeFormatValues(ll_values_phred, "PL", &h, v));
+      TF_RETURN_IF_ERROR(EncodeFormatValues(ll_values_phred, "PL", &h, v));
+    }
   }
   return tensorflow::Status::OK();
 }
