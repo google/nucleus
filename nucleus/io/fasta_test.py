@@ -29,6 +29,21 @@ from nucleus.testing import test_utils
 from nucleus.util import ranges
 
 
+class FastaReaderTests(parameterized.TestCase):
+
+  def test_dispatching_reader(self):
+    with fasta.FastaReader(
+        test_utils.genomics_core_testdata('test.fasta')) as reader:
+      # The reader is an instance of IndexedFastaReader which supports query().
+      self.assertEqual(reader.query(ranges.make_range('chrM', 1, 6)), 'ATCAC')
+    with fasta.FastaReader(
+        test_utils.genomics_core_testdata('unindexed.fasta')) as reader:
+      # The reader is an instance of UnindexedFastaReader which doesn't support
+      # query().
+      with self.assertRaises(NotImplementedError):
+        reader.query(ranges.make_range('chrM', 1, 5))
+
+
 class IndexedFastaReaderTests(parameterized.TestCase):
 
   @parameterized.parameters('test.fasta', 'test.fasta.gz')

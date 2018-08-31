@@ -148,7 +148,9 @@ nucleus_py_library(
         "//nucleus/io/python:in_memory_fasta_reader",
         "//nucleus/io/python:indexed_fasta_reader",
         "//nucleus/io/python:unindexed_fasta_reader",
+        "//nucleus/protos:fasta_py_pb2",
         "//nucleus/util:ranges",
+        "//third_party/tensorflow/python:platform",
     ],
 )
 
