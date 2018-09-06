@@ -145,9 +145,9 @@ function ensure_wanted_bazel_version {
     ./bazel-"${wanted_bazel_version}"-installer-linux-x86_64.sh --user
     rm bazel-"${wanted_bazel_version}"-installer-linux-x86_64.sh
     popd
-
-    PATH="$HOME/bin:$PATH"
   fi
+
+  PATH="$HOME/bin:$PATH"
 }
 
 ensure_wanted_bazel_version "${NUCLEUS_BAZEL_VERSION}"
