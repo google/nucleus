@@ -25,14 +25,14 @@ files are assumed to be indexed with the index file located at
 
 ## Classes overview
 
-| Name                                      | Description                      |
-| ----------------------------------------- | -------------------------------- |
-| [`InMemoryRefReader`](#inmemoryrefreader) | An `IndexedFastaReader` getting  |
-:                                           : its bases from an in-memory data :
-:                                           : structure.                       :
-| [`IndexedFastaReader`](#reffastareader)   | Class for reading from FASTA     |
-:                                           : files containing a reference     :
-:                                           : genome.                          :
+| Name                                        | Description                  |
+| ------------------------------------------- | ---------------------------- |
+| [`InMemoryRefReader`](#inmemoryrefreader)   | An `IndexedFastaReader`      |
+:                                             : getting its bases from an    :
+:                                             : in-memory data structure.    :
+| [`IndexedFastaReader`](#indexedfastareader) | Class for reading from FASTA |
+:                                             : files containing a contig    :
+:                                             : index .                      :
 
 ## Classes
 
