@@ -25,25 +25,25 @@ files are assumed to be indexed with the index file located at
 
 ## Classes overview
 
-| Name                                        | Description                  |
-| ------------------------------------------- | ---------------------------- |
-| [`InMemoryRefReader`](#inmemoryrefreader)   | An `IndexedFastaReader`      |
-:                                             : getting its bases from an    :
-:                                             : in-memory data structure.    :
-| [`IndexedFastaReader`](#indexedfastareader) | Class for reading from FASTA |
-:                                             : files containing a contig    :
-:                                             : index .                      :
+| Name                                          | Description                  |
+| --------------------------------------------- | ---------------------------- |
+| [`InMemoryFastaReader`](#inmemoryfastareader) | An `IndexedFastaReader`      |
+:                                               : getting its bases from an    :
+:                                               : in-memory data structure.    :
+| [`IndexedFastaReader`](#indexedfastareader)   | Class for reading from FASTA |
+:                                               : files containing a contig    :
+:                                               : index .                      :
 
 ## Classes
 
-### InMemoryRefReader
+### InMemoryFastaReader
 
 ```
 An `IndexedFastaReader` getting its bases from an in-memory data structure.
 
-An `InMemoryRefReader` provides the same API as `IndexedFastaReader` but doesn't
-fetch its data from an on-disk FASTA file but rather fetches the bases from an
-in-memory cache containing (chromosome, start, bases) tuples.
+An `InMemoryFastaReader` provides the same API as `IndexedFastaReader` but
+doesn't fetch its data from an on-disk FASTA file but rather fetches the bases
+from an in-memory cache containing (chromosome, start, bases) tuples.
 
 In particular, the `query(Range(chrom, start, end))` operation fetches bases
 from the tuple where `chrom` == chromosome, and then from the bases where the
@@ -60,7 +60,7 @@ memory (potentially big!).
 <a name="__init__"></a>
 ##### `__init__(self, chromosomes)`
 ```
-Initializes an InMemoryRefReader using data from chromosomes.
+Initializes an InMemoryFastaReader using data from chromosomes.
 
 Args:
   chromosomes: list[tuple]. The chromosomes we are caching in memory as a
