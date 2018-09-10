@@ -215,7 +215,9 @@ nucleus_py_library(
 # C++ API
 #
 
-NUCLEUS_COPTS = ["-Wsign-compare"]
+NUCLEUS_COPTS = [
+    "-Wsign-compare",
+]
 
 cc_library(
     name = "io_cpp",
@@ -373,12 +375,40 @@ cc_test(
 )
 
 cc_library(
+    name = "sam_utils",
+    srcs = ["sam_utils.cc"],
+    hdrs = ["sam_utils.h"],
+    copts = NUCLEUS_COPTS,
+    deps = [
+        ":hts_path",
+        "//nucleus/platform:types",
+        "//nucleus/protos:cigar_cc_pb2",
+        "@htslib",
+    ],
+)
+
+cc_test(
+    name = "sam_utils_test",
+    size = "small",
+    srcs = ["sam_utils_test.cc"],
+    copts = NUCLEUS_COPTS,
+    deps = [
+        ":sam_utils",
+        "//nucleus/protos:cigar_cc_pb2",
+        "@com_google_googletest//:gtest_main",
+        "@htslib",
+        "@org_tensorflow//tensorflow/core:test",
+    ],
+)
+
+cc_library(
     name = "sam_reader",
     srcs = ["sam_reader.cc"],
     hdrs = ["sam_reader.h"],
     deps = [
         ":hts_path",
         ":reader_base",
+        ":sam_utils",
         "//nucleus/platform:types",
         "//nucleus/protos:cigar_cc_pb2",
         "//nucleus/protos:position_cc_pb2",
@@ -406,6 +436,50 @@ cc_test(
         "//nucleus/testing:gunit_extras",
         "//nucleus/util:cpp_utils",
         "//nucleus/vendor:status_matchers",
+        "@com_google_googletest//:gtest_main",
+        "@org_tensorflow//tensorflow/core:lib",
+        "@org_tensorflow//tensorflow/core:test",
+    ],
+)
+
+cc_library(
+    name = "sam_writer",
+    srcs = ["sam_writer.cc"],
+    hdrs = ["sam_writer.h"],
+    copts = NUCLEUS_COPTS,
+    deps = [
+        ":hts_path",
+        ":sam_utils",
+        "//nucleus/platform:types",
+        "//nucleus/protos:cigar_cc_pb2",
+        "//nucleus/protos:position_cc_pb2",
+        "//nucleus/protos:reads_cc_pb2",
+        "//nucleus/protos:reference_cc_pb2",
+        "//nucleus/vendor:statusor",
+        "@com_google_absl//absl/memory",
+        "@com_google_absl//absl/strings",
+        "@htslib",
+        "@org_tensorflow//tensorflow/core:lib",
+        "@protobuf_archive//:protobuf",
+    ],
+)
+
+cc_test(
+    name = "sam_writer_test",
+    size = "small",
+    srcs = ["sam_writer_test.cc"],
+    copts = NUCLEUS_COPTS,
+    data = ["//nucleus/testdata"],
+    deps = [
+        ":sam_reader",
+        ":sam_writer",
+        "//nucleus/testing:cpp_test_utils",
+        "//nucleus/testing:gunit_extras",
+        "//nucleus/util:cpp_utils",
+        "//nucleus/vendor:status_matchers",
+        "//nucleus/vendor:statusor",
+        "@com_google_absl//absl/base:core_headers",
+        "@com_google_absl//absl/strings",
         "@com_google_googletest//:gtest_main",
         "@org_tensorflow//tensorflow/core:lib",
         "@org_tensorflow//tensorflow/core:test",

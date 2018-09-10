@@ -27,6 +27,9 @@
 namespace nucleus {
 
 htsFile *hts_open_x(const char *fn, const char *mode);
+
+htsFile *hts_open_format_x(const char *fn, const char *mode, htsFormat *fmt);
+
 faidx_t *fai_load3_x(const char *fa_path, const char *fai_path,
                      const char *gzi_path, int flags);
 
