@@ -21,6 +21,7 @@ from "nucleus/io/sam_writer.h":
       @classmethod
       def `ToFile` as to_file(cls, samPath: str,
                               refPath: str,
+                              embedRef: bool,
                               header: SamHeader)
         -> StatusOr<SamWriter>
       def `Write` as write(self, samMessage: Read) -> Status
