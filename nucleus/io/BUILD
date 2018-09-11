@@ -91,6 +91,7 @@ nucleus_py_library(
         ":genomics_reader",
         ":genomics_writer",
         "//nucleus/io/python:sam_reader",
+        "//nucleus/io/python:sam_writer",
         "//nucleus/protos:reads_py_pb2",
         "//nucleus/util:py_utils",
         "//nucleus/util:ranges",
