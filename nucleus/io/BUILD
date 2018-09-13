@@ -456,6 +456,7 @@ cc_library(
         "//nucleus/protos:position_cc_pb2",
         "//nucleus/protos:reads_cc_pb2",
         "//nucleus/protos:reference_cc_pb2",
+        "//nucleus/protos:struct_cc_pb2",
         "//nucleus/vendor:statusor",
         "@com_google_absl//absl/memory",
         "@com_google_absl//absl/strings",
