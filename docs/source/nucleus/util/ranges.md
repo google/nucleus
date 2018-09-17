@@ -51,7 +51,7 @@ ranges held by the class.
 
 #### Methods:
 <a name="__init__"></a>
-##### `__init__(self, ranges=None, contigs=None)`
+##### `__init__(self, ranges=None, contigs=None, quiet=False)`
 ```
 Creates a RangeSet backed by ranges.
 
@@ -67,10 +67,28 @@ Args:
     iteration order over contigs (i.e., by contig.pos_in_fasta).  If this
     list is not provided, the iteration order will be determined by the
     alphabetical order of the contig names.
+  quiet: bool; defaults to False: If False, we will emit a logging message
+    every _LOG_EVERY_N_RANGES_IN_RANGESET_INIT records processed while
+    building this intervaltree. Set to True to stop all of the logging.
 
 Raises:
   ValueError: if any range's reference_name does not correspond to any
     contig in `contigs`.
+```
+
+<a name="envelops"></a>
+##### `envelops(self, chrom, start, end)`
+```
+Returns True iff some range in this RangeSet envelops the range.
+
+Args:
+  chrom: str. The chromosome of interest.
+  start: int. Zero-based inclusive index of the query range.
+  end: int: Zero-based exclusive index of the query range.
+
+Returns:
+  True if and only if some range in `self` completely spans the query
+  range.
 ```
 
 <a name="exclude_regions"></a>

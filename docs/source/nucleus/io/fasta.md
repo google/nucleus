@@ -24,20 +24,20 @@ files are assumed to be indexed with the index file located at
 `input_path + '.fai'`.
 
 ## Classes overview
-
-| Name                                          | Description                  |
-| --------------------------------------------- | ---------------------------- |
-| [`InMemoryFastaReader`](#inmemoryfastareader) | An `IndexedFastaReader`      |
-:                                               : getting its bases from an    :
-:                                               : in-memory data structure.    :
-| [`IndexedFastaReader`](#indexedfastareader)   | Class for reading from FASTA |
-:                                               : files containing a contig    :
-:                                               : index .                      :
+Name | Description
+-----|------------
+[`FastaReader`](#fastareader) | Class for reading (name, bases) tuples from FASTA files.
+[`InMemoryFastaReader`](#inmemoryfastareader) | An `IndexedFastaReader` getting its bases from an in-memory data structure.
+[`IndexedFastaReader`](#indexedfastareader) | Class for reading from FASTA files containing a reference genome.
+[`UnindexedFastaReader`](#unindexedfastareader) | Class for reading from unindexed FASTA files.
 
 ## Classes
+### FastaReader
+```
+Class for reading (name, bases) tuples from FASTA files.
+```
 
 ### InMemoryFastaReader
-
 ```
 An `IndexedFastaReader` getting its bases from an in-memory data structure.
 
@@ -92,11 +92,7 @@ Returns whether the region is contained in this FASTA file.
 <a name="iterate"></a>
 ##### `iterate(self)`
 ```
-Returns an iterator for going through all bases in the file.
-
-NOTE: This function is not implemented for this data type. Retrieving all
-base pairs in the genome can be performed by querying for the full range of
-each contig defined in the header.
+Returns an iterable of (name, bases) tuples contained in this file.
 ```
 
 <a name="query"></a>
@@ -106,17 +102,13 @@ Returns the base pairs (as a string) in the given region.
 ```
 
 ### IndexedFastaReader
-
 ```
 Class for reading from FASTA files containing a reference genome.
 ```
 
 #### Methods:
-
 <a name="__init__"></a>
-
 ##### `__init__(self, input_path, cache_size=None)`
-
 ```
 Initializes an IndexedFastaReader.
 
@@ -124,6 +116,51 @@ Args:
   input_path: string. A path to a resource containing FASTA records.
   cache_size: integer. Number of bases to cache from previous queries.
     Defaults to 64K.  The cache can be disabled using cache_size=0.
+```
+
+<a name="c_reader"></a>
+##### `c_reader(self)`
+```
+Returns the underlying C++ reader.
+```
+
+<a name="contig"></a>
+##### `contig(self, contig_name)`
+```
+Returns a ContigInfo proto for contig_name.
+```
+
+<a name="is_valid"></a>
+##### `is_valid(self, region)`
+```
+Returns whether the region is contained in this FASTA file.
+```
+
+<a name="iterate"></a>
+##### `iterate(self)`
+```
+Returns an iterable of (name, bases) tuples contained in this file.
+```
+
+<a name="query"></a>
+##### `query(self, region)`
+```
+Returns the base pairs (as a string) in the given region.
+```
+
+### UnindexedFastaReader
+```
+Class for reading from unindexed FASTA files.
+```
+
+#### Methods:
+<a name="__init__"></a>
+##### `__init__(self, input_path)`
+```
+Initializes an UnindexedFastaReader.
+
+Args:
+  input_path: string. A path to a resource containing FASTA records.
 ```
 
 <a name="c_reader"></a>

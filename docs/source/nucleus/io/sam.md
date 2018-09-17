@@ -4,8 +4,9 @@
 **Documentation index:** [doc_index.md](../../doc_index.md)
 
 ---
-The SAM/BAM format is described at
+The SAM/BAM/CRAM formats are described at
 https://samtools.github.io/hts-specs/SAMv1.pdf
+https://samtools.github.io/hts-specs/CRAMv3.pdf
 
 API for reading:
 
@@ -17,9 +18,13 @@ with sam.SamReader(input_path) as reader:
     print(read)
 ```
 
-where `read` is a `nucleus.genomics.v1.Read` protocol buffer.
+where `read` is a `nucleus.genomics.v1.Read` protocol buffer. input_path will
+dynamically decode the underlying records depending the file extension, with
+`.sam` for SAM files, `.bam` for BAM files, and `.cram` for CRAM files. It will
+also search for an appropriate index file to use to enable calls to the
+`query()` method.
 
-API for writing:
+API for writing SAM/BAM:
 
 ```python
 from nucleus.io import sam
@@ -27,31 +32,84 @@ from nucleus.io import sam
 # reads is an iterable of nucleus.genomics.v1.Read protocol buffers.
 reads = ...
 
-with sam.SamWriter(output_path) as writer:
+with sam.SamWriter(output_path, header=header) as writer:
+  for read in reads:
+    writer.write(read)
+```
+
+API for writing CRAM:
+
+```python
+# ref_path is required for writing CRAM files. If embed_ref, the output CRAM
+# file will embed reference sequences.
+with sam.SamWriter(output_path, header=header, ref_path=ref_path,
+                   embed_ref=embed_ref) as writer:
   for read in reads:
     writer.write(read)
 ```
 
 For both reading and writing, if the path provided to the constructor contains
 '.tfrecord' as an extension, a `TFRecord` file is assumed and attempted to be
-read or written. Otherwise, the filename is treated as a true SAM/BAM file.
+read or written. Otherwise, the filename is treated as a true SAM/BAM/CRAM file.
 
 For `TFRecord` files, ending in a '.gz' suffix causes the file to be treated as
 compressed with gzip.
 
+Notes on using CRAM with SamReader
+--------------------------------
+
+Nucleus supports reading from CRAM files using the same API as for SAM/BAM:
+
+```python
+from nucleus.io import sam
+
+with sam.SamReader("/path/to/sample.cram") as reader:
+  for read in reader:
+    print(read)
+```
+
+There is one type of CRAM file, though, that has a slightly more complicated
+API. If the CRAM file uses read sequence compression with an external reference
+file, and this reference file is no longer accessible in the location specified
+by the CRAM file's "UR" tag and cannot be found in the local genome cache, its
+location must be passed to SamReader via the ref_path parameter:
+
+```python
+from nucleus.io import sam
+
+cram_path = "/path/to/sample.cram"
+ref_path = "/path/to/genome.fasta"
+with sam.SamReader(cram_path, ref_path=ref_path) as reader:
+  for read in reader:
+    print(read)
+```
+
+Unfortunately, htslib is unable to load the ref_path from anything other than a
+POSIX filesystem. (htslib plugin filesystems like S3 or GCS buckets won't work).
+For that reason, we don't recommend the use of CRAM files with external
+reference files, but instead suggest using read sequence compression with
+embedded reference data. (This has a minor impact on file size, but
+significantly improves file access simplicity and safety.)
+
+For more information about CRAM, see:
+* The `samtools` documentation at http://www.htslib.org/doc/samtools.html
+* The "Global Options" section of the samtools docs at http://www.htslib.org/doc/samtools.html#GLOBAL_OPTIONS
+* How reference sequences are encoded in CRAM at http://www.htslib.org/doc/samtools.html#REFERENCE_SEQUENCES
+* Finally, benchmarking of different CRAM options http://www.htslib.org/benchmarks/CRAM.html
+
 ## Classes overview
 Name | Description
 -----|------------
-[`InMemorySamReader`](#inmemorysamreader) | Python interface class for in-memory SAM/BAM reader.
-[`NativeSamReader`](#nativesamreader) | Class for reading from native SAM/BAM files.
-[`NativeSamWriter`](#nativesamwriter) | Class for writing to native SAM/BAM files.
-[`SamReader`](#samreader) | Class for reading Read protos from SAM or TFRecord files.
+[`InMemorySamReader`](#inmemorysamreader) | Python interface class for in-memory SAM/BAM/CRAM reader.
+[`NativeSamReader`](#nativesamreader) | Class for reading from native SAM/BAM/CRAM files.
+[`NativeSamWriter`](#nativesamwriter) | Class for writing to native SAM/BAM/CRAM files.
+[`SamReader`](#samreader) | Class for reading Read protos from SAM/BAM/CRAM or TFRecord files.
 [`SamWriter`](#samwriter) | Class for writing Variant protos to SAM or TFRecord files.
 
 ## Classes
 ### InMemorySamReader
 ```
-Python interface class for in-memory SAM/BAM reader.
+Python interface class for in-memory SAM/BAM/CRAM reader.
 
 Attributes:
   reads: list[nucleus.genomics.v1.Read]. The list of in-memory reads.
@@ -92,27 +150,31 @@ Replace the reads stored by this reader.
 
 ### NativeSamReader
 ```
-Class for reading from native SAM/BAM files.
+Class for reading from native SAM/BAM/CRAM files.
 
 Most users will want to use SamReader instead, because it dynamically
-dispatches between reading native SAM/BAM files and TFRecord files based
+dispatches between reading native SAM/BAM/CRAM files and TFRecord files based
 on the filename's extensions.
 ```
 
 #### Methods:
 <a name="__init__"></a>
-##### `__init__(self, input_path, read_requirements=None, parse_aux_fields=False, hts_block_size=None, downsample_fraction=None, random_seed=None)`
+##### `__init__(self, input_path, ref_path=None, read_requirements=None, parse_aux_fields=False, hts_block_size=None, downsample_fraction=None, random_seed=None)`
 ```
 Initializes a NativeSamReader.
 
 Args:
-  input_path: str. A path to a resource containing SAM/BAM records.
-    Currently supports SAM text format and BAM binary format.
+  input_path: str. A path to a resource containing SAM/BAM/CRAM records.
+    Currently supports SAM text format, BAM binary format, and CRAM.
+  ref_path: optional str or None. Only used for CRAM decoding, and only
+    necessary if the UR encoded path in the CRAM itself needs to be
+    overridden. If provided, we will tell the CRAM decoder to use this FASTA
+    for the reference sequence.
   read_requirements: optional ReadRequirement proto. If not None, this proto
     is used to control which reads are filtered out by the reader before
     they are passed to the client.
   parse_aux_fields: optional bool, defaulting to False. If False, we do not
-    parse the auxiliary fields of the SAM/BAM records (see SAM spec for
+    parse the auxiliary fields of the SAM/BAM/CRAM records (see SAM spec for
     details). Parsing the aux fields is unnecessary for many applications,
     and adds a significant parsing cost to access. If you need these aux
     fields, set parse_aux_fields to True and these fields will be parsed and
@@ -148,20 +210,23 @@ Returns an iterator for going through the reads in the region.
 
 ### NativeSamWriter
 ```
-Class for writing to native SAM/BAM files.
+Class for writing to native SAM/BAM/CRAM files.
 
-Most users will want SamWriter, which will write to either native SAM/BAM
+Most users will want SamWriter, which will write to either native SAM/BAM/CRAM
 files or TFRecords files, based on the output filename's extensions.
 ```
 
 #### Methods:
 <a name="__init__"></a>
-##### `__init__(self, output_path, header)`
+##### `__init__(self, output_path, header, ref_path=None, embed_ref=False)`
 ```
 Initializer for NativeSamWriter.
 
 Args:
-  output_path: str. A path where we'll write our SAM/BAM file.
+  output_path: str. A path where we'll write our SAM/BAM/CRAM file.
+  ref_path: str. Path to the reference file. Required for CRAM file.
+  embed_ref: bool. Whether to embed the reference sequences in CRAM file.
+    Default is False.
   header: A nucleus.SamHeader proto.  The header is used both for writing
     the header, and to control the sorting applied to the rest of the file.
 ```
@@ -172,7 +237,7 @@ Args:
 
 ### SamReader
 ```
-Class for reading Read protos from SAM or TFRecord files.
+Class for reading Read protos from SAM/BAM/CRAM or TFRecord files.
 ```
 
 ### SamWriter

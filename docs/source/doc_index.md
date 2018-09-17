@@ -17,6 +17,8 @@
 
 [`nucleus.io.clif_postproc`](nucleus/io/clif_postproc.md)
 
+[`nucleus.io.converter`](nucleus/io/converter.md)
+
 [`nucleus.io.fasta`](nucleus/io/fasta.md)
 
 [`nucleus.io.fastq`](nucleus/io/fastq.md)

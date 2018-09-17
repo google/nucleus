@@ -102,12 +102,13 @@ files or TFRecord files, based on the output filename's extension.
 
 #### Methods:
 <a name="__init__"></a>
-##### `__init__(self, output_path)`
+##### `__init__(self, output_path, **kwargs)`
 ```
 Initializer for NativeFastqWriter.
 
 Args:
   output_path: str. The path to which to write the FASTQ file.
+  **kwargs: optional arguments; presently ignored.
 ```
 
 <a name="write"></a>

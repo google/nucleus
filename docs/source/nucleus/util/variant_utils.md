@@ -19,6 +19,8 @@ Name | Description
 [`allele_indices_for_genotype_likelihood_index`](#allele_indices_for_genotype_likelihood_index)`(gl_index, ploidy=2)` | Returns a tuple of allele_indices corresponding to the given GL index.
 [`allele_indices_with_num_alts`](#allele_indices_with_num_alts)`(variant, num_alts, ploidy=2)` | Returns a list of allele indices configurations with `num_alts` alternates.
 [`allele_mismatches`](#allele_mismatches)`(evalv, truev)` | Determines the set of allele mismatch discordances between evalv and truev.
+[`calc_ac`](#calc_ac)`(variant)` | Returns a list of alt counts based on variant.calls.
+[`calc_an`](#calc_an)`(variant)` | Returns the total number of alleles in called genotypes in variant.
 [`decode_variants`](#decode_variants)`(encoded_iter)` | Yields a genomics.Variant from encoded_iter.
 [`format_alleles`](#format_alleles)`(variant)` | Gets a string representation of the variant's alleles.
 [`format_filters`](#format_filters)`(variant)` | Returns a human-readable string showing the filters applied to variant.
@@ -145,6 +147,18 @@ Args:
 
 Returns:
   A set of AlleleMismatchType values.
+```
+
+<a name="calc_ac"></a>
+### `calc_ac(variant)`
+```
+Returns a list of alt counts based on variant.calls.
+```
+
+<a name="calc_an"></a>
+### `calc_an(variant)`
+```
+Returns the total number of alleles in called genotypes in variant.
 ```
 
 <a name="decode_variants"></a>
@@ -460,7 +474,8 @@ Args:
   variant: nucleus.genomics.v1.Variant.
 
 Returns:
-  True if all alleles of variant are 1 bp in length.
+  True if all alleles of variant are 1 bp in length, excluding the GVCF
+  <*> allele.
 ```
 
 <a name="is_transition"></a>
