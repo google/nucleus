@@ -15,6 +15,8 @@
 ## nucleus.io
 [`nucleus.io.bed`](nucleus/io/bed.md)
 
+[`nucleus.io.bedgraph`](nucleus/io/bedgraph.md)
+
 [`nucleus.io.clif_postproc`](nucleus/io/clif_postproc.md)
 
 [`nucleus.io.converter`](nucleus/io/converter.md)
