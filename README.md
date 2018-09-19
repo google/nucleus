@@ -61,7 +61,7 @@ versioning](https://semver.org/).
 New in 0.2.0:
 
 * Support for reading and writing BedGraph files.
-* Support for reading and writing GFF files
+* Support for reading and writing GFF files.
 * Support for reading and writing CRAM files.
 * Support for writing SAM/BAM files.
 * Support for reading unindexed FASTA files.
