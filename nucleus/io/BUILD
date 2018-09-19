@@ -613,6 +613,7 @@ cc_test(
     data = ["//nucleus/testdata"],
     deps = [
         ":vcf_reader",
+        "//nucleus/protos:struct_cc_pb2",
         "//nucleus/protos:variants_cc_pb2",
         "//nucleus/testing:cpp_test_utils",
         "//nucleus/testing:gunit_extras",
