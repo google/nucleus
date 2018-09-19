@@ -4,22 +4,20 @@ Nucleus is a library of Python and C++ code designed to make it easy to
 read, write and analyze data in common genomics file formats like SAM and VCF.
 In addition, Nucleus enables painless integration with the TensorFlow machine
 learning framework, as anywhere a genomics file is consumed or produced, a
-TensorFlow tfrecords file may be substituted.
+TensorFlow tfrecords file may be used instead.
 
 ## Poll
 
-Which of these would most increase your usage of Nucleus?
+Which of these would most increase your usage of Nucleus?  (Click on an
+option to vote on it.)
 
-[![](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Support%20for%20CRAM)](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Support%20for%20CRAM/vote)
-[![](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Improved%20Speed)](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Improved%20Speed/vote)
-[![](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Support%20for%20BigWig%E2%88%95BigBed)](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Support%20for%20BigWig%E2%88%95BigBed/vote)
-[![](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Better%20TensorFlow%20integration)](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Better%20TensorFlow%20integration/vote)
-[![](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Support%20for%20writing%20BAM%E2%88%95SAM%20files)](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Support%20for%20writing%20BAM%E2%88%95SAM%20files/vote)
-[![](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Spark%20integration)](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Spark%20integration/vote)
-[![](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Support%20for%20GTF%E2%88%95GFF)](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Support%20for%20GTF%E2%88%95GFF/vote)
-[![](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Beam%20integration)](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Beam%20integration/vote)
-[![](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Support%20for%20another%20unlisted%20file%20type)](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Support%20for%20another%20unlisted%20file%20type/vote)
-[![](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Improved%20documentation)](https://api.gh-polls.com/poll/01CBT48Z3E88TFWWH8AMFKHXD1/Improved%20documentation/vote)
+[![](https://api.gh-polls.com/poll/01CQSFVGZMESBHSJ2RXKW7BF8H/Better%20TensorFlow%20integration)](https://api.gh-polls.com/poll/01CQSFVGZMESBHSJ2RXKW7BF8H/Better%20TensorFlow%20integration/vote)
+[![](https://api.gh-polls.com/poll/01CQSFVGZMESBHSJ2RXKW7BF8H/Spark%20integration)](https://api.gh-polls.com/poll/01CQSFVGZMESBHSJ2RXKW7BF8H/Spark%20integration/vote)
+[![](https://api.gh-polls.com/poll/01CQSFVGZMESBHSJ2RXKW7BF8H/Beam%20integration)](https://api.gh-polls.com/poll/01CQSFVGZMESBHSJ2RXKW7BF8H/Beam%20integration/vote)
+[![](https://api.gh-polls.com/poll/01CQSFVGZMESBHSJ2RXKW7BF8H/Improved%20documentation)](https://api.gh-polls.com/poll/01CQSFVGZMESBHSJ2RXKW7BF8H/Improved%20documentation/vote)
+[![](https://api.gh-polls.com/poll/01CQSFVGZMESBHSJ2RXKW7BF8H/Support%20for%20BigWig)](https://api.gh-polls.com/poll/01CQSFVGZMESBHSJ2RXKW7BF8H/Support%20for%20BigWig/vote)
+[![](https://api.gh-polls.com/poll/01CQSFVGZMESBHSJ2RXKW7BF8H/Support%20for%20GTF)](https://api.gh-polls.com/poll/01CQSFVGZMESBHSJ2RXKW7BF8H/Support%20for%20GTF/vote)
+[![](https://api.gh-polls.com/poll/01CQSFVGZMESBHSJ2RXKW7BF8H/Support%20for%20another%20unlisted%20file%20type)](https://api.gh-polls.com/poll/01CQSFVGZMESBHSJ2RXKW7BF8H/Support%20for%20another%20unlisted%20file%20type/vote)
 
 ## Installation
 
@@ -55,9 +53,27 @@ bazel test -c opt $COPT_FLAGS nucleus/...
 * [Summary of example programs](https://github.com/google/nucleus/blob/master/docs/examples.md).
 * [Python API Reference](https://github.com/google/nucleus/blob/master/docs/source/doc_index.md).
 
-## Contributing
+## Version
 
-Interested in contributing? See [CONTRIBUTING](CONTRIBUTING.md).
+This is Nucleus 0.2.0.  Nucleus follows [semantic
+versioning](https://semver.org/).
+
+New in 0.2.0:
+
+* Support for reading and writing BedGraph files.
+* Support for reading and writing GFF files
+* Support for reading and writing CRAM files.
+* Support for writing SAM/BAM files.
+* Support for reading unindexed FASTA files.
+* Iteration support for indexed FASTA files.
+* Ability to read VCF files from memory.
+* Python API documentation.
+* Python 3 compatibility.
+* Added universal file converter example program.
+
+## License
+
+Nucleus is licensed under the terms of the [Apache 2 license](LICENSE).
 
 ## Support
 
@@ -70,14 +86,9 @@ including links to snippets of BAM/VCF/etc files that provoke the bug, if
 possible. Depending on the severity of the issue we may patch Nucleus
 immediately with the fix or roll it into the next release.
 
-## Version
+## Contributing
 
-This is Nucleus 0.1.0.  Nucleus follows [semantic
-versioning](https://semver.org/).
-
-## License
-
-Nucleus is licensed under the terms of the [Apache 2 license](LICENSE).
+Interested in contributing? See [CONTRIBUTING](CONTRIBUTING.md).
 
 ## History
 
