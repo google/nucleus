@@ -523,7 +523,7 @@ VcfRecordConverter::VcfRecordConverter(
     const nucleus::genomics::v1::VcfHeader& vcf_header,
     const std::vector<string>& infos_to_exclude,
     const std::vector<string>& formats_to_exclude,
-    const bool store_gl_and_pl_in_info_map) {
+    const bool gl_and_pl_in_info_map) {
   // Install adapters for INFO fields.
   for (const auto& format_spec : vcf_header.infos()) {
     string tag = format_spec.id();
@@ -557,7 +557,7 @@ VcfRecordConverter::VcfRecordConverter(
   // Install adapters for FORMAT fields.
   want_pl_ = false;
   want_gl_ = false;
-  store_gl_and_pl_in_info_map_ = store_gl_and_pl_in_info_map;
+  gl_and_pl_in_info_map_ = gl_and_pl_in_info_map;
   for (const auto& format_spec : vcf_header.formats()) {
     string tag = format_spec.id();
     string type = format_spec.type();
@@ -572,11 +572,11 @@ VcfRecordConverter::VcfRecordConverter(
 
     if (tag == "GL") {
       want_gl_ = true;
-      if (!store_gl_and_pl_in_info_map) continue;
+      if (!gl_and_pl_in_info_map) continue;
     }
     if (tag == "PL") {
       want_pl_ = true;
-      if (!store_gl_and_pl_in_info_map) continue;
+      if (!gl_and_pl_in_info_map) continue;
     }
 
     // TODO(dhalexander): how do we really want to encode the type here?
@@ -692,7 +692,7 @@ tensorflow::Status VcfRecordConverter::ConvertToPb(
     }
 
     // Handle FORMAT fields requiring special logic.
-    if (!store_gl_and_pl_in_info_map_) {
+    if (!gl_and_pl_in_info_map_) {
       std::vector<std::vector<int>> pl_values =
           ReadFormatValues<int>(h, v, "PL");
       std::vector<std::vector<float>> gl_values =
@@ -855,7 +855,7 @@ tensorflow::Status VcfRecordConverter::ConvertFromPb(
       TF_RETURN_IF_ERROR(field.EncodeValues(variant_message, &h, v));
     }
 
-    if (!store_gl_and_pl_in_info_map_) {
+    if (!gl_and_pl_in_info_map_) {
       bool has_ll = false;
       for (int c = 0; c < nCalls; c++) {
         const nucleus::genomics::v1::VariantCall& vc = variant_message.calls(c);
