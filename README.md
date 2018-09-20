@@ -11,13 +11,11 @@ TensorFlow tfrecords file may be used instead.
 Which of these would most increase your usage of Nucleus?  (Click on an
 option to vote on it.)
 
-[![](https://api.gh-polls.com/poll/01CQSFVGZMESBHSJ2RXKW7BF8H/Better%20TensorFlow%20integration)](https://api.gh-polls.com/poll/01CQSFVGZMESBHSJ2RXKW7BF8H/Better%20TensorFlow%20integration/vote)
-[![](https://api.gh-polls.com/poll/01CQSFVGZMESBHSJ2RXKW7BF8H/Spark%20integration)](https://api.gh-polls.com/poll/01CQSFVGZMESBHSJ2RXKW7BF8H/Spark%20integration/vote)
-[![](https://api.gh-polls.com/poll/01CQSFVGZMESBHSJ2RXKW7BF8H/Beam%20integration)](https://api.gh-polls.com/poll/01CQSFVGZMESBHSJ2RXKW7BF8H/Beam%20integration/vote)
-[![](https://api.gh-polls.com/poll/01CQSFVGZMESBHSJ2RXKW7BF8H/Improved%20documentation)](https://api.gh-polls.com/poll/01CQSFVGZMESBHSJ2RXKW7BF8H/Improved%20documentation/vote)
-[![](https://api.gh-polls.com/poll/01CQSFVGZMESBHSJ2RXKW7BF8H/Support%20for%20BigWig)](https://api.gh-polls.com/poll/01CQSFVGZMESBHSJ2RXKW7BF8H/Support%20for%20BigWig/vote)
-[![](https://api.gh-polls.com/poll/01CQSFVGZMESBHSJ2RXKW7BF8H/Support%20for%20GTF)](https://api.gh-polls.com/poll/01CQSFVGZMESBHSJ2RXKW7BF8H/Support%20for%20GTF/vote)
-[![](https://api.gh-polls.com/poll/01CQSFVGZMESBHSJ2RXKW7BF8H/Support%20for%20another%20unlisted%20file%20type)](https://api.gh-polls.com/poll/01CQSFVGZMESBHSJ2RXKW7BF8H/Support%20for%20another%20unlisted%20file%20type/vote)
+[![](https://api.gh-polls.com/poll/01CQSHKQZMV3F2JZ72YYQ28Q4F/Better%20TensorFlow%20integration)](https://api.gh-polls.com/poll/01CQSHKQZMV3F2JZ72YYQ28Q4F/Better%20TensorFlow%20integration/vote)
+[![](https://api.gh-polls.com/poll/01CQSHKQZMV3F2JZ72YYQ28Q4F/Spark%20integration)](https://api.gh-polls.com/poll/01CQSHKQZMV3F2JZ72YYQ28Q4F/Spark%20integration/vote)
+[![](https://api.gh-polls.com/poll/01CQSHKQZMV3F2JZ72YYQ28Q4F/Beam%20integration)](https://api.gh-polls.com/poll/01CQSHKQZMV3F2JZ72YYQ28Q4F/Beam%20integration/vote)
+[![](https://api.gh-polls.com/poll/01CQSHKQZMV3F2JZ72YYQ28Q4F/Improved%20documentation)](https://api.gh-polls.com/poll/01CQSHKQZMV3F2JZ72YYQ28Q4F/Improved%20documentation/vote)
+[![](https://api.gh-polls.com/poll/01CQSHKQZMV3F2JZ72YYQ28Q4F/Support%20for%20more%20file%20formats)](https://api.gh-polls.com/poll/01CQSHKQZMV3F2JZ72YYQ28Q4F/Support%20for%20more%20file%20formats/vote)
 
 ## Installation
 
