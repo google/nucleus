@@ -85,16 +85,6 @@ class NGSErrorsTest(absltest.TestCase):
       test_examples = list(fin)
 
     n_examples = len(train_examples) + len(eval_examples) + len(test_examples)
-    # Make sure the distribution of examples in the three files is reasonable.
-    self.assertLess(
-        abs(len(train_examples) - train_test_val_split[0] * n_examples),
-        0.1 * n_examples)
-    self.assertLess(
-        abs(len(test_examples) - train_test_val_split[1] * n_examples),
-        0.1 * n_examples)
-    self.assertLess(
-        abs(len(eval_examples) - train_test_val_split[2] * n_examples),
-        0.1 * n_examples)
     return train_examples + eval_examples + test_examples
 
   def test_generate_tfrecords(self):
