@@ -529,6 +529,7 @@ cc_test(
     data = ["//nucleus/testdata"],
     deps = [
         ":sam_reader",
+        ":sam_writer",
         "//nucleus/testing:cpp_test_utils",
         "//nucleus/testing:gunit_extras",
         "//nucleus/util:cpp_utils",
