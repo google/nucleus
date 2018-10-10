@@ -4,7 +4,7 @@ workspace(name = "nucleus")
 git_repository(
     name = "io_abseil_py",
     remote = "https://github.com/abseil/abseil-py.git",
-    tag = "pypi-v0.2.2",
+    tag = "pypi-v0.5.0",
 )
 # Note: com_google_absl (the C++ abseil library) is provided by TensorFlow.
 
