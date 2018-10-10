@@ -35,8 +35,8 @@
 # Global setting for nucleus builds
 # ------------------------------------------------------------------------------
 
-NUCLEUS_BAZEL_VERSION="0.16.0"
-NUCLEUS_TENSORFLOW_VERSION="1.7.1"
+NUCLEUS_BAZEL_VERSION="0.17.2"
+NUCLEUS_TENSORFLOW_VERSION="1.11.0"
 
 # ------------------------------------------------------------------------------
 
