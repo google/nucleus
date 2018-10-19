@@ -139,6 +139,7 @@ nucleus_py_binary(
         "//nucleus/util:ranges",
         "//nucleus/util:variant_utils",
         "@absl_py//absl:app",
+        "@org_tensorflow//tensorflow:tensorflow_py",
     ],
 )
 
@@ -153,5 +154,6 @@ py_test(
         "//nucleus/io:genomics_reader",
         "//nucleus/testing:py_test_utils",
         "@absl_py//absl/testing:absltest",
+        "@org_tensorflow//tensorflow:tensorflow_py",
     ],
 )

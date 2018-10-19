@@ -34,7 +34,10 @@ nucleus_py_library(
 nucleus_py_library(
     name = "genomics_reader",
     srcs = ["genomics_reader.py"],
-    deps = ["@absl_py//absl/logging"],
+    deps = [
+        "@absl_py//absl/logging",
+        "@org_tensorflow//tensorflow/python:platform",
+    ],
 )
 
 py_test(
@@ -49,7 +52,10 @@ py_test(
 nucleus_py_library(
     name = "genomics_writer",
     srcs = ["genomics_writer.py"],
-    deps = ["@absl_py//absl/logging"],
+    deps = [
+        "@absl_py//absl/logging",
+        "@org_tensorflow//tensorflow/python:platform",
+    ],
 )
 
 nucleus_py_library(
@@ -81,6 +87,7 @@ py_test(
         "//nucleus/util:ranges",
         "@absl_py//absl/testing:absltest",
         "@absl_py//absl/testing:parameterized",
+        "@org_tensorflow//tensorflow/python:platform",
     ],
 )
 
@@ -112,6 +119,7 @@ py_test(
         "//nucleus/util:ranges",
         "@absl_py//absl/testing:absltest",
         "@absl_py//absl/testing:parameterized",
+        "@org_tensorflow//tensorflow/python:platform",
     ],
 )
 
@@ -177,6 +185,7 @@ nucleus_py_library(
         "//nucleus/io/python:unindexed_fasta_reader",
         "//nucleus/protos:fasta_py_pb2",
         "//nucleus/util:ranges",
+        "@org_tensorflow//tensorflow/python:platform",
     ],
 )
 

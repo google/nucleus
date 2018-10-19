@@ -94,6 +94,7 @@ nucleus_py_library(
         "//nucleus/protos:variants_py_pb2",
         "//nucleus/util:cigar",
         "@absl_py//absl/flags",
+        "@org_tensorflow//tensorflow/python:platform",
     ],
 )
 

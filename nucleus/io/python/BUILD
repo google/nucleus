@@ -73,6 +73,7 @@ py_test(
         "//nucleus/util:io_utils",
         "@absl_py//absl/testing:absltest",
         "@absl_py//absl/testing:parameterized",
+        "@org_tensorflow//tensorflow/python:platform",
     ],
 )
 
@@ -245,6 +246,7 @@ py_test(
         "//nucleus/util:io_utils",
         "@absl_py//absl/testing:absltest",
         "@absl_py//absl/testing:parameterized",
+        "@org_tensorflow//tensorflow/python:platform",
     ],
 )
 
@@ -331,6 +333,7 @@ py_test(
         "//nucleus/util:io_utils",
         "@absl_py//absl/testing:absltest",
         "@absl_py//absl/testing:parameterized",
+        "@org_tensorflow//tensorflow/python:platform",
     ],
 )
 

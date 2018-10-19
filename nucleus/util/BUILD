@@ -174,6 +174,7 @@ nucleus_py_library(
         "//nucleus/protos:position_py_pb2",
         "//nucleus/protos:range_py_pb2",
         "@absl_py//absl/logging",
+        "@org_tensorflow//tensorflow/python:platform",
     ],
 )
 
@@ -286,6 +287,10 @@ py_test(
 nucleus_py_library(
     name = "io_utils",
     srcs = ["io_utils.py"],
+    deps = [
+        "@org_tensorflow//tensorflow:tensorflow_py_no_contrib",
+        "@org_tensorflow//tensorflow/python:platform",
+    ],
 )
 
 py_test(
@@ -299,6 +304,7 @@ py_test(
         "//nucleus/testing:py_test_utils",
         "@absl_py//absl/testing:absltest",
         "@absl_py//absl/testing:parameterized",
+        "@org_tensorflow//tensorflow/python:platform",
     ],
 )
 
