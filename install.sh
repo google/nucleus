@@ -25,11 +25,6 @@
 # instructions at https://github.com/google/clif#installation
 #
 # We also assume that apt-get is already installed and available.
-#
-# You have some options about how to (or whether to) install TensorFlow.
-# If you care about that, you can read the pip_install_tensorflow function
-# below, comment out the default option, and uncomment ONE of the other
-# choices.
 
 # ------------------------------------------------------------------------------
 # Global setting for nucleus builds
@@ -37,28 +32,6 @@
 
 NUCLEUS_BAZEL_VERSION="0.17.2"
 NUCLEUS_TENSORFLOW_VERSION="1.11.0"
-
-# ------------------------------------------------------------------------------
-
-
-function pip_install_tensorflow {
-  # Please uncomment ONE of the following options for installing TensorFlow.
-
-  # 1) Do nothing; use a pre-installed version of TensorFlow.
-  # The true is necessary; bash doesn't like empty functions.
-  # true
-
-  # 2) Install a GPU-enabled version.
-  # pip install --user --upgrade tensorflow-gpu==${NUCLEUS_TENSORFLOW_VERSION}
-
-  # 3) Install a CPU-enabled version.  This is the default option.
-  pip install --user --upgrade tensorflow==${NUCLEUS_TENSORFLOW_VERSION}
-
-  # 4) Install a Google Cloud Platform optimized CPU-only version of TensorFlow.
-  # For TensorFlow 1.7.1, this wheel file doesn't actually exist yet.
-  # TODO(thomaswc): Create the wheel file for TF 1.7.1.
-  # curl https://storage.googleapis.com/deepvariant/packages/tensorflow/tensorflow-${NUCLEUS_TENSORFLOW_VERSION}.deepvariant_gcp-cp27-none-linux_x86_64.whl > /tmp/my.whl && pip install --user --upgrade /tmp/my.whl
-}
 
 function note_build_stage {
   echo "========== [$(date)] Stage '${1}' starting"
@@ -98,6 +71,10 @@ pip install --user 'mock>=2.0.0'
 pip install --user 'numpy==1.14'
 pip install --user 'scipy==1.0'
 pip install --user 'six>=1.11.0'
+# These are required to build TensorFlow from source.
+pip install --user 'keras_applications==1.0.4' --no-deps
+pip install --user 'keras_preprocessing==1.0.2' --no-deps
+pip install --user 'h5py==2.8.0'
 
 # Install Java (required for Bazel)
 ################################################################################
@@ -199,8 +176,7 @@ fi
 
 (cd ../tensorflow &&
  git checkout v${NUCLEUS_TENSORFLOW_VERSION} &&
- echo | ./configure &&
- pip_install_tensorflow
+ echo | ./configure
  )
 
 echo "Done installing prereqs at $(date)!"
