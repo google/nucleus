@@ -691,6 +691,7 @@ cc_binary(
     srcs = ["python/google/protobuf/internal/api_implementation.cc"],
     copts = COPTS + [
         "-DPYTHON_PROTO2_CPP_IMPL_V2",
+        "-Dpython=nucleus_python",
     ],
     linkshared = 1,
     linkstatic = 1,
@@ -708,6 +709,7 @@ cc_binary(
     ]),
     copts = COPTS + [
         "-DGOOGLE_PROTOBUF_HAS_ONEOF=1",
+        "-Dpython=nucleus_python",
     ] + select({
         "//conditions:default": [],
         ":allow_oversize_protos": ["-DPROTOBUF_PYTHON_ALLOW_OVERSIZE_PROTOS=1"],
@@ -867,6 +869,9 @@ cc_library(
     name = "proto_api",
     hdrs = ["python/google/protobuf/proto_api.h"],
     visibility = ["//visibility:public"],
+    copts = [
+        "-Dpython=nucleus_python",
+    ],
     deps = [
         "//external:python_headers",
     ],
