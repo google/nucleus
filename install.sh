@@ -75,6 +75,7 @@ pip install --user 'six>=1.11.0'
 pip install --user 'keras_applications==1.0.4' --no-deps
 pip install --user 'keras_preprocessing==1.0.2' --no-deps
 pip install --user 'h5py==2.8.0'
+pip install --user enum34
 
 # Install Java (required for Bazel)
 ################################################################################
