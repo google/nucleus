@@ -52,6 +52,11 @@ sudo -H apt-get -y install pkg-config zip g++ zlib1g-dev unzip curl git lsb-rele
 note_build_stage "Install htslib dependencies"
 sudo -H apt-get -y install libssl-dev libcurl4-openssl-dev liblz-dev libbz2-dev liblzma-dev
 
+# Install scipy dependencies
+################################################################################
+note_build_stage "Install scipy dependencies"
+sudo -H apt-get -y install libblas3 liblapack3 liblapack-dev libblas-dev gfortran
+
 # Install pip
 ################################################################################
 note_build_stage "Update pip"
