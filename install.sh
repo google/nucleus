@@ -52,11 +52,6 @@ sudo -H apt-get -y install pkg-config zip g++ zlib1g-dev unzip curl git lsb-rele
 note_build_stage "Install htslib dependencies"
 sudo -H apt-get -y install libssl-dev libcurl4-openssl-dev liblz-dev libbz2-dev liblzma-dev
 
-# Install scipy dependencies
-################################################################################
-note_build_stage "Install scipy dependencies"
-sudo -H apt-get -y install libblas3 liblapack3 liblapack-dev libblas-dev gfortran
-
 # Install pip
 ################################################################################
 note_build_stage "Update pip"
@@ -74,7 +69,6 @@ pip install --user 'sortedcontainers==1.5.3'
 pip install --user intervaltree
 pip install --user 'mock>=2.0.0'
 pip install --user 'numpy==1.14'
-pip install --user 'scipy==1.0'
 pip install --user 'six>=1.11.0'
 # These are required to build TensorFlow from source.
 pip install --user 'keras_applications==1.0.4' --no-deps
