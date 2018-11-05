@@ -59,6 +59,10 @@ sudo -H apt-get -y install python-dev python-pip python-wheel
 # pip 10.0 is broken, see https://github.com/pypa/pip/issues/5240
 pip install --user --upgrade 'pip==9.0.3'
 
+# Update PATH so that newly installed pip is the one we actually use.
+export PATH="$HOME/.local/bin:$PATH"
+echo "$(pip --version)"
+
 # Install python packages used by Nucleus
 ################################################################################
 pip install --user contextlib2
