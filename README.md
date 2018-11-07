@@ -19,8 +19,22 @@ option to vote on it.)
 
 ## Installation
 
-For Ubuntu 14, Ubuntu 16 and Debian 9 systems, installation is easy:
-just run
+Nucleus currently only works on modern Linux systems.  To install it, just run
+
+```shell
+pip install --user google-nucleus
+```
+
+## Documentation
+
+* [Overview](https://github.com/google/nucleus/blob/master/docs/overview.md).
+* [Summary of example programs](https://github.com/google/nucleus/blob/master/docs/examples.md).
+* [Python API Reference](https://github.com/google/nucleus/blob/master/docs/source/doc_index.md).
+
+## Building from source
+
+For Ubuntu 14, Ubuntu 16 and Debian 9 systems, building from source is easy.
+Simply type
 
 ```shell
 source install.sh
@@ -32,24 +46,18 @@ the instructions at [https://github.com/google/clif#installation](https://github
 Note that install.sh extensively depends on apt-get, so it is unlikely
 to run without extensive modifications on non-Debian-based systems.
 
-Finally, Nucleus depends on TensorFlow and by default, install.sh will
-install a CPU-only version of a stable TensorFlow release (currently 1.7).
-If that isn't what you want, there are several other installation options that
+Nucleus depends on TensorFlow.  By default, install.sh will
+install a CPU-only version of a stable TensorFlow release (currently 1.11).
+If that isn't what you want, there are several other options that
 can be enabled with a simple edit to ``install.sh``.
 
 Running ``install.sh`` will build all of Nucleus's programs and libraries.
 You can find the generated  binaries under ``bazel-bin/nucleus``.  If in
-addition to installing Nucleus you would like to run its tests, execute
+addition to building Nucleus you would like to run its tests, execute
 
 ```shell
 bazel test -c opt $COPT_FLAGS nucleus/...
 ```
-
-## Documentation
-
-* [Overview](https://github.com/google/nucleus/blob/master/docs/overview.md).
-* [Summary of example programs](https://github.com/google/nucleus/blob/master/docs/examples.md).
-* [Python API Reference](https://github.com/google/nucleus/blob/master/docs/source/doc_index.md).
 
 ## Version
 
