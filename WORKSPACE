@@ -13,14 +13,14 @@ http_archive(
     urls = ["https://github.com/google/cctz/archive/master.zip"],
 )
 
-# Note: we are using a post-1.6 build release that fixes a double-free.
+# This is the 1.9 release of htslib.
 new_http_archive(
     name = "htslib",
     build_file = "third_party/htslib.BUILD",
-    sha256 = "7743e379fa27fdbaa81d4efc97adc5e0b2c5ade3cd09a93e311ea0c6b3a4ddf6",
-    strip_prefix = "htslib-57fa9be5255475b2cf9331db32848590a8ea8eb9",
+    sha256 = "c4d3ae84014f8a80f5011521f391e917bc3b4f6ebd78e97f238472e95849ec14",
+    strip_prefix = "htslib-1.9",
     urls = [
-        "https://github.com/samtools/htslib/archive/57fa9be5255475b2cf9331db32848590a8ea8eb9.zip",
+        "https://github.com/samtools/htslib/archive/1.9.zip"
     ],
 )
 
