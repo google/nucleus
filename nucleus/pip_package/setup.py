@@ -85,7 +85,7 @@ TensorFlow tfrecords file may be substituted.
 
     keywords='genomics tensorflow bioinformatics',
 
-    packages=find_packages(exclude=['examples', 'g3doc', 'testdata']),
+    packages=find_packages(exclude=['g3doc', 'testdata']),
 
     # TODO(thomaswc): Consider adding some version requirements to
     # these install_requires.

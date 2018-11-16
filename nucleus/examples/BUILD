@@ -12,6 +12,18 @@ licenses(["notice"])  # Apache License 2.0
 
 exports_files(["LICENSE"])
 
+nucleus_py_library(
+    name = "examples_py",
+    deps = [
+        ":add_ad_to_vcf",
+        ":ascii_pileup",
+        ":count_variants",
+        ":filter_vcf",
+        ":ngs_errors",
+        ":validate_vcf",
+    ],
+)
+
 nucleus_py_binary(
     name = "add_ad_to_vcf",
     srcs = ["add_ad_to_vcf.py"],

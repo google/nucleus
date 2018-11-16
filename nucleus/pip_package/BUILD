@@ -49,9 +49,11 @@ nucleus_py_binary(
     srcs = ["setup.py"],
     legacy_create_init = 1,
     deps = [
+        "//nucleus/examples:examples_py",
         "//nucleus/io:io_py",
         "//nucleus/testing:testing_py",
         "//nucleus/util:util_py",
+        "//nucleus/vendor/python:statusor_examples",
     ],
 )
 
