@@ -868,10 +868,10 @@ internal_protobuf_py_tests(
 cc_library(
     name = "proto_api",
     hdrs = ["python/google/protobuf/proto_api.h"],
-    visibility = ["//visibility:public"],
     copts = [
         "-Dpython=nucleus_python",
     ],
+    visibility = ["//visibility:public"],
     deps = [
         "//external:python_headers",
     ],
