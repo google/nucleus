@@ -16,6 +16,7 @@ nucleus_py_library(
     name = "examples_py",
     deps = [
         ":add_ad_to_vcf",
+        ":apply_genotyping_prior",
         ":ascii_pileup",
         ":count_variants",
         ":filter_vcf",
@@ -167,5 +168,28 @@ py_test(
         "//nucleus/testing:py_test_utils",
         "@absl_py//absl/testing:absltest",
         "@org_tensorflow//tensorflow:tensorflow_py",
+    ],
+)
+
+nucleus_py_binary(
+    name = "apply_genotyping_prior",
+    srcs = ["apply_genotyping_prior.py"],
+    deps = [
+        "//nucleus/io:vcf",
+        "//nucleus/util:variant_utils",
+        "//nucleus/util:variantcall_utils",
+        "@absl_py//absl:app",
+    ],
+)
+
+py_test(
+    name = "apply_genotyping_prior_test",
+    size = "small",
+    srcs = ["apply_genotyping_prior_test.py"],
+    srcs_version = "PY2AND3",
+    deps = [
+        ":apply_genotyping_prior",
+        "//nucleus/protos:variants_py_pb2",
+        "@absl_py//absl/testing:absltest",
     ],
 )
