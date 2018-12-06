@@ -61,8 +61,15 @@ bazel test -c opt $COPT_FLAGS nucleus/...
 
 ## Version
 
-This is Nucleus 0.2.0.  Nucleus follows [semantic
+This is Nucleus 0.2.1.  Nucleus follows [semantic
 versioning](https://semver.org/).
+
+New in 0.2.1:
+
+* Upgrades htslib dependency from 1.6 to 1.9.
+* Minor VCF parsing fixes.
+* Added new example program, apply\_genotyping\_prior.
+* Slightly more robust pip package.
 
 New in 0.2.0:
 
