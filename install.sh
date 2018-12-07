@@ -75,8 +75,8 @@ pip install --user 'mock>=2.0.0'
 pip install --user 'numpy==1.14'
 pip install --user 'six>=1.11.0'
 # These are required to build TensorFlow from source.
-pip install --user 'keras_applications==1.0.4' --no-deps
-pip install --user 'keras_preprocessing==1.0.2' --no-deps
+pip install --user 'keras_applications==1.0.6' --no-deps
+pip install --user 'keras_preprocessing==1.0.5' --no-deps
 pip install --user 'h5py==2.8.0'
 pip install --user enum34
 pip install --user 'protobuf==3.6.1'
