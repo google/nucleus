@@ -70,7 +70,7 @@ pip install --user contextlib2
 # Remove this when https://github.com/chaimleib/intervaltree/pull/69
 # is resolved.  Tracked internally at b/80085543.
 pip install --user 'sortedcontainers==1.5.3'
-pip install --user intervaltree
+pip install --user 'intervaltree==2.1.0'
 pip install --user 'mock>=2.0.0'
 pip install --user 'numpy==1.14'
 pip install --user 'six>=1.11.0'
