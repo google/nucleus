@@ -1,23 +1,9 @@
 # Description:
 #   Tools for building the Nucleus pip package.
 
-load("@org_tensorflow//tensorflow:tensorflow.bzl", "transitive_hdrs")
 load("//:tools/nucleus.bzl", "nucleus_py_library", "nucleus_py_extension", "nucleus_py_binary")
 
 licenses(["notice"])  # Apache License 2.0
-
-transitive_hdrs(
-    name = "included_headers",
-    deps = [
-        "//nucleus/io:io_cpp",
-        # TODO(thomaswc): Find a way to include the following two testonly
-        # dependencies:
-        # "//nucleus/testing:testing_cpp",
-        # "//nucleus/testing:testing_py",
-        "//nucleus/util:util_cpp",
-        "//nucleus/vendor:vendor_cpp",
-    ],
-)
 
 filegroup(
     name = "licenses",
@@ -60,7 +46,6 @@ nucleus_py_binary(
 PIP_DEPS = [
     ":setup",
     ":licenses",
-    ":included_headers",
     "setup.py",
 ]
 
