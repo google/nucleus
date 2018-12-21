@@ -20,8 +20,6 @@ import "nucleus/protos/position.proto";
 import "nucleus/protos/reference.proto";
 import "nucleus/protos/struct.proto";
 
-option cc_enable_arenas = true;
-
 // A linear alignment can be represented by one CIGAR string. Describes the
 // mapped position and local alignment of the read to the reference.
 message LinearAlignment {

@@ -691,7 +691,6 @@ cc_binary(
     srcs = ["python/google/protobuf/internal/api_implementation.cc"],
     copts = COPTS + [
         "-DPYTHON_PROTO2_CPP_IMPL_V2",
-        "-Dpython=nucleus_python",
     ],
     linkshared = 1,
     linkstatic = 1,
@@ -703,13 +702,15 @@ cc_binary(
 
 cc_binary(
     name = "python/google/protobuf/pyext/_message.so",
-    srcs = glob([
-        "python/google/protobuf/pyext/*.cc",
-        "python/google/protobuf/pyext/*.h",
-    ]),
+    srcs = ["@nucleus//nucleus/vendor:message_module.cc"] + glob(
+        [
+            "python/google/protobuf/pyext/*.cc",
+            "python/google/protobuf/pyext/*.h",
+        ],
+        exclude = ["python/google/protobuf/pyext/message_module.cc"],
+    ),
     copts = COPTS + [
         "-DGOOGLE_PROTOBUF_HAS_ONEOF=1",
-        "-Dpython=nucleus_python",
     ] + select({
         "//conditions:default": [],
         ":allow_oversize_protos": ["-DPROTOBUF_PYTHON_ALLOW_OVERSIZE_PROTOS=1"],
@@ -723,6 +724,18 @@ cc_binary(
     deps = [
         ":protobuf",
         ":proto_api",
+        # This is an ugly but necessary hack to get the Nucleus protobuf
+        # descriptors loaded into the generated DescriptorPool managed by
+        # _message.so.  Without this, Nucleus "fast_cpp_protos" will be
+        # backed by DynamicMessages and not the true C++ generated classes.
+        # That in turn will cause fast conversions in
+        # nucleus/util/proto_clif_converter.h to break.
+        # Also, this relies on dlopen() (which Python uses to load C++
+        # extension modules like _message.so) initializing C++ static objects
+        # before returning.  That is true on Linux, Solaris, BSD, and OS/X,
+        # but not guaranteed by POSIX.  See
+        # https://stackoverflow.com/questions/40115688/are-static-c-objects-in-dynamically-loaded-libraries-initialized-before-dlopen
+        "@nucleus//nucleus/protos:all_nucleus_protos_cc",
     ] + select({
         "//conditions:default": [],
         ":use_fast_cpp_protos": ["//external:python_headers"],
@@ -868,9 +881,6 @@ internal_protobuf_py_tests(
 cc_library(
     name = "proto_api",
     hdrs = ["python/google/protobuf/proto_api.h"],
-    copts = [
-        "-Dpython=nucleus_python",
-    ],
     visibility = ["//visibility:public"],
     deps = [
         "//external:python_headers",

@@ -11,3 +11,11 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+import os
+import sys
+
+# We want any imports of "google.protobuf" to use Nucleus's version, so
+# we add this file's directory to the beginning of sys.path.
+nucleus_base_dir = os.path.dirname(__file__)
+sys.path = [nucleus_base_dir] + sys.path
