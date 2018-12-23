@@ -33,6 +33,7 @@
 #include "nucleus/protos/variants.pb.h"
 #include "tensorflow/core/platform/logging.h"
 #include "nucleus/platform/types.h"
+#include "nucleus/util/proto_ptr.h"
 
 namespace nucleus {
 
@@ -119,6 +120,37 @@ int64 ReadStart(const nucleus::genomics::v1::Read& read);
 // getReferenceLength (excludes padding) as found at:
 // http://grepcode.com/file/repo1.maven.org/maven2/org.seqdoop/htsjdk/1.118/htsjdk/samtools/Cigar.java#Cigar.getReferenceLength%28%29
 int64 ReadEnd(const nucleus::genomics::v1::Read& read);
+
+// Simple wrapper around ReadEnd that allows us to efficiently pass large
+// protobufs in from Python. Simply unwraps the ConstProtoPtr read and calls
+// ReadEnd().
+inline int64 ReadEndPython(
+    const nucleus::ConstProtoPtr<const ::nucleus::genomics::v1::Read>&
+        wrapped) {
+  return ReadEnd(*(wrapped.p_));
+}
+
+// Fills into the range information (reference_name, start, end) of
+// range_wrapped with the alignment reference_name, start, and ReadEnd of read.
+// void ReadRangePython(
+//    const nucleus::ConstProtoPtr<const ::nucleus::genomics::v1::Read>&
+//        read_wrapped,
+//    nucleus::EmptyProtoPtr<::nucleus::genomics::v1::Range> range_wrapped);
+
+// Returns true if the alignment span of read overlaps with range.
+bool ReadOverlapsRegion(const ::nucleus::genomics::v1::Read& read,
+                        const ::nucleus::genomics::v1::Range& range);
+
+// Simple wrapper around ReadOverlapsRegion that allows us to efficiently pass
+// large protobufs in from Python. Simply unwraps the ConstProtoPtr read and
+// range ReadOverlapsRegion().
+inline bool ReadOverlapsRegionPython(
+    const nucleus::ConstProtoPtr<const ::nucleus::genomics::v1::Read>&
+        read_wrapped,
+    const nucleus::ConstProtoPtr<const ::nucleus::genomics::v1::Range>
+        range_wrapped) {
+  return ReadOverlapsRegion(*(read_wrapped.p_), *(range_wrapped.p_));
+}
 
 // Returns true if the read is properly placed. We define properly placed as
 // read and mate both mapped to the same contig if mapped at all. This is less

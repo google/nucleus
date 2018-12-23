@@ -59,6 +59,7 @@ cc_library(
         "//nucleus/protos:reference_cc_pb2",
         "//nucleus/protos:struct_cc_pb2",
         "//nucleus/protos:variants_cc_pb2",
+        "//nucleus/util:proto_ptr",
         "@com_google_absl//absl/strings",
         "@org_tensorflow//tensorflow/core:lib",
     ],
@@ -85,7 +86,7 @@ nucleus_py_library(
     srcs = ["utils.py"],
     deps = [
         "//nucleus/util:cigar",
-        "//nucleus/util:ranges",
+        "//nucleus/util/python:utils",
     ],
 )
 
