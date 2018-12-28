@@ -1,6 +1,6 @@
 # Example programs for demonstrating Nucleus's APIs.
 # load("//devtools/python/blaze:python3.bzl", "py2and3_test")
-load("//:tools/nucleus.bzl", "nucleus_py_library", "nucleus_py_extension", "nucleus_py_binary")
+# KEEP THIS LINE to import nucleus.bzl externally
 
 package(
     default_visibility = [
@@ -12,7 +12,7 @@ licenses(["notice"])  # Apache License 2.0
 
 exports_files(["LICENSE"])
 
-nucleus_py_library(
+py_library(
     name = "examples_py",
     deps = [
         ":add_ad_to_vcf",
@@ -25,7 +25,7 @@ nucleus_py_library(
     ],
 )
 
-nucleus_py_binary(
+py_binary(
     name = "add_ad_to_vcf",
     srcs = ["add_ad_to_vcf.py"],
     deps = [
@@ -53,7 +53,7 @@ py_test(
     ],
 )
 
-nucleus_py_binary(
+py_binary(
     name = "ascii_pileup",
     srcs = ["ascii_pileup.py"],
     deps = [
@@ -63,7 +63,7 @@ nucleus_py_binary(
     ],
 )
 
-nucleus_py_binary(
+py_binary(
     name = "count_variants",
     srcs = ["count_variants.py"],
     deps = [
@@ -87,7 +87,7 @@ py_test(
     ],
 )
 
-nucleus_py_binary(
+py_binary(
     name = "filter_vcf",
     srcs = ["filter_vcf.py"],
     deps = [
@@ -111,7 +111,7 @@ py_test(
     ],
 )
 
-nucleus_py_binary(
+py_binary(
     name = "validate_vcf",
     srcs = ["validate_vcf.py"],
     deps = [
@@ -138,7 +138,7 @@ py_test(
     ],
 )
 
-nucleus_py_binary(
+py_binary(
     name = "ngs_errors",
     srcs = ["ngs_errors.py"],
     deps = [
@@ -171,7 +171,7 @@ py_test(
     ],
 )
 
-nucleus_py_binary(
+py_binary(
     name = "apply_genotyping_prior",
     srcs = ["apply_genotyping_prior.py"],
     deps = [

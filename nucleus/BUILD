@@ -1,6 +1,6 @@
 # Nucleus is a python library for reading and writing common genomics
 # file formats.
-load("//:tools/nucleus.bzl", "nucleus_py_library", "nucleus_py_extension", "nucleus_py_binary")
+# KEEP THIS LINE to import nucleus.bzl externally
 
 package(default_visibility = ["//visibility:public"])
 
@@ -8,7 +8,7 @@ licenses(["notice"])  # Apache License 2.0
 
 exports_files(["LICENSE"])
 
-nucleus_py_library(
+py_library(
     name = "nucleus_py",
     srcs = [],
     deps = [
