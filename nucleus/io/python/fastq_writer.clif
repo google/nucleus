@@ -13,6 +13,7 @@
 # limitations under the License.
 
 from "nucleus/protos/fastq_pyclif.h" import *
+from "nucleus/util/proto_clif_converter.h" import *
 from "nucleus/vendor/statusor_clif_converters.h" import *
 
 from "nucleus/io/fastq_writer.h":
@@ -22,7 +23,7 @@ from "nucleus/io/fastq_writer.h":
       def `ToFile` as to_file(cls, fastqPath: str,
                               options: FastqWriterOptions)
         -> StatusOr<FastqWriter>
-      def `Write` as write(self, fastqMessage: FastqRecord) -> Status
+      def `WritePython` as write(self, fastqMessage: ConstProtoPtr<FastqRecord>) -> Status
       @__enter__
       def PythonEnter(self)
       @__exit__

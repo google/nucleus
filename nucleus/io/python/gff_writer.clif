@@ -13,6 +13,7 @@
 # limitations under the License.
 
 from "nucleus/protos/gff_pyclif.h" import *
+from "nucleus/util/proto_clif_converter.h" import *
 from "nucleus/vendor/statusor_clif_converters.h" import *
 
 from "nucleus/io/gff_writer.h":
@@ -23,7 +24,7 @@ from "nucleus/io/gff_writer.h":
                               header: GffHeader,
                               options: GffWriterOptions)
         -> StatusOr<GffWriter>
-      def `Write` as write(self, gffMessage: GffRecord) -> Status
+      def `WritePython` as write(self, gffMessage: ConstProtoPtr<GffRecord>) -> Status
       @__enter__
       def PythonEnter(self)
       @__exit__

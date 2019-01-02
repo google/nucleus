@@ -13,6 +13,7 @@
 # limitations under the License.
 
 from "nucleus/protos/bedgraph_pyclif.h" import *
+from "nucleus/util/proto_clif_converter.h" import *
 from "nucleus/vendor/statusor_clif_converters.h" import *
 
 from "nucleus/io/bedgraph_writer.h":
@@ -21,7 +22,7 @@ from "nucleus/io/bedgraph_writer.h":
       @classmethod
       def `ToFile` as to_file(cls, bedPath: str)
         -> StatusOr<BedGraphWriter>
-      def `Write` as write(self, bedGraphMessage: BedGraphRecord) -> Status
+      def `WritePython` as write(self, bedGraphMessage: ConstProtoPtr<BedGraphRecord>) -> Status
       @__enter__
       def PythonEnter(self)
       @__exit__

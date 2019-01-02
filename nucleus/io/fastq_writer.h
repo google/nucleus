@@ -23,6 +23,7 @@
 #include "nucleus/io/text_writer.h"
 #include "nucleus/platform/types.h"
 #include "nucleus/protos/fastq.pb.h"
+#include "nucleus/util/proto_ptr.h"
 #include "nucleus/vendor/statusor.h"
 #include "tensorflow/core/lib/core/status.h"
 
@@ -54,6 +55,10 @@ class FastqWriter {
   // Returns Status::OK() if the write was successful; otherwise the status
   // provides information about what error occurred.
   tensorflow::Status Write(const nucleus::genomics::v1::FastqRecord& record);
+  tensorflow::Status WritePython(
+      const ConstProtoPtr<const nucleus::genomics::v1::FastqRecord>& wrapped) {
+    return Write(*(wrapped.p_));
+  }
 
   // Close the underlying resource descriptors. Returns Status::OK() if the
   // close was successful; otherwise the status provides information about what

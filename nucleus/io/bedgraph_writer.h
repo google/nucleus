@@ -23,6 +23,7 @@
 #include "nucleus/io/text_writer.h"
 #include "nucleus/platform/types.h"
 #include "nucleus/protos/bedgraph.pb.h"
+#include "nucleus/util/proto_ptr.h"
 #include "nucleus/vendor/statusor.h"
 #include "tensorflow/core/lib/core/status.h"
 
@@ -55,6 +56,11 @@ class BedGraphWriter {
   // Returns Status::OK() if the write was successful; otherwise the status
   // provides information about why an error occurred.
   tensorflow::Status Write(const nucleus::genomics::v1::BedGraphRecord& record);
+  tensorflow::Status WritePython(
+      const ConstProtoPtr<const nucleus::genomics::v1::BedGraphRecord>&
+      wrapped) {
+    return Write(*(wrapped.p_));
+  }
 
   // Close the underlying resource descriptors. Returns Status::OK() if the
   // close was successful; otherwise the status provides information about what

@@ -13,6 +13,7 @@
 # limitations under the License.
 
 from "nucleus/protos/variants_pyclif.h" import *
+from "nucleus/util/proto_clif_converter.h" import *
 from "nucleus/vendor/statusor_clif_converters.h" import *
 
 from "nucleus/io/vcf_writer.h":
@@ -22,7 +23,7 @@ from "nucleus/io/vcf_writer.h":
       def `ToFile` as to_file(cls, variantsPath: str, vcfHeader: VcfHeader,
                               options: VcfWriterOptions)
         -> StatusOr<VcfWriter>
-      def `Write` as write(self, variantMessage: Variant) -> Status
+      def `WritePython` as write(self, variantMessage: ConstProtoPtr<Variant>) -> Status
       @__enter__
       def PythonEnter(self)
       @__exit__

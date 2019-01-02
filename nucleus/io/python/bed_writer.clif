@@ -13,6 +13,7 @@
 # limitations under the License.
 
 from "nucleus/protos/bed_pyclif.h" import *
+from "nucleus/util/proto_clif_converter.h" import *
 from "nucleus/vendor/statusor_clif_converters.h" import *
 
 from "nucleus/io/bed_writer.h":
@@ -23,7 +24,7 @@ from "nucleus/io/bed_writer.h":
                               header: BedHeader,
                               options: BedWriterOptions)
         -> StatusOr<BedWriter>
-      def `Write` as write(self, bedMessage: BedRecord) -> Status
+      def `WritePython` as write(self, bedMessage: ConstProtoPtr<BedRecord>) -> Status
       @__enter__
       def PythonEnter(self)
       @__exit__
