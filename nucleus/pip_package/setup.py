@@ -66,7 +66,6 @@ TensorFlow tfrecords file may be substituted.
 """,
     url='https://github.com/google/nucleus',
     author='The Genomics team in Google Brain',
-    author_email='opensource@google.com',
     license='Apache 2.0',
 
     # Taken from list of valid classifiers at
