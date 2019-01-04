@@ -36,6 +36,8 @@ py_library(
         ":genomics_writer",
         ":gff",
         ":sam",
+        ":sharded_file_utils",
+        ":tfrecord",
         ":vcf",
         "//nucleus/io/python:hts_verbose",
     ],
@@ -122,10 +124,10 @@ py_test(
     data = ["//nucleus/testdata"],
     deps = [
         ":sam",
+        ":tfrecord",
         "//nucleus/protos:reference_py_pb2",
         "//nucleus/protos:struct_py_pb2",
         "//nucleus/testing:py_test_utils",
-        "//nucleus/util:io_utils",
         "//nucleus/util:ranges",
         "@absl_py//absl/testing:absltest",
         "@absl_py//absl/testing:parameterized",
@@ -255,6 +257,52 @@ py_library(
 py_library(
     name = "clif_postproc",
     srcs = ["clif_postproc.py"],
+)
+
+py_library(
+    name = "sharded_file_utils",
+    srcs = ["sharded_file_utils.py"],
+    deps = ["@org_tensorflow//tensorflow/python:platform"],
+)
+
+py_test(
+    name = "sharded_file_utils_test",
+    size = "small",
+    srcs = ["sharded_file_utils_test.py"],
+    data = ["//nucleus/testdata"],
+    deps = [
+        ":sharded_file_utils",
+        "//nucleus/protos:reference_py_pb2",
+        "//nucleus/testing:py_test_utils",
+        "@absl_py//absl/testing:absltest",
+        "@absl_py//absl/testing:parameterized",
+        "@org_tensorflow//tensorflow/python:platform",
+    ],
+)
+
+py_library(
+    name = "tfrecord",
+    srcs = ["tfrecord.py"],
+    deps = [
+        ":sharded_file_utils",
+        "@org_tensorflow//tensorflow:tensorflow_py_no_contrib",
+        "@org_tensorflow//tensorflow/python:platform",
+    ],
+)
+
+py_test(
+    name = "tfrecord_test",
+    size = "small",
+    srcs = ["tfrecord_test.py"],
+    data = ["//nucleus/testdata"],
+    deps = [
+        ":tfrecord",
+        "//nucleus/protos:reference_py_pb2",
+        "//nucleus/testing:py_test_utils",
+        "@absl_py//absl/testing:absltest",
+        "@absl_py//absl/testing:parameterized",
+        "@org_tensorflow//tensorflow/python:platform",
+    ],
 )
 
 #
@@ -1057,9 +1105,9 @@ py_test(
     data = ["//nucleus/testdata"],
     deps = [
         ":gff",
+        ":tfrecord",
         "//nucleus/protos:gff_py_pb2",
         "//nucleus/testing:py_test_utils",
-        "//nucleus/util:io_utils",
         "//nucleus/util:ranges",
         "@absl_py//absl/testing:absltest",
         "@absl_py//absl/testing:parameterized",

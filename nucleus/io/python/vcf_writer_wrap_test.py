@@ -22,12 +22,12 @@ import copy
 from absl.testing import absltest
 from absl.testing import parameterized
 
+from nucleus.io import tfrecord
 from nucleus.io import vcf
 from nucleus.io.python import vcf_writer
 from nucleus.protos import reference_pb2
 from nucleus.protos import variants_pb2
 from nucleus.testing import test_utils
-from nucleus.util import io_utils
 from tensorflow.python.platform import gfile
 
 _DOUBLE_CLOSE_ERROR = 'Cannot close an already closed VcfWriter'
@@ -152,7 +152,7 @@ class WrapVcfWriterTest(parameterized.TestCase):
         ],
     )
     variant_records = list(
-        io_utils.read_tfrecords(tfrecord_file, proto=variants_pb2.Variant))
+        tfrecord.read_tfrecords(tfrecord_file, proto=variants_pb2.Variant))
     out_fname = test_utils.test_tmpfile('output.vcf')
     with vcf_writer.VcfWriter.to_file(out_fname, header,
                                       writer_options) as writer:

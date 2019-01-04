@@ -18,7 +18,6 @@ py_library(
         ":cigar",
         ":errors",
         ":genomics_math",
-        ":io_utils",
         ":proto_utils",
         ":py_utils",
         ":ranges",
@@ -282,30 +281,6 @@ py_test(
         "//nucleus/protos:variants_py_pb2",
         "@absl_py//absl/testing:absltest",
         "@absl_py//absl/testing:parameterized",
-    ],
-)
-
-py_library(
-    name = "io_utils",
-    srcs = ["io_utils.py"],
-    deps = [
-        "@org_tensorflow//tensorflow:tensorflow_py_no_contrib",
-        "@org_tensorflow//tensorflow/python:platform",
-    ],
-)
-
-py_test(
-    name = "io_utils_test",
-    size = "small",
-    srcs = ["io_utils_test.py"],
-    data = ["//nucleus/testdata"],
-    deps = [
-        ":io_utils",
-        "//nucleus/protos:reference_py_pb2",
-        "//nucleus/testing:py_test_utils",
-        "@absl_py//absl/testing:absltest",
-        "@absl_py//absl/testing:parameterized",
-        "@org_tensorflow//tensorflow/python:platform",
     ],
 )
 

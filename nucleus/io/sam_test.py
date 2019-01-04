@@ -24,10 +24,10 @@ from absl.testing import parameterized
 
 import six
 from nucleus.io import sam
+from nucleus.io import tfrecord
 from nucleus.protos import reads_pb2
 from nucleus.protos import reference_pb2
 from nucleus.testing import test_utils
-from nucleus.util import io_utils
 from nucleus.util import ranges
 from tensorflow.python.platform import gfile
 
@@ -293,7 +293,7 @@ class ReadWriterTests(parameterized.TestCase):
     # Our output should have exactly one read in it.
     self.assertEqual([self.read1, self.read2],
                      list(
-                         io_utils.read_tfrecords(outfile,
+                         tfrecord.read_tfrecords(outfile,
                                                  proto=reads_pb2.Read)))
 
   @parameterized.parameters('test.bam', 'test.sam')

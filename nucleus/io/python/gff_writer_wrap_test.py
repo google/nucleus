@@ -20,10 +20,10 @@ from __future__ import print_function
 from absl.testing import absltest
 from absl.testing import parameterized
 
+from nucleus.io import tfrecord
 from nucleus.io.python import gff_writer
 from nucleus.protos import gff_pb2
 from nucleus.testing import test_utils
-from nucleus.util import io_utils
 from nucleus.util import ranges
 
 _DOUBLE_CLOSE_ERROR = 'Cannot close an already closed GffWriter'
@@ -50,7 +50,7 @@ class WrapGffWriterTest(parameterized.TestCase):
         'test_features.gff.tfrecord')
     writer_options = gff_pb2.GffWriterOptions()
     gff_records = list(
-        io_utils.read_tfrecords(tfrecord_file, proto=gff_pb2.GffRecord))
+        tfrecord.read_tfrecords(tfrecord_file, proto=gff_pb2.GffRecord))
     out_fname = test_utils.test_tmpfile('output.gff')
     with gff_writer.GffWriter.to_file(out_fname, self.header,
                                       writer_options) as writer:
