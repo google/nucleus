@@ -61,8 +61,17 @@ bazel test -c opt $COPT_FLAGS nucleus/...
 
 ## Version
 
-This is Nucleus 0.2.1.  Nucleus follows [semantic
+This is Nucleus 0.2.2.  Nucleus follows [semantic
 versioning](https://semver.org/).
+
+New in 0.2.2:
+
+* Faster SAM file querying and read overlap calculations.
+* Writing protocol buffers to files uses less memory.
+* Smaller pip package.
+* nucleus/util:io\_utils refactored into nucleus/io:tfrecord and
+nucleus/io:sharded\_file\_utils.
+* Alleles coming from VCF files are now always normalized as uppercase.
 
 New in 0.2.1:
 
