@@ -81,30 +81,6 @@ pip install --user 'h5py==2.8.0'
 pip install --user enum34
 pip install --user 'protobuf==3.6.1'
 
-# Install Java (required for Bazel)
-################################################################################
-
-note_build_stage "Install Java and friends"
-
-# Java is available on Kokoro, so we add this cutout.
-if ! java -version 2>&1 | fgrep "1.8"; then
-  echo "No Java 8, will install."
-  sudo -H apt-get install -y software-properties-common debconf-utils
-  # Debian needs authentication.
-  # (http://www.webupd8.org/2014/03/how-to-install-oracle-java-8-in-debian.html)
-  [[ $(lsb_release -d | grep 'Debian') ]] && \
-    sudo -H apt-get install -y gnupg dirmngr && \
-    sudo -H apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
-  sudo add-apt-repository -y ppa:webupd8team/java
-  sudo -H apt-get -qq -y update
-  echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | sudo debconf-set-selections
-  sudo -H apt-get install -y oracle-java8-installer
-  sudo -H apt-get -y install ca-certificates-java
-  sudo update-ca-certificates -f
-else
-  echo "Java 8 found, will not reinstall."
-fi
-
 # Install Bazel
 ################################################################################
 
