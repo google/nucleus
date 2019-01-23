@@ -15,18 +15,24 @@ exports_files(["LICENSE"])
 py_library(
     name = "examples_py",
     deps = [
-        ":add_ad_to_vcf",
-        ":apply_genotyping_prior",
-        ":ascii_pileup",
-        ":count_variants",
-        ":filter_vcf",
-        ":ngs_errors",
-        ":validate_vcf",
+        ":add_ad_to_vcf_lib",
+        ":apply_genotyping_prior_lib",
+        ":ascii_pileup_lib",
+        ":count_variants_lib",
+        ":filter_vcf_lib",
+        ":ngs_errors_lib",
+        ":validate_vcf_lib",
     ],
 )
 
 py_binary(
     name = "add_ad_to_vcf",
+    srcs = ["add_ad_to_vcf.py"],
+    deps = [":add_ad_to_vcf_lib"],
+)
+
+py_library(
+    name = "add_ad_to_vcf_lib",
     srcs = ["add_ad_to_vcf.py"],
     deps = [
         "//nucleus/io:vcf",
@@ -46,7 +52,7 @@ py_test(
     ],
     srcs_version = "PY2AND3",
     deps = [
-        ":add_ad_to_vcf",
+        ":add_ad_to_vcf_lib",
         "//nucleus/io:vcf",
         "//nucleus/testing:py_test_utils",
         "@absl_py//absl/testing:absltest",
@@ -55,6 +61,12 @@ py_test(
 
 py_binary(
     name = "ascii_pileup",
+    srcs = ["ascii_pileup.py"],
+    deps = [":ascii_pileup_lib"],
+)
+
+py_library(
+    name = "ascii_pileup_lib",
     srcs = ["ascii_pileup.py"],
     deps = [
         "//nucleus/io:sam",
@@ -65,6 +77,12 @@ py_binary(
 
 py_binary(
     name = "count_variants",
+    srcs = ["count_variants.py"],
+    deps = [":count_variants_lib"],
+)
+
+py_library(
+    name = "count_variants_lib",
     srcs = ["count_variants.py"],
     deps = [
         "//nucleus/io:vcf",
@@ -81,7 +99,7 @@ py_test(
         "//nucleus/testdata",
     ],
     deps = [
-        ":count_variants",
+        ":count_variants_lib",
         "//nucleus/testing:py_test_utils",
         "@absl_py//absl/testing:absltest",
     ],
@@ -89,6 +107,12 @@ py_test(
 
 py_binary(
     name = "filter_vcf",
+    srcs = ["filter_vcf.py"],
+    deps = [":filter_vcf_lib"],
+)
+
+py_library(
+    name = "filter_vcf_lib",
     srcs = ["filter_vcf.py"],
     deps = [
         "//nucleus/io:vcf",
@@ -104,7 +128,7 @@ py_test(
         "//nucleus/testdata",
     ],
     deps = [
-        ":filter_vcf",
+        ":filter_vcf_lib",
         "//nucleus/io:vcf",
         "//nucleus/testing:py_test_utils",
         "@absl_py//absl/testing:absltest",
@@ -113,6 +137,12 @@ py_test(
 
 py_binary(
     name = "validate_vcf",
+    srcs = ["validate_vcf.py"],
+    deps = [":validate_vcf_lib"],
+)
+
+py_library(
+    name = "validate_vcf_lib",
     srcs = ["validate_vcf.py"],
     deps = [
         "//nucleus/io:fasta",
@@ -130,7 +160,7 @@ py_test(
         "//nucleus/testdata",
     ],
     deps = [
-        ":validate_vcf",
+        ":validate_vcf_lib",
         "//nucleus/protos:reference_py_pb2",
         "//nucleus/protos:variants_py_pb2",
         "//nucleus/testing:py_test_utils",
@@ -140,6 +170,12 @@ py_test(
 
 py_binary(
     name = "ngs_errors",
+    srcs = ["ngs_errors.py"],
+    deps = [":ngs_errors_lib"],
+)
+
+py_library(
+    name = "ngs_errors_lib",
     srcs = ["ngs_errors.py"],
     deps = [
         "//nucleus/io:fasta",
@@ -163,7 +199,7 @@ py_test(
     data = ["//nucleus/testdata"],
     srcs_version = "PY2AND3",
     deps = [
-        ":ngs_errors",
+        ":ngs_errors_lib",
         "//nucleus/io:genomics_reader",
         "//nucleus/testing:py_test_utils",
         "@absl_py//absl/testing:absltest",
@@ -173,6 +209,12 @@ py_test(
 
 py_binary(
     name = "apply_genotyping_prior",
+    srcs = ["apply_genotyping_prior.py"],
+    deps = [":apply_genotyping_prior_lib"],
+)
+
+py_library(
+    name = "apply_genotyping_prior_lib",
     srcs = ["apply_genotyping_prior.py"],
     deps = [
         "//nucleus/io:vcf",
@@ -188,7 +230,7 @@ py_test(
     srcs = ["apply_genotyping_prior_test.py"],
     srcs_version = "PY2AND3",
     deps = [
-        ":apply_genotyping_prior",
+        ":apply_genotyping_prior_lib",
         "//nucleus/protos:variants_py_pb2",
         "@absl_py//absl/testing:absltest",
     ],

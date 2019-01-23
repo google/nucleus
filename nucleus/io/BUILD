@@ -19,7 +19,7 @@ exports_files(["LICENSE"])
 py_library(
     name = "io_py",
     deps = [
-        ":converter",
+        ":converter_lib",
         ":io_libs_py",
     ],
 )
@@ -1117,6 +1117,12 @@ py_test(
 py_binary(
     name = "converter",
     srcs = ["converter.py"],
+    deps = [":converter_lib"],
+)
+
+py_library(
+    name = "converter_lib",
+    srcs = ["converter.py"],
     deps = [
         "//nucleus/io:io_libs_py",
         "@absl_py//absl:app",
@@ -1129,7 +1135,7 @@ py_test(
     srcs = ["converter_test.py"],
     data = ["//nucleus/testdata"],
     deps = [
-        ":converter",
+        ":converter_lib",
         "//nucleus/testing:py_test_utils",
         "@absl_py//absl/logging",
         "@absl_py//absl/testing:absltest",
