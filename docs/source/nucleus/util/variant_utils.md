@@ -38,13 +38,13 @@ Name | Description
 [`is_deletion`](#is_deletion)`(ref, alt)` | Is alt a deletion w.r.t. ref?
 [`is_filtered`](#is_filtered)`(variant)` | Returns True if variant has a non-PASS filter field, or False otherwise.
 [`is_gvcf`](#is_gvcf)`(variant)` | Returns true if variant encodes a standard gVCF reference block.
-[`is_indel`](#is_indel)`(variant)` | Is variant an indel?
+[`is_indel`](#is_indel)`(variant, exclude_alleles=None)` | Is variant an indel?
 [`is_insertion`](#is_insertion)`(ref, alt)` | Is alt an insertion w.r.t. ref?
 [`is_multiallelic`](#is_multiallelic)`(variant)` | Does variant have multiple alt alleles?
 [`is_ref`](#is_ref)`(variant)` | Returns true if variant is a reference record.
-[`is_snp`](#is_snp)`(variant)` | Is variant a SNP?
+[`is_snp`](#is_snp)`(variant, exclude_alleles=None)` | Is variant a SNP?
 [`is_transition`](#is_transition)`(allele1, allele2)` | Is the pair of single bp alleles a transition?
-[`is_variant_call`](#is_variant_call)`(variant, require_non_ref_genotype=True, no_calls_are_variant=False)` | Is variant a non-reference call?
+[`is_variant_call`](#is_variant_call)`(variant, require_non_ref_genotype=True, no_calls_are_variant=False, call_indices=None)` | Is variant a non-reference call?
 [`only_call`](#only_call)`(variant)` | Ensures the Variant has exactly one VariantCall, and returns it.
 [`set_info`](#set_info)`(variant, field_name, value, vcf_object=None)` | Sets a field of the info map of the `Variant` to the given value(s).
 [`simplify_alleles`](#simplify_alleles)`(*alleles)` | Simplifies alleles by stripping off common postfix bases.
@@ -409,7 +409,7 @@ Returns:
 ```
 
 <a name="is_indel"></a>
-### `is_indel(variant)`
+### `is_indel(variant, exclude_alleles=None)`
 ```
 Is variant an indel?
 
@@ -418,6 +418,7 @@ is > 1.
 
 Args:
   variant: nucleus.genomics.v1.Variant.
+  exclude_alleles: list(str). The alleles in this list will be ignored.
 
 Returns:
   True if the alleles in variant indicate an insertion/deletion event
@@ -466,12 +467,13 @@ Returns:
 ```
 
 <a name="is_snp"></a>
-### `is_snp(variant)`
+### `is_snp(variant, exclude_alleles=None)`
 ```
 Is variant a SNP?
 
 Args:
   variant: nucleus.genomics.v1.Variant.
+  exclude_alleles: list(str). The alleles in this list will be ignored.
 
 Returns:
   True if all alleles of variant are 1 bp in length, excluding the GVCF
@@ -495,7 +497,7 @@ Raises:
 ```
 
 <a name="is_variant_call"></a>
-### `is_variant_call(variant, require_non_ref_genotype=True, no_calls_are_variant=False)`
+### `is_variant_call(variant, require_non_ref_genotype=True, no_calls_are_variant=False, call_indices=None)`
 ```
 Is variant a non-reference call?
 
@@ -520,12 +522,12 @@ Args:
     a variant call?
   no_calls_are_variant: If a site has genotypes, should we consider no_call
     genotypes as being variant or not?
+  call_indices: A list of 0-based indices. If specified, only the calls
+    at the given indices will be considered. The function will return
+    True if any of those calls are variant.
 
 Returns:
   True if variant is really a mutation call.
-
-Raises:
-  ValueError: If variant has more than one call (i.e., is multi-sample).
 ```
 
 <a name="only_call"></a>

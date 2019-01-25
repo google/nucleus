@@ -1,12 +1,9 @@
 # nucleus.io.bedgraph -- Classes for reading and writing BedGraph files.
-
-**Source code:**
-[nucleus/io/bedgraph.py](https://github.com/google/nucleus/tree/master/nucleus/io/bedgraph.py)
+**Source code:** [nucleus/io/bedgraph.py](https://github.com/google/nucleus/tree/master/nucleus/io/bedgraph.py)
 
 **Documentation index:** [doc_index.md](../../doc_index.md)
 
---------------------------------------------------------------------------------
-
+---
 The BedGraph format is described at
 https://genome.ucsc.edu/goldenpath/help/bedgraph.html
 
@@ -46,38 +43,25 @@ Files that end in a '.gz' suffix cause the file to be treated as compressed
 (with BGZF if it is a BedGraph file, and with gzip if it is a TFRecord file).
 
 ## Classes overview
-
-| Name                                            | Description                |
-| ----------------------------------------------- | -------------------------- |
-| [`BedGraphReader`](#bedgraphreader)             | Class for reading          |
-:                                                 : BedGraphRecord protos from :
-:                                                 : BedGraph or TFRecord       :
-:                                                 : files.                     :
-| [`BedGraphWriter`](#bedgraphwriter)             | Class for writing          |
-:                                                 : BedGraphRecord protos to   :
-:                                                 : BedGraph or TFRecord       :
-:                                                 : files.                     :
-| [`NativeBedGraphReader`](#nativebedgraphreader) | Class for reading from     |
-:                                                 : native BedGraph files.     :
-| [`NativeBedGraphWriter`](#nativebedgraphwriter) | Class for writing to       |
-:                                                 : native BedGraph files.     :
+Name | Description
+-----|------------
+[`BedGraphReader`](#bedgraphreader) | Class for reading BedGraphRecord protos from BedGraph or TFRecord files.
+[`BedGraphWriter`](#bedgraphwriter) | Class for writing BedGraphRecord protos to BedGraph or TFRecord files.
+[`NativeBedGraphReader`](#nativebedgraphreader) | Class for reading from native BedGraph files.
+[`NativeBedGraphWriter`](#nativebedgraphwriter) | Class for writing to native BedGraph files.
 
 ## Classes
-
 ### BedGraphReader
-
 ```
 Class for reading BedGraphRecord protos from BedGraph or TFRecord files.
 ```
 
 ### BedGraphWriter
-
 ```
 Class for writing BedGraphRecord protos to BedGraph or TFRecord files.
 ```
 
 ### NativeBedGraphReader
-
 ```
 Class for reading from native BedGraph files.
 
@@ -87,11 +71,8 @@ the filename's extension.
 ```
 
 #### Methods:
-
 <a name="__init__"></a>
-
 ##### `__init__(self, input_path, num_fields=0)`
-
 ```
 Initializes a NativeBedGraphReader.
 
@@ -102,17 +83,13 @@ Args:
 ```
 
 <a name="iterate"></a>
-
 ##### `iterate(self)`
-
 ```
 Returns an iterable of BedGraphRecord protos in the file.
 ```
 
 <a name="query"></a>
-
 ##### `query(self)`
-
 ```
 Returns an iterator for going through the records in the region.
 
@@ -121,7 +98,6 @@ though it could be implemented for sorted, tabix-indexed BedGraph files.
 ```
 
 ### NativeBedGraphWriter
-
 ```
 Class for writing to native BedGraph files.
 
@@ -130,11 +106,8 @@ BedGraph files or TFRecord files, based on the output filename's extension.
 ```
 
 #### Methods:
-
 <a name="__init__"></a>
-
 ##### `__init__(self, output_path, header=None)`
-
 ```
 Initializer for NativeBedGraphWriter.
 
@@ -143,5 +116,6 @@ Args:
 ```
 
 <a name="write"></a>
-
 ##### `write(self, proto)`
+
+

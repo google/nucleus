@@ -25,7 +25,7 @@ from nucleus.io import vcf
 # variants is an iterable of nucleus.genomics.v1.Variant protocol buffers.
 variants = ...
 
-with vcf.VcfWriter(output_path, header) as writer:
+with vcf.VcfWriter(output_path, header=header) as writer:
   for variant in variants:
     writer.write(variant)
 ```
@@ -123,7 +123,7 @@ on the filename's extensions.
 
 #### Methods:
 <a name="__init__"></a>
-##### `__init__(self, input_path, excluded_info_fields=None, excluded_format_fields=None)`
+##### `__init__(self, input_path, excluded_info_fields=None, excluded_format_fields=None, store_gl_and_pl_in_info_map=False)`
 ```
 Initializer for NativeVcfReader.
 
@@ -134,6 +134,9 @@ Args:
   excluded_format_fields: list(str). A list of FORMAT field IDs that should
     not be parsed into the Variants. If None, all FORMAT fields are
     included.
+  store_gl_and_pl_in_info_map: bool. If True, the "GL" and "PL" FORMAT
+    fields are stored in the VariantCall.info map rather than as top-level
+    values in the VariantCall.genotype_likelihood field.
 ```
 
 <a name="iterate"></a>
@@ -158,7 +161,7 @@ files or TFRecords files, based on the output filename's extensions.
 
 #### Methods:
 <a name="__init__"></a>
-##### `__init__(self, output_path, header=None, round_qualities=False, excluded_info_fields=None, excluded_format_fields=None)`
+##### `__init__(self, output_path, header=None, round_qualities=False, excluded_info_fields=None, excluded_format_fields=None, retrieve_gl_and_pl_from_info_map=False)`
 ```
 Initializer for NativeVcfWriter.
 
@@ -174,6 +177,9 @@ Args:
     be written to the output. If None, all INFO fields are included.
   excluded_format_fields: list(str). A list of FORMAT field IDs that should
     not be written to the output. If None, all FORMAT fields are included.
+  retrieve_gl_and_pl_from_info_map: bool. If True, the "GL" and "PL" FORMAT
+    fields are retrieved from the VariantCall.info map rather than from the
+    top-level value in the VariantCall.genotype_likelihood field.
 ```
 
 <a name="write"></a>

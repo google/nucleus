@@ -2,13 +2,13 @@
 ## nucleus.examples
 [`nucleus.examples.add_ad_to_vcf`](nucleus/examples/add_ad_to_vcf.md)
 
+[`nucleus.examples.apply_genotyping_prior`](nucleus/examples/apply_genotyping_prior.md)
+
 [`nucleus.examples.ascii_pileup`](nucleus/examples/ascii_pileup.md)
 
 [`nucleus.examples.count_variants`](nucleus/examples/count_variants.md)
 
 [`nucleus.examples.filter_vcf`](nucleus/examples/filter_vcf.md)
-
-[`nucleus.examples.ngs_errors`](nucleus/examples/ngs_errors.md)
 
 [`nucleus.examples.validate_vcf`](nucleus/examples/validate_vcf.md)
 
@@ -33,7 +33,14 @@
 
 [`nucleus.io.sam`](nucleus/io/sam.md)
 
+[`nucleus.io.sharded_file_utils`](nucleus/io/sharded_file_utils.md)
+
+[`nucleus.io.tfrecord`](nucleus/io/tfrecord.md)
+
 [`nucleus.io.vcf`](nucleus/io/vcf.md)
+
+## nucleus.pip_package
+[`nucleus.pip_package.setup`](nucleus/pip_package/setup.md)
 
 ## nucleus.testing
 [`nucleus.testing.test_utils`](nucleus/testing/test_utils.md)
@@ -44,8 +51,6 @@
 [`nucleus.util.errors`](nucleus/util/errors.md)
 
 [`nucleus.util.genomics_math`](nucleus/util/genomics_math.md)
-
-[`nucleus.util.io_utils`](nucleus/util/io_utils.md)
 
 [`nucleus.util.proto_utils`](nucleus/util/proto_utils.md)
 

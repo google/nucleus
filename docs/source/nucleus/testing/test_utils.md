@@ -17,6 +17,7 @@ Name | Description
 [`iterable_len`](#iterable_len)`(iterable)` | Returns the length of a Python iterable, by advancing it.
 [`make_read`](#make_read)`(bases, quals=None, cigar=None, mapq=50, chrom='chr1', start=1, name=None)` | Makes a nucleus.genomics.v1.Read for testing.
 [`make_variant`](#make_variant)`(chrom='chr1', start=10, alleles=None, end=None, filters=None, qual=None, gt=None, gq=None, sample_name=None, gls=None)` | Creates a new Variant proto from args.
+[`make_variant_multiple_calls`](#make_variant_multiple_calls)`(chrom='chr1', start=10, alleles=None, end=None, filters=None, qual=None, gts=None, gqs=None, sample_names=None, glss=None)` | Creates a new Variant proto from args that contains multi-sample calls.
 [`set_list_values`](#set_list_values)`(list_value, values)` | Sets a ListValue to have the values in values.
 [`test_tmpfile`](#test_tmpfile)`(name, contents=None)` | Returns a path to a tempfile named name in the test_tmpdir.
 
@@ -130,8 +131,8 @@ Makes a nucleus.genomics.v1.Read for testing.
 Creates a new Variant proto from args.
 
 Args:
-  chrom: str. The reference_name for this variant. Defaults to 'chr1'.
-  start: int. The starting position of this variant. Defaults to 10.
+  chrom: str. The reference_name for this variant.
+  start: int. The starting position of this variant.
   alleles: list of str with at least one element. alleles[0] is the reference
     bases and alleles[1:] will be set to alternate_bases of variant. If None,
     defaults to ['A', 'C'].
@@ -152,6 +153,38 @@ Args:
     call_set_name of our VariantCall to this value.
   gls: array-list of float, or None. If not None and gt is not None, sets the
     genotype_likelihoods of our VariantCall to this value.
+
+Returns:
+  nucleus.genomics.v1.Variant proto.
+```
+
+<a name="make_variant_multiple_calls"></a>
+### `make_variant_multiple_calls(chrom='chr1', start=10, alleles=None, end=None, filters=None, qual=None, gts=None, gqs=None, sample_names=None, glss=None)`
+```
+Creates a new Variant proto from args that contains multi-sample calls.
+
+Args:
+  chrom: str. The reference_name for this variant.
+  start: int. The starting position of this variant.
+  alleles: list of str with at least one element. alleles[0] is the reference
+    bases and alleles[1:] will be set to alternate_bases of variant. If None,
+      defaults to ['A', 'C'].
+  end: int or None. If not None, the variant's end will be set to this value.
+    If None, will be set to the start + len(reference_bases).
+  filters: str, list of str, or None. Sets the filters field of the variant to
+    this value if not None. If filters is a string `value`, this is equivalent
+    to an argument [`value`]. If None, no value will be assigned to the
+    filters field.
+  qual: int or None. The quality score for this variant. If None, no quality
+    score will be written in the Variant.
+  gts: A list of lists of ints. For each list in this list, creates a
+    VariantCall in Variant with genotype field set to this value.
+  gqs: A list of ints or None. Must match the gts arg if specified. Sets the
+    GQ value of corresponding VariantCall.
+  sample_names: A list of strs or None. Must match the gts arg if specified.
+    Sets the call_set_name of the corresponding VariantCall.
+  glss: A list of array-lists of float, or None. Must match the gts arg if
+    specified. Sets the genotype_likelihoods of the corresponding VariantCall.
 
 Returns:
   nucleus.genomics.v1.Variant proto.

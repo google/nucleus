@@ -9,10 +9,31 @@
 ## Functions overview
 Name | Description
 -----|------------
+[`read_overlaps_region`](#read_overlaps_region)`(read, region)` | Returns True if read overlaps read.
 [`read_range`](#read_range)`(read)` | Creates a Range proto from the alignment of Read.
 [`reservoir_sample`](#reservoir_sample)`(iterable, k, random=None)` | Samples k elements with uniform probability from an iterable.
 
 ## Functions
+<a name="read_overlaps_region"></a>
+### `read_overlaps_region(read, region)`
+```
+Returns True if read overlaps read.
+
+This function is equivalent to calling:
+
+  `ranges.ranges_overlap(region, read_range(read))`
+
+But is optimized for speed and memory performance in C++.
+
+Args:
+  read: nucleus.genomics.v1.Read.
+  region: nucleus.genomics.v1.Range.
+
+Returns:
+  True if read and region overlap (i.e, have the same reference_name and their
+  start/ends overlap at least one basepair).
+```
+
 <a name="read_range"></a>
 ### `read_range(read)`
 ```

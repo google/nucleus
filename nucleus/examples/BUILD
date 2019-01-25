@@ -20,7 +20,6 @@ py_library(
         ":ascii_pileup_lib",
         ":count_variants_lib",
         ":filter_vcf_lib",
-        ":ngs_errors_lib",
         ":validate_vcf_lib",
     ],
 )
@@ -165,45 +164,6 @@ py_test(
         "//nucleus/protos:variants_py_pb2",
         "//nucleus/testing:py_test_utils",
         "@absl_py//absl/testing:absltest",
-    ],
-)
-
-py_binary(
-    name = "ngs_errors",
-    srcs = ["ngs_errors.py"],
-    deps = [":ngs_errors_lib"],
-)
-
-py_library(
-    name = "ngs_errors_lib",
-    srcs = ["ngs_errors.py"],
-    deps = [
-        "//nucleus/io:fasta",
-        "//nucleus/io:genomics_writer",
-        "//nucleus/io:sam",
-        "//nucleus/io:vcf",
-        "//nucleus/protos:reads_py_pb2",
-        "//nucleus/util:cigar",
-        "//nucleus/util:py_utils",
-        "//nucleus/util:ranges",
-        "//nucleus/util:variant_utils",
-        "@absl_py//absl:app",
-        "@org_tensorflow//tensorflow:tensorflow_py",
-    ],
-)
-
-py_test(
-    name = "ngs_errors_test",
-    size = "small",
-    srcs = ["ngs_errors_test.py"],
-    data = ["//nucleus/testdata"],
-    srcs_version = "PY2AND3",
-    deps = [
-        ":ngs_errors_lib",
-        "//nucleus/io:genomics_reader",
-        "//nucleus/testing:py_test_utils",
-        "@absl_py//absl/testing:absltest",
-        "@org_tensorflow//tensorflow:tensorflow_py",
     ],
 )
 
