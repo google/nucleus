@@ -6,6 +6,14 @@ In addition, Nucleus enables painless integration with the TensorFlow machine
 learning framework, as anywhere a genomics file is consumed or produced, a
 TensorFlow tfrecords file may be used instead.
 
+## New Tutorial!
+
+Please check out our new tutorial on
+[using Nucleus and TensorFlow for DNA sequencing error correction](https://colab.research.google.com/github/google/nucleus/blob/master/nucleus/examples/dna_sequencing_error_correction.ipynb).
+It's a Python notebook that really demonstrates the power of Nucleus at
+integrating information from multiple file types (BAM, VCF and Fasta) and
+turning it into a form usable by TensorFlow.
+
 ## Poll
 
 Which of these would most increase your usage of Nucleus?  (Click on an
