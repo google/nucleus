@@ -66,11 +66,10 @@ echo "$(pip --version)"
 # Install python packages used by Nucleus
 ################################################################################
 pip install --user contextlib2
-# sortedcontainers>=2.0.0 breaks intervaltree=2.1.0
-# Remove this when https://github.com/chaimleib/intervaltree/pull/69
-# is resolved.  Tracked internally at b/80085543.
+# TODO(thomaswc): Unpin sortedcontainers, as sortedcontainers=2.0.0 should now
+# work with intervaltree>=3.0.2.
 pip install --user 'sortedcontainers==1.5.3'
-pip install --user 'intervaltree==2.1.0'
+pip install --user 'intervaltree==3.0.2'
 pip install --user 'mock>=2.0.0'
 pip install --user 'numpy==1.14'
 pip install --user 'six>=1.11.0'
