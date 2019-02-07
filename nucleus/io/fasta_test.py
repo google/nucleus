@@ -23,8 +23,7 @@ from absl.testing import parameterized
 
 import six
 from nucleus.io import fasta
-from nucleus.io.python import in_memory_fasta_reader
-from nucleus.io.python import indexed_fasta_reader
+from nucleus.io.python import reference
 from nucleus.testing import test_utils
 from nucleus.util import ranges
 
@@ -62,7 +61,7 @@ class IndexedFastaReaderTests(parameterized.TestCase):
     with fasta.IndexedFastaReader(
         test_utils.genomics_core_testdata('test.fasta')) as reader:
       self.assertIsInstance(reader.c_reader,
-                            indexed_fasta_reader.IndexedFastaReader)
+                            reference.IndexedFastaReader)
 
 
 class UnindexedFastaReaderTests(parameterized.TestCase):
@@ -217,7 +216,7 @@ class InMemoryFastaReaderTests(parameterized.TestCase):
 
   def test_c_reader(self):
     self.assertIsInstance(self.in_mem.c_reader,
-                          in_memory_fasta_reader.InMemoryFastaReader)
+                          reference.InMemoryFastaReader)
 
 
 if __name__ == '__main__':

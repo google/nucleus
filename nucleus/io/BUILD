@@ -192,9 +192,7 @@ py_library(
     srcs = ["fasta.py"],
     deps = [
         ":genomics_reader",
-        "//nucleus/io/python:in_memory_fasta_reader",
-        "//nucleus/io/python:indexed_fasta_reader",
-        "//nucleus/io/python:unindexed_fasta_reader",
+        "//nucleus/io/python:reference",
         "//nucleus/protos:fasta_py_pb2",
         "//nucleus/util:ranges",
         "@org_tensorflow//tensorflow/python:platform",
@@ -326,8 +324,6 @@ cc_library(
         ":gff_writer",
         ":hts_path",
         ":hts_verbose",
-        ":in_memory_fasta_reader",
-        ":indexed_fasta_reader",
         ":reader_base",
         ":reference",
         ":sam_reader",
@@ -744,81 +740,8 @@ cc_library(
     srcs = ["reference.cc"],
     hdrs = ["reference.h"],
     deps = [
-        ":reader_base",
-        "//nucleus/platform:types",
-        "//nucleus/protos:range_cc_pb2",
-        "//nucleus/protos:reference_cc_pb2",
-        "//nucleus/vendor:statusor",
-        "@org_tensorflow//tensorflow/core:lib",
-    ],
-)
-
-# Abstract value-parameterized tests:
-# https://github.com/google/googletest/blob/master/googletest/docs/AdvancedGuide.md#creating-value-parameterized-abstract-tests
-cc_library(
-    name = "reference_test",
-    testonly = True,
-    srcs = ["reference_test.cc"],
-    hdrs = ["reference_test.h"],
-    data = ["//nucleus/testdata"],
-    deps = [
-        ":reference",
-        "//nucleus/platform:types",
-        "//nucleus/testing:cpp_test_utils",
-        "//nucleus/util:cpp_utils",
-        "//nucleus/vendor:status_matchers",
-        "@com_google_googletest//:gtest_main",
-        "@org_tensorflow//tensorflow/core:lib",
-        "@org_tensorflow//tensorflow/core:test",
-    ],
-)
-
-cc_library(
-    name = "indexed_fasta_reader",
-    srcs = ["indexed_fasta_reader.cc"],
-    hdrs = ["indexed_fasta_reader.h"],
-    copts = NUCLEUS_COPTS,
-    deps = [
         ":hts_path",
         ":reader_base",
-        ":reference",
-        "//nucleus/platform:types",
-        "//nucleus/protos:range_cc_pb2",
-        "//nucleus/protos:reference_cc_pb2",
-        "//nucleus/util:cpp_utils",
-        "//nucleus/vendor:statusor",
-        "@com_google_absl//absl/strings",
-        "@com_google_absl//absl/types:optional",
-        "@htslib",
-        "@org_tensorflow//tensorflow/core:lib",
-    ],
-)
-
-cc_test(
-    name = "indexed_fasta_reader_test",
-    size = "small",
-    srcs = ["indexed_fasta_reader_test.cc"],
-    deps = [
-        ":indexed_fasta_reader",
-        ":reader_base",
-        ":reference_test",
-        "//nucleus/testing:cpp_test_utils",
-        "//nucleus/util:cpp_utils",
-        "//nucleus/vendor:status_matchers",
-        "@com_google_absl//absl/strings",
-        "@com_google_googletest//:gtest_main",
-        "@org_tensorflow//tensorflow/core:lib",
-        "@org_tensorflow//tensorflow/core:test",
-    ],
-)
-
-cc_library(
-    name = "unindexed_fasta_reader",
-    srcs = ["unindexed_fasta_reader.cc"],
-    hdrs = ["unindexed_fasta_reader.h"],
-    deps = [
-        ":reader_base",
-        ":reference",
         ":text_reader",
         "//nucleus/platform:types",
         "//nucleus/protos:range_cc_pb2",
@@ -832,52 +755,25 @@ cc_library(
     ],
 )
 
+# Abstract value-parameterized tests:
+# https://github.com/google/googletest/blob/master/googletest/docs/AdvancedGuide.md#creating-value-parameterized-abstract-tests
 cc_test(
-    name = "unindexed_fasta_reader_test",
+    name = "reference_test",
     size = "small",
-    srcs = ["unindexed_fasta_reader_test.cc"],
-    deps = [
-        ":reference_test",
-        ":unindexed_fasta_reader",
-        "//nucleus/testing:cpp_test_utils",
-        "//nucleus/util:cpp_utils",
-        "//nucleus/vendor:status_matchers",
-        "@com_google_absl//absl/strings",
-        "@com_google_googletest//:gtest_main",
-        "@org_tensorflow//tensorflow/core:lib",
-        "@org_tensorflow//tensorflow/core:test",
-    ],
-)
-
-cc_library(
-    name = "in_memory_fasta_reader",
-    srcs = ["in_memory_fasta_reader.cc"],
-    hdrs = ["in_memory_fasta_reader.h"],
-    copts = NUCLEUS_COPTS,
+    srcs = ["reference_test.cc"],
+    data = ["//nucleus/testdata"],
     deps = [
         ":reader_base",
         ":reference",
         "//nucleus/platform:types",
         "//nucleus/protos:range_cc_pb2",
         "//nucleus/protos:reference_cc_pb2",
+        "//nucleus/testing:cpp_test_utils",
         "//nucleus/util:cpp_utils",
-        "//nucleus/vendor:statusor",
-        "@org_tensorflow//tensorflow/core:lib",
-    ],
-)
-
-cc_test(
-    name = "in_memory_fasta_reader_test",
-    size = "small",
-    srcs = ["in_memory_fasta_reader_test.cc"],
-    deps = [
-        ":in_memory_fasta_reader",
-        ":reader_base",
-        "//nucleus/protos:range_cc_pb2",
-        "//nucleus/protos:reference_cc_pb2",
-        "//nucleus/util:cpp_utils",
+        "//nucleus/vendor:status_matchers",
+        "@com_google_absl//absl/strings",
         "@com_google_googletest//:gtest_main",
-        "@org_tensorflow//tensorflow/core:test",
+        "@org_tensorflow//tensorflow/core:lib",
     ],
 )
 

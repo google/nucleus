@@ -141,30 +141,6 @@ py_clif_cc(
     ],
 )
 
-py_clif_cc(
-    name = "indexed_fasta_reader",
-    srcs = ["indexed_fasta_reader.clif"],
-    clif_deps = [
-        ":reference",
-    ],
-    deps = [
-        "//nucleus/io:indexed_fasta_reader",
-        "//nucleus/vendor:statusor_clif_converters",
-    ],
-)
-
-py_clif_cc(
-    name = "unindexed_fasta_reader",
-    srcs = ["unindexed_fasta_reader.clif"],
-    clif_deps = [
-        ":reference",
-    ],
-    deps = [
-        "//nucleus/io:unindexed_fasta_reader",
-        "//nucleus/vendor:statusor_clif_converters",
-    ],
-)
-
 py_test(
     name = "reference_wrap_test",
     size = "small",
@@ -172,23 +148,11 @@ py_test(
     data = ["//nucleus/testdata"],
     srcs_version = "PY2AND3",
     deps = [
-        ":indexed_fasta_reader",
+        ":reference",
         "//nucleus/testing:py_test_utils",
         "//nucleus/util:ranges",
         "@absl_py//absl/testing:absltest",
         "@absl_py//absl/testing:parameterized",
-    ],
-)
-
-py_clif_cc(
-    name = "in_memory_fasta_reader",
-    srcs = ["in_memory_fasta_reader.clif"],
-    pyclif_deps = [
-        "//nucleus/protos:reference_pyclif",
-    ],
-    deps = [
-        "//nucleus/io:in_memory_fasta_reader",
-        "//nucleus/vendor:statusor_clif_converters",
     ],
 )
 
