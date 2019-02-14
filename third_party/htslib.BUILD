@@ -14,9 +14,9 @@ package(
     ],
 )
 
-version = "1.6"
+version = "1.9"
 
-version_dir = "htslib_1_6"
+version_dir = "htslib_1_9"
 
 include_htslib = "htslib/" + version_dir
 
@@ -73,6 +73,7 @@ htslib_srcs = [
     "synced_bcf_reader.c",
     "tbx.c",
     "textutils.c",
+    "textutils_internal.h",
     "thread_pool.c",
     "thread_pool_internal.h",
     "vcf.c",
@@ -106,6 +107,7 @@ htslib_srcs = [
     "cram/rANS_byte.h",
     "cram/rANS_static.h",
     "cram/string_alloc.h",
+    "os/lzma_stub.h",
 ]
 
 # These need to be included in the right order, cf cram.h
