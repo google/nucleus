@@ -159,7 +159,7 @@ on the filename's extensions.
 
 #### Methods:
 <a name="__init__"></a>
-##### `__init__(self, input_path, ref_path=None, read_requirements=None, parse_aux_fields=False, hts_block_size=None, downsample_fraction=None, random_seed=None)`
+##### `__init__(self, input_path, ref_path=None, read_requirements=None, parse_aux_fields=False, hts_block_size=None, downsample_fraction=None, random_seed=None, use_original_base_quality_scores=False)`
 ```
 Initializes a NativeSamReader.
 
@@ -189,6 +189,8 @@ Args:
     are kept.
   random_seed: None or int. The random seed to use with this sam reader, if
     needed. If None, a fixed random value will be assigned.
+  use_original_base_quality_scores: optional bool, defaulting to False. If
+    True, quality scores are read from OQ tag.
 
 Raises:
   ValueError: If downsample_fraction is not None and not in the interval

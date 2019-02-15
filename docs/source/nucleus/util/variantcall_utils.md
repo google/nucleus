@@ -15,7 +15,9 @@ Name | Description
 [`get_gq`](#get_gq)`(variant_call)` | Gets the genotype quality of the VariantCall.
 [`get_gt`](#get_gt)`(variant_call)` | Returns the genotypes of the VariantCall.
 [`get_min_dp`](#get_min_dp)`(variant_call)` | Gets the 'MIN_DP' field of the VariantCall.
+[`has_full_genotypes`](#has_full_genotypes)`(variant_call)` | Returns True iff the VariantCall has only known genotypes.
 [`has_genotypes`](#has_genotypes)`(variant_call)` | Returns True iff the VariantCall has one or more called genotypes.
+[`has_variation`](#has_variation)`(variant_call)` | Returns True if and only if the call has a non-reference genotype.
 [`ploidy`](#ploidy)`(variant_call)` | Returns the ploidy of the VariantCall.
 [`set_ad`](#set_ad)`(variant_call, ad)` | Sets the allele depth of the VariantCall.
 [`set_format`](#set_format)`(variant_call, field_name, value, vcf_object=None)` | Sets a field of the info map of the `VariantCall` to the given value(s).
@@ -85,6 +87,18 @@ Returns:
 Gets the 'MIN_DP' field of the VariantCall.
 ```
 
+<a name="has_full_genotypes"></a>
+### `has_full_genotypes(variant_call)`
+```
+Returns True iff the VariantCall has only known genotypes.
+
+Args:
+  variant_call: VariantCall proto. The VariantCall to evaluate.
+
+Returns:
+  True if all `genotype` fields are known genotypes.
+```
+
 <a name="has_genotypes"></a>
 ### `has_genotypes(variant_call)`
 ```
@@ -95,6 +109,18 @@ Args:
 
 Returns:
   True if the VariantCall has one or more called genotypes, False otherwise.
+```
+
+<a name="has_variation"></a>
+### `has_variation(variant_call)`
+```
+Returns True if and only if the call has a non-reference genotype.
+
+Args:
+  variant_call: VariantCall proto. The VariantCall to evaluate.
+
+Returns:
+  True if and only if the call has a non-reference genotype.
 ```
 
 <a name="ploidy"></a>

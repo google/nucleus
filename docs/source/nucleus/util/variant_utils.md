@@ -42,9 +42,11 @@ Name | Description
 [`is_insertion`](#is_insertion)`(ref, alt)` | Is alt an insertion w.r.t. ref?
 [`is_multiallelic`](#is_multiallelic)`(variant)` | Does variant have multiple alt alleles?
 [`is_ref`](#is_ref)`(variant)` | Returns true if variant is a reference record.
+[`is_singleton`](#is_singleton)`(variant)` | Returns True iff the variant has exactly one non-ref VariantCall.
 [`is_snp`](#is_snp)`(variant, exclude_alleles=None)` | Is variant a SNP?
 [`is_transition`](#is_transition)`(allele1, allele2)` | Is the pair of single bp alleles a transition?
 [`is_variant_call`](#is_variant_call)`(variant, require_non_ref_genotype=True, no_calls_are_variant=False, call_indices=None)` | Is variant a non-reference call?
+[`major_allele_frequency`](#major_allele_frequency)`(variant)` | Returns the frequency of the most common allele in the variant.
 [`only_call`](#only_call)`(variant)` | Ensures the Variant has exactly one VariantCall, and returns it.
 [`set_info`](#set_info)`(variant, field_name, value, vcf_object=None)` | Sets a field of the info map of the `Variant` to the given value(s).
 [`simplify_alleles`](#simplify_alleles)`(*alleles)` | Simplifies alleles by stripping off common postfix bases.
@@ -466,6 +468,12 @@ Returns:
   A boolean.
 ```
 
+<a name="is_singleton"></a>
+### `is_singleton(variant)`
+```
+Returns True iff the variant has exactly one non-ref VariantCall.
+```
+
 <a name="is_snp"></a>
 ### `is_snp(variant, exclude_alleles=None)`
 ```
@@ -528,6 +536,12 @@ Args:
 
 Returns:
   True if variant is really a mutation call.
+```
+
+<a name="major_allele_frequency"></a>
+### `major_allele_frequency(variant)`
+```
+Returns the frequency of the most common allele in the variant.
 ```
 
 <a name="only_call"></a>
