@@ -735,6 +735,24 @@ cc_test(
     ],
 )
 
+cc_test(
+    name = "vcf_roundtrip_test",
+    size = "small",
+    srcs = ["vcf_roundtrip_test.cc"],
+    data = ["//nucleus/testdata"],
+    deps = [
+        ":vcf_reader",
+        ":vcf_writer",
+        "//nucleus/platform:types",
+        "//nucleus/protos:variants_cc_pb2",
+        "//nucleus/testing:cpp_test_utils",
+        "//nucleus/testing:gunit_extras",
+        "//nucleus/vendor:status_matchers",
+        "@com_google_googletest//:gtest_main",
+        "@org_tensorflow//tensorflow/core:test",
+    ],
+)
+
 cc_library(
     name = "reference",
     srcs = ["reference.cc"],
