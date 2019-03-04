@@ -37,6 +37,7 @@ py_library(
         ":gff",
         ":sam",
         ":sharded_file_utils",
+        ":tabix",
         ":tfrecord",
         ":vcf",
         "//nucleus/io/python:hts_verbose",
@@ -303,6 +304,29 @@ py_test(
     ],
 )
 
+py_library(
+    name = "tabix",
+    srcs = ["tabix.py"],
+    deps = [
+        "//nucleus/io/python:tabix_indexer",
+    ],
+)
+
+py_test(
+    name = "tabix_test",
+    size = "small",
+    srcs = ["tabix_test.py"],
+    data = ["//nucleus/testdata"],
+    deps = [
+        ":tabix",
+        ":vcf",
+        "//nucleus/testing:py_test_utils",
+        "//nucleus/util:ranges",
+        "@absl_py//absl/testing:absltest",
+        "@org_tensorflow//tensorflow/python:platform",
+    ],
+)
+
 #
 # C++ API
 #
@@ -328,6 +352,7 @@ cc_library(
         ":reference",
         ":sam_reader",
         ":sam_writer",
+        ":tabix_indexer",
         ":text_reader",
         ":text_writer",
         ":vcf_conversion",
@@ -884,6 +909,33 @@ cc_test(
         "@com_google_googletest//:gtest_main",
         "@htslib",
         "@org_tensorflow//tensorflow/core:test",
+    ],
+)
+
+cc_library(
+    name = "tabix_indexer",
+    srcs = ["tabix_indexer.cc"],
+    hdrs = ["tabix_indexer.h"],
+    deps = [
+        ":hts_path",
+        "//nucleus/platform:types",
+        "@org_tensorflow//tensorflow/core:lib",
+    ],
+)
+
+cc_test(
+    name = "tabix_indexer_test",
+    srcs = ["tabix_indexer_test.cc"],
+    data = ["//nucleus/testdata"],
+    deps = [
+        ":tabix_indexer",
+        ":vcf_reader",
+        ":vcf_writer",
+        "//nucleus/testing:cpp_test_utils",
+        "//nucleus/util:cpp_utils",
+        "//nucleus/vendor:status_matchers",
+        "@com_google_googletest//:gtest_main",
+        "@org_tensorflow//tensorflow/core:lib",
     ],
 )
 
