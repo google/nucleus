@@ -195,3 +195,20 @@ py_test(
         "@absl_py//absl/testing:absltest",
     ],
 )
+
+py_binary(
+    name = "print_tfrecord",
+    srcs = ["print_tfrecord.py"],
+    deps = [
+        "//nucleus/io:genomics_reader",
+        "//nucleus/protos:bed_py_pb2",
+        "//nucleus/protos:bedgraph_py_pb2",
+        "//nucleus/protos:fasta_py_pb2",
+        "//nucleus/protos:fastq_py_pb2",
+        "//nucleus/protos:gff_py_pb2",
+        "//nucleus/protos:reads_py_pb2",
+        "//nucleus/protos:variants_py_pb2",
+        "@org_tensorflow//tensorflow:tensorflow_py_no_contrib",
+        "@protobuf_archive//:protobuf_python",
+    ],
+)
