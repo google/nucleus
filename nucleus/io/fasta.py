@@ -39,14 +39,13 @@ from __future__ import print_function
 
 import collections
 
-import os
 import six
 
-from tensorflow.python.platform import gfile
+from nucleus.io import gfile
 from nucleus.io import genomics_reader
 from nucleus.io.python import reference
-from nucleus.protos import reference_pb2
 from nucleus.protos import fasta_pb2
+from nucleus.protos import reference_pb2
 from nucleus.util import ranges
 
 # TODO(thomaswc): Replace this with a real protocol buffer definition.

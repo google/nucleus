@@ -92,6 +92,7 @@ py_test(
     srcs = ["vcf_test.py"],
     data = ["//nucleus/testdata"],
     deps = [
+        ":gfile",
         ":vcf",
         "//nucleus/protos:reference_py_pb2",
         "//nucleus/protos:struct_py_pb2",
@@ -100,7 +101,6 @@ py_test(
         "//nucleus/util:ranges",
         "@absl_py//absl/testing:absltest",
         "@absl_py//absl/testing:parameterized",
-        "@org_tensorflow//tensorflow/python:platform",
     ],
 )
 
@@ -124,6 +124,7 @@ py_test(
     srcs = ["sam_test.py"],
     data = ["//nucleus/testdata"],
     deps = [
+        ":gfile",
         ":sam",
         ":tfrecord",
         "//nucleus/protos:reference_py_pb2",
@@ -132,7 +133,6 @@ py_test(
         "//nucleus/util:ranges",
         "@absl_py//absl/testing:absltest",
         "@absl_py//absl/testing:parameterized",
-        "@org_tensorflow//tensorflow/python:platform",
     ],
 )
 
@@ -193,10 +193,10 @@ py_library(
     srcs = ["fasta.py"],
     deps = [
         ":genomics_reader",
+        ":gfile",
         "//nucleus/io/python:reference",
         "//nucleus/protos:fasta_py_pb2",
         "//nucleus/util:ranges",
-        "@org_tensorflow//tensorflow/python:platform",
     ],
 )
 
@@ -261,7 +261,7 @@ py_library(
 py_library(
     name = "sharded_file_utils",
     srcs = ["sharded_file_utils.py"],
-    deps = ["@org_tensorflow//tensorflow/python:platform"],
+    deps = [":gfile"],
 )
 
 py_test(
@@ -275,7 +275,6 @@ py_test(
         "//nucleus/testing:py_test_utils",
         "@absl_py//absl/testing:absltest",
         "@absl_py//absl/testing:parameterized",
-        "@org_tensorflow//tensorflow/python:platform",
     ],
 )
 
@@ -318,12 +317,12 @@ py_test(
     srcs = ["tabix_test.py"],
     data = ["//nucleus/testdata"],
     deps = [
+        ":gfile",
         ":tabix",
         ":vcf",
         "//nucleus/testing:py_test_utils",
         "//nucleus/util:ranges",
         "@absl_py//absl/testing:absltest",
-        "@org_tensorflow//tensorflow/python:platform",
     ],
 )
 
@@ -1107,4 +1106,10 @@ py_test(
         "@absl_py//absl/testing:absltest",
         "@absl_py//absl/testing:parameterized",
     ],
+)
+
+py_library(
+    name = "gfile",
+    srcs = ["gfile.py"],
+    deps = [],
 )

@@ -171,10 +171,10 @@ py_library(
     srcs = ["ranges.py"],
     deps = [
         "//nucleus/io:bed",
+        "//nucleus/io:gfile",
         "//nucleus/protos:position_py_pb2",
         "//nucleus/protos:range_py_pb2",
         "@absl_py//absl/logging",
-        "@org_tensorflow//tensorflow/python:platform",
     ],
 )
 

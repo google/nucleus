@@ -22,11 +22,11 @@ import shutil
 
 from absl.testing import absltest
 
+from nucleus.io import gfile
 from nucleus.io import tabix
 from nucleus.io import vcf
 from nucleus.testing import test_utils
 from nucleus.util import ranges
-from tensorflow.python.platform import gfile
 
 
 class TabixTest(absltest.TestCase):

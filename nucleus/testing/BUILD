@@ -88,13 +88,13 @@ py_library(
     testonly = True,
     srcs = ["test_utils.py"],
     deps = [
+        "//nucleus/io:gfile",
         "//nucleus/protos:position_py_pb2",
         "//nucleus/protos:reads_py_pb2",
         "//nucleus/protos:struct_py_pb2",
         "//nucleus/protos:variants_py_pb2",
         "//nucleus/util:cigar",
         "@absl_py//absl/flags",
-        "@org_tensorflow//tensorflow/python:platform",
     ],
 )
 
