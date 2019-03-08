@@ -125,7 +125,7 @@ Format    | Record Type | Header Type    | Reader? | Writer?
 BED       | BedRecord   | BedHeader      | Y       | Y
 FASTA Ref | string      | RefFastaHeader | Y       | N
 FastQ     | FastqRecord | none           | Y       | Y
-SAM/BAM   | Read        | SamHeader      | Y       | N
+SAM/BAM   | Read        | SamHeader      | Y       | Y
 VCF       | Variant     | VcfHeader      | Y       | Y
 
 Don't despair if your favorite genomics format isn't listed, though, as we
