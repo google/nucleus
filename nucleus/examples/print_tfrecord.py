@@ -36,7 +36,7 @@ from nucleus.protos import gff_pb2
 from nucleus.protos import reads_pb2
 from nucleus.protos import variants_pb2
 # pylint: disable=g-direct-tensorflow-import
-from tensorflow.core.example import example_pb2
+from nucleus.protos import example_pb2
 
 PROTO_DB = {
     'BedGraphRecord': bedgraph_pb2.BedGraphRecord,

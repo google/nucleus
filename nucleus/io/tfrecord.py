@@ -31,7 +31,7 @@ import os
 import contextlib2
 
 from nucleus.io import sharded_file_utils
-from tensorflow.core.example import example_pb2
+from nucleus.protos import example_pb2
 from tensorflow.python.lib.io import python_io
 
 

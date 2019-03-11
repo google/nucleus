@@ -283,7 +283,7 @@ py_library(
     srcs = ["tfrecord.py"],
     deps = [
         ":sharded_file_utils",
-        "@org_tensorflow//tensorflow:tensorflow_py_no_contrib",
+        "//nucleus/protos:example_py_pb2",
         "@org_tensorflow//tensorflow/python:platform",
     ],
 )
