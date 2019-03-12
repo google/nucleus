@@ -17,6 +17,7 @@
 
 #include "nucleus/io/tfrecord_reader.h"
 #include "tensorflow/core/lib/io/record_reader.h"
+#include "tensorflow/core/platform/logging.h"
 
 namespace nucleus {
 
@@ -29,6 +30,7 @@ TFRecordReader* TFRecordReader::New(const std::string& filename,
   tensorflow::Status s =
       tensorflow::Env::Default()->NewRandomAccessFile(filename, &file);
   if (!s.ok()) {
+    LOG(ERROR) << s.error_message();
     return nullptr;
   }
 

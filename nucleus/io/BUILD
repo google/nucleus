@@ -48,16 +48,19 @@ py_library(
     name = "genomics_reader",
     srcs = ["genomics_reader.py"],
     deps = [
+        "//nucleus/io/python:tfrecord_reader",
         "@absl_py//absl/logging",
-        "@org_tensorflow//tensorflow/python:platform",
     ],
 )
 
 py_test(
     name = "genomics_reader_test",
     srcs = ["genomics_reader_test.py"],
+    data = ["//nucleus/testdata"],
     deps = [
         ":genomics_reader",
+        "//nucleus/protos:gff_py_pb2",
+        "//nucleus/testing:py_test_utils",
         "@absl_py//absl/testing:absltest",
     ],
 )
@@ -66,8 +69,8 @@ py_library(
     name = "genomics_writer",
     srcs = ["genomics_writer.py"],
     deps = [
+        "//nucleus/io/python:tfrecord_writer",
         "@absl_py//absl/logging",
-        "@org_tensorflow//tensorflow/python:platform",
     ],
 )
 
@@ -282,6 +285,8 @@ py_library(
     name = "tfrecord",
     srcs = ["tfrecord.py"],
     deps = [
+        ":genomics_reader",
+        ":genomics_writer",
         ":sharded_file_utils",
         "//nucleus/protos:example_py_pb2",
         "@org_tensorflow//tensorflow/python:platform",

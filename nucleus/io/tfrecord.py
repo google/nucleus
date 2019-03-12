@@ -30,9 +30,29 @@ import os
 
 import contextlib2
 
+from nucleus.io import genomics_reader
+from nucleus.io import genomics_writer
 from nucleus.io import sharded_file_utils
 from nucleus.protos import example_pb2
 from tensorflow.python.lib.io import python_io
+
+
+# pylint: disable=invalid-name
+def Reader(path, proto=None, compression_type=None):
+  """A TFRecordReader that defaults to tf.Example protos."""
+  if not proto:
+    proto = example_pb2.Example
+
+  return genomics_reader.TFRecordReader(path, proto, compression_type)
+
+
+def Writer(path, proto=None, compression_type=None):
+  """A TFRecordWriter that defaults to tf.Example protos."""
+  if not proto:
+    proto = example_pb2.Example
+
+  return genomics_writer.TFRecordWriter(path, proto, compression_type)
+# pylint: enable=invalid-name
 
 
 def read_tfrecords(path, proto=None, max_records=None, options=None):
