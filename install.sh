@@ -30,8 +30,8 @@
 # Global setting for nucleus builds
 # ------------------------------------------------------------------------------
 
-NUCLEUS_BAZEL_VERSION="0.17.2"
-NUCLEUS_TENSORFLOW_VERSION="1.11.0"
+NUCLEUS_BAZEL_VERSION="0.21.0"
+NUCLEUS_TENSORFLOW_VERSION="1.13.1"
 
 function note_build_stage {
   echo "========== [$(date)] Stage '${1}' starting"
