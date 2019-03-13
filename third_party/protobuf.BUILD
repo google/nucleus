@@ -721,6 +721,7 @@ cc_binary(
     ],
     linkshared = 1,
     linkstatic = 1,
+    visibility = ["//visibility:public"],
     deps = [
         ":protobuf",
         ":proto_api",
@@ -735,7 +736,14 @@ cc_binary(
         # before returning.  That is true on Linux, Solaris, BSD, and OS/X,
         # but not guaranteed by POSIX.  See
         # https://stackoverflow.com/questions/40115688/are-static-c-objects-in-dynamically-loaded-libraries-initialized-before-dlopen
-        "@nucleus//nucleus/protos:all_nucleus_protos_cc",
+        # "@" is the name of the base repository.  We have to use that, and
+        # not "@nucleus" here and below, because @nucleus//foobar is somehow
+        # a different location than @//foobar.
+        "@//nucleus/protos:all_nucleus_protos_cc",
+        # This is an even uglier hack to put all of Nucleus's C++ extension
+        # code into this C++ extension, so that there is only one C++
+        # extension, and no ODR violations.
+        "@//:all_extensions",
     ] + select({
         "//conditions:default": [],
         ":use_fast_cpp_protos": ["//external:python_headers"],

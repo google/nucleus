@@ -289,7 +289,6 @@ py_library(
         ":genomics_writer",
         ":sharded_file_utils",
         "//nucleus/protos:example_py_pb2",
-        "@org_tensorflow//tensorflow/python:platform",
     ],
 )
 
@@ -304,7 +303,6 @@ py_test(
         "//nucleus/testing:py_test_utils",
         "@absl_py//absl/testing:absltest",
         "@absl_py//absl/testing:parameterized",
-        "@org_tensorflow//tensorflow/python:platform",
     ],
 )
 

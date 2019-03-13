@@ -12,8 +12,8 @@ package(
 filegroup(
     name = "libraries",
     srcs = [
-        "//third_party/nucleus",
-        "//third_party/nucleus:nucleus_py",
+        "//nucleus",
+        "//nucleus:nucleus_py",
     ],
 )
 
@@ -35,4 +35,31 @@ zip_dir(
     name = "licenses_zip",
     srcs = [":licenses"],
     zipname = "licenses.zip",
+)
+
+cc_library(
+    name = "all_extensions",
+    srcs = [],
+    deps = [
+        "//nucleus/io/python:bed_reader_cclib",
+        "//nucleus/io/python:bed_writer_cclib",
+        "//nucleus/io/python:bedgraph_reader_cclib",
+        "//nucleus/io/python:bedgraph_writer_cclib",
+        "//nucleus/io/python:fastq_reader_cclib",
+        "//nucleus/io/python:fastq_writer_cclib",
+        "//nucleus/io/python:gff_reader_cclib",
+        "//nucleus/io/python:gff_writer_cclib",
+        "//nucleus/io/python:hts_verbose_cclib",
+        "//nucleus/io/python:reference_cclib",
+        "//nucleus/io/python:sam_reader_cclib",
+        "//nucleus/io/python:sam_writer_cclib",
+        "//nucleus/io/python:tabix_indexer_cclib",
+        "//nucleus/io/python:tfrecord_reader_cclib",
+        "//nucleus/io/python:tfrecord_writer_cclib",
+        "//nucleus/io/python:vcf_reader_cclib",
+        "//nucleus/io/python:vcf_writer_cclib",
+        "//nucleus/util/python:math_cclib",
+        "//nucleus/util/python:utils_cclib",
+        "//nucleus/vendor/python:statusor_examples_cclib",
+    ],
 )
