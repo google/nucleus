@@ -48,25 +48,25 @@ included with Nucleus:
     quality score greater than 3.01. This is the example program used in the
     [overview](overview.md).
 
-*   `ngs_errors --ref /tmp/hs37d5.fa.gz --vcf /tmp/NA12878_calls.vcf.gz --bam
-    /tmp/NA12878_sliced.bam --examples_out /tmp/examples.tfrecord`
+*   `dna_sequencing_error_correction.ipynb`
 
-    This program creates examples which are suitable (but not ideal) for
-    training a TensorFlow model to predict the true sequence for a read. The
-    examples are taken from the reads in the BAM file, but only those that don't
-    overlap with any variants in the input VCF file. For each read, a tf.Example
-    protocol buffer is made containing
+    This tutorial shows how Nucleus can be used alongside TensorFlow to apply
+    machine learning to problems in genomics. It can be run on Colaboratory, a
+    free hosted Jupyter notebook environment.
 
-    +   the read sequence,
-    +   the true sequence from the reference FASTA input,
-    +   the read name,
-    +   the read alignment cigar, and
-    +   the alignment qualities. In addition, the program comments explain how
-        to download the required input files and transform them into the right
-        formats.
+    The context for this tutorial is that there are errors in the next
+    generation sequencing reads, and we can formulate the error correction as
+    a pattern recogition problem which then can be solved using deep learning.
+
+    In this example, you can see how different readers and writers of Nucleus
+    are used together to parse genomics data from 3 different formats (VCF,
+    Fasta and BAM), and then to construct features and labels to be fed into
+    Tensorflow's tf.layers and tf.Estimators APIs.
 
     This is the longest example, but it really displays the power of Nucleus in
     taking genomics data and turning it into machine learning inputs.
+
+    The accompanying blog post can be found [here][using nucleus blogpost 2019].
 
 *   `validate_vcf ref.fasta input.vcf`
 
@@ -77,3 +77,5 @@ included with Nucleus:
     FASTA file disagree about the correct reference bases for the range. This
     program shows how to use the `IndexedFastaReader`, and to query it using
     ranges taken from a VCF file.
+
+[using nucleus blogpost 2019]: https://google.github.io/deepvariant/posts/2019-01-31-using-nucleus-and-tensorflow-for-dna-sequencing-error-correction/
