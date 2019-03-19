@@ -17,17 +17,56 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import glob
-import os
+import six
+
+from nucleus.io.python import gfile
 
 
 def Exists(filename):
-  return os.path.exists(filename)
+  return gfile.Exists(filename)
 
 
 def Glob(pattern):
-  return glob.glob(pattern)
+  return gfile.Glob(pattern)
+
+
+class ReadableFile(six.Iterator):
+  """Wraps gfile.ReadableFile to add iteration, enter/exit and readlines."""
+
+  def __init__(self, filename):
+    self._file = gfile.ReadableFile.New(filename)
+
+  def __enter__(self):
+    return self
+
+  def __exit__(self, type_, value, traceback):
+    self._file.__exit__()
+
+  def __iter__(self):
+    return self
+
+  def __next__(self):
+    ok, line = self._file.Readline()
+    if ok:
+      return line
+    else:
+      raise StopIteration
+
+  def readlines(self):
+    lines = []
+    while True:
+      ok, line = self._file.Readline()
+      if ok:
+        lines.append(line)
+      else:
+        break
+    return lines
 
 
 def Open(filename, mode="r"):
-  return open(filename, mode)
+  if mode == "r":
+    return ReadableFile(filename)
+  elif mode == "w":
+    return gfile.WritableFile.New(filename)
+  else:
+    raise ValueError("Unsupported mode '{}' for Open".format(mode))

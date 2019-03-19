@@ -49,6 +49,7 @@ cc_library(
         "//nucleus/io/python:fastq_writer_cclib",
         "//nucleus/io/python:gff_reader_cclib",
         "//nucleus/io/python:gff_writer_cclib",
+        "//nucleus/io/python:gfile_cclib",
         "//nucleus/io/python:hts_verbose_cclib",
         "//nucleus/io/python:reference_cclib",
         "//nucleus/io/python:sam_reader_cclib",

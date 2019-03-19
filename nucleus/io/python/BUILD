@@ -411,3 +411,11 @@ py_clif_cc(
         "//nucleus/io:tfrecord_writer",
     ],
 )
+
+py_clif_cc(
+    name = "gfile",
+    srcs = ["gfile.clif"],
+    deps = [
+        "//nucleus/io:gfile_cc",
+    ],
+)

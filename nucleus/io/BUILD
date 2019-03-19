@@ -348,6 +348,7 @@ cc_library(
         ":fastq_writer",
         ":gff_reader",
         ":gff_writer",
+        ":gfile_cc",
         ":hts_path",
         ":hts_verbose",
         ":reader_base",
@@ -1016,6 +1017,15 @@ cc_library(
     ],
 )
 
+cc_library(
+    name = "gfile_cc",
+    srcs = ["gfile.cc"],
+    hdrs = ["gfile.h"],
+    deps = [
+        "@org_tensorflow//tensorflow/core:lib",
+    ],
+)
+
 #
 # Misc
 #
@@ -1145,5 +1155,16 @@ py_test(
 py_library(
     name = "gfile",
     srcs = ["gfile.py"],
-    deps = [],
+    deps = ["//nucleus/io/python:gfile"],
+)
+
+py_test(
+    name = "gfile_test",
+    srcs = ["gfile_test.py"],
+    data = ["//nucleus/testdata"],
+    deps = [
+        ":gfile",
+        "//nucleus/testing:py_test_utils",
+        "@absl_py//absl/testing:absltest",
+    ],
 )
