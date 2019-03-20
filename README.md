@@ -69,8 +69,17 @@ bazel test -c opt $COPT_FLAGS nucleus/...
 
 ## Version
 
-This is Nucleus 0.2.2.  Nucleus follows [semantic
+This is Nucleus 0.2.3.  Nucleus follows [semantic
 versioning](https://semver.org/).
+
+New in 0.2.3:
+
+* Nucleus no longer depends on any specific version of TensorFlow's python
+  code.  This should make it easier to use Nucleus with for example
+  TensorFlow 2.0.
+* Added BCF support to VcfWriter.
+* Fixed memory leaks in VcfWriter::Write.
+* Added print\_tfrecord example program.
 
 New in 0.2.2:
 
