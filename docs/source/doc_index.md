@@ -10,6 +10,8 @@
 
 [`nucleus.examples.filter_vcf`](nucleus/examples/filter_vcf.md)
 
+[`nucleus.examples.print_tfrecord`](nucleus/examples/print_tfrecord.md)
+
 [`nucleus.examples.validate_vcf`](nucleus/examples/validate_vcf.md)
 
 ## nucleus.io
@@ -31,9 +33,13 @@
 
 [`nucleus.io.gff`](nucleus/io/gff.md)
 
+[`nucleus.io.gfile`](nucleus/io/gfile.md)
+
 [`nucleus.io.sam`](nucleus/io/sam.md)
 
 [`nucleus.io.sharded_file_utils`](nucleus/io/sharded_file_utils.md)
+
+[`nucleus.io.tabix`](nucleus/io/tabix.md)
 
 [`nucleus.io.tfrecord`](nucleus/io/tfrecord.md)
 

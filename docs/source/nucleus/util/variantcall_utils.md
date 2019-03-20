@@ -18,6 +18,7 @@ Name | Description
 [`has_full_genotypes`](#has_full_genotypes)`(variant_call)` | Returns True iff the VariantCall has only known genotypes.
 [`has_genotypes`](#has_genotypes)`(variant_call)` | Returns True iff the VariantCall has one or more called genotypes.
 [`has_variation`](#has_variation)`(variant_call)` | Returns True if and only if the call has a non-reference genotype.
+[`is_heterozygous`](#is_heterozygous)`(variant_call)` | Returns True if and only if the call is heterozygous.
 [`ploidy`](#ploidy)`(variant_call)` | Returns the ploidy of the VariantCall.
 [`set_ad`](#set_ad)`(variant_call, ad)` | Sets the allele depth of the VariantCall.
 [`set_format`](#set_format)`(variant_call, field_name, value, vcf_object=None)` | Sets a field of the info map of the `VariantCall` to the given value(s).
@@ -121,6 +122,18 @@ Args:
 
 Returns:
   True if and only if the call has a non-reference genotype.
+```
+
+<a name="is_heterozygous"></a>
+### `is_heterozygous(variant_call)`
+```
+Returns True if and only if the call is heterozygous.
+
+Args:
+  variant_call: VariantCall proto. The VariantCall to evaluate.
+
+Returns:
+  True if and only if the call is heterozygous.
 ```
 
 <a name="ploidy"></a>

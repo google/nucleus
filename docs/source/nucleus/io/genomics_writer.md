@@ -111,6 +111,9 @@ Args:
     useful for file types that have logical headers where some operations
     depend on that header information (e.g. VCF using its headers to
     determine type information of annotation fields).
+
+Raises:
+  IOError:  if there was any problem opening output_path for writing.
 ```
 
 <a name="write"></a>

@@ -104,7 +104,7 @@ Name | Description
 [`NativeSamReader`](#nativesamreader) | Class for reading from native SAM/BAM/CRAM files.
 [`NativeSamWriter`](#nativesamwriter) | Class for writing to native SAM/BAM/CRAM files.
 [`SamReader`](#samreader) | Class for reading Read protos from SAM/BAM/CRAM or TFRecord files.
-[`SamWriter`](#samwriter) | Class for writing Variant protos to SAM or TFRecord files.
+[`SamWriter`](#samwriter) | Class for writing Read protos to SAM or TFRecord files.
 
 ## Classes
 ### InMemorySamReader
@@ -244,6 +244,6 @@ Class for reading Read protos from SAM/BAM/CRAM or TFRecord files.
 
 ### SamWriter
 ```
-Class for writing Variant protos to SAM or TFRecord files.
+Class for writing Read protos to SAM or TFRecord files.
 ```
 

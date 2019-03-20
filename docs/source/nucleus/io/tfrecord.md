@@ -7,103 +7,30 @@
 Utilities for reading and writing TFRecord files, especially those containing
 serialized TensorFlow Example protocol buffers.
 
-## Classes overview
-Name | Description
------|------------
-[`RawProtoWriterAdaptor`](#rawprotowriteradaptor) | Adaptor class wrapping a low-level bytes writer with a write(proto) method.
-
 ## Functions overview
 Name | Description
 -----|------------
-[`make_proto_writer`](#make_proto_writer)`(outfile)` | Returns a writer capable of writing general Protos to outfile.
-[`make_tfrecord_options`](#make_tfrecord_options)`(filenames)` | Returns a python_io.TFRecordOptions for the specified filename.
-[`make_tfrecord_writer`](#make_tfrecord_writer)`(outfile, options=None)` | Returns a python_io.TFRecordWriter for the specified outfile.
-[`read_shard_sorted_tfrecords`](#read_shard_sorted_tfrecords)`(path, key, proto=None, max_records=None, options=None)` | Yields the parsed records in a TFRecord file path in sorted order.
-[`read_tfrecords`](#read_tfrecords)`(path, proto=None, max_records=None, options=None)` | Yields the parsed records in a TFRecord file path.
-[`write_tfrecords`](#write_tfrecords)`(protos, output_path, options=None)` | Writes protos to output_path.
-
-## Classes
-### RawProtoWriterAdaptor
-```
-Adaptor class wrapping a low-level bytes writer with a write(proto) method.
-
-This class provides a simple wrapper around low-level writers that accept
-serialized protobufs (via the SerializeToString()) for their write() methods.
-After wrapping this low-level writer will have a write(proto) method that
-accepts a protocol message `proto` and calls the low-level writer with
-`proto.SerializeToString()`. Given that many C++ writers require the proto
-to write properly (e.g., VCF writer), this allows us to provide a uniform API
-to clients who call write(proto) and either have that write call go directly
-to a type-specific writer or to a low-level writer via this
-RawProtoWriterAdaptor.
-```
-
-#### Methods:
-<a name="__init__"></a>
-##### `__init__(self, raw_writer, take_ownership=True)`
-```
-Creates a new RawProtoWriterAdaptor.
-
-Arguments:
-  raw_writer: A low-level writer with a write() method that accepts a
-    serialized protobuf. Must also support __enter__ and __exit__ if
-    take_ownership is True.
-  take_ownership: bool. If True, we will call __enter__ and __exit__ on the
-    raw_writer if/when this object's __enter__ and __exit__ are called. If
-    False, no calls to these methods will be invoked on raw_writer.
-```
-
-<a name="write"></a>
-##### `write(self, proto)`
-```
-Writes `proto.SerializeToString` to raw_writer.
-```
+[`Reader`](#reader)`(path, proto=None, compression_type=None)` | A TFRecordReader that defaults to tf.Example protos.
+[`Writer`](#writer)`(path, compression_type=None)` | A convenience wrapper around genomics_writer.TFRecordWriter.
+[`read_shard_sorted_tfrecords`](#read_shard_sorted_tfrecords)`(path, key, proto=None, max_records=None, compression_type=None)` | Yields the parsed records in a TFRecord file path in sorted order.
+[`read_tfrecords`](#read_tfrecords)`(path, proto=None, max_records=None, compression_type=None)` | Yields the parsed records in a TFRecord file path.
+[`write_tfrecords`](#write_tfrecords)`(protos, output_path, compression_type=None)` | Writes protos to output_path.
 
 ## Functions
-<a name="make_proto_writer"></a>
-### `make_proto_writer(outfile)`
+<a name="Reader"></a>
+### `Reader(path, proto=None, compression_type=None)`
 ```
-Returns a writer capable of writing general Protos to outfile.
-
-Args:
-  outfile: str. A path to a file where we want to write protos.
-
-Returns:
-  A writer object and a write_fn accepting a proto that writes to writer.
+A TFRecordReader that defaults to tf.Example protos.
 ```
 
-<a name="make_tfrecord_options"></a>
-### `make_tfrecord_options(filenames)`
+<a name="Writer"></a>
+### `Writer(path, compression_type=None)`
 ```
-Returns a python_io.TFRecordOptions for the specified filename.
-
-Args:
-  filenames: str or list[str]. A path or a list of paths where we'll
-    read/write our TFRecord.
-
-Returns:
-  A python_io.TFRecordOptions object.
-
-Raises:
-  ValueError: If the filenames contain inconsistent file types.
-```
-
-<a name="make_tfrecord_writer"></a>
-### `make_tfrecord_writer(outfile, options=None)`
-```
-Returns a python_io.TFRecordWriter for the specified outfile.
-
-Args:
-  outfile: str. A path where we'll write our TFRecords.
-  options: python_io.TFRecordOptions or None. If None, one
-    will be inferred from the filename.
-
-Returns:
-  A python_io.TFRecordWriter object.
+A convenience wrapper around genomics_writer.TFRecordWriter.
 ```
 
 <a name="read_shard_sorted_tfrecords"></a>
-### `read_shard_sorted_tfrecords(path, key, proto=None, max_records=None, options=None)`
+### `read_shard_sorted_tfrecords(path, key, proto=None, max_records=None, compression_type=None)`
 ```
 Yields the parsed records in a TFRecord file path in sorted order.
 
@@ -121,14 +48,15 @@ Args:
     record in path to parse it.
   max_records: int >= 0 or None. Maximum number of records to read from path.
     If None, the default, all records will be read.
-  options: A python_io.TFRecordOptions object for the reader.
+  compression_type: 'GZIP', 'ZLIB', '' (uncompressed), or None to autodetect
+    based on file extension.
 
 Yields:
   proto.FromString() values on each record in path in sorted order.
 ```
 
 <a name="read_tfrecords"></a>
-### `read_tfrecords(path, proto=None, max_records=None, options=None)`
+### `read_tfrecords(path, proto=None, max_records=None, compression_type=None)`
 ```
 Yields the parsed records in a TFRecord file path.
 
@@ -142,14 +70,15 @@ Args:
     record in path to parse it.
   max_records: int >= 0 or None. Maximum number of records to read from path.
     If None, the default, all records will be read.
-  options: A python_io.TFRecordOptions object for the reader.
+  compression_type: 'GZIP', 'ZLIB', '' (uncompressed), or None to autodetect
+    based on file extension.
 
 Yields:
   proto.FromString() values on each record in path in order.
 ```
 
 <a name="write_tfrecords"></a>
-### `write_tfrecords(protos, output_path, options=None)`
+### `write_tfrecords(protos, output_path, compression_type=None)`
 ```
 Writes protos to output_path.
 
@@ -163,6 +92,7 @@ differ from the order in protos due to the striping.
 Args:
   protos: An iterable of protobufs. The objects we want to write out.
   output_path: str. The filepath where we want to write protos.
-  options: A python_io.TFRecordOptions object for the writer.
+  compression_type: 'GZIP', 'ZLIB', '' (uncompressed), or None to autodetect
+    based on file extension.
 ```
 

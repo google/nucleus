@@ -127,7 +127,7 @@ to be wrapped in a "with" block.
 
 #### Methods:
 <a name="__init__"></a>
-##### `__init__(self, input_path, proto, tf_options=None)`
+##### `__init__(self, input_path, proto, compression_type=None)`
 ```
 Initializes the TFRecordReader.
 
@@ -135,9 +135,12 @@ Args:
   input_path:  The filename of the file to read.
   proto:  The protocol buffer type the TFRecord file is expected to
     contain.  For example, variants_pb2.Variant or reads_pb2.Read.
-  tf_options:  A python_io.TFRecordOptions object.  If not set,
-    __init__ will create one with the compression type based on
-    whether input_path ends in '.gz' or not.
+  compression_type:  Either 'ZLIB', 'GZIP', '' (uncompressed), or
+    None.  If None, __init__ will guess the compression type based on
+    the input_path's suffix.
+
+Raises:
+  IOError: if there was any problem opening input_path for reading.
 ```
 
 <a name="iterate"></a>
