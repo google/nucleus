@@ -16,6 +16,7 @@
  */
 
 #include "nucleus/io/tfrecord_writer.h"
+#include "absl/memory/memory.h"
 #include "tensorflow/core/lib/io/record_writer.h"
 #include "tensorflow/core/platform/logging.h"
 
@@ -23,9 +24,8 @@ namespace nucleus {
 
 TFRecordWriter::TFRecordWriter() {}
 
-TFRecordWriter* TFRecordWriter::New(const std::string& filename,
-                                    const std::string& compression_type)
-{
+std::unique_ptr<TFRecordWriter> TFRecordWriter::New(
+    const std::string& filename, const std::string& compression_type) {
   std::unique_ptr<tensorflow::WritableFile> file;
   tensorflow::Status s =
       tensorflow::Env::Default()->NewWritableFile(filename, &file);
@@ -33,23 +33,19 @@ TFRecordWriter* TFRecordWriter::New(const std::string& filename,
     LOG(ERROR) << s.error_message();
     return nullptr;
   }
-  TFRecordWriter* writer = new TFRecordWriter;
+  auto writer = absl::WrapUnique<TFRecordWriter>(new TFRecordWriter());
   writer->file_ = std::move(file);
 
   const tensorflow::io::RecordWriterOptions& options =
       tensorflow::io::RecordWriterOptions::CreateRecordWriterOptions(
           compression_type);
 
-  writer->writer_.reset(
-      new tensorflow::io::RecordWriter(writer->file_.get(), options));
+  writer->writer_ = absl::make_unique<tensorflow::io::RecordWriter>(
+      writer->file_.get(), options);
   return writer;
 }
 
-TFRecordWriter::~TFRecordWriter() {
-  // Writer depends on file during close for zlib flush, so destruct first.
-  writer_.reset();
-  file_.reset();
-}
+TFRecordWriter::~TFRecordWriter() {}
 
 bool TFRecordWriter::WriteRecord(const std::string& record) {
   if (writer_ == nullptr) {
@@ -73,7 +69,7 @@ bool TFRecordWriter::Close() {
     if (!s.ok()) {
       return false;
     }
-    writer_.reset(nullptr);
+    writer_ = nullptr;
   }
 
   if (file_ != nullptr) {
@@ -81,7 +77,7 @@ bool TFRecordWriter::Close() {
     if (!s.ok()) {
       return false;
     }
-    file_.reset(nullptr);
+    file_ = nullptr;
   }
 
   return true;

@@ -18,6 +18,7 @@
 #ifndef THIRD_PARTY_NUCLEUS_IO_TFRECORD_READER_H_
 #define THIRD_PARTY_NUCLEUS_IO_TFRECORD_READER_H_
 
+#include <memory>
 #include <string>
 
 #include "nucleus/platform/types.h"
@@ -40,8 +41,8 @@ class TFRecordReader {
   // Create a TFRecordReader.
   // Valid compression_types are "ZLIB", "GZIP", or "" (for none).
   // Returns nullptr on failure.
-  static TFRecordReader* New(const std::string& filename,
-                             const std::string& compression_type);
+  static std::unique_ptr<TFRecordReader> New(
+      const std::string& filename, const std::string& compression_type);
 
   ~TFRecordReader();
 
@@ -63,8 +64,11 @@ class TFRecordReader {
   TFRecordReader();
 
   uint64 offset_;
-  tensorflow::RandomAccessFile* file_;    // Owned
-  tensorflow::io::RecordReader* reader_;  // Owned
+
+  // |reader_| has a non-owning pointer on |file_|, so destruct it first.
+  std::unique_ptr<tensorflow::RandomAccessFile> file_;
+  std::unique_ptr<tensorflow::io::RecordReader> reader_;
+
   std::string record_;
 };
 
