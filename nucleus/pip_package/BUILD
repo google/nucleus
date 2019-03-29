@@ -33,6 +33,9 @@ py_binary(
     name = "setup",
     testonly = 1,
     srcs = ["setup.py"],
+    data = [
+        "setup.cfg",
+    ],
     legacy_create_init = 1,
     deps = [
         "//nucleus/examples:examples_py",
@@ -43,10 +46,21 @@ py_binary(
     ],
 )
 
+filegroup(
+    name = "egg_files",
+    data = [
+        "//nucleus/pip_package:egg_files/PKG-INFO",
+        "//nucleus/pip_package:egg_files/dependency_links.txt",
+        "//nucleus/pip_package:egg_files/not-zip-safe",
+        "//nucleus/pip_package:egg_files/requires.txt",
+        "//nucleus/pip_package:egg_files/top_level.txt",
+    ],
+)
+
 PIP_DEPS = [
-    ":setup",
+    ":egg_files",
     ":licenses",
-    "setup.py",
+    ":setup",
     "//:all_extensions",
 ]
 
