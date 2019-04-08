@@ -15,17 +15,18 @@
 from "nucleus/protos/range_pyclif.h" import *
 from "nucleus/protos/reference_pyclif.h" import *
 from "nucleus/protos/variants_pyclif.h" import *
+from "nucleus/util/proto_clif_converter.h" import *
 from "nucleus/vendor/statusor_clif_converters.h" import *
 
 from nucleus.io.clif_postproc import ValueErrorOnFalse
-from nucleus.io.clif_postproc import WrappedCppIterable
+from nucleus.io.clif_postproc import WrappedVariantIterable
 
 
 from "nucleus/io/vcf_reader.h":
   namespace `nucleus`:
 
     class VariantIterable:
-      def Next(self) -> (not_done: StatusOr<bool>, variant: Variant)
+      def PythonNext(self, variant: EmptyProtoPtr<Variant>) -> StatusOr<bool>
       def Release(self) -> Status
       @__enter__
       def PythonEnter(self) -> Status
@@ -42,9 +43,9 @@ from "nucleus/io/vcf_reader.h":
         -> StatusOr<VcfReader>
 
       def `Iterate` as iterate(self) -> StatusOr<VariantIterable>:
-        return WrappedCppIterable(...)
+        return WrappedVariantIterable(...)
       def `Query` as query(self, region: Range) -> StatusOr<VariantIterable>:
-        return WrappedCppIterable(...)
+        return WrappedVariantIterable(...)
 
       def `FromStringPython` as from_string(self, vcf_line: str) -> (status: StatusOr<bool>, variant: Variant):
         # If status is an error object, the statusor_clif_converters

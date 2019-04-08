@@ -13,16 +13,17 @@
 # limitations under the License.
 
 from "nucleus/protos/gff_pyclif.h" import *
+from "nucleus/util/proto_clif_converter.h" import *
 from "nucleus/vendor/statusor_clif_converters.h" import *
 
-from nucleus.io.clif_postproc import WrappedCppIterable
+from nucleus.io.clif_postproc import WrappedGffIterable
 
 
 from "nucleus/io/gff_reader.h":
   namespace `nucleus`:
 
     class GffIterable:
-      def Next(self) -> (not_done: StatusOr<bool>, gff: GffRecord)
+      def PythonNext(self, gff: EmptyProtoPtr<GffRecord>) -> StatusOr<bool>
       def Release(self) -> Status
       @__enter__
       def PythonEnter(self) -> Status
@@ -35,7 +36,7 @@ from "nucleus/io/gff_reader.h":
         -> StatusOr<GffReader>
 
       def `Iterate` as iterate(self) -> StatusOr<GffIterable>:
-        return WrappedCppIterable(...)
+        return WrappedGffIterable(...)
 
       @__enter__
       def PythonEnter(self)

@@ -76,7 +76,7 @@ pip install --user 'keras_applications==1.0.6' --no-deps
 pip install --user 'keras_preprocessing==1.0.5' --no-deps
 pip install --user 'h5py==2.8.0'
 pip install --user enum34
-pip install --user 'protobuf==3.6.1'
+pip install --user 'protobuf==3.7.0'
 
 # Install Bazel
 ################################################################################

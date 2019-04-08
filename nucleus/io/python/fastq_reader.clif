@@ -13,16 +13,17 @@
 # limitations under the License.
 
 from "nucleus/protos/fastq_pyclif.h" import *
+from "nucleus/util/proto_clif_converter.h" import *
 from "nucleus/vendor/statusor_clif_converters.h" import *
 
-from nucleus.io.clif_postproc import WrappedCppIterable
+from nucleus.io.clif_postproc import WrappedFastqIterable
 
 
 from "nucleus/io/fastq_reader.h":
   namespace `nucleus`:
 
     class FastqIterable:
-      def Next(self) -> (not_done: StatusOr<bool>, fastq: FastqRecord)
+      def PythonNext(self, fastq: EmptyProtoPtr<FastqRecord>) -> StatusOr<bool>
       def Release(self) -> Status
       @__enter__
       def PythonEnter(self) -> Status
@@ -35,7 +36,7 @@ from "nucleus/io/fastq_reader.h":
         -> StatusOr<FastqReader>
 
       def `Iterate` as iterate(self) -> StatusOr<FastqIterable>:
-        return WrappedCppIterable(...)
+        return WrappedFastqIterable(...)
       @__enter__
       def PythonEnter(self) -> Status
       @__exit__
