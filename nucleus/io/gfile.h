@@ -18,6 +18,7 @@
 #ifndef THIRD_PARTY_NUCLEUS_IO_GFILE_H_
 #define THIRD_PARTY_NUCLEUS_IO_GFILE_H_
 
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -38,7 +39,7 @@ std::vector<std::string> Glob(const std::string& pattern);
 
 class ReadableFile {
  public:
-  static ReadableFile* New(const std::string& filename);
+  static std::unique_ptr<ReadableFile> New(const std::string& filename);
   ~ReadableFile();
 
   // Reads the next line into *s, and returns true if that went ok.
@@ -52,12 +53,12 @@ class ReadableFile {
  private:
   ReadableFile();
 
-  tensorflow::io::BufferedInputStream* stream_;  // Owned
+  std::unique_ptr<tensorflow::io::BufferedInputStream> stream_;
 };
 
 class WritableFile {
  public:
-  static WritableFile* New(const std::string& filename);
+  static std::unique_ptr<WritableFile> New(const std::string& filename);
   ~WritableFile();
 
   bool Write(const std::string& s);
@@ -69,7 +70,7 @@ class WritableFile {
  private:
   WritableFile();
 
-  tensorflow::WritableFile* file_;  // Owned
+  std::unique_ptr<tensorflow::WritableFile> file_;
 };
 
 }  // namespace nucleus
