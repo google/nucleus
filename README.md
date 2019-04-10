@@ -69,8 +69,16 @@ bazel test -c opt $COPT_FLAGS nucleus/...
 
 ## Version
 
-This is Nucleus 0.2.3.  Nucleus follows [semantic
+This is Nucleus 0.3.0.  Nucleus follows [semantic
 versioning](https://semver.org/).
+
+New in 0.3.0:
+
+* Reading of VCF, SAM, and most other genomics files is now twice as fast.
+* Read range and end calculations are now done in C++ for speed.
+* VcfReader can now read "headerless" VCF files.
+* variant\_utils.major\_allele\_frequency now 5x faster.
+* Memory leaks fixed in TFRecordReader/Writer and gfile\_cc.
 
 New in 0.2.3:
 
