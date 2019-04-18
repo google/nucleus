@@ -159,7 +159,7 @@ fi
 
 echo "Done installing prereqs at $(date)!"
 
-if [[ "$1" != "--prereqs_only" ]]; then
+if [[ "$#" -eq 0 ]] || [[ "$1" != "--prereqs_only" ]]; then
   # Build Nucleus
   ################################################################################
   note_build_stage "Building Nucleus"
