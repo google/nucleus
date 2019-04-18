@@ -1,6 +1,5 @@
 # Nucleus is a python library for reading and writing common genomics
 # file formats.
-# KEEP THIS LINE to import nucleus.bzl externally
 
 package(default_visibility = ["//visibility:public"])
 
