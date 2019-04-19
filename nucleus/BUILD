@@ -1,5 +1,5 @@
-# Nucleus is a python library for reading and writing common genomics
-# file formats.
+# Nucleus contains Python and C++ code for reading, writing, and analyzing
+# common genomics file formats.
 
 package(default_visibility = ["//visibility:public"])
 
