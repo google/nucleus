@@ -94,8 +94,8 @@ py_test(
     srcs = ["vcf_test.py"],
     data = ["//nucleus/testdata"],
     deps = [
+        ":gfile",
         ":vcf",
-        "//nucleus/io:gfile",
         "//nucleus/protos:reference_py_pb2",
         "//nucleus/protos:struct_py_pb2",
         "//nucleus/protos:variants_py_pb2",
@@ -126,9 +126,9 @@ py_test(
     srcs = ["sam_test.py"],
     data = ["//nucleus/testdata"],
     deps = [
+        ":gfile",
         ":sam",
         ":tfrecord",
-        "//nucleus/io:gfile",
         "//nucleus/protos:reference_py_pb2",
         "//nucleus/protos:struct_py_pb2",
         "//nucleus/testing:py_test_utils",
@@ -195,7 +195,7 @@ py_library(
     srcs = ["fasta.py"],
     deps = [
         ":genomics_reader",
-        "//nucleus/io:gfile",
+        ":gfile",
         "//nucleus/io/python:reference",
         "//nucleus/protos:fasta_py_pb2",
         "//nucleus/util:ranges",
@@ -271,7 +271,7 @@ py_library(
 py_library(
     name = "sharded_file_utils",
     srcs = ["sharded_file_utils.py"],
-    deps = ["//nucleus/io:gfile"],
+    deps = [":gfile"],
 )
 
 py_test(
@@ -327,9 +327,9 @@ py_test(
     srcs = ["tabix_test.py"],
     data = ["//nucleus/testdata"],
     deps = [
+        ":gfile",
         ":tabix",
         ":vcf",
-        "//nucleus/io:gfile",
         "//nucleus/testing:py_test_utils",
         "//nucleus/util:ranges",
         "@absl_py//absl/testing:absltest",
