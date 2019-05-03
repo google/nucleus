@@ -18,8 +18,6 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import sys
-
 from absl import app
 
 from nucleus.io import sam
@@ -33,35 +31,46 @@ ANSI_OFF = '\033[0m'
 # top if a reference fasta file is supplied.
 
 
-def print_read(left_pos, start, highlight_position, seq):
-  """Prints an ASCII representation of a sequence to stdout."""
+def read_str(left_pos, start, highlight_position, seq):
+  """Returns an aligned and highlighted ASCII representation of sequence."""
   s = ' ' * (start - left_pos)
   i = highlight_position - start
   j = i + 1
   s += seq[:i] + ANSI_BOLD + ANSI_RED + seq[i:j] + ANSI_OFF + seq[j:]
-  print(s)
+  return s
 
 
-def main(argv):
-  if len(argv) != 3:
-    print('Usage: {} <input_sam> <chromosome>:<position>'.format(argv[0]))
-    sys.exit(-1)
-  in_sam = argv[1]
-  r = ranges.parse_literal(argv[2])
+def ascii_pileup(sam_filename, query):
+  """Returns an ASCII pileup image for the query as a list of strings.
+
+  Args:
+    sam_filename: The filename of the BAM/SAM file.
+    query: String version of range.
+  """
+  r = ranges.parse_literal(query)
   position = r.start
 
-  with sam.SamReader(in_sam) as sam_reader:
+  with sam.SamReader(sam_filename) as sam_reader:
     reads = sam_reader.query(r)
     pos_seq_pairs = sorted(
         (read.alignment.position.position, read.aligned_sequence)
         for read in reads)
     if not pos_seq_pairs:
-      print('No overlapping reads found for', argv[2])
-      sys.exit(0)
+      print('No overlapping reads found for', query)
+      return []
 
     left_position = pos_seq_pairs[0][0]
-    for start, seq in pos_seq_pairs:
-      print_read(left_position, start, position, seq)
+    return [read_str(left_position, start, position, seq)
+            for start, seq in pos_seq_pairs]
+
+
+def main(argv):
+  if len(argv) != 3:
+    print('Usage: {} <input_sam> <chromosome>:<position>'.format(argv[0]))
+    return -1
+  in_sam = argv[1]
+  query = argv[2]
+  print('\n'.join(ascii_pileup(in_sam, query)))
 
 
 if __name__ == '__main__':

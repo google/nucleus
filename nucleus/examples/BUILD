@@ -75,6 +75,21 @@ py_library(
     ],
 )
 
+py_test(
+    name = "ascii_pileup_test",
+    size = "small",
+    srcs = ["ascii_pileup_test.py"],
+    data = [
+        "//nucleus/testdata",
+    ],
+    srcs_version = "PY2AND3",
+    deps = [
+        ":ascii_pileup_lib",
+        "//nucleus/testing:py_test_utils",
+        "@absl_py//absl/testing:absltest",
+    ],
+)
+
 py_binary(
     name = "count_variants",
     srcs = ["count_variants.py"],
