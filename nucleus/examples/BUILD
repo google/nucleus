@@ -26,7 +26,7 @@ py_library(
 py_binary(
     name = "add_ad_to_vcf",
     srcs = ["add_ad_to_vcf.py"],
-    default_python_version = "PY2",
+    python_version = "PY2",
     deps = [":add_ad_to_vcf_lib"],
 )
 
@@ -61,7 +61,7 @@ py_test(
 py_binary(
     name = "ascii_pileup",
     srcs = ["ascii_pileup.py"],
-    default_python_version = "PY2",
+    python_version = "PY2",
     deps = [":ascii_pileup_lib"],
 )
 
@@ -93,7 +93,7 @@ py_test(
 py_binary(
     name = "count_variants",
     srcs = ["count_variants.py"],
-    default_python_version = "PY2",
+    python_version = "PY2",
     deps = [":count_variants_lib"],
 )
 
@@ -124,7 +124,7 @@ py_test(
 py_binary(
     name = "filter_vcf",
     srcs = ["filter_vcf.py"],
-    default_python_version = "PY2",
+    python_version = "PY2",
     deps = [":filter_vcf_lib"],
 )
 
@@ -155,7 +155,7 @@ py_test(
 py_binary(
     name = "validate_vcf",
     srcs = ["validate_vcf.py"],
-    default_python_version = "PY2",
+    python_version = "PY2",
     deps = [":validate_vcf_lib"],
 )
 
@@ -189,7 +189,7 @@ py_test(
 py_binary(
     name = "apply_genotyping_prior",
     srcs = ["apply_genotyping_prior.py"],
-    default_python_version = "PY2",
+    python_version = "PY2",
     deps = [":apply_genotyping_prior_lib"],
 )
 
@@ -219,7 +219,7 @@ py_test(
 py_binary(
     name = "print_tfrecord",
     srcs = ["print_tfrecord.py"],
-    default_python_version = "PY2",
+    python_version = "PY2",
     deps = [
         "//nucleus/io:genomics_reader",
         "//nucleus/protos:bed_py_pb2",

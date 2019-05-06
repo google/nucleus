@@ -1140,7 +1140,7 @@ py_test(
 py_binary(
     name = "converter",
     srcs = ["converter.py"],
-    default_python_version = "PY2",
+    python_version = "PY2",
     deps = [":converter_lib"],
 )
 

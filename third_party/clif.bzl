@@ -349,7 +349,7 @@ def _clif_proto_parser_rule_impl(ctx):
     inputs = []
     for d in ctx.attr.deps:
         if "proto" in dir(d):
-            inputs += list(d.proto.transitive_sources)
+            inputs += list(d[ProtoInfo].transitive_sources)
     ctx.actions.run(
         mnemonic = "ClifProtoLibraryGeneration",
         arguments = args,
