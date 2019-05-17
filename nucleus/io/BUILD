@@ -56,6 +56,7 @@ py_test(
     name = "genomics_reader_test",
     srcs = ["genomics_reader_test.py"],
     data = ["//nucleus/testdata"],
+    python_version = "PY3",
     deps = [
         ":genomics_reader",
         "//nucleus/protos:gff_py_pb2",
@@ -93,6 +94,7 @@ py_test(
     size = "small",
     srcs = ["vcf_test.py"],
     data = ["//nucleus/testdata"],
+    python_version = "PY3",
     deps = [
         ":gfile",
         ":vcf",
@@ -125,6 +127,7 @@ py_test(
     size = "small",
     srcs = ["sam_test.py"],
     data = ["//nucleus/testdata"],
+    python_version = "PY3",
     deps = [
         ":gfile",
         ":sam",
@@ -155,6 +158,7 @@ py_test(
     size = "small",
     srcs = ["bed_test.py"],
     data = ["//nucleus/testdata"],
+    python_version = "PY3",
     deps = [
         ":bed",
         "//nucleus/protos:bed_py_pb2",
@@ -181,6 +185,7 @@ py_test(
     size = "small",
     srcs = ["bedgraph_test.py"],
     data = ["//nucleus/testdata"],
+    python_version = "PY3",
     deps = [
         ":bedgraph",
         "//nucleus/protos:bedgraph_py_pb2",
@@ -207,6 +212,7 @@ py_test(
     size = "small",
     srcs = ["fasta_test.py"],
     data = ["//nucleus/testdata"],
+    python_version = "PY3",
     deps = [
         ":fasta",
         "//nucleus/protos:struct_py_pb2",
@@ -234,6 +240,7 @@ py_test(
     size = "small",
     srcs = ["fastq_test.py"],
     data = ["//nucleus/testdata"],
+    python_version = "PY3",
     deps = [
         ":fastq",
         "//nucleus/protos:fastq_py_pb2",
@@ -279,6 +286,7 @@ py_test(
     size = "small",
     srcs = ["sharded_file_utils_test.py"],
     data = ["//nucleus/testdata"],
+    python_version = "PY3",
     deps = [
         ":sharded_file_utils",
         "//nucleus/protos:reference_py_pb2",
@@ -304,6 +312,7 @@ py_test(
     size = "small",
     srcs = ["tfrecord_test.py"],
     data = ["//nucleus/testdata"],
+    python_version = "PY3",
     deps = [
         ":tfrecord",
         "//nucleus/protos:reference_py_pb2",
@@ -326,6 +335,7 @@ py_test(
     size = "small",
     srcs = ["tabix_test.py"],
     data = ["//nucleus/testdata"],
+    python_version = "PY3",
     deps = [
         ":gfile",
         ":tabix",
@@ -1048,6 +1058,7 @@ py_test(
     name = "genomics_io_noplugin_test",
     size = "small",
     srcs = ["genomics_io_noplugin_test.py"],
+    python_version = "PY3",
     deps = [
         "//nucleus/io:sam",
         "//nucleus/testing:py_test_utils",
@@ -1126,6 +1137,7 @@ py_test(
     name = "gff_test",
     srcs = ["gff_test.py"],
     data = ["//nucleus/testdata"],
+    python_version = "PY3",
     deps = [
         ":gff",
         ":tfrecord",
@@ -1140,7 +1152,7 @@ py_test(
 py_binary(
     name = "converter",
     srcs = ["converter.py"],
-    python_version = "PY2",
+    python_version = "PY3",
     deps = [":converter_lib"],
 )
 
@@ -1158,6 +1170,7 @@ py_test(
     name = "converter_test",
     srcs = ["converter_test.py"],
     data = ["//nucleus/testdata"],
+    python_version = "PY3",
     deps = [
         ":converter_lib",
         "//nucleus/testing:py_test_utils",
@@ -1177,6 +1190,7 @@ py_test(
     name = "gfile_test",
     srcs = ["gfile_test.py"],
     data = ["//nucleus/testdata"],
+    python_version = "PY3",
     deps = [
         ":gfile",
         "//nucleus/testing:py_test_utils",

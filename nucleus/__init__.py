@@ -1,4 +1,4 @@
-# Copyright 2018 Google LLC.
+# Copyright 2019 Google LLC.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,6 +16,6 @@ import os
 import sys
 
 # We want any imports of "google.protobuf" to use Nucleus's version, so
-# we add this file's directory to the beginning of sys.path.
-nucleus_base_dir = os.path.dirname(__file__)
-sys.path = [nucleus_base_dir] + sys.path
+# we have to delete any pre-existing "google" module.
+if 'google' in sys.modules:
+  del sys.modules['google']

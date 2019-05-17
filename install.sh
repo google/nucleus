@@ -55,9 +55,10 @@ sudo -H apt-get -y install libssl-dev libcurl4-openssl-dev liblz-dev libbz2-dev 
 # Install pip
 ################################################################################
 note_build_stage "Update pip"
-sudo -H apt-get -y install python-dev python-pip python-wheel
+sudo -H apt-get -y install python-dev python3-pip python-wheel
+sudo -H apt-get -y update
 # pip 10.0 is broken, see https://github.com/pypa/pip/issues/5240
-pip install --user --upgrade 'pip==9.0.3'
+python3 -m pip install --user --upgrade 'pip==9.0.3'
 
 # Update PATH so that newly installed pip is the one we actually use.
 export PATH="$HOME/.local/bin:$PATH"
@@ -65,18 +66,26 @@ echo "$(pip --version)"
 
 # Install python packages used by Nucleus
 ################################################################################
-pip install --user contextlib2
-pip install --user 'sortedcontainers==2.1.0'
-pip install --user 'intervaltree==3.0.2'
-pip install --user 'mock>=2.0.0'
-pip install --user 'numpy==1.14'
-pip install --user 'six>=1.11.0'
+python3 -m pip install --user contextlib2
+python3 -m pip install --user 'sortedcontainers==2.1.0'
+python3 -m pip install --user 'intervaltree==3.0.2'
+python3 -m pip install --user 'mock>=2.0.0'
+python3 -m pip install --user 'numpy==1.14'
+python3 -m pip install --user 'six>=1.11.0'
+
+# We need a recent version of setuptools, because pkg_resources is included in
+# setuptools, and protobuf's __init__.py contains the line
+# __import__('pkg_resources').declare_namespace(__name__)
+# and only recent vesions of setuptools correctly sort the namespace
+# module's __path__ list when declare_namespace is called.
+python3 -m pip install --user 'setuptools>=41.0.1'
+
 # These are required to build TensorFlow from source.
-pip install --user 'keras_applications==1.0.6' --no-deps
-pip install --user 'keras_preprocessing==1.0.5' --no-deps
-pip install --user 'h5py==2.8.0'
-pip install --user enum34
-pip install --user 'protobuf==3.7.0'
+python3 -m pip install --user 'keras_applications==1.0.6' --no-deps
+python3 -m pip install --user 'keras_preprocessing==1.0.5' --no-deps
+python3 -m pip install --user 'h5py==2.8.0'
+python3 -m pip install --user enum34
+python3 -m pip install --user 'protobuf==3.7.0'
 
 # Install Bazel
 ################################################################################
@@ -152,6 +161,9 @@ if [[ ! -d ../tensorflow ]]; then
    git clone https://github.com/tensorflow/tensorflow)
 fi
 
+# The version of Python used by TensorFlow gets exported as the Bazel
+# repository @local_config_python, which is then used by clif.BUILD.
+export PYTHON_BIN_PATH=`which python3`
 (cd ../tensorflow &&
  git checkout v${NUCLEUS_TENSORFLOW_VERSION} &&
  echo | ./configure
