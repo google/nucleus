@@ -69,8 +69,12 @@ bazel test -c opt $COPT_FLAGS nucleus/...
 
 ## Version
 
-This is Nucleus 0.3.0.  Nucleus follows [semantic
+This is Nucleus 0.4.0.  Nucleus follows [semantic
 versioning](https://semver.org/).
+
+New in 0.4.0:
+
+* The Nucleus pip package now works with Python 3.
 
 New in 0.3.0:
 
