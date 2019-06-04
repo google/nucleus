@@ -69,8 +69,12 @@ bazel test -c opt $COPT_FLAGS nucleus/...
 
 ## Version
 
-This is Nucleus 0.4.0.  Nucleus follows [semantic
+This is Nucleus 0.4.1.  Nucleus follows [semantic
 versioning](https://semver.org/).
+
+New in 0.4.1:
+
+* Pip package is slightly more robust.
 
 New in 0.4.0:
 
