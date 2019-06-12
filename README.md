@@ -27,10 +27,17 @@ option to vote on it.)
 
 ## Installation
 
-Nucleus currently only works on modern Linux systems.  To install it, just run
+Nucleus currently only works on modern Linux systems.
+If you are using Python 3, to install it, just run
 
 ```shell
 pip install --user google-nucleus
+```
+
+If you are using Python 2, instead run
+
+```shell
+pip install --user google-nucleus==0.3.2
 ```
 
 ## Documentation
