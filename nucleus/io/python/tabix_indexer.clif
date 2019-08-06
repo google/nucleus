@@ -17,3 +17,4 @@ from "nucleus/vendor/statusor_clif_converters.h" import *
 from "nucleus/io/tabix_indexer.h":
   namespace `nucleus`:
     def `TbxIndexBuild` as tbx_index_build(path: str) -> Status
+    def `CSIIndexBuild` as csi_index_build(path: str, min_shift:int) -> Status
