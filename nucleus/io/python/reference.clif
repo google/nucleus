@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from "nucleus/protos/fasta_pyclif.h" import *
 from "nucleus/protos/range_pyclif.h" import *
 from "nucleus/protos/reference_pyclif.h" import *
 from "nucleus/vendor/statusor_clif_converters.h" import *
@@ -51,6 +52,7 @@ from "nucleus/io/reference.h":
       def `FromFile` as from_file(cls,
                                   fasta_path: str,
                                   fai_path: str,
+                                  options: FastaReaderOptions,
                                   cache_size_bases: int = default)
         -> StatusOr<IndexedFastaReader>
 

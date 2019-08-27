@@ -27,6 +27,7 @@
 #include "htslib/tbx.h"
 #include "nucleus/io/hts_path.h"
 #include "nucleus/io/reader_base.h"
+#include "nucleus/protos/fasta.pb.h"
 #include "nucleus/protos/range.pb.h"
 #include "nucleus/protos/reference.pb.h"
 #include "nucleus/util/utils.h"
@@ -127,7 +128,17 @@ class IndexedFastaReaderIterable : public GenomeReferenceRecordIterable {
 };
 
 StatusOr<std::unique_ptr<IndexedFastaReader>> IndexedFastaReader::FromFile(
-    const string& fasta_path, const string& fai_path, int cache_size_bases) {
+    const string& fasta_path, const string& fai_path,
+    int cache_size_bases) {
+  nucleus::genomics::v1::FastaReaderOptions options =
+      nucleus::genomics::v1::FastaReaderOptions();
+  return FromFile(fasta_path, fai_path, options, cache_size_bases);
+}
+
+StatusOr<std::unique_ptr<IndexedFastaReader>> IndexedFastaReader::FromFile(
+    const string& fasta_path, const string& fai_path,
+    const nucleus::genomics::v1::FastaReaderOptions& options,
+    int cache_size_bases) {
   const string gzi = fasta_path + ".gzi";
   faidx_t* faidx = fai_load3_x(fasta_path, fai_path, gzi, 0);
   if (faidx == nullptr) {
@@ -135,13 +146,16 @@ StatusOr<std::unique_ptr<IndexedFastaReader>> IndexedFastaReader::FromFile(
         "could not load fasta and/or fai for fasta ", fasta_path);
   }
   return std::unique_ptr<IndexedFastaReader>(
-      new IndexedFastaReader(fasta_path, faidx, cache_size_bases));
+      new IndexedFastaReader(fasta_path, faidx, options, cache_size_bases));
 }
 
-IndexedFastaReader::IndexedFastaReader(const string& fasta_path, faidx_t* faidx,
-                                       int cache_size_bases)
+IndexedFastaReader::IndexedFastaReader(
+    const string& fasta_path, faidx_t* faidx,
+    const nucleus::genomics::v1::FastaReaderOptions& options,
+    int cache_size_bases)
     : fasta_path_(fasta_path),
       faidx_(faidx),
+      options_(options),
       contigs_(ExtractContigsFromFai(faidx)),
       cache_size_bases_(cache_size_bases),
       small_read_cache_(),
@@ -205,7 +219,10 @@ StatusOr<string> IndexedFastaReader::GetBases(const Range& range) const {
   if (len <= 0)
     return tensorflow::errors::InvalidArgument("Couldn't fetch bases for ",
                                                range.ShortDebugString());
-  string result = absl::AsciiStrToUpper(bases);
+  string result(bases);
+  if (!options_.keep_true_case()) {
+    absl::AsciiStrToUpper(&result);
+  }
   free(bases);
 
   if (use_cache) {
