@@ -57,6 +57,7 @@ py_test(
     srcs = ["genomics_reader_test.py"],
     data = ["//nucleus/testdata"],
     python_version = "PY3",
+    # py3_tags = [],
     deps = [
         ":genomics_reader",
         "//nucleus/protos:gff_py_pb2",
@@ -95,6 +96,7 @@ py_test(
     srcs = ["vcf_test.py"],
     data = ["//nucleus/testdata"],
     python_version = "PY3",
+    # py3_tags = [],
     deps = [
         ":gfile",
         ":vcf",
@@ -128,6 +130,7 @@ py_test(
     srcs = ["sam_test.py"],
     data = ["//nucleus/testdata"],
     python_version = "PY3",
+    # py3_tags = [],
     deps = [
         ":gfile",
         ":sam",
@@ -159,6 +162,7 @@ py_test(
     srcs = ["bed_test.py"],
     data = ["//nucleus/testdata"],
     python_version = "PY3",
+    # py3_tags = [],
     deps = [
         ":bed",
         "//nucleus/protos:bed_py_pb2",
@@ -186,6 +190,7 @@ py_test(
     srcs = ["bedgraph_test.py"],
     data = ["//nucleus/testdata"],
     python_version = "PY3",
+    # py3_tags = [],
     deps = [
         ":bedgraph",
         "//nucleus/protos:bedgraph_py_pb2",
@@ -213,6 +218,7 @@ py_test(
     srcs = ["fasta_test.py"],
     data = ["//nucleus/testdata"],
     python_version = "PY3",
+    # py3_tags = [],
     deps = [
         ":fasta",
         "//nucleus/protos:struct_py_pb2",
@@ -241,6 +247,7 @@ py_test(
     srcs = ["fastq_test.py"],
     data = ["//nucleus/testdata"],
     python_version = "PY3",
+    # py3_tags = [],
     deps = [
         ":fastq",
         "//nucleus/protos:fastq_py_pb2",
@@ -287,6 +294,7 @@ py_test(
     srcs = ["sharded_file_utils_test.py"],
     data = ["//nucleus/testdata"],
     python_version = "PY3",
+    # py3_tags = [],
     deps = [
         ":sharded_file_utils",
         "//nucleus/protos:reference_py_pb2",
@@ -313,6 +321,7 @@ py_test(
     srcs = ["tfrecord_test.py"],
     data = ["//nucleus/testdata"],
     python_version = "PY3",
+    # py3_tags = [],
     deps = [
         ":tfrecord",
         "//nucleus/protos:reference_py_pb2",
@@ -336,6 +345,7 @@ py_test(
     srcs = ["tabix_test.py"],
     data = ["//nucleus/testdata"],
     python_version = "PY3",
+    # py3_tags = [],
     deps = [
         ":gfile",
         ":tabix",
@@ -1061,6 +1071,7 @@ py_test(
     size = "small",
     srcs = ["genomics_io_noplugin_test.py"],
     python_version = "PY3",
+    # py3_tags = [],
     deps = [
         "//nucleus/io:sam",
         "//nucleus/testing:py_test_utils",
@@ -1140,6 +1151,7 @@ py_test(
     srcs = ["gff_test.py"],
     data = ["//nucleus/testdata"],
     python_version = "PY3",
+    # py3_tags = [],
     deps = [
         ":gff",
         ":tfrecord",
@@ -1173,6 +1185,7 @@ py_test(
     srcs = ["converter_test.py"],
     data = ["//nucleus/testdata"],
     python_version = "PY3",
+    # py3_tags = [],
     deps = [
         ":converter_lib",
         "//nucleus/testing:py_test_utils",
@@ -1193,6 +1206,7 @@ py_test(
     srcs = ["gfile_test.py"],
     data = ["//nucleus/testdata"],
     python_version = "PY3",
+    # py3_tags = [],
     deps = [
         ":gfile",
         "//nucleus/testing:py_test_utils",

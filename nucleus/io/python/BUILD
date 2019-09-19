@@ -35,6 +35,7 @@ py_test(
     srcs = ["vcf_reader_wrap_test.py"],
     data = ["//nucleus/testdata"],
     python_version = "PY3",
+    # py3_tags = [],
     srcs_version = "PY3",
     deps = [
         ":vcf_reader",
@@ -65,6 +66,7 @@ py_test(
     srcs = ["vcf_writer_wrap_test.py"],
     data = ["//nucleus/testdata"],
     python_version = "PY3",
+    # py3_tags = [],
     srcs_version = "PY3",
     deps = [
         ":vcf_writer",
@@ -103,6 +105,7 @@ py_test(
     srcs = ["sam_reader_wrap_test.py"],
     data = ["//nucleus/testdata"],
     python_version = "PY3",
+    # py3_tags = [],
     srcs_version = "PY3",
     deps = [
         ":sam_reader",
@@ -152,6 +155,7 @@ py_test(
     srcs = ["reference_wrap_test.py"],
     data = ["//nucleus/testdata"],
     python_version = "PY3",
+    # py3_tags = [],
     srcs_version = "PY3",
     deps = [
         ":reference",
@@ -184,6 +188,7 @@ py_test(
     srcs = ["bed_reader_wrap_test.py"],
     data = ["//nucleus/testdata"],
     python_version = "PY3",
+    # py3_tags = [],
     srcs_version = "PY3",
     deps = [
         ":bed_reader",
@@ -213,6 +218,7 @@ py_test(
     srcs = ["bed_writer_wrap_test.py"],
     data = ["//nucleus/testdata"],
     python_version = "PY3",
+    # py3_tags = [],
     srcs_version = "PY3",
     deps = [
         ":bed_writer",
@@ -276,6 +282,7 @@ py_test(
     srcs = ["fastq_reader_wrap_test.py"],
     data = ["//nucleus/testdata"],
     python_version = "PY3",
+    # py3_tags = [],
     srcs_version = "PY3",
     deps = [
         ":fastq_reader",
@@ -305,6 +312,7 @@ py_test(
     srcs = ["fastq_writer_wrap_test.py"],
     data = ["//nucleus/testdata"],
     python_version = "PY3",
+    # py3_tags = [],
     srcs_version = "PY3",
     deps = [
         ":fastq_writer",
@@ -331,6 +339,7 @@ py_test(
     size = "small",
     srcs = ["hts_verbose_test.py"],
     python_version = "PY3",
+    # py3_tags = [],
     srcs_version = "PY3",
     deps = [
         ":hts_verbose",
@@ -360,6 +369,7 @@ py_test(
     srcs = ["gff_reader_wrap_test.py"],
     data = ["//nucleus/testdata"],
     python_version = "PY3",
+    # py3_tags = [],
     srcs_version = "PY3",
     deps = [
         ":gff_reader",
@@ -392,6 +402,7 @@ py_test(
     srcs = ["gff_writer_wrap_test.py"],
     data = ["//nucleus/testdata"],
     python_version = "PY3",
+    # py3_tags = [],
     srcs_version = "PY3",
     deps = [
         ":gff_writer",
