@@ -1,5 +1,4 @@
 load("//nucleus/tools:zip_dir.bzl", "zip_dir")
-# KEEP THIS LINE to import nucleus.bzl externally
 
 package(
     default_visibility = [
