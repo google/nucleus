@@ -89,6 +89,13 @@ class AuxBuilder {
     CHECK(has_num_bytes_);
     uint8_t* data_array_ptr = data;
     for (const auto& entry : read_.info()) {
+      if (entry.second.values_size() != 1) {
+        // TODO(b/141987609): Support writing byte-array field.
+        LOG(WARNING) << "SamWriter currently doesn't support writing info "
+                        "fields of size "
+                     << entry.second.values_size();
+        continue;
+      }
       const Value& v = entry.second.values(0);
       if (!(v.kind_case() == Value::kIntValue ||
             v.kind_case() == Value::kStringValue ||
@@ -140,10 +147,11 @@ class AuxBuilder {
                                    entry.first);
       }
       if (entry.second.values_size() != 1) {
-        // TODO(b/62929115): Support parsing byte-array field.
-        return tf::errors::Unknown(
-            "SamWriter currently doesn't support info field of size ",
-            entry.second.values_size());
+        // TODO(b/141987609): Support writing byte-array field.
+        LOG(WARNING) << "SamWriter currently doesn't support writing info "
+                        "fields of size "
+                     << entry.second.values_size();
+        continue;
       }
       const Value& v = entry.second.values(0);
       if (!(v.kind_case() == Value::kIntValue ||
