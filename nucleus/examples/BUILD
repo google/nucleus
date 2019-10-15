@@ -50,7 +50,6 @@ py_test(
         "//nucleus/testdata",
     ],
     python_version = "PY3",
-    # py3_tags = [],
     srcs_version = "PY3",
     deps = [
         ":add_ad_to_vcf_lib",
@@ -85,7 +84,6 @@ py_test(
         "//nucleus/testdata",
     ],
     python_version = "PY3",
-    # py3_tags = [],
     srcs_version = "PY3",
     deps = [
         ":ascii_pileup_lib",
@@ -119,7 +117,6 @@ py_test(
         "//nucleus/testdata",
     ],
     python_version = "PY3",
-    # py3_tags = [],
     deps = [
         ":count_variants_lib",
         "//nucleus/testing:py_test_utils",
@@ -151,7 +148,6 @@ py_test(
         "//nucleus/testdata",
     ],
     python_version = "PY3",
-    # py3_tags = [],
     deps = [
         ":filter_vcf_lib",
         "//nucleus/io:vcf",
@@ -186,7 +182,6 @@ py_test(
         "//nucleus/testdata",
     ],
     python_version = "PY3",
-    # py3_tags = [],
     deps = [
         ":validate_vcf_lib",
         "//nucleus/protos:reference_py_pb2",
@@ -219,7 +214,6 @@ py_test(
     size = "small",
     srcs = ["apply_genotyping_prior_test.py"],
     python_version = "PY3",
-    # py3_tags = [],
     srcs_version = "PY3",
     deps = [
         ":apply_genotyping_prior_lib",
