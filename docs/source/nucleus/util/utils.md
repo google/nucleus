@@ -9,11 +9,18 @@
 ## Functions overview
 Name | Description
 -----|------------
+[`read_end`](#read_end)`(read)` | Returns the read start + alignment length for Read read.
 [`read_overlaps_region`](#read_overlaps_region)`(read, region)` | Returns True if read overlaps read.
 [`read_range`](#read_range)`(read)` | Creates a Range proto from the alignment of Read.
 [`reservoir_sample`](#reservoir_sample)`(iterable, k, random=None)` | Samples k elements with uniform probability from an iterable.
 
 ## Functions
+<a name="read_end"></a>
+### `read_end(read)`
+```
+Returns the read start + alignment length for Read read.
+```
+
 <a name="read_overlaps_region"></a>
 ### `read_overlaps_region(read, region)`
 ```

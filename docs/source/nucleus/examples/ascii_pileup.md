@@ -9,17 +9,28 @@
 ## Functions overview
 Name | Description
 -----|------------
+[`ascii_pileup`](#ascii_pileup)`(sam_filename, query)` | Returns an ASCII pileup image for the query as a list of strings.
 [`main`](#main)`(argv)` | 
-[`print_read`](#print_read)`(left_pos, start, highlight_position, seq)` | Prints an ASCII representation of a sequence to stdout.
+[`read_str`](#read_str)`(left_pos, start, highlight_position, seq)` | Returns an aligned and highlighted ASCII representation of sequence.
 
 ## Functions
+<a name="ascii_pileup"></a>
+### `ascii_pileup(sam_filename, query)`
+```
+Returns an ASCII pileup image for the query as a list of strings.
+
+Args:
+  sam_filename: The filename of the BAM/SAM file.
+  query: String version of range.
+```
+
 <a name="main"></a>
 ### `main(argv)`
 
 
-<a name="print_read"></a>
-### `print_read(left_pos, start, highlight_position, seq)`
+<a name="read_str"></a>
+### `read_str(left_pos, start, highlight_position, seq)`
 ```
-Prints an ASCII representation of a sequence to stdout.
+Returns an aligned and highlighted ASCII representation of sequence.
 ```
 

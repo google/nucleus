@@ -143,6 +143,12 @@ Raises:
   IOError: if there was any problem opening input_path for reading.
 ```
 
+<a name="c_reader"></a>
+##### `c_reader(self)`
+```
+Returns the underlying C++ reader.
+```
+
 <a name="iterate"></a>
 ##### `iterate(self)`
 ```

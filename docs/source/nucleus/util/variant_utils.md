@@ -34,14 +34,14 @@ Name | Description
 [`has_calls`](#has_calls)`(variant)` | Does variant have any genotype calls?
 [`has_deletion`](#has_deletion)`(variant)` | Does variant have a deletion?
 [`has_insertion`](#has_insertion)`(variant)` | Does variant have an insertion?
-[`is_biallelic`](#is_biallelic)`(variant)` | Returns True if variant has exactly one alternate allele.
+[`is_biallelic`](#is_biallelic)`(variant, exclude_alleles=None)` | Returns True if variant has exactly one alternate allele.
 [`is_deletion`](#is_deletion)`(ref, alt)` | Is alt a deletion w.r.t. ref?
 [`is_filtered`](#is_filtered)`(variant)` | Returns True if variant has a non-PASS filter field, or False otherwise.
 [`is_gvcf`](#is_gvcf)`(variant)` | Returns true if variant encodes a standard gVCF reference block.
 [`is_indel`](#is_indel)`(variant, exclude_alleles=None)` | Is variant an indel?
 [`is_insertion`](#is_insertion)`(ref, alt)` | Is alt an insertion w.r.t. ref?
-[`is_multiallelic`](#is_multiallelic)`(variant)` | Does variant have multiple alt alleles?
-[`is_ref`](#is_ref)`(variant)` | Returns true if variant is a reference record.
+[`is_multiallelic`](#is_multiallelic)`(variant, exclude_alleles=None)` | Does variant have multiple alt alleles?
+[`is_ref`](#is_ref)`(variant, exclude_alleles=None)` | Returns true if variant is a reference record.
 [`is_singleton`](#is_singleton)`(variant)` | Returns True iff the variant has exactly one non-ref VariantCall.
 [`is_snp`](#is_snp)`(variant, exclude_alleles=None)` | Is variant a SNP?
 [`is_transition`](#is_transition)`(allele1, allele2)` | Is the pair of single bp alleles a transition?
@@ -51,6 +51,9 @@ Name | Description
 [`set_info`](#set_info)`(variant, field_name, value, vcf_object=None)` | Sets a field of the info map of the `Variant` to the given value(s).
 [`simplify_alleles`](#simplify_alleles)`(*alleles)` | Simplifies alleles by stripping off common postfix bases.
 [`sorted_variants`](#sorted_variants)`(variants)` | Returns sorted(variants, key=variant_range_tuple).
+[`unphase_all_genotypes`](#unphase_all_genotypes)`(variant)` | Sorts genotype and removes phasing bit of all calls in variant.
+[`variant_is_deletion`](#variant_is_deletion)`(variant, exclude_alleles=None)` | Are all the variant's alt alleles deletions?
+[`variant_is_insertion`](#variant_is_insertion)`(variant, exclude_alleles=None)` | Are all the variant's alt alleles insertions?
 [`variant_key`](#variant_key)`(variant, sort_alleles=True)` | Gets a human-readable string key that is almost unique for Variant.
 [`variant_position`](#variant_position)`(variant)` | Returns a new Range at the start position of variant.
 [`variant_range`](#variant_range)`(variant)` | Returns a new Range covering variant.
@@ -371,9 +374,16 @@ Returns:
 ```
 
 <a name="is_biallelic"></a>
-### `is_biallelic(variant)`
+### `is_biallelic(variant, exclude_alleles=None)`
 ```
 Returns True if variant has exactly one alternate allele.
+
+Args:
+  variant: nucleus.genomics.v1.Variant.
+  exclude_alleles: list(str). The alleles in this list will be ignored.
+
+Returns:
+  True if the variant has exactly one alternate allele.
 ```
 
 <a name="is_deletion"></a>
@@ -441,19 +451,20 @@ Returns:
 ```
 
 <a name="is_multiallelic"></a>
-### `is_multiallelic(variant)`
+### `is_multiallelic(variant, exclude_alleles=None)`
 ```
 Does variant have multiple alt alleles?
 
 Args:
   variant: nucleus.genomics.v1.Variant.
+  exclude_alleles: list(str). The alleles in this list will be ignored.
 
 Returns:
   True if variant has more than one alt allele.
 ```
 
 <a name="is_ref"></a>
-### `is_ref(variant)`
+### `is_ref(variant, exclude_alleles=None)`
 ```
 Returns true if variant is a reference record.
 
@@ -463,9 +474,10 @@ no mutation present (i.e., alt is the missing value).
 
 Args:
   variant: nucleus.genomics.v1.Variant.
+  exclude_alleles: list(str). The alleles in this list will be ignored.
 
 Returns:
-  A boolean.
+  True if there are no actual alternate alleles.
 ```
 
 <a name="is_singleton"></a>
@@ -484,8 +496,7 @@ Args:
   exclude_alleles: list(str). The alleles in this list will be ignored.
 
 Returns:
-  True if all alleles of variant are 1 bp in length, excluding the GVCF
-  <*> allele.
+  True if all alleles of variant are 1 bp in length.
 ```
 
 <a name="is_transition"></a>
@@ -529,7 +540,7 @@ Args:
     have a non-reference (het, hom-var) genotype for the site to be considered
     a variant call?
   no_calls_are_variant: If a site has genotypes, should we consider no_call
-    genotypes as being variant or not?
+    genotypes as being variant or not? e.g. -1/1 listed as ./. in VCF
   call_indices: A list of 0-based indices. If specified, only the calls
     at the given indices will be considered. The function will return
     True if any of those calls are variant.
@@ -604,6 +615,46 @@ Returns:
 ### `sorted_variants(variants)`
 ```
 Returns sorted(variants, key=variant_range_tuple).
+```
+
+<a name="unphase_all_genotypes"></a>
+### `unphase_all_genotypes(variant)`
+```
+Sorts genotype and removes phasing bit of all calls in variant.
+
+This mutation is done in place rather than returning a different copy.
+
+Args:
+  variant: nucleus.genomics.v1.Variant.
+
+Returns:
+  The variant with unphased calls.
+```
+
+<a name="variant_is_deletion"></a>
+### `variant_is_deletion(variant, exclude_alleles=None)`
+```
+Are all the variant's alt alleles deletions?
+
+Args:
+  variant: nucleus.genomics.v1.Variant.
+  exclude_alleles: list(str). The alleles in this list will be ignored.
+
+Returns:
+  True if variant has at least one alt allele and all alts are deletions.
+```
+
+<a name="variant_is_insertion"></a>
+### `variant_is_insertion(variant, exclude_alleles=None)`
+```
+Are all the variant's alt alleles insertions?
+
+Args:
+  variant: nucleus.genomics.v1.Variant.
+  exclude_alleles: list(str). The alleles in this list will be ignored.
+
+Returns:
+  True if variant has at least one alt allele and all alts are insertions.
 ```
 
 <a name="variant_key"></a>

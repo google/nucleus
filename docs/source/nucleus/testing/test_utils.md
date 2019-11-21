@@ -15,9 +15,9 @@ Name | Description
 [`genomics_core_testdata`](#genomics_core_testdata)`(filename)` | Gets the path to a testdata named filename in util/testdata.
 [`genomics_testdata`](#genomics_testdata)`(path, datadir=DATADIR)` | Gets the path to a testdata file in genomics at relative path.
 [`iterable_len`](#iterable_len)`(iterable)` | Returns the length of a Python iterable, by advancing it.
-[`make_read`](#make_read)`(bases, quals=None, cigar=None, mapq=50, chrom='chr1', start=1, name=None)` | Makes a nucleus.genomics.v1.Read for testing.
-[`make_variant`](#make_variant)`(chrom='chr1', start=10, alleles=None, end=None, filters=None, qual=None, gt=None, gq=None, sample_name=None, gls=None)` | Creates a new Variant proto from args.
-[`make_variant_multiple_calls`](#make_variant_multiple_calls)`(chrom='chr1', start=10, alleles=None, end=None, filters=None, qual=None, gts=None, gqs=None, sample_names=None, glss=None)` | Creates a new Variant proto from args that contains multi-sample calls.
+[`make_read`](#make_read)`(bases, start, quals=None, cigar=None, mapq=50, chrom='chr1', name=None)` | Makes a nucleus.genomics.v1.Read for testing.
+[`make_variant`](#make_variant)`(chrom='chr1', start=10, alleles=None, end=None, filters=None, qual=None, gt=None, gq=None, sample_name=None, gls=None, is_phased=None)` | Creates a new Variant proto from args.
+[`make_variant_multiple_calls`](#make_variant_multiple_calls)`(chrom='chr1', start=10, alleles=None, end=None, filters=None, qual=None, gts=None, gqs=None, sample_names=None, glss=None, is_phased=None)` | Creates a new Variant proto from args that contains multi-sample calls.
 [`set_list_values`](#set_list_values)`(list_value, values)` | Sets a ListValue to have the values in values.
 [`test_tmpfile`](#test_tmpfile)`(name, contents=None)` | Returns a path to a tempfile named name in the test_tmpdir.
 
@@ -120,13 +120,13 @@ Returns the length of a Python iterable, by advancing it.
 ```
 
 <a name="make_read"></a>
-### `make_read(bases, quals=None, cigar=None, mapq=50, chrom='chr1', start=1, name=None)`
+### `make_read(bases, start, quals=None, cigar=None, mapq=50, chrom='chr1', name=None)`
 ```
 Makes a nucleus.genomics.v1.Read for testing.
 ```
 
 <a name="make_variant"></a>
-### `make_variant(chrom='chr1', start=10, alleles=None, end=None, filters=None, qual=None, gt=None, gq=None, sample_name=None, gls=None)`
+### `make_variant(chrom='chr1', start=10, alleles=None, end=None, filters=None, qual=None, gt=None, gq=None, sample_name=None, gls=None, is_phased=None)`
 ```
 Creates a new Variant proto from args.
 
@@ -153,13 +153,14 @@ Args:
     call_set_name of our VariantCall to this value.
   gls: array-list of float, or None. If not None and gt is not None, sets the
     genotype_likelihoods of our VariantCall to this value.
+  is_phased: bool. Indicates whether a VariantCall should be phased.
 
 Returns:
   nucleus.genomics.v1.Variant proto.
 ```
 
 <a name="make_variant_multiple_calls"></a>
-### `make_variant_multiple_calls(chrom='chr1', start=10, alleles=None, end=None, filters=None, qual=None, gts=None, gqs=None, sample_names=None, glss=None)`
+### `make_variant_multiple_calls(chrom='chr1', start=10, alleles=None, end=None, filters=None, qual=None, gts=None, gqs=None, sample_names=None, glss=None, is_phased=None)`
 ```
 Creates a new Variant proto from args that contains multi-sample calls.
 
@@ -185,6 +186,8 @@ Args:
     Sets the call_set_name of the corresponding VariantCall.
   glss: A list of array-lists of float, or None. Must match the gts arg if
     specified. Sets the genotype_likelihoods of the corresponding VariantCall.
+  is_phased: list of bools. Must match the gts arg if specified. Indicates
+    whether the corresponding VariantCall should be phased.
 
 Returns:
   nucleus.genomics.v1.Variant proto.

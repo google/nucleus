@@ -101,7 +101,7 @@ Note that TFRecord files do not need to be wrapped in a "with" block.
 
 #### Methods:
 <a name="__init__"></a>
-##### `__init__(self, output_path, header=None)`
+##### `__init__(self, output_path, header=None, compression_type=None)`
 ```
 Initializer.
 
@@ -111,6 +111,9 @@ Args:
     useful for file types that have logical headers where some operations
     depend on that header information (e.g. VCF using its headers to
     determine type information of annotation fields).
+  compression_type:  Either 'ZLIB', 'GZIP', '' (uncompressed), or
+    None.  If None, __init__ will guess the compression type based on
+    the input_path's suffix.
 
 Raises:
   IOError:  if there was any problem opening output_path for writing.

@@ -133,7 +133,7 @@ on the filename's extensions.
 
 #### Methods:
 <a name="__init__"></a>
-##### `__init__(self, input_path, excluded_info_fields=None, excluded_format_fields=None, store_gl_and_pl_in_info_map=False)`
+##### `__init__(self, input_path, excluded_info_fields=None, excluded_format_fields=None, store_gl_and_pl_in_info_map=False, header=None)`
 ```
 Initializer for NativeVcfReader.
 
@@ -147,6 +147,14 @@ Args:
   store_gl_and_pl_in_info_map: bool. If True, the "GL" and "PL" FORMAT
     fields are stored in the VariantCall.info map rather than as top-level
     values in the VariantCall.genotype_likelihood field.
+  header: If not None, specifies the variants_pb2.VcfHeader. The file at
+    input_path must not contain any header information.
+```
+
+<a name="c_reader"></a>
+##### `c_reader(self)`
+```
+Returns the underlying C++ reader.
 ```
 
 <a name="iterate"></a>
@@ -171,7 +179,7 @@ files or TFRecords files, based on the output filename's extensions.
 
 #### Methods:
 <a name="__init__"></a>
-##### `__init__(self, output_path, header=None, round_qualities=False, excluded_info_fields=None, excluded_format_fields=None, retrieve_gl_and_pl_from_info_map=False)`
+##### `__init__(self, output_path, header=None, round_qualities=False, excluded_info_fields=None, excluded_format_fields=None, retrieve_gl_and_pl_from_info_map=False, exclude_header=False)`
 ```
 Initializer for NativeVcfWriter.
 
@@ -190,6 +198,7 @@ Args:
   retrieve_gl_and_pl_from_info_map: bool. If True, the "GL" and "PL" FORMAT
     fields are retrieved from the VariantCall.info map rather than from the
     top-level value in the VariantCall.genotype_likelihood field.
+  exclude_header: bool. If True, write a headerless VCF.
 ```
 
 <a name="write"></a>
@@ -255,6 +264,16 @@ Returns a callable that sets the given INFO field based on its type.
 ### VcfReader
 ```
 Class for reading Variant protos from VCF or TFRecord files.
+```
+
+#### Methods:
+<a name="c_reader"></a>
+##### `c_reader(self)`
+```
+Returns the underlying C++ reader.
+
+Note that the C++ reader might be a VcfReader or it might be a
+TFRecordReader, depending on the input_path's extension.
 ```
 
 ### VcfWriter

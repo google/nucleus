@@ -108,12 +108,14 @@ Class for reading from FASTA files containing a reference genome.
 
 #### Methods:
 <a name="__init__"></a>
-##### `__init__(self, input_path, cache_size=None)`
+##### `__init__(self, input_path, keep_true_case=False, cache_size=None)`
 ```
 Initializes an IndexedFastaReader.
 
 Args:
   input_path: string. A path to a resource containing FASTA records.
+  keep_true_case: bool. If False, casts all bases to uppercase before
+    returning them.
   cache_size: integer. Number of bases to cache from previous queries.
     Defaults to 64K.  The cache can be disabled using cache_size=0.
 ```
