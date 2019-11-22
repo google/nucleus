@@ -72,6 +72,8 @@ python3 -m pip install --user 'intervaltree==3.0.2'
 python3 -m pip install --user 'mock>=2.0.0'
 python3 -m pip install --user 'numpy==1.14'
 python3 -m pip install --user 'six>=1.11.0'
+python3 -m pip install --user 'Pillow>=5.4.1'
+python3 -m pip install --user 'ipython>=7.9.0'
 
 # We need a recent version of setuptools, because pkg_resources is included in
 # setuptools, and protobuf's __init__.py contains the line

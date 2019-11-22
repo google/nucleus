@@ -25,6 +25,7 @@ py_library(
         ":variant_utils",
         ":variantcall_utils",
         ":vcf_constants",
+        ":vis",
     ],
 )
 
@@ -363,5 +364,26 @@ cc_library(
         "@org_tensorflow//tensorflow/core:lib",
         "@protobuf_archive//:proto_api",
         "@protobuf_archive//:protobuf",
+    ],
+)
+
+py_library(
+    name = "vis",
+    srcs = ["vis.py"],
+    deps = ["//nucleus/protos:variants_py_pb2"],
+)
+
+py_test(
+    name = "vis_test",
+    size = "small",
+    srcs = ["vis_test.py"],
+    python_version = "PY3",
+    deps = [
+        ":vis",
+        "//nucleus/protos:example_py_pb2",
+        "//nucleus/protos:variants_py_pb2",
+        "//nucleus/testing:py_test_utils",
+        "@absl_py//absl/testing:absltest",
+        "@absl_py//absl/testing:parameterized",
     ],
 )
