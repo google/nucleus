@@ -30,8 +30,8 @@
 # Global setting for nucleus builds
 # ------------------------------------------------------------------------------
 
-NUCLEUS_BAZEL_VERSION="0.23.0"
-NUCLEUS_TENSORFLOW_VERSION="2.0.0-alpha0"
+NUCLEUS_BAZEL_VERSION="0.26.1"
+NUCLEUS_TENSORFLOW_VERSION="2.0.0"
 
 function note_build_stage {
   echo "========== [$(date)] Stage '${1}' starting"
@@ -57,8 +57,8 @@ sudo -H apt-get -y install libssl-dev libcurl4-openssl-dev liblz-dev libbz2-dev 
 note_build_stage "Update pip"
 sudo -H apt-get -y install python-dev python3-pip python-wheel
 sudo -H apt-get -y update
-# pip 10.0 is broken, see https://github.com/pypa/pip/issues/5240
-python3 -m pip install --user --upgrade 'pip==9.0.3'
+# TensorFlow 2.0 requires pip >= 19.0
+python3 -m pip install --user -U pip
 
 # Update PATH so that newly installed pip is the one we actually use.
 export PATH="$HOME/.local/bin:$PATH"
@@ -87,7 +87,7 @@ python3 -m pip install --user 'keras_applications==1.0.6' --no-deps
 python3 -m pip install --user 'keras_preprocessing==1.0.5' --no-deps
 python3 -m pip install --user 'h5py==2.8.0'
 python3 -m pip install --user enum34
-python3 -m pip install --user 'protobuf==3.7.0'
+python3 -m pip install --user 'protobuf==3.8.0'
 
 # Install Bazel
 ################################################################################

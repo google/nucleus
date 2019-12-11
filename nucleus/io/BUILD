@@ -627,9 +627,9 @@ cc_library(
         "//nucleus/util:samplers",
         "//nucleus/vendor:statusor",
         "@com_google_absl//absl/strings",
+        "@com_google_protobuf//:protobuf",
         "@htslib",
         "@org_tensorflow//tensorflow/core:lib",
-        "@protobuf_archive//:protobuf",
     ],
 )
 
@@ -669,9 +669,9 @@ cc_library(
         "//nucleus/vendor:statusor",
         "@com_google_absl//absl/memory",
         "@com_google_absl//absl/strings",
+        "@com_google_protobuf//:protobuf",
         "@htslib",
         "@org_tensorflow//tensorflow/core:lib",
-        "@protobuf_archive//:protobuf",
     ],
 )
 
@@ -714,9 +714,9 @@ cc_library(
         "//nucleus/vendor:statusor",
         "@com_google_absl//absl/memory",
         "@com_google_absl//absl/strings",
+        "@com_google_protobuf//:protobuf",
         "@htslib",
         "@org_tensorflow//tensorflow/core:lib",
-        "@protobuf_archive//:protobuf",
     ],
 )
 
@@ -734,9 +734,9 @@ cc_test(
         "//nucleus/util:cpp_utils",
         "//nucleus/vendor:status_matchers",
         "@com_google_googletest//:gtest_main",
+        "@com_google_protobuf//:protobuf",
         "@org_tensorflow//tensorflow/core:lib",
         "@org_tensorflow//tensorflow/core:test",
-        "@protobuf_archive//:protobuf",
     ],
 )
 
@@ -756,9 +756,9 @@ cc_library(
         "//nucleus/vendor:statusor",
         "@com_google_absl//absl/memory",
         "@com_google_absl//absl/strings",
+        "@com_google_protobuf//:protobuf",
         "@htslib",
         "@org_tensorflow//tensorflow/core:lib",
-        "@protobuf_archive//:protobuf",
     ],
 )
 
@@ -776,9 +776,9 @@ cc_test(
         "//nucleus/util:cpp_utils",
         "//nucleus/vendor:status_matchers",
         "@com_google_googletest//:gtest_main",
+        "@com_google_protobuf//:protobuf",
         "@org_tensorflow//tensorflow/core:lib",
         "@org_tensorflow//tensorflow/core:test",
-        "@protobuf_archive//:protobuf",
     ],
 )
 
@@ -884,9 +884,9 @@ cc_library(
         "//nucleus/vendor:statusor",
         "@com_google_absl//absl/memory",
         "@com_google_absl//absl/strings",
+        "@com_google_protobuf//:protobuf",
         "@htslib",
         "@org_tensorflow//tensorflow/core:lib",
-        "@protobuf_archive//:protobuf",
     ],
 )
 
@@ -1081,8 +1081,8 @@ cc_library(
         "//nucleus/vendor:statusor",
         "@com_google_absl//absl/strings",
         "@com_google_absl//absl/types:optional",
+        "@com_google_protobuf//:protobuf",
         "@org_tensorflow//tensorflow/core:lib",
-        "@protobuf_archive//:protobuf",
     ],
 )
 
@@ -1114,8 +1114,8 @@ cc_library(
         "//nucleus/vendor:statusor",
         "@com_google_absl//absl/memory",
         "@com_google_absl//absl/strings",
+        "@com_google_protobuf//:protobuf",
         "@org_tensorflow//tensorflow/core:lib",
-        "@protobuf_archive//:protobuf",
     ],
 )
 
@@ -1130,8 +1130,8 @@ cc_test(
         "//nucleus/vendor:status_matchers",
         "//nucleus/vendor:statusor",
         "@com_google_googletest//:gtest_main",
+        "@com_google_protobuf//:protobuf",
         "@org_tensorflow//tensorflow/core:lib",
-        "@protobuf_archive//:protobuf",
     ],
 )
 

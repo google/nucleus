@@ -236,6 +236,6 @@ py_binary(
         "//nucleus/protos:gff_py_pb2",
         "//nucleus/protos:reads_py_pb2",
         "//nucleus/protos:variants_py_pb2",
-        "@protobuf_archive//:protobuf_python",
+        "@com_google_protobuf//:protobuf_python",
     ],
 )

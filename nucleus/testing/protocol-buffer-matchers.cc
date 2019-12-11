@@ -40,7 +40,7 @@ namespace nucleus {
 namespace internal {
 
 using absl::string_view;
-using RegExpStringPiece = re2::StringPiece;  // copybara
+using RegExpStringPiece = absl::string_view;  // copybara
 
 // Utilities.
 

@@ -4,4 +4,5 @@ exports_files([
     "abseil_cpp.LICENSE",
     "bazel.LICENSE",
     "clif.LICENSE",
+    "clif.bzl",
 ])

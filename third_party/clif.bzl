@@ -20,6 +20,21 @@ PYCLIF_CC_LIB_SUFFIX = "_cclib"
 
 PYCLIF_WRAP_SUFFIX = "_clif_wrap"
 
+def _get_transitive_headers(hdrs, deps):
+    """Obtain the header files for a target and its transitive dependencies.
+
+      Args:
+        hdrs: a list of header files
+        deps: a list of targets that are direct dependencies
+
+      Returns:
+        a collection of the transitive headers
+      """
+    return depset(
+        hdrs,
+        transitive = [dep[CcInfo].compilation_context.headers for dep in deps],
+    )
+
 def _clif_wrap_cc_impl(ctx):
     """Executes CLIF cmdline tool to produce C++ python model from a CLIF spec."""
     if len(ctx.files.srcs) != 1:
@@ -29,21 +44,26 @@ def _clif_wrap_cc_impl(ctx):
 
     # Inputs is a set of all of the things we depend on, not inputs to the CLIF
     # program itself.
-    inputs = depset([clif_spec_file])
-    for dep in ctx.attr.deps:
-        inputs += dep.cc.transitive_headers
-    inputs += ctx.files._cliflib
-    inputs += ctx.files.clif_deps
-    inputs += ctx.files.toolchain_deps
+    initial_inputs = [clif_spec_file]
+    initial_inputs += ctx.files._cliflib
+    initial_inputs += ctx.files.clif_deps
+    initial_inputs += ctx.files.toolchain_deps
+    inputs = _get_transitive_headers(initial_inputs, ctx.attr.deps)
 
     # Compute the set of include directories for CLIF so it can find header files
     # used in the CLIF specification. These are the repo roots for all of our
     # inputs (aka deps) plus all of the quote and system includes for our C++
     # deps.
-    include_dirs = depset(_get_repository_roots(ctx, inputs))
-    for dep in ctx.attr.deps:
-        include_dirs += dep.cc.quote_include_directories
-        include_dirs += dep.cc.system_include_directories
+    include_dirs = depset(
+        _get_repository_roots(ctx, inputs),
+        transitive = [
+            dep[CcInfo].compilation_context.quote_includes
+            for dep in ctx.attr.deps
+        ] + [
+            dep[CcInfo].compilation_context.system_includes
+            for dep in ctx.attr.deps
+        ],
+    )
 
     # Construct our arguments for CLIF.
     args = [
@@ -88,7 +108,7 @@ _clif_wrap_cc = rule(
         ),
         "deps": attr.label_list(
             allow_files = True,
-            providers = ["cc"],
+            providers = [CcInfo],
         ),
         "toolchain_deps": attr.label_list(
             allow_files = True,
@@ -316,7 +336,7 @@ def py_clif_cc(
     symlink(
         name = name + "_symlink",
         out = pyext_so,
-        src = "@protobuf_archive//:python/google/protobuf/pyext/_message.so",
+        src = "@com_google_protobuf//:python/google/protobuf/pyext/_message.so",
     )
 
     # We create our python module which is just a thin wrapper around our real

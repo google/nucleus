@@ -44,10 +44,10 @@ cc_library(
     deps = [
         "//nucleus/platform:types",
         "@com_google_absl//absl/strings",
+        "@com_google_protobuf//:protobuf",
         "@com_googlesource_code_re2//:re2",
         "@org_tensorflow//tensorflow/core:lib",
         "@org_tensorflow//tensorflow/core:test",
-        "@protobuf_archive//:protobuf",
     ],
 )
 
@@ -58,7 +58,7 @@ cc_test(
     deps = [
         ":gunit_extras",
         "@com_google_googletest//:gtest_main",
-        "@protobuf_archive//:protobuf",
+        "@com_google_protobuf//:protobuf",
     ],
 )
 
@@ -117,6 +117,6 @@ py_test(
     deps = [
         "//nucleus/io:sam",
         "@absl_py//absl/testing:absltest",
-        "@protobuf_archive//:protobuf_python",
+        "@com_google_protobuf//:protobuf_python",
     ],
 )
