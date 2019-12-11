@@ -22,6 +22,7 @@
 #include <string>
 
 #include "nucleus/platform/types.h"
+#include "tensorflow/core/platform/tstring.h"
 
 namespace tensorflow {
 class RandomAccessFile;
@@ -51,7 +52,7 @@ class TFRecordReader {
 
   // Return the current record contents.  Only valid after GetNext()
   // has returned true.
-  std::string record() const { return record_; }
+  tensorflow::tstring record() const { return record_; }
 
   // Close the file and release its resources.
   void Close();
@@ -69,7 +70,7 @@ class TFRecordReader {
   std::unique_ptr<tensorflow::RandomAccessFile> file_;
   std::unique_ptr<tensorflow::io::RecordReader> reader_;
 
-  std::string record_;
+  tensorflow::tstring record_;
 };
 
 }  // namespace nucleus
