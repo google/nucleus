@@ -76,8 +76,19 @@ bazel test -c opt $COPT_FLAGS nucleus/...
 
 ## Version
 
-This is Nucleus 0.4.1.  Nucleus follows [semantic
+This is Nucleus 0.5.0.  Nucleus follows [semantic
 versioning](https://semver.org/).
+
+New in 0.5.0:
+
+* Fixed bug preventing Nucleus to work with TensorFlow 2.0.
+* Added util.vis routines for visualizing DeepVariant pileup examples.
+* FASTA reader now supports keep\_true\_case option for keeping the
+original casing.
+* VCF writer now supports writing headerless VCF files.
+* SAM reader now supports optional fields of type 'B'.
+* variant\_utils now supports gVCF files.
+* Numerous minor bug fixes.
 
 New in 0.4.1:
 
