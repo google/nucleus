@@ -45,7 +45,7 @@ Name | Description
 [`is_singleton`](#is_singleton)`(variant)` | Returns True iff the variant has exactly one non-ref VariantCall.
 [`is_snp`](#is_snp)`(variant, exclude_alleles=None)` | Is variant a SNP?
 [`is_transition`](#is_transition)`(allele1, allele2)` | Is the pair of single bp alleles a transition?
-[`is_variant_call`](#is_variant_call)`(variant, require_non_ref_genotype=True, no_calls_are_variant=False, call_indices=None)` | Is variant a non-reference call?
+[`is_variant_call`](#is_variant_call)`(variant, require_non_ref_genotype=True, no_calls_are_variant=False, call_indices=None, apply_filter=True)` | Is variant a non-reference call?
 [`major_allele_frequency`](#major_allele_frequency)`(variant)` | Returns the frequency of the most common allele in the variant.
 [`only_call`](#only_call)`(variant)` | Ensures the Variant has exactly one VariantCall, and returns it.
 [`set_info`](#set_info)`(variant, field_name, value, vcf_object=None)` | Sets a field of the info map of the `Variant` to the given value(s).
@@ -516,7 +516,7 @@ Raises:
 ```
 
 <a name="is_variant_call"></a>
-### `is_variant_call(variant, require_non_ref_genotype=True, no_calls_are_variant=False, call_indices=None)`
+### `is_variant_call(variant, require_non_ref_genotype=True, no_calls_are_variant=False, call_indices=None, apply_filter=True)`
 ```
 Is variant a non-reference call?
 
@@ -544,6 +544,8 @@ Args:
   call_indices: A list of 0-based indices. If specified, only the calls
     at the given indices will be considered. The function will return
     True if any of those calls are variant.
+  apply_filter: If set to True, will never treat this site as variant when
+    any filter other than PASS or . is set.
 
 Returns:
   True if variant is really a mutation call.

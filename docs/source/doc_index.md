@@ -74,3 +74,5 @@
 
 [`nucleus.util.vcf_constants`](nucleus/util/vcf_constants.md)
 
+[`nucleus.util.vis`](nucleus/util/vis.md)
+
