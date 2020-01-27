@@ -11,4 +11,3 @@ jobs:
         set -x -e
         source install.sh
         bazel test -c opt $COPT_FLAGS nucleus/...
-        echo test, and deploy your project.
