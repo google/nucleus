@@ -20,6 +20,7 @@ Name | Description
 [`convert_6_channels_to_rgb`](#convert_6_channels_to_rgb)`(channels)` | Convert 6-channel image from DeepVariant to RGB for quick visualization.
 [`draw_deepvariant_pileup`](#draw_deepvariant_pileup)`(example=None, channels=None, composite_type=None, annotated=True, labels=None, path=None, show=True, scale=None)` | Quick utility for showing a pileup example as channels or RGB.
 [`get_image_array_from_example`](#get_image_array_from_example)`(example)` | Decode image/encoded and image/shape of an Example into a numpy array.
+[`label_from_example`](#label_from_example)`(example)` | Get the "label" from an example.
 [`locus_id_from_variant`](#locus_id_from_variant)`(variant)` | Create a locus ID of form "chr:pos_ref" from a Variant object.
 [`locus_id_with_alt`](#locus_id_with_alt)`(example)` | Get complete locus ID from a DeepVariant example.
 [`save_to_png`](#save_to_png)`(arr, path=None, image_mode=None, show=True, labels=None, scale=None)` | Make a PNG and show it from a numpy array of dtype=np.uint8.
@@ -81,7 +82,7 @@ Returns:
 Get alt allele(s) from a DeepVariant example.
 
 Args:
-  example: a DeepVariant make_examples output example
+  example: a DeepVariant make_examples output example.
 
 Returns:
   str. The bases of the alt alleles, joined by a -.
@@ -211,6 +212,19 @@ Returns:
   numpy array of dtype np.uint8.
 ```
 
+<a name="label_from_example"></a>
+### `label_from_example(example)`
+```
+Get the "label" from an example.
+
+Args:
+  example: a DeepVariant make_examples output example.
+
+Returns:
+  integer (0, 1, or 2 for regular DeepVariant examples) or None if the
+      example has no label.
+```
+
 <a name="locus_id_from_variant"></a>
 ### `locus_id_from_variant(variant)`
 ```
@@ -229,7 +243,7 @@ Returns:
 Get complete locus ID from a DeepVariant example.
 
 Args:
-  example: a DeepVariant make_examples output example
+  example: a DeepVariant make_examples output example.
 
 Returns:
   str in the form "chr:pos_ref_alt.
