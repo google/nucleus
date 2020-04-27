@@ -50,6 +50,7 @@ Name | Description
 [`only_call`](#only_call)`(variant)` | Ensures the Variant has exactly one VariantCall, and returns it.
 [`set_info`](#set_info)`(variant, field_name, value, vcf_object=None)` | Sets a field of the info map of the `Variant` to the given value(s).
 [`simplify_alleles`](#simplify_alleles)`(*alleles)` | Simplifies alleles by stripping off common postfix bases.
+[`simplify_variant_alleles`](#simplify_variant_alleles)`(variant)` | Replaces the alleles in variants with their simplified versions.
 [`sorted_variants`](#sorted_variants)`(variants)` | Returns sorted(variants, key=variant_range_tuple).
 [`unphase_all_genotypes`](#unphase_all_genotypes)`(variant)` | Sorts genotype and removes phasing bit of all calls in variant.
 [`variant_is_deletion`](#variant_is_deletion)`(variant, exclude_alleles=None)` | Are all the variant's alt alleles deletions?
@@ -611,6 +612,23 @@ Args:
 Returns:
   A tuple, one for each allele in alleles in order, with any common postfix
   bases stripped off.
+```
+
+<a name="simplify_variant_alleles"></a>
+### `simplify_variant_alleles(variant)`
+```
+Replaces the alleles in variants with their simplified versions.
+
+This function takes a variant and replaces its ref and alt alleles with those
+produced by a call to variant_utils.simplify_alleles() to remove common
+postfix bases in the alleles that may be present due to pruning away alleles.
+
+Args:
+  variant: learning.genomics.genomics.Variant proto we want to simplify.
+
+Returns:
+  variant with its ref and alt alleles replaced with their simplified
+    equivalents.
 ```
 
 <a name="sorted_variants"></a>
