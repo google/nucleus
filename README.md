@@ -80,8 +80,12 @@ bazel test -c opt $COPT_FLAGS nucleus/...
 
 ## Version
 
-This is Nucleus 0.5.0.  Nucleus follows [semantic
+This is Nucleus 0.5.1.  Nucleus follows [semantic
 versioning](https://semver.org/).
+
+New in 0.5.1:
+
+* Added new utilities for working with DeepVariant pileup images and variant protos.
 
 New in 0.5.0:
 
