@@ -32,7 +32,8 @@ from nucleus.protos import variants_pb2
 
 DEEPVARIANT_CHANNEL_NAMES = [
     'read base', 'base quality', 'mapping quality', 'strand',
-    'read supports variant', 'base differs from ref'
+    'read supports variant', 'base differs from ref', 'alternate allele 1',
+    'alternate allele 2'
 ]
 
 
@@ -348,6 +349,18 @@ def array_to_png(arr,
       scale=scale)
 
 
+def _deepvariant_channel_names(num_channels):
+  """Get DeepVariant channel names for the given number of channels."""
+  # Add additional empty labels if there are more channels than expected.
+  filler_labels = [
+      'channel {}'.format(i + 1)
+      for i in range(len(DEEPVARIANT_CHANNEL_NAMES), num_channels)
+  ]
+  labels = DEEPVARIANT_CHANNEL_NAMES + filler_labels
+  # Trim off any extra labels.
+  return labels[0:num_channels]
+
+
 def draw_deepvariant_pileup(example=None,
                             channels=None,
                             composite_type=None,
@@ -386,7 +399,7 @@ def draw_deepvariant_pileup(example=None,
   if composite_type is None:
     img_array = np.concatenate(channels, axis=1)
     if annotated and labels is None:
-      labels = DEEPVARIANT_CHANNEL_NAMES
+      labels = _deepvariant_channel_names(len(channels))
   elif composite_type == 'RGB':
     img_array = convert_6_channels_to_rgb(channels)
     if annotated and labels is None:
