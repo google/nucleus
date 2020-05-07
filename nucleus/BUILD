@@ -28,5 +28,6 @@ cc_library(
 py_library(
     name = "__init__py",
     srcs = ["__init__.py"],
+    srcs_version = "PY3",
     deps = [],
 )
