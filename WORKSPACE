@@ -15,14 +15,14 @@ http_archive(
     urls = ["https://github.com/google/cctz/archive/master.zip"],
 )
 
-# This is the 1.9 release of htslib.
+# This is the 1.10.2 release of htslib.
 http_archive(
     name = "htslib",
     build_file = "//:third_party/htslib.BUILD",
-    sha256 = "c4d3ae84014f8a80f5011521f391e917bc3b4f6ebd78e97f238472e95849ec14",
-    strip_prefix = "htslib-1.9",
+    sha256 = "f7994e9636f8a4032dea477a8613f5f73b330c23b5538e45666ce7306240ac14",
+    strip_prefix = "htslib-1.10.2",
     urls = [
-        "https://github.com/samtools/htslib/archive/1.9.zip"
+        "https://github.com/samtools/htslib/archive/1.10.2.zip",
     ],
 )
 
@@ -100,12 +100,12 @@ http_archive(
 # six is now a required dependency of com_google_protobuf.
 http_archive(
     name = "six",
+    build_file = "//:third_party/six.BUILD",
+    sha256 = "105f8d68616f8248e24bf0e9372ef04d3cc10104f1980f54d57b2ce73a5ad56a",
     urls = [
         "http://mirror.bazel.build/pypi.python.org/packages/source/s/six/six-1.10.0.tar.gz",
         "https://pypi.python.org/packages/source/s/six/six-1.10.0.tar.gz",
     ],
-    sha256 = "105f8d68616f8248e24bf0e9372ef04d3cc10104f1980f54d57b2ce73a5ad56a",
-    build_file = "//:third_party/six.BUILD",
 )
 
 # Import all of the tensorflow dependencies.
