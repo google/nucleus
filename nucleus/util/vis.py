@@ -23,6 +23,7 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+from nucleus.io import gfile
 from IPython import display
 import numpy as np
 from PIL import Image
@@ -297,7 +298,8 @@ def save_to_png(arr,
   # Saving to a temporary file is needed even when showing in a notebook
   if path is None:
     path = '/tmp/tmp.png'
-  img.save(path)
+  with gfile.Open(path, 'wb') as fout:
+    img.save(fout, format=path.split('.')[-1])
 
   # Show image (great for notebooks)
   if show:

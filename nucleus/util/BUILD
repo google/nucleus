@@ -370,7 +370,10 @@ cc_library(
 py_library(
     name = "vis",
     srcs = ["vis.py"],
-    deps = ["//nucleus/protos:variants_py_pb2"],
+    deps = [
+        "//nucleus/io:gfile",
+        "//nucleus/protos:variants_py_pb2",
+    ],
 )
 
 py_test(
