@@ -23,12 +23,12 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-from nucleus.io import gfile
 from IPython import display
 import numpy as np
 from PIL import Image
 from PIL import ImageDraw
 
+from nucleus.io import gfile
 from nucleus.protos import variants_pb2
 
 DEEPVARIANT_CHANNEL_NAMES = [
@@ -264,7 +264,10 @@ def save_to_png(arr,
 
   Args:
     arr: numpy array. Input array to save.
-    path: str. file path at which to save the image.
+    path: str. File path at which to save the image. A .png prefix is added if
+      the path does not already have one. Leave empty to save at /tmp/tmp.png,
+      which is useful when only temporarily showing the image in a Colab
+      notebook.
     image_mode: "RGB" or "L". Leave as default=None to choose based on image
       dimensions.
     show: bool. Whether to display the image using IPython (for notebooks).
@@ -298,6 +301,9 @@ def save_to_png(arr,
   # Saving to a temporary file is needed even when showing in a notebook
   if path is None:
     path = '/tmp/tmp.png'
+  elif not path.endswith('.png'):
+    # Only PNG is supported because JPEG files are unnecessarily 3 times larger.
+    path = '{}.png'.format(path)
   with gfile.Open(path, 'wb') as fout:
     img.save(fout, format=path.split('.')[-1])
 
