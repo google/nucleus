@@ -256,7 +256,10 @@ Make a PNG and show it from a numpy array of dtype=np.uint8.
 
 Args:
   arr: numpy array. Input array to save.
-  path: str. file path at which to save the image.
+  path: str. File path at which to save the image. A .png prefix is added if
+    the path does not already have one. Leave empty to save at /tmp/tmp.png,
+    which is useful when only temporarily showing the image in a Colab
+    notebook.
   image_mode: "RGB" or "L". Leave as default=None to choose based on image
     dimensions.
   show: bool. Whether to display the image using IPython (for notebooks).

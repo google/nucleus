@@ -80,8 +80,14 @@ bazel test -c opt $COPT_FLAGS nucleus/...
 
 ## Version
 
-This is Nucleus 0.5.1.  Nucleus follows [semantic
+This is Nucleus 0.5.2.  Nucleus follows [semantic
 versioning](https://semver.org/).
+
+New in 0.5.2:
+
+* Upgrades htslib dependency from 1.9 to 1.10.2.
+* More informative error message for failed SAM header parsing.
+* `util/vis.py` now supports saving images to Google Cloud Storage.
 
 New in 0.5.1:
 
