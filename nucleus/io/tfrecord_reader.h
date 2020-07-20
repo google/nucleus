@@ -64,7 +64,7 @@ class TFRecordReader {
  private:
   TFRecordReader();
 
-  uint64 offset_;
+  nucleus::uint64 offset_;
 
   // |reader_| has a non-owning pointer on |file_|, so destruct it first.
   std::unique_ptr<tensorflow::RandomAccessFile> file_;
