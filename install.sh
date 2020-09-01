@@ -179,7 +179,8 @@ if [[ "$#" -eq 0 ]] || [[ "$1" != "--prereqs_only" ]]; then
   note_build_stage "Building Nucleus"
 
   COPT_FLAGS="--copt=-msse4.1 --copt=-msse4.2 --copt=-mavx --copt=-O3"
-  bazel build -c opt ${COPT_FLAGS} nucleus/...
+  BAZEL_FLAGS="${COPT_FLAGS}"
+  bazel build -c opt ${BAZEL_FLAGS} nucleus/...
 
   bazel build :licenses_zip
 

@@ -12,7 +12,7 @@ If you would like to rebuild just the example programs -- after modifying
 one of them, perhaps -- this can be done with
 
 ```shell
-bazel build -c opt $COPT_FLAGS nucleus/examples:all
+bazel build -c opt $BAZEL_FLAGS nucleus/examples:all
 ```
 
 Here is a summary of the [example

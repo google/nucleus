@@ -75,7 +75,7 @@ You can find the generated  binaries under ``bazel-bin/nucleus``.  If in
 addition to building Nucleus you would like to run its tests, execute
 
 ```shell
-bazel test -c opt $COPT_FLAGS nucleus/...
+bazel test -c opt $BAZEL_FLAGS nucleus/...
 ```
 
 ## Version
