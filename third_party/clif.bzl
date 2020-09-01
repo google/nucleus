@@ -28,7 +28,7 @@ def _get_transitive_headers(hdrs, deps):
         deps: a list of targets that are direct dependencies
 
       Returns:
-        a collection of the transitive headers
+        A collection of the transitive headers.
       """
     return depset(
         hdrs,
@@ -48,7 +48,7 @@ def _clif_wrap_cc_impl(ctx):
     initial_inputs += ctx.files._cliflib
     initial_inputs += ctx.files.clif_deps
     initial_inputs += ctx.files.toolchain_deps
-    inputs = _get_transitive_headers(initial_inputs, ctx.attr.deps)
+    inputs = _get_transitive_headers(initial_inputs, ctx.attr.deps).to_list()
 
     # Compute the set of include directories for CLIF so it can find header files
     # used in the CLIF specification. These are the repo roots for all of our
@@ -94,7 +94,7 @@ def _clif_wrap_cc_impl(ctx):
     ctx.actions.run(
         executable = ctx.executable._clif,
         arguments = args,
-        inputs = inputs.to_list(),
+        inputs = inputs,
         outputs = outputs,
         mnemonic = "CLIF",
         progress_message = "CLIF wrapping " + clif_spec_file.path,
