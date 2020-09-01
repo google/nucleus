@@ -80,7 +80,7 @@ python3 -m pip install --user 'ipython>=7.9.0'
 # __import__('pkg_resources').declare_namespace(__name__)
 # and only recent vesions of setuptools correctly sort the namespace
 # module's __path__ list when declare_namespace is called.
-python3 -m pip install --user 'setuptools>=41.0.1'
+python3 -m pip install --user 'setuptools==49.6.0'
 
 # These are required to build TensorFlow from source.
 python3 -m pip install --user 'keras_applications==1.0.6' --no-deps
