@@ -6,9 +6,9 @@ In addition, Nucleus enables painless integration with the TensorFlow machine
 learning framework, as anywhere a genomics file is consumed or produced, a
 TensorFlow tfrecords file may be used instead.
 
-## New Tutorial!
+## Tutorial
 
-Please check out our new tutorial on
+Please check out our tutorial on
 [using Nucleus and TensorFlow for DNA sequencing error correction](https://colab.research.google.com/github/google/nucleus/blob/master/nucleus/examples/dna_sequencing_error_correction.ipynb).
 It's a Python notebook that really demonstrates the power of Nucleus at
 integrating information from multiple file types (BAM, VCF and Fasta) and
@@ -27,8 +27,15 @@ option to vote on it.)
 
 ## Installation
 
-Nucleus currently only works on modern Linux systems.
-If you are using Python 3, to install it just run
+Nucleus currently only works on modern Linux systems using Python 3.  It must be
+installed using a version of `pip` less than 21.  To determine the version of
+pip installed on your system, run
+
+```
+pip --version
+```
+
+To install Nucleus, run
 
 ```shell
 pip install --user google-nucleus
