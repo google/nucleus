@@ -87,8 +87,15 @@ bazel test -c opt $BAZEL_FLAGS nucleus/...
 
 ## Version
 
-This is Nucleus 0.5.2.  Nucleus follows [semantic
+This is Nucleus 0.5.3.  Nucleus follows [semantic
 versioning](https://semver.org/).
+
+New in 0.5.3:
+
+* Fixes memory leaks in message_module.cc.
+* Updates setup.py to install .egg-info directory for pip 20.2+ compatibility.
+* Pins TensorFlow to 2.0.0 for protobuf version compatibility.
+* Pins setuptools to 49.6.0 to avoid breaking changes of setuptools 50.
 
 New in 0.5.2:
 

@@ -22,13 +22,34 @@ Instead, we directly implement the four commands run by pip install
   * setup.py clean
 
 ## Functions overview
-Name | Description
------|------------
-[`find_destination`](#find_destination)`(is_user)` | Returns the directory we are supposed to install into.
-[`main`](#main)`()` | 
-[`touch`](#touch)`(fname)` | 
+
+| Name                                               | Description           |
+| -------------------------------------------------- | --------------------- |
+| [`copy_egg_info`](#copy_egg_info)`(dest_dir)`      | Copies the .egg-info  |
+:                                                    : directory to the      :
+:                                                    : specified location.   :
+| [`find_destination`](#find_destination)`(is_user)` | Returns the directory |
+:                                                    : we are supposed to    :
+:                                                    : install into.         :
+| [`main`](#main)`()`                                |                       |
+| [`touch`](#touch)`(fname)`                         |                       |
 
 ## Functions
+
+<a name="copy_egg_info"></a>
+
+### `copy_egg_info(dest_dir)`
+
+```
+Copies the .egg-info directory to the specified location.
+
+Args:
+  dest_dir: str. The destination directory.
+
+Returns:
+  0 on success, 1 on failure.
+```
+
 <a name="find_destination"></a>
 ### `find_destination(is_user)`
 ```
