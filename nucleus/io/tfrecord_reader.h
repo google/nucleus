@@ -23,6 +23,7 @@
 
 #include "nucleus/platform/types.h"
 #include "tensorflow/core/platform/tstring.h"
+#include "tensorflow/core/platform/types.h"
 
 namespace tensorflow {
 class RandomAccessFile;
@@ -64,7 +65,7 @@ class TFRecordReader {
  private:
   TFRecordReader();
 
-  nucleus::uint64 offset_;
+  tensorflow::uint64 offset_;
 
   // |reader_| has a non-owning pointer on |file_|, so destruct it first.
   std::unique_ptr<tensorflow::RandomAccessFile> file_;
