@@ -9,8 +9,6 @@ package(
 
 licenses(["notice"])  # Apache License 2.0
 
-exports_files(["LICENSE"])
-
 py_clif_cc(
     name = "statusor_examples",
     srcs = ["statusor_examples.clif"],

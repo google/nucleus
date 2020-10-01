@@ -9,8 +9,6 @@ package(
 
 licenses(["notice"])  # Apache License 2.0
 
-exports_files(["LICENSE"])
-
 py_library(
     name = "examples_py",
     deps = [
