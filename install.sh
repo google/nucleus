@@ -30,8 +30,8 @@
 # Global setting for nucleus builds
 # ------------------------------------------------------------------------------
 
-NUCLEUS_BAZEL_VERSION="0.26.1"
-NUCLEUS_TENSORFLOW_VERSION="2.0.0"
+NUCLEUS_BAZEL_VERSION="0.29.1"
+NUCLEUS_TENSORFLOW_VERSION="2.1.0"
 
 function note_build_stage {
   echo "========== [$(date)] Stage '${1}' starting"
@@ -70,7 +70,7 @@ python3 -m pip install --user contextlib2
 python3 -m pip install --user 'sortedcontainers==2.1.0'
 python3 -m pip install --user 'intervaltree==3.0.2'
 python3 -m pip install --user 'mock>=2.0.0'
-python3 -m pip install --user 'numpy==1.14'
+python3 -m pip install --user 'numpy==1.18.5'
 python3 -m pip install --user 'six>=1.11.0'
 python3 -m pip install --user 'Pillow>=5.4.1'
 python3 -m pip install --user 'ipython>=7.9.0'
@@ -83,9 +83,8 @@ python3 -m pip install --user 'ipython>=7.9.0'
 python3 -m pip install --user 'setuptools==49.6.0'
 
 # These are required to build TensorFlow from source.
-python3 -m pip install --user 'keras_applications==1.0.6' --no-deps
-python3 -m pip install --user 'keras_preprocessing==1.0.5' --no-deps
-python3 -m pip install --user 'h5py==2.8.0'
+python3 -m pip install --user 'keras_preprocessing==1.1.2' --no-deps
+python3 -m pip install --user 'h5py==2.10.0'
 python3 -m pip install --user enum34
 python3 -m pip install --user 'protobuf==3.8.0'
 
@@ -171,6 +170,13 @@ export PYTHON_BIN_PATH=`which python3`
  echo | ./configure
  )
 
+# We use TensorFlow's .bazelrc as part of Nucleus's. In it they use a java
+# toolchain flag based on a definition in a BUILD file in the TF repo. This
+# causes that flag's usage to raise build errors when building Nucleus unless we
+# also include that BUILD file.
+mkdir -p third_party/toolchains/java
+cp ../tensorflow/third_party/toolchains/java/BUILD third_party/toolchains/java/
+
 echo "Done installing prereqs at $(date)!"
 
 if [[ "$#" -eq 0 ]] || [[ "$1" != "--prereqs_only" ]]; then
@@ -179,10 +185,17 @@ if [[ "$#" -eq 0 ]] || [[ "$1" != "--prereqs_only" ]]; then
   note_build_stage "Building Nucleus"
 
   COPT_FLAGS="--copt=-msse4.1 --copt=-msse4.2 --copt=-mavx --copt=-O3"
-  BAZEL_FLAGS="${COPT_FLAGS}"
+  # N.B. The --experimental_build_setting_api had to be added on protobuf
+  # upgrade to 3.9.2 to avoid error in bazel_skylib:
+  #   "parameter 'build_setting' is experimental and thus unavailable with the
+  #    current flags. It may be enabled by setting
+  #    --experimental_build_setting_api"
+  # Presumably it won't be needed at some later point when bazel_skylib is
+  # upgraded again.
+  BAZEL_FLAGS="${COPT_FLAGS} --experimental_build_setting_api"
   bazel build -c opt ${BAZEL_FLAGS} nucleus/...
 
-  bazel build :licenses_zip
+  bazel build ${BAZEL_FLAGS} :licenses_zip
 
 fi
 

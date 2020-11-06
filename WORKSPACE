@@ -26,14 +26,14 @@ http_archive(
     ],
 )
 
-# Import tensorflow.  Note path.
+# Import tensorflow. Note path. (This is generated as part of ./install.sh).
 local_repository(
     name = "org_tensorflow",
     path = "../tensorflow",
 )
 
 # Required boilerplate for tf_workspace(), apparently.
-# This is copied from https://github.com/tensorflow/tensorflow/blob/v2.0.0/WORKSPACE.
+# This is copied from https://github.com/tensorflow/tensorflow/blob/v2.3.0/WORKSPACE.
 http_archive(
     name = "io_bazel_rules_closure",
     sha256 = "5b00383d08dd71f28503736db0500b6fb4dda47489ff5fc6bed42557c07c6ba9",
@@ -46,7 +46,7 @@ http_archive(
 
 # This needs to be in sync with the version of protobuf used by TensorFlow,
 # which is currently defined in @tensorflow/tensorflow/workspace.bzl.
-# We supply our # own BUILD file, though, so we can prevent ODR violations by
+# We supply our own BUILD file, though, so we can prevent ODR violations by
 # putting all of Nucleus's C++ binary dependencies into a single library.
 # That BUILD file must be kept in sync with the version of protobuf used.
 http_archive(
@@ -64,37 +64,11 @@ http_archive(
 # bazel_skylib is now a required dependency of com_google_protobuf.
 http_archive(
     name = "bazel_skylib",
-    sha256 = "bbccf674aa441c266df9894182d80de104cabd19be98be002f6d478aaa31574d",
-    strip_prefix = "bazel-skylib-2169ae1c374aab4a09aa90e65efe1a3aad4e279b",
-    urls = ["https://github.com/bazelbuild/bazel-skylib/archive/2169ae1c374aab4a09aa90e65efe1a3aad4e279b.tar.gz"],
-)
-
-# rules_cc is now a required dependency of com_google_protobuf.
-http_archive(
-    name = "rules_cc",
-    strip_prefix = "rules_cc-master",
-    urls = ["https://github.com/bazelbuild/rules_cc/archive/master.zip"],
-)
-
-# rules_java is now a required dependency of com_google_protobuf.
-http_archive(
-    name = "rules_java",
-    strip_prefix = "rules_java-master",
-    urls = ["https://github.com/bazelbuild/rules_java/archive/master.zip"],
-)
-
-# rules_proto is now a required dependency of com_google_protobuf.
-http_archive(
-    name = "rules_proto",
-    strip_prefix = "rules_proto-master",
-    urls = ["https://github.com/bazelbuild/rules_proto/archive/master.zip"],
-)
-
-# rules_python is now a required dependency of com_google_protobuf.
-http_archive(
-    name = "rules_python",
-    strip_prefix = "rules_python-master",
-    urls = ["https://github.com/bazelbuild/rules_python/archive/master.zip"],
+    sha256 = "1dde365491125a3db70731e25658dfdd3bc5dbdfd11b840b3e987ecf043c7ca0",
+    urls = [
+        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/bazelbuild/bazel-skylib/releases/download/0.9.0/bazel_skylib-0.9.0.tar.gz",
+        "https://github.com/bazelbuild/bazel-skylib/releases/download/0.9.0/bazel_skylib-0.9.0.tar.gz",
+    ],
 )
 
 # six is now a required dependency of com_google_protobuf.
