@@ -19,7 +19,7 @@ config_setting(
 # ZLIB configuration
 ################################################################################
 
-ZLIB_DEPS = ["@zlib_archive//:zlib"]
+ZLIB_DEPS = ["@zlib//:zlib"]
 
 ################################################################################
 # Protobuf Runtime Library
@@ -230,10 +230,7 @@ cc_library(
 # TODO(keveman): Remove this target once the support gets added to Bazel.
 cc_library(
     name = "protobuf_headers",
-    hdrs = glob([
-        "src/**/*.h",
-        "src/**/*.inc",
-    ]),
+    hdrs = glob(["src/**/*.h"]),
     includes = ["src/"],
     visibility = ["//visibility:public"],
 )
@@ -762,24 +759,11 @@ cc_binary(
     deps = [
         ":protobuf",
         ":proto_api",
-        # This is an ugly but necessary hack to get the Nucleus protobuf
-        # descriptors loaded into the generated DescriptorPool managed by
-        # _message.so.  Without this, Nucleus "fast_cpp_protos" will be
-        # backed by DynamicMessages and not the true C++ generated classes.
-        # That in turn will cause fast conversions in
-        # nucleus/util/proto_clif_converter.h to break.
-        # Also, this relies on dlopen() (which Python uses to load C++
-        # extension modules like _message.so) initializing C++ static objects
-        # before returning.  That is true on Linux, Solaris, BSD, and OS/X,
-        # but not guaranteed by POSIX.  See
-        # https://stackoverflow.com/questions/40115688/are-static-c-objects-in-dynamically-loaded-libraries-initialized-before-dlopen
-        # "@" is the name of the base repository.  We have to use that, and
-        # not "@nucleus" here and below, because @nucleus//foobar is somehow
-        # a different location than @//foobar.
+        # The below Nucleus-specific dependencies cause its protobuf descriptors
+        # to be loaded into the  DescriptorPool managed by _message.so and put
+        # all Nucleus C++ extensions here to avoid ODR violations. See
+        # an internal document for more details.
         "@//nucleus/protos:all_nucleus_protos_cc",
-        # This is an even uglier hack to put all of Nucleus's C++ extension
-        # code into this C++ extension, so that there is only one C++
-        # extension, and no ODR violations.
         "@//:all_extensions",
     ] + select({
         "//conditions:default": [],
