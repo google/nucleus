@@ -30,8 +30,8 @@
 # Global setting for nucleus builds
 # ------------------------------------------------------------------------------
 
-NUCLEUS_BAZEL_VERSION="2.0.0"
-NUCLEUS_TENSORFLOW_VERSION="2.2.0"
+NUCLEUS_BAZEL_VERSION="3.1.0"
+NUCLEUS_TENSORFLOW_VERSION="2.3.0"
 
 function note_build_stage {
   echo "========== [$(date)] Stage '${1}' starting"
@@ -78,7 +78,7 @@ python3 -m pip install --user 'ipython>=7.9.0'
 # We need a recent version of setuptools, because pkg_resources is included in
 # setuptools, and protobuf's __init__.py contains the line
 # __import__('pkg_resources').declare_namespace(__name__)
-# and only recent vesions of setuptools correctly sort the namespace
+# and only recent versions of setuptools correctly sort the namespace
 # module's __path__ list when declare_namespace is called.
 python3 -m pip install --user 'setuptools==49.6.0'
 
@@ -86,7 +86,7 @@ python3 -m pip install --user 'setuptools==49.6.0'
 python3 -m pip install --user 'keras_preprocessing==1.1.2' --no-deps
 python3 -m pip install --user 'h5py==2.10.0'
 python3 -m pip install --user enum34
-python3 -m pip install --user 'protobuf==3.8.0'
+python3 -m pip install --user 'protobuf==3.9.2'
 
 # Install Bazel
 ################################################################################
@@ -196,7 +196,6 @@ if [[ "$#" -eq 0 ]] || [[ "$1" != "--prereqs_only" ]]; then
   bazel build -c opt ${BAZEL_FLAGS} nucleus/...
 
   bazel build ${BAZEL_FLAGS} :licenses_zip
-
 fi
 
 # Done!
