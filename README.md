@@ -73,7 +73,7 @@ Note that install.sh extensively depends on apt-get, so it is unlikely
 to run without extensive modifications on non-Debian-based systems.
 
 Nucleus depends on TensorFlow.  By default, install.sh will
-install a CPU-only version of a stable TensorFlow release (currently 1.11).
+install a CPU-only version of a stable TensorFlow release (currently 2.1).
 If that isn't what you want, there are several other options that
 can be enabled with a simple edit to ``install.sh``.
 
@@ -87,8 +87,12 @@ bazel test -c opt $BAZEL_FLAGS nucleus/...
 
 ## Version
 
-This is Nucleus 0.5.3.  Nucleus follows [semantic
+This is Nucleus 0.5.4. Nucleus follows [semantic
 versioning](https://semver.org/).
+
+New in 0.5.4:
+* Upgrade to protobuf 3.8.0 to support TensorFlow 2.1.0.
+* Add explicit .close() method to TFRecordWriter.
 
 New in 0.5.3:
 
