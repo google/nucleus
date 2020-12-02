@@ -119,6 +119,14 @@ Raises:
   IOError:  if there was any problem opening output_path for writing.
 ```
 
+<a name="close"></a>
+
+##### `close(self)`
+
+```
+Explicitly closes writer.
+```
+
 <a name="write"></a>
 ##### `write(self, proto)`
 ```
