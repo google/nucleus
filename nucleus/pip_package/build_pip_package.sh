@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright 2018 Google LLC.
+# Copyright 2020 Google LLC.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ set -x
 
 # When changing NUCLEUS_VERSION, be sure to also change it in
 # egg_files/PKG-INFO.
-NUCLEUS_VERSION="0.5.4"
+NUCLEUS_VERSION="0.5.5"
 PACKAGE_NAME="google_nucleus-${NUCLEUS_VERSION}"
 PYTHON_VERSION="3.5"
 
