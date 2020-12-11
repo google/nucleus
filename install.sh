@@ -128,14 +128,15 @@ then
 else
   # Figure out which linux installation we are on to fetch an appropriate
   # version of the pre-built CLIF binary. Note that we only support now Ubuntu
-  # 14, Ubuntu 16, and Debian 9.
+  # 14, 16, and 18.
   case "$(lsb_release -d)" in
+    *Ubuntu*18.*.*)  PLATFORM="ubuntu-18" ;;
     *Ubuntu*16.*.*)  PLATFORM="ubuntu-16" ;;
     *Ubuntu*14.*.*)  PLATFORM="ubuntu-14" ;;
     *Debian*9.*)     PLATFORM="debian" ;;
     *Debian*rodete*) PLATFORM="debian" ;;
     *) echo "CLIF is not installed on this machine and a prebuilt binary is not
-unavailable for this platform. Please install CLIF at
+available for this platform. Please install CLIF at
 https://github.com/google/clif before continuing."
     exit 1
   esac
