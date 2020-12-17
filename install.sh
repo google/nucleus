@@ -31,7 +31,7 @@
 # ------------------------------------------------------------------------------
 
 NUCLEUS_BAZEL_VERSION="3.1.0"
-NUCLEUS_TENSORFLOW_VERSION="2.3.0"
+NUCLEUS_TENSORFLOW_VERSION="2.4.0"
 
 function note_build_stage {
   echo "========== [$(date)] Stage '${1}' starting"
@@ -70,8 +70,8 @@ python3 -m pip install --user contextlib2
 python3 -m pip install --user 'sortedcontainers==2.1.0'
 python3 -m pip install --user 'intervaltree==3.0.2'
 python3 -m pip install --user 'mock>=2.0.0'
-python3 -m pip install --user 'numpy==1.18.5'
-python3 -m pip install --user 'six>=1.11.0'
+python3 -m pip install --user 'numpy==1.19.2'
+python3 -m pip install --user 'six>=1.15.0'
 python3 -m pip install --user 'Pillow>=5.4.1'
 python3 -m pip install --user 'ipython>=7.9.0'
 

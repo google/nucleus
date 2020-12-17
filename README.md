@@ -87,8 +87,11 @@ bazel test -c opt $BAZEL_FLAGS nucleus/...
 
 ## Version
 
-This is Nucleus 0.5.6. Nucleus follows [semantic
+This is Nucleus 0.5.7. Nucleus follows [semantic
 versioning](https://semver.org/).
+
+New in 0.5.7:
+* Upgrade protobuf settings to support TensorFlow 2.4.0 specifically.
 
 New in 0.5.6:
 * Upgrade to protobuf 3.9.2 to support TensorFlow 2.3.0 specifically.

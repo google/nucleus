@@ -33,7 +33,7 @@ local_repository(
 )
 
 # Required boilerplate for tf_workspace(), apparently.
-# This is copied from https://github.com/tensorflow/tensorflow/blob/v2.3.0/WORKSPACE.
+# This is copied from https://github.com/tensorflow/tensorflow/blob/v2.4.0/WORKSPACE.
 http_archive(
     name = "io_bazel_rules_closure",
     sha256 = "5b00383d08dd71f28503736db0500b6fb4dda47489ff5fc6bed42557c07c6ba9",
