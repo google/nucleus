@@ -18,9 +18,9 @@ from __future__ import division
 from __future__ import print_function
 
 import collections
+import enum
 import itertools
 
-import enum
 import six
 
 from nucleus.protos import variants_pb2
