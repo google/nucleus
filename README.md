@@ -91,6 +91,7 @@ This is Nucleus 0.5.7. Nucleus follows [semantic
 versioning](https://semver.org/).
 
 New in 0.5.7:
+* Add automatic pileup curation functionality in `util/vis.py`.
 * Upgrade protobuf settings to support TensorFlow 2.4.0 specifically.
 
 New in 0.5.6:
