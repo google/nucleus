@@ -120,9 +120,7 @@ Raises:
 ```
 
 <a name="close"></a>
-
 ##### `close(self)`
-
 ```
 Explicitly closes writer.
 ```

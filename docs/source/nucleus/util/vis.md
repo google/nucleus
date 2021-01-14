@@ -7,26 +7,59 @@
 Visualization and inspection utility functions enable showing image-like array
 data including those used in DeepVariant.
 
+## Classes overview
+
+Name                                | Description
+----------------------------------- | -----------
+[`BaseQuality`](#basequality)       |
+[`Diff`](#diff)                     |
+[`MappingQuality`](#mappingquality) |
+[`ReadSupport`](#readsupport)       |
+[`StrandBias`](#strandbias)         |
+
 ## Functions overview
-Name | Description
------|------------
-[`add_header`](#add_header)`(img, labels, mark_midpoints=True, header_height=20)` | Adds labels to the image, evenly distributed across the top.
-[`alt_allele_indices_from_example`](#alt_allele_indices_from_example)`(example)` | Extract indices of the particular alt allele(s) the example represents.
-[`alt_bases_from_indices`](#alt_bases_from_indices)`(alt_allele_indices, alternate_bases)` | Get alt allele bases based on their indices.
-[`alt_from_example`](#alt_from_example)`(example)` | Get alt allele(s) from a DeepVariant example.
-[`array_to_png`](#array_to_png)`(arr, path=None, show=True, vmin=None, vmax=None, scale=None, labels=None)` | Save an array as a PNG image with PIL and show it.
-[`autoscale_colors_for_png`](#autoscale_colors_for_png)`(arr, vmin=None, vmax=None)` | Adjust an array to prepare it for saving to an image.
-[`channels_from_example`](#channels_from_example)`(example)` | Extract image from an Example and return the list of channels.
-[`convert_6_channels_to_rgb`](#convert_6_channels_to_rgb)`(channels)` | Convert 6-channel image from DeepVariant to RGB for quick visualization.
+
+Name                                                                                                                                                                     | Description
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -----------
+[`add_header`](#add_header)`(img, labels, mark_midpoints=True, header_height=20)`                                                                                        | Adds labels to the image, evenly distributed across the top.
+[`alt_allele_indices_from_example`](#alt_allele_indices_from_example)`(example)`                                                                                         | Extract indices of the particular alt allele(s) the example represents.
+[`alt_bases_from_indices`](#alt_bases_from_indices)`(alt_allele_indices, alternate_bases)`                                                                               | Get alt allele bases based on their indices.
+[`alt_from_example`](#alt_from_example)`(example)`                                                                                                                       | Get alt allele(s) from a DeepVariant example.
+[`analyze_diff_and_nearby_variants`](#analyze_diff_and_nearby_variants)`(channels)`                                                                                      | Analyzes which differences belong to nearby variants and which do not.
+[`array_to_png`](#array_to_png)`(arr, path=None, show=True, vmin=None, vmax=None, scale=None, labels=None)`                                                              | Save an array as a PNG image with PIL and show it.
+[`autoscale_colors_for_png`](#autoscale_colors_for_png)`(arr, vmin=None, vmax=None)`                                                                                     | Adjust an array to prepare it for saving to an image.
+[`binomial_test`](#binomial_test)`(k, n)`                                                                                                                                | Calculates a two-tailed binomial test with p=0.5, without scipy.
+[`channels_from_example`](#channels_from_example)`(example)`                                                                                                             | Extract image from an Example and return the list of channels.
+[`convert_6_channels_to_rgb`](#convert_6_channels_to_rgb)`(channels)`                                                                                                    | Convert 6-channel image from DeepVariant to RGB for quick visualization.
+[`curate_pileup`](#curate_pileup)`(channels)`                                                                                                                            | Runs all automated curation functions and outputs categorical tags.
+[`describe_diff`](#describe_diff)`(channels, diff_fraction_threshold=0.01)`                                                                                              | Describes a pileup image by its diff channel, including nearby variants.
+[`describe_read_support`](#describe_read_support)`(channels)`                                                                                                            | Calculates read support and describes it categorically.
 [`draw_deepvariant_pileup`](#draw_deepvariant_pileup)`(example=None, channels=None, composite_type=None, annotated=True, labels=None, path=None, show=True, scale=None)` | Quick utility for showing a pileup example as channels or RGB.
-[`get_image_array_from_example`](#get_image_array_from_example)`(example)` | Decode image/encoded and image/shape of an Example into a numpy array.
-[`label_from_example`](#label_from_example)`(example)` | Get the "label" from an example.
-[`locus_id_from_variant`](#locus_id_from_variant)`(variant)` | Create a locus ID of form "chr:pos_ref" from a Variant object.
-[`locus_id_with_alt`](#locus_id_with_alt)`(example)` | Get complete locus ID from a DeepVariant example.
-[`save_to_png`](#save_to_png)`(arr, path=None, image_mode=None, show=True, labels=None, scale=None)` | Make a PNG and show it from a numpy array of dtype=np.uint8.
-[`scale_colors_for_png`](#scale_colors_for_png)`(arr, vmin=0, vmax=255)` | Scale an array to integers between 0 and 255 to prep it for a PNG image.
-[`split_3d_array_into_channels`](#split_3d_array_into_channels)`(arr)` | Split 3D array into a list of 2D arrays.
-[`variant_from_example`](#variant_from_example)`(example)` | Extract Variant object from the 'variant/encoded' feature of an Example.
+[`fraction_low_base_quality`](#fraction_low_base_quality)`(channels, threshold=127)`                                                                                     | Gets fraction of bases that have low base quality scores in a pileup.
+[`fraction_read_support`](#fraction_read_support)`(channels)`                                                                                                            | Gets fraction of reads that support the variant.
+[`fraction_reads_with_low_mapq`](#fraction_reads_with_low_mapq)`(channels, threshold=127)`                                                                               | Gets fraction of reads that have low mapping quality scores in pileup.
+[`get_image_array_from_example`](#get_image_array_from_example)`(example)`                                                                                               | Decode image/encoded and image/shape of an Example into a numpy array.
+[`label_from_example`](#label_from_example)`(example)`                                                                                                                   | Get the "label" from an example.
+[`locus_id_from_variant`](#locus_id_from_variant)`(variant)`                                                                                                             | Create a locus ID of form "chr:pos_ref" from a Variant object.
+[`locus_id_with_alt`](#locus_id_with_alt)`(example)`                                                                                                                     | Get complete locus ID from a DeepVariant example.
+[`pvalue_for_strand_bias`](#pvalue_for_strand_bias)`(channels)`                                                                                                          | Calculates a rough p-value for strand bias in pileup.
+[`remove_ref_band`](#remove_ref_band)`(arr, num_top_rows_to_skip=5)`                                                                                                     | Removes the reference rows at the top of a pileup image array.
+[`save_to_png`](#save_to_png)`(arr, path=None, image_mode=None, show=True, labels=None, scale=None)`                                                                     | Make a PNG and show it from a numpy array of dtype=np.uint8.
+[`scale_colors_for_png`](#scale_colors_for_png)`(arr, vmin=0, vmax=255)`                                                                                                 | Scale an array to integers between 0 and 255 to prep it for a PNG image.
+[`split_3d_array_into_channels`](#split_3d_array_into_channels)`(arr)`                                                                                                   | Split 3D array into a list of 2D arrays.
+[`variant_from_example`](#variant_from_example)`(example)`                                                                                                               | Extract Variant object from the 'variant/encoded' feature of an Example.
+
+## Classes
+
+### BaseQuality
+
+### Diff
+
+### MappingQuality
+
+### ReadSupport
+
+### StrandBias
 
 ## Functions
 <a name="add_header"></a>
@@ -88,6 +121,25 @@ Returns:
   str. The bases of the alt alleles, joined by a -.
 ```
 
+<a name="analyze_diff_and_nearby_variants"></a>
+
+### `analyze_diff_and_nearby_variants(channels)`
+
+```
+Analyzes which differences belong to nearby variants and which do not.
+
+This attempts to identify putative nearby variants from the pileup image
+alone, and then excludes these columns of the pileup to calculate the
+remaining fraction of differences that may be attributed to sequencing errors.
+
+Args:
+    channels: A list of channels of a DeepVariant pileup image. This only uses
+      channels[5], the 'differs from ref' channel.
+
+Returns:
+    Two outputs: diff fraction, number of likely nearby variants.
+```
+
 <a name="array_to_png"></a>
 ### `array_to_png(arr, path=None, show=True, vmin=None, vmax=None, scale=None, labels=None)`
 ```
@@ -142,6 +194,26 @@ Returns:
   (modified numpy array, image_mode)
 ```
 
+<a name="binomial_test"></a>
+
+### `binomial_test(k, n)`
+
+```
+Calculates a two-tailed binomial test with p=0.5, without scipy.
+
+Since the expected probability is 0.5, it simplifies a few things:
+1) (0.5**x)*(0.5**(n-x)) = (0.5**n)
+2) A two-tailed test is simply doubling when p = 0.5.
+Scipy is much larger than Nucleus, so this avoids adding it as a dependency.
+
+Args:
+  k: Number of "successes", in this case, the number of supporting reads.
+  n: Number of "trials", in this case, the total number of reads.
+
+Returns:
+  The p-value for the binomial test.
+```
+
 <a name="channels_from_example"></a>
 ### `channels_from_example(example)`
 ```
@@ -170,6 +242,76 @@ Returns:
   3D numpy array of 3 colors (Red, green, blue).
 ```
 
+<a name="curate_pileup"></a>
+
+### `curate_pileup(channels)`
+
+```
+Runs all automated curation functions and outputs categorical tags.
+
+The following values are possible for each descriptor:
+* base_quality: GOOD (>5% low quality) or BAD.
+* mapping_quality: GOOD (<5% low quality) or BAD.
+* strand_biased: BIASED (p-value < 0.05) or GOOD.
+* diff_category: MANY_DIFFS (>1% differences), NEARBY_VARIANTS (5+ variants),
+or FEW_DIFFS otherwise.
+* read_support: LOW (<=30%), HALF (30-80%), ALL (>80%).
+
+The thresholds were all set by trying to match human curation.
+
+Args:
+    channels: A list of DeepVariant channels.
+
+Returns:
+    A PileupCuration NamedTuple.
+```
+
+<a name="describe_diff"></a>
+
+### `describe_diff(channels, diff_fraction_threshold=0.01)`
+
+```
+Describes a pileup image by its diff channel, including nearby variants.
+
+Returns Diff.MANY_DIFFS if the fraction of differences outside potential
+nearby variants is above the diff_fraction_threshold, which is usually
+indicative of sequencing errors. Otherwise return Diff.NEARBY_VARIANTS if
+there are five or more of these, or Diff.FEW_DIFFS if neither of these
+special cases apply.
+
+Args:
+    channels: A list of channels of a DeepVariant pileup image. This only uses
+      channels[5], the 'differs from ref' channel.
+    diff_fraction_threshold: Fraction of total bases of all reads that can
+      differ, above which the pileup will be designated as 'many_diffs'.
+      Differences that appear due to nearby variants (neater columns) do not
+      count towards this threshold. The default is set by visual curation of
+      Illumina reads, so it may be necessary to increase this for higher-error
+      sequencing types.
+
+Returns:
+    One Diff value.
+```
+
+<a name="describe_read_support"></a>
+
+### `describe_read_support(channels)`
+
+```
+Calculates read support and describes it categorically.
+
+Computes read support as a fraction and returns a convenient descriptive term
+according to the following thresholds: LOW is [0, 0.3], HALF is (0.3, 0.8],
+and ALL is (0.8, 1].
+
+Args:
+    channels: A list of channels of a DeepVariant pileup image. This only uses
+      channels[4], the 'read supports variant' channel.
+
+Returns:
+    A ReadSupport value.
+```
+
 <a name="draw_deepvariant_pileup"></a>
 ### `draw_deepvariant_pileup(example=None, channels=None, composite_type=None, annotated=True, labels=None, path=None, show=True, scale=None)`
 ```
@@ -194,6 +336,54 @@ Args:
 
 Returns:
   None. Saves an image at path and optionally shows it with IPython.display.
+```
+
+<a name="fraction_low_base_quality"></a>
+
+### `fraction_low_base_quality(channels, threshold=127)`
+
+```
+Gets fraction of bases that have low base quality scores in a pileup.
+
+Args:
+    channels: A list of channels of a DeepVariant pileup image. This only uses
+      channels[1], the base quality channel.
+    threshold: Bases qualities below this will be considered low quality. The
+      default is 127 because this is half of the max (254).
+
+Returns:
+    The fraction of bases with base quality below the threshold.
+```
+
+<a name="fraction_read_support"></a>
+
+### `fraction_read_support(channels)`
+
+```
+Gets fraction of reads that support the variant.
+
+Args:
+    channels: A list of channels of a DeepVariant pileup image. This only uses
+      channels[4], the 'read supports variant' channel.
+
+Returns:
+    Fraction of reads supporting the alternate allele(s), ranging from [0, 1].
+```
+
+<a name="fraction_reads_with_low_mapq"></a>
+
+### `fraction_reads_with_low_mapq(channels, threshold=127)`
+
+```
+Gets fraction of reads that have low mapping quality scores in pileup.
+
+Args:
+    channels: A list of channels of a DeepVariant pileup image. This only uses
+      channels[2], the mapping quality channel.
+    threshold: int. Default is 127 because this is half of the max (254).
+
+Returns:
+    The fraction of bases with mapping quality below the threshold.
 ```
 
 <a name="get_image_array_from_example"></a>
@@ -247,6 +437,33 @@ Args:
 
 Returns:
   str in the form "chr:pos_ref_alt.
+```
+
+<a name="pvalue_for_strand_bias"></a>
+
+### `pvalue_for_strand_bias(channels)`
+
+```
+Calculates a rough p-value for strand bias in pileup.
+
+Using the strand and read-supports-variant channels, compares the numbers of
+forward and reverse reads among the supporting reads and returns a p-value
+using a two-tailed binomial test.
+
+Args:
+    channels: List of DeepVariant channels. Uses channels[3] (strand) and
+      channels[4] (read support).
+
+Returns:
+    P-value for whether the supporting reads show strand bias.
+```
+
+<a name="remove_ref_band"></a>
+
+### `remove_ref_band(arr, num_top_rows_to_skip=5)`
+
+```
+Removes the reference rows at the top of a pileup image array.
 ```
 
 <a name="save_to_png"></a>

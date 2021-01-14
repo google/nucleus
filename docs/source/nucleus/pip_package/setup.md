@@ -35,11 +35,8 @@ Instead, we directly implement the four commands run by pip install
 | [`touch`](#touch)`(fname)`                         |                       |
 
 ## Functions
-
 <a name="copy_egg_info"></a>
-
 ### `copy_egg_info(dest_dir)`
-
 ```
 Copies the .egg-info directory to the specified location.
 
