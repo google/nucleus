@@ -41,16 +41,9 @@ To install Nucleus, run
 pip install --user google-nucleus
 ```
 
-The latest version of Nucleus requires Python 3.6 and 3.7. (Nucleus doesn't yet
-work with Python 3.8.)  Also, you can ignore any "Failed building wheel for
-google-nucleus" error messages -- these are expected and won't prevent Nucleus
-from installing successfully.
-
-If you are using a version of Python 3 older than 3.6, instead run
-
-```shell
-pip install --user google-nucleus==0.5.6
-```
+Note that Nucleus doesn't yet work with Python 3.8.  Also, you can ignore any
+"Failed building wheel for google-nucleus" error messages -- these are expected
+and won't prevent Nucleus from installing successfully.
 
 If you are using Python 2, instead run
 
@@ -75,7 +68,7 @@ source install.sh
 
 For all other systems, you will need to first install CLIF by following
 the instructions at [https://github.com/google/clif#installation](https://github.com/google/clif#installation)
-before running install.sh. You'll need to run this command with Python 3.6 or 
+before running install.sh. You'll need to run this command with Python 3.6 or
 3.7.
 
 Note that install.sh extensively depends on apt-get, so it is unlikely
