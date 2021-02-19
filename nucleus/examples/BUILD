@@ -1,5 +1,4 @@
 # Example programs for demonstrating Nucleus's APIs.
-# load("//devtools/python/blaze:python3.bzl", "py2and3_test")
 
 package(
     default_visibility = [
@@ -115,6 +114,7 @@ py_test(
         "//nucleus/testdata",
     ],
     python_version = "PY3",
+    srcs_version = "PY3",
     deps = [
         ":count_variants_lib",
         "//nucleus/testing:py_test_utils",
@@ -146,6 +146,7 @@ py_test(
         "//nucleus/testdata",
     ],
     python_version = "PY3",
+    srcs_version = "PY3",
     deps = [
         ":filter_vcf_lib",
         "//nucleus/io:vcf",
@@ -180,6 +181,7 @@ py_test(
         "//nucleus/testdata",
     ],
     python_version = "PY3",
+    srcs_version = "PY3",
     deps = [
         ":validate_vcf_lib",
         "//nucleus/protos:reference_py_pb2",

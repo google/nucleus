@@ -1,6 +1,5 @@
 # Testing utilities that are temporarily located here until they can
 # be separately open source.
-# load("//devtools/python/blaze:python3.bzl", "py2and3_test")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -100,6 +99,7 @@ py_test(
     srcs = ["test_utils_test.py"],
     main = "test_utils_test.py",
     python_version = "PY3",
+    srcs_version = "PY3",
     deps = [
         ":py_test_utils",
         "//nucleus/protos:cigar_py_pb2",
@@ -112,6 +112,7 @@ py_test(
     size = "small",
     srcs = ["protobuf_implementation_test.py"],
     python_version = "PY3",
+    srcs_version = "PY3",
     deps = [
         "//nucleus/io:sam",
         "@absl_py//absl/testing:absltest",
