@@ -1,9 +1,12 @@
 # nucleus.util.vis -- Utility functions for visualization and inspection of pileup examples.
-**Source code:** [nucleus/util/vis.py](https://github.com/google/nucleus/tree/master/nucleus/util/vis.py)
+
+**Source code:**
+[nucleus/util/vis.py](https://github.com/google/nucleus/tree/master/nucleus/util/vis.py)
 
 **Documentation index:** [doc_index.md](../../doc_index.md)
 
----
+--------------------------------------------------------------------------------
+
 Visualization and inspection utility functions enable showing image-like array
 data including those used in DeepVariant.
 
@@ -62,8 +65,11 @@ Name                                                                            
 ### StrandBias
 
 ## Functions
+
 <a name="add_header"></a>
+
 ### `add_header(img, labels, mark_midpoints=True, header_height=20)`
+
 ```
 Adds labels to the image, evenly distributed across the top.
 
@@ -81,7 +87,9 @@ Returns:
 ```
 
 <a name="alt_allele_indices_from_example"></a>
+
 ### `alt_allele_indices_from_example(example)`
+
 ```
 Extract indices of the particular alt allele(s) the example represents.
 
@@ -93,7 +101,9 @@ Returns:
 ```
 
 <a name="alt_bases_from_indices"></a>
+
 ### `alt_bases_from_indices(alt_allele_indices, alternate_bases)`
+
 ```
 Get alt allele bases based on their indices.
 
@@ -110,7 +120,9 @@ Returns:
 ```
 
 <a name="alt_from_example"></a>
+
 ### `alt_from_example(example)`
+
 ```
 Get alt allele(s) from a DeepVariant example.
 
@@ -141,7 +153,9 @@ Returns:
 ```
 
 <a name="array_to_png"></a>
+
 ### `array_to_png(arr, path=None, show=True, vmin=None, vmax=None, scale=None, labels=None)`
+
 ```
 Save an array as a PNG image with PIL and show it.
 
@@ -173,7 +187,9 @@ Returns:
 ```
 
 <a name="autoscale_colors_for_png"></a>
+
 ### `autoscale_colors_for_png(arr, vmin=None, vmax=None)`
+
 ```
 Adjust an array to prepare it for saving to an image.
 
@@ -215,7 +231,9 @@ Returns:
 ```
 
 <a name="channels_from_example"></a>
+
 ### `channels_from_example(example)`
+
 ```
 Extract image from an Example and return the list of channels.
 
@@ -228,7 +246,9 @@ Returns:
 ```
 
 <a name="convert_6_channels_to_rgb"></a>
+
 ### `convert_6_channels_to_rgb(channels)`
+
 ```
 Convert 6-channel image from DeepVariant to RGB for quick visualization.
 
@@ -313,7 +333,9 @@ Returns:
 ```
 
 <a name="draw_deepvariant_pileup"></a>
+
 ### `draw_deepvariant_pileup(example=None, channels=None, composite_type=None, annotated=True, labels=None, path=None, show=True, scale=None)`
+
 ```
 Quick utility for showing a pileup example as channels or RGB.
 
@@ -387,7 +409,9 @@ Returns:
 ```
 
 <a name="get_image_array_from_example"></a>
+
 ### `get_image_array_from_example(example)`
+
 ```
 Decode image/encoded and image/shape of an Example into a numpy array.
 
@@ -403,7 +427,9 @@ Returns:
 ```
 
 <a name="label_from_example"></a>
+
 ### `label_from_example(example)`
+
 ```
 Get the "label" from an example.
 
@@ -416,7 +442,9 @@ Returns:
 ```
 
 <a name="locus_id_from_variant"></a>
+
 ### `locus_id_from_variant(variant)`
+
 ```
 Create a locus ID of form "chr:pos_ref" from a Variant object.
 
@@ -428,7 +456,9 @@ Returns:
 ```
 
 <a name="locus_id_with_alt"></a>
+
 ### `locus_id_with_alt(example)`
+
 ```
 Get complete locus ID from a DeepVariant example.
 
@@ -467,7 +497,9 @@ Removes the reference rows at the top of a pileup image array.
 ```
 
 <a name="save_to_png"></a>
+
 ### `save_to_png(arr, path=None, image_mode=None, show=True, labels=None, scale=None)`
+
 ```
 Make a PNG and show it from a numpy array of dtype=np.uint8.
 
@@ -495,7 +527,9 @@ Returns:
 ```
 
 <a name="scale_colors_for_png"></a>
+
 ### `scale_colors_for_png(arr, vmin=0, vmax=255)`
+
 ```
 Scale an array to integers between 0 and 255 to prep it for a PNG image.
 
@@ -511,7 +545,9 @@ Returns:
 ```
 
 <a name="split_3d_array_into_channels"></a>
+
 ### `split_3d_array_into_channels(arr)`
+
 ```
 Split 3D array into a list of 2D arrays.
 
@@ -526,7 +562,9 @@ Returns:
 ```
 
 <a name="variant_from_example"></a>
+
 ### `variant_from_example(example)`
+
 ```
 Extract Variant object from the 'variant/encoded' feature of an Example.
 
@@ -536,4 +574,3 @@ Args:
 Returns:
   A Nucleus Variant.
 ```
-
