@@ -93,20 +93,28 @@ bazel test -c opt $BAZEL_FLAGS nucleus/...
 This is Nucleus 0.5.8. Nucleus follows
 [semantic versioning](https://semver.org/).
 
-New in 0.5.8: * Update `util/vis.py` to use updated channel names. * Support
-`MED_DP` (median DP) field for a `VariantCall`.
+New in 0.5.8:
 
-New in 0.5.7: * Add automatic pileup curation functionality in `util/vis.py`. *
-Upgrade protobuf settings to support TensorFlow 2.4.0 specifically.
+*   Update `util/vis.py` to use updated channel names. * Support `MED_DP`
+    (median DP) field for a `VariantCall`.
 
-New in 0.5.6: * Upgrade to protobuf 3.9.2 to support TensorFlow 2.3.0
-specifically.
+New in 0.5.7:
 
-New in 0.5.5: * Upgrade protobuf settings to support TensorFlow 2.2.0
-specifically.
+*   Add automatic pileup curation functionality in `util/vis.py`. * Upgrade
+    protobuf settings to support TensorFlow 2.4.0 specifically.
 
-New in 0.5.4: * Upgrade to protobuf 3.8.0 to support TensorFlow 2.1.0. * Add
-explicit .close() method to TFRecordWriter.
+New in 0.5.6:
+
+*   Upgrade to protobuf 3.9.2 to support TensorFlow 2.3.0 specifically.
+
+New in 0.5.5:
+
+*   Upgrade protobuf settings to support TensorFlow 2.2.0 specifically.
+
+New in 0.5.4:
+
+*   Upgrade to protobuf 3.8.0 to support TensorFlow 2.1.0. * Add explicit
+    .close() method to TFRecordWriter.
 
 New in 0.5.3:
 
