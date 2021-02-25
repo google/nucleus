@@ -95,13 +95,13 @@ This is Nucleus 0.5.8. Nucleus follows
 
 New in 0.5.8:
 
-*   Update `util/vis.py` to use updated channel names. * Support `MED_DP`
-    (median DP) field for a `VariantCall`.
+*   Update `util/vis.py` to use updated channel names.
+*   Support `MED_DP` (median DP) field for a `VariantCall`.
 
 New in 0.5.7:
 
-*   Add automatic pileup curation functionality in `util/vis.py`. * Upgrade
-    protobuf settings to support TensorFlow 2.4.0 specifically.
+*   Add automatic pileup curation functionality in `util/vis.py`.
+*   Upgrade protobuf settings to support TensorFlow 2.4.0 specifically.
 
 New in 0.5.6:
 
