@@ -1195,6 +1195,7 @@ py_test(
 py_library(
     name = "gfile",
     srcs = ["gfile.py"],
+    srcs_version = "PY3",
     deps = ["//nucleus/io/python:gfile"],
 )
 
