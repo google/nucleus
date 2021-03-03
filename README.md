@@ -59,18 +59,22 @@ pip install --user google-nucleus==0.3.2
 
 ## Building from source
 
-For Ubuntu 14, Ubuntu 16, Ubuntu 18 and Debian 9 systems, building from source
-is easy. Simply type
+For Ubuntu 18, building from source is easy. Simply type
 
 ```shell
 source install.sh
 ```
 
+This will call `build_clif.sh`, which will build CLIF from scratch as well.
+
 For all other systems, you will need to first install CLIF by following the
 instructions at
 [https://github.com/google/clif#installation](https://github.com/google/clif#installation)
 before running install.sh. You'll need to run this command with Python 3.6 or
-3.7.
+3.7. If you don't want to build CLIF binaries on your own, you can consider
+using pre-built CLIF binaries (see
+[an example here](https://github.com/google/nucleus/blob/v0.5.6/install.sh#L143-L152)). Note that we don't plan to update these pre-built CLIF binaries, so we
+recommend building CLIF binaries from scratch.
 
 Note that install.sh extensively depends on apt-get, so it is unlikely to run
 without extensive modifications on non-Debian-based systems.

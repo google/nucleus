@@ -86,7 +86,7 @@ python3 -m pip install --user 'setuptools==49.6.0'
 python3 -m pip install --user 'keras_preprocessing==1.1.2' --no-deps
 python3 -m pip install --user 'h5py==2.10.0'
 python3 -m pip install --user enum34
-python3 -m pip install --user 'protobuf==3.9.2'
+python3 -m pip install --user 'protobuf==3.13.0'
 
 # Install Bazel
 ################################################################################
@@ -122,35 +122,22 @@ ensure_wanted_bazel_version "${NUCLEUS_BAZEL_VERSION}"
 
 note_build_stage "Install CLIF binary"
 
-if [[ -e /usr/local/clif/bin/pyclif ]];
+if [[ -e /usr/local/bin/pyclif ]];
 then
   echo "CLIF already installed."
 else
-  # Figure out which linux installation we are on to fetch an appropriate
-  # version of the pre-built CLIF binary. Note that we only support now Ubuntu
-  # 14, 16, and 18.
-  case "$(lsb_release -d)" in
-    *Ubuntu*18.*.*)  PLATFORM="ubuntu-18" ;;
-    *Ubuntu*16.*.*)  PLATFORM="ubuntu-16" ;;
-    *Ubuntu*14.*.*)  PLATFORM="ubuntu-14" ;;
-    *Debian*9.*)     PLATFORM="debian" ;;
-    *Debian*rodete*) PLATFORM="debian" ;;
-    *) echo "CLIF is not installed on this machine and a prebuilt binary is not
-available for this platform. Please install CLIF at
-https://github.com/google/clif before continuing."
-    exit 1
-  esac
-
-  PACKAGE_CURL_PATH="https://storage.googleapis.com/deepvariant/packages"
-  OSS_CLIF_CURL_ROOT="${PACKAGE_CURL_PATH}/oss_clif"
-  OSS_CLIF_PKG="oss_clif.${PLATFORM}.latest.tgz"
-
-  if [[ ! -f "/tmp/${OSS_CLIF_PKG}" ]]; then
-    curl "${OSS_CLIF_CURL_ROOT}/${OSS_CLIF_PKG}" > /tmp/${OSS_CLIF_PKG}
-  fi
-
-  (cd / && sudo tar xzf "/tmp/${OSS_CLIF_PKG}")
-  sudo ldconfig  # Reload shared libraries.
+  # Build clif binary from scratch. Might not be ideal because it installs a
+  # bunch of dependencies, but this works fine when we used this in a Dockerfile
+  # because we don't do build-prereq.sh in the final image.
+  time ./build_clif.sh
+  # TODO(b/181283422): Figure out why these symbolic links are needed and see if
+  #                    we can do this better.
+  sudo mkdir -p /usr/clang/bin/
+  sudo ln -sf /usr/local/bin/clif-matcher /usr/clang/bin/clif-matcher
+  sudo mkdir -p /usr/local/clif/bin
+  sudo ln -sf /usr/local/bin/pyclif* /usr/local/clif/bin/
+  DIST_PACKAGES_DIR=$(python3 -c "import site; print(site.getsitepackages()[0])")
+  sudo ln -sf ${DIST_PACKAGES_DIR}/clif/python /usr/local/clif/
 fi
 
 # Download and build TensorFlow

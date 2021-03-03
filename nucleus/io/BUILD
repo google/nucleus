@@ -1021,6 +1021,7 @@ cc_library(
     deps = [
         "//nucleus/platform:types",
         "@com_google_absl//absl/memory",
+        "@com_google_absl//absl/strings:cord",
         "@org_tensorflow//tensorflow/core:lib",
         "@org_tensorflow//tensorflow/core/platform/cloud:gcs_file_system",
     ],
@@ -1044,6 +1045,7 @@ cc_library(
     hdrs = ["tfrecord_writer.h"],
     deps = [
         "@com_google_absl//absl/memory",
+        "@com_google_absl//absl/strings:cord",
         "@org_tensorflow//tensorflow/core:lib",
         "@org_tensorflow//tensorflow/core/platform/cloud:gcs_file_system",
     ],
@@ -1055,6 +1057,7 @@ cc_library(
     hdrs = ["gfile.h"],
     deps = [
         "@com_google_absl//absl/memory",
+        "@com_google_absl//absl/strings:cord",
         "@org_tensorflow//tensorflow/core:lib",
     ],
 )
