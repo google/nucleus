@@ -55,7 +55,7 @@ sudo -H apt-get -y install libssl-dev libcurl4-openssl-dev liblz-dev libbz2-dev 
 # Install pip
 ################################################################################
 note_build_stage "Update pip"
-sudo -H apt-get -y install python-dev python3-pip python-wheel python3-setuptools
+sudo -H apt-get -y install python3-dev python3-pip python3-wheel python3-setuptools
 sudo -H apt-get -y update
 # TensorFlow 2.0 requires pip >= 19.0
 python3 -m pip install --user -U pip
