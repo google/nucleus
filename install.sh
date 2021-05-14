@@ -129,7 +129,7 @@ else
   # Build clif binary from scratch. Might not be ideal because it installs a
   # bunch of dependencies, but this works fine when we used this in a Dockerfile
   # because we don't do build-prereq.sh in the final image.
-  time ./build_clif.sh
+  time sudo ./build_clif.sh
   # TODO(b/181283422): Figure out why these symbolic links are needed and see if
   #                    we can do this better.
   sudo mkdir -p /usr/clang/bin/
