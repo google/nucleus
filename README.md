@@ -80,7 +80,7 @@ Note that install.sh extensively depends on apt-get, so it is unlikely to run
 without extensive modifications on non-Debian-based systems.
 
 Nucleus depends on TensorFlow. By default, install.sh will install a CPU-only
-version of a stable TensorFlow release (currently 2.4). If that isn't what you
+version of a stable TensorFlow release (currently 2.5). If that isn't what you
 want, there are several other options that can be enabled with a simple edit to
 `install.sh`.
 
@@ -94,8 +94,12 @@ bazel test -c opt $BAZEL_FLAGS nucleus/...
 
 ## Version
 
-This is Nucleus 0.5.8. Nucleus follows
+This is Nucleus 0.5.9. Nucleus follows
 [semantic versioning](https://semver.org/).
+
+New in 0.5.9:
+
+*   Upgrade to support TensorFlow 2.5.0 specifically.
 
 New in 0.5.8:
 

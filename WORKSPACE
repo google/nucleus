@@ -71,7 +71,6 @@ http_archive(
     ],
 )
 
-
 # bazel_skylib is now a required dependency of com_google_protobuf.
 http_archive(
     name = "bazel_skylib",
@@ -93,10 +92,33 @@ http_archive(
     ],
 )
 
-# Import all of the tensorflow dependencies.
-load("@org_tensorflow//tensorflow:workspace.bzl", "tf_workspace")
+http_archive(
+    name = "tf_toolchains",
+    sha256 = "794ec13d2fdbc0a6fd66bcffad63cb967448e93e018151a58bbfac9808883770",
+    strip_prefix = "toolchains-1.1.21",
+    urls = [
+        "http://mirror.tensorflow.org/github.com/tensorflow/toolchains/archive/v1.1.21.tar.gz",
+        "https://github.com/tensorflow/toolchains/archive/v1.1.21.tar.gz",
+    ],
+)
 
-tf_workspace(tf_repo_name = "org_tensorflow")
+# Import all of the tensorflow dependencies (see TF's WORKSPACE file for how
+# to do this correctly).
+load("@org_tensorflow//tensorflow:workspace3.bzl", "tf_workspace3")
+
+tf_workspace3()
+
+load("@org_tensorflow//tensorflow:workspace2.bzl", "tf_workspace2")
+
+tf_workspace2()
+
+load("@org_tensorflow//tensorflow:workspace1.bzl", "tf_workspace1")
+
+tf_workspace1()
+
+load("@org_tensorflow//tensorflow:workspace0.bzl", "tf_workspace0")
+
+tf_workspace0()
 
 new_local_repository(
     name = "clif",

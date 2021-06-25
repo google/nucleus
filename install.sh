@@ -30,8 +30,8 @@
 # Global setting for nucleus builds
 # ------------------------------------------------------------------------------
 
-NUCLEUS_BAZEL_VERSION="3.1.0"
-NUCLEUS_TENSORFLOW_VERSION="2.4.0"
+NUCLEUS_BAZEL_VERSION="3.7.2"
+NUCLEUS_TENSORFLOW_VERSION="2.5.0"
 
 function note_build_stage {
   echo "========== [$(date)] Stage '${1}' starting"
@@ -157,13 +157,6 @@ export PYTHON_BIN_PATH=`which python3`
  git checkout v${NUCLEUS_TENSORFLOW_VERSION} &&
  echo | ./configure
  )
-
-# We use TensorFlow's .bazelrc as part of Nucleus's. In it they use a java
-# toolchain flag based on a definition in a BUILD file in the TF repo. This
-# causes that flag's usage to raise build errors when building Nucleus unless we
-# also include that BUILD file.
-mkdir -p third_party/toolchains/java
-cp ../tensorflow/third_party/toolchains/java/BUILD third_party/toolchains/java/
 
 echo "Done installing prereqs at $(date)!"
 
