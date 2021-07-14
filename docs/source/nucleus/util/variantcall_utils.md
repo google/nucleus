@@ -1,50 +1,44 @@
 # nucleus.util.variantcall_utils -- VariantCall utilities.
-
-**Source code:**
-[nucleus/util/variantcall_utils.py](https://github.com/google/nucleus/tree/master/nucleus/util/variantcall_utils.py)
+**Source code:** [nucleus/util/variantcall_utils.py](https://github.com/google/nucleus/tree/master/nucleus/util/variantcall_utils.py)
 
 **Documentation index:** [doc_index.md](../../doc_index.md)
 
---------------------------------------------------------------------------------
+---
+
 
 ## Functions overview
-
-Name                                                                            | Description
-------------------------------------------------------------------------------- | -----------
-[`get_ad`](#get_ad)`(variant_call)`                                             | Gets the allele depth of the VariantCall.
-[`get_format`](#get_format)`(variant_call, field_name, vcf_object=None)`        | Returns the value of the `field_name` FORMAT field.
-[`get_gl`](#get_gl)`(variant_call)`                                             | Returns the genotype likelihoods of the VariantCall.
-[`get_gq`](#get_gq)`(variant_call)`                                             | Gets the genotype quality of the VariantCall.
-[`get_gt`](#get_gt)`(variant_call)`                                             | Returns the genotypes of the VariantCall.
-[`get_med_dp`](#get_med_dp)`(variant_call)`                                     | Gets the 'MED_DP' field of the VariantCall.
-[`get_min_dp`](#get_min_dp)`(variant_call)`                                     | Gets the 'MIN_DP' field of the VariantCall.
-[`has_full_genotypes`](#has_full_genotypes)`(variant_call)`                     | Returns True iff the VariantCall has only known genotypes.
-[`has_genotypes`](#has_genotypes)`(variant_call)`                               | Returns True iff the VariantCall has one or more called genotypes.
-[`has_variation`](#has_variation)`(variant_call)`                               | Returns True if and only if the call has a non-reference genotype.
-[`is_heterozygous`](#is_heterozygous)`(variant_call)`                           | Returns True if and only if the call is heterozygous.
-[`ploidy`](#ploidy)`(variant_call)`                                             | Returns the ploidy of the VariantCall.
-[`set_ad`](#set_ad)`(variant_call, ad)`                                         | Sets the allele depth of the VariantCall.
+Name | Description
+-----|------------
+[`get_ad`](#get_ad)`(variant_call)` | Gets the allele depth of the VariantCall.
+[`get_format`](#get_format)`(variant_call, field_name, vcf_object=None)` | Returns the value of the `field_name` FORMAT field.
+[`get_gl`](#get_gl)`(variant_call)` | Returns the genotype likelihoods of the VariantCall.
+[`get_gq`](#get_gq)`(variant_call)` | Gets the genotype quality of the VariantCall.
+[`get_gt`](#get_gt)`(variant_call)` | Returns the genotypes of the VariantCall.
+[`get_med_dp`](#get_med_dp)`(variant_call)` | Gets the 'MED_DP' field of the VariantCall.
+[`get_min_dp`](#get_min_dp)`(variant_call)` | Gets the 'MIN_DP' field of the VariantCall.
+[`has_full_genotypes`](#has_full_genotypes)`(variant_call)` | Returns True iff the VariantCall has only known genotypes.
+[`has_genotypes`](#has_genotypes)`(variant_call)` | Returns True iff the VariantCall has one or more called genotypes.
+[`has_variation`](#has_variation)`(variant_call)` | Returns True if and only if the call has a non-reference genotype.
+[`is_heterozygous`](#is_heterozygous)`(variant_call)` | Returns True if and only if the call is heterozygous.
+[`ploidy`](#ploidy)`(variant_call)` | Returns the ploidy of the VariantCall.
+[`set_ad`](#set_ad)`(variant_call, ad)` | Sets the allele depth of the VariantCall.
+[`set_bam_fname`](#set_bam_fname)`(variant_call, bam_fname)` | Sets 'BAM_FNAME' field of the VariantCall.
 [`set_format`](#set_format)`(variant_call, field_name, value, vcf_object=None)` | Sets a field of the info map of the `VariantCall` to the given value(s).
-[`set_gl`](#set_gl)`(variant_call, gl)`                                         | Sets the genotype likelihoods of the VariantCall.
-[`set_gq`](#set_gq)`(variant_call, gq)`                                         | Sets the genotype quality of the VariantCall.
-[`set_gt`](#set_gt)`(variant_call, gt)`                                         | Sets the genotypes of the VariantCall.
-[`set_med_dp`](#set_med_dp)`(variant_call, med_dp)`                             | Sets the 'MED_DP' field of the VariantCall.
-[`set_min_dp`](#set_min_dp)`(variant_call, min_dp)`                             | Sets the 'MIN_DP' field of the VariantCall.
+[`set_gl`](#set_gl)`(variant_call, gl)` | Sets the genotype likelihoods of the VariantCall.
+[`set_gq`](#set_gq)`(variant_call, gq)` | Sets the genotype quality of the VariantCall.
+[`set_gt`](#set_gt)`(variant_call, gt)` | Sets the genotypes of the VariantCall.
+[`set_med_dp`](#set_med_dp)`(variant_call, med_dp)` | Sets the 'MED_DP' field of the VariantCall.
+[`set_min_dp`](#set_min_dp)`(variant_call, min_dp)` | Sets the 'MIN_DP' field of the VariantCall.
 
 ## Functions
-
 <a name="get_ad"></a>
-
 ### `get_ad(variant_call)`
-
 ```
 Gets the allele depth of the VariantCall.
 ```
 
 <a name="get_format"></a>
-
 ### `get_format(variant_call, field_name, vcf_object=None)`
-
 ```
 Returns the value of the `field_name` FORMAT field.
 
@@ -62,9 +56,7 @@ Args:
 ```
 
 <a name="get_gl"></a>
-
 ### `get_gl(variant_call)`
-
 ```
 Returns the genotype likelihoods of the VariantCall.
 
@@ -76,17 +68,13 @@ Returns:
 ```
 
 <a name="get_gq"></a>
-
 ### `get_gq(variant_call)`
-
 ```
 Gets the genotype quality of the VariantCall.
 ```
 
 <a name="get_gt"></a>
-
 ### `get_gt(variant_call)`
-
 ```
 Returns the genotypes of the VariantCall.
 
@@ -98,25 +86,19 @@ Returns:
 ```
 
 <a name="get_med_dp"></a>
-
 ### `get_med_dp(variant_call)`
-
 ```
 Gets the 'MED_DP' field of the VariantCall.
 ```
 
 <a name="get_min_dp"></a>
-
 ### `get_min_dp(variant_call)`
-
 ```
 Gets the 'MIN_DP' field of the VariantCall.
 ```
 
 <a name="has_full_genotypes"></a>
-
 ### `has_full_genotypes(variant_call)`
-
 ```
 Returns True iff the VariantCall has only known genotypes.
 
@@ -128,9 +110,7 @@ Returns:
 ```
 
 <a name="has_genotypes"></a>
-
 ### `has_genotypes(variant_call)`
-
 ```
 Returns True iff the VariantCall has one or more called genotypes.
 
@@ -142,9 +122,7 @@ Returns:
 ```
 
 <a name="has_variation"></a>
-
 ### `has_variation(variant_call)`
-
 ```
 Returns True if and only if the call has a non-reference genotype.
 
@@ -156,9 +134,7 @@ Returns:
 ```
 
 <a name="is_heterozygous"></a>
-
 ### `is_heterozygous(variant_call)`
-
 ```
 Returns True if and only if the call is heterozygous.
 
@@ -170,9 +146,7 @@ Returns:
 ```
 
 <a name="ploidy"></a>
-
 ### `ploidy(variant_call)`
-
 ```
 Returns the ploidy of the VariantCall.
 
@@ -184,17 +158,19 @@ Returns:
 ```
 
 <a name="set_ad"></a>
-
 ### `set_ad(variant_call, ad)`
-
 ```
 Sets the allele depth of the VariantCall.
 ```
 
+<a name="set_bam_fname"></a>
+### `set_bam_fname(variant_call, bam_fname)`
+```
+Sets 'BAM_FNAME' field of the VariantCall.
+```
+
 <a name="set_format"></a>
-
 ### `set_format(variant_call, field_name, value, vcf_object=None)`
-
 ```
 Sets a field of the info map of the `VariantCall` to the given value(s).
 
@@ -223,9 +199,7 @@ Args:
 ```
 
 <a name="set_gl"></a>
-
 ### `set_gl(variant_call, gl)`
-
 ```
 Sets the genotype likelihoods of the VariantCall.
 
@@ -235,17 +209,13 @@ Args:
 ```
 
 <a name="set_gq"></a>
-
 ### `set_gq(variant_call, gq)`
-
 ```
 Sets the genotype quality of the VariantCall.
 ```
 
 <a name="set_gt"></a>
-
 ### `set_gt(variant_call, gt)`
-
 ```
 Sets the genotypes of the VariantCall.
 
@@ -255,17 +225,14 @@ Args:
 ```
 
 <a name="set_med_dp"></a>
-
 ### `set_med_dp(variant_call, med_dp)`
-
 ```
 Sets the 'MED_DP' field of the VariantCall.
 ```
 
 <a name="set_min_dp"></a>
-
 ### `set_min_dp(variant_call, min_dp)`
-
 ```
 Sets the 'MIN_DP' field of the VariantCall.
 ```
+
