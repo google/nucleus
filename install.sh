@@ -74,6 +74,9 @@ python3 -m pip install --user 'numpy==1.19.2'
 python3 -m pip install --user 'six>=1.15.0'
 python3 -m pip install --user 'Pillow>=5.4.1'
 python3 -m pip install --user 'ipython>=7.9.0'
+# Use apache-beam==2.20.0 for compatible protobuf version:
+# https://github.com/apache/beam/blob/release-2.20.0/sdks/python/container/base_image_requirements.txt#L38
+python3 -m pip install --user 'apache-beam==2.20.0'
 
 # We need a recent version of setuptools, because pkg_resources is included in
 # setuptools, and protobuf's __init__.py contains the line

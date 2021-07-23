@@ -23,6 +23,7 @@ py_library(
 py_library(
     name = "io_libs_py",
     deps = [
+        ":beam_readers",
         ":bed",
         ":bedgraph",
         ":clif_postproc",
@@ -1212,5 +1213,31 @@ py_test(
         ":gfile",
         "//nucleus/testing:py_test_utils",
         "@absl_py//absl/testing:absltest",
+    ],
+)
+
+py_library(
+    name = "beam_readers",
+    srcs = ["beam_readers.py"],
+    srcs_version = "PY3",
+    deps = [
+        ":bed",
+        ":sam",
+        # Implicit apache_beam dependency.,
+    ],
+)
+
+py_test(
+    name = "beam_readers_test",
+    srcs = ["beam_readers_test.py"],
+    data = ["//nucleus/testdata"],
+    python_version = "PY3",
+    srcs_version = "PY3",
+    deps = [
+        ":beam_readers",
+        "//nucleus/testing:py_test_utils",
+        "@absl_py//absl/testing:absltest",
+        "@absl_py//absl/testing:parameterized",
+        # Implicit apache_beam dependency.,
     ],
 )
