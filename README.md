@@ -59,7 +59,7 @@ pip install --user google-nucleus==0.3.2
 
 ## Building from source
 
-For Ubuntu 18, building from source is easy. Simply type
+For Ubuntu 20, building from source is easy. Simply type
 
 ```shell
 source install.sh
@@ -70,8 +70,8 @@ This will call `build_clif.sh`, which will build CLIF from scratch as well.
 For all other systems, you will need to first install CLIF by following the
 instructions at
 [https://github.com/google/clif#installation](https://github.com/google/clif#installation)
-before running install.sh. You'll need to run this command with Python 3.6 or
-3.7. If you don't want to build CLIF binaries on your own, you can consider
+before running install.sh. You'll need to run this command with Python 3.8.
+If you don't want to build CLIF binaries on your own, you can consider
 using pre-built CLIF binaries (see
 [an example here](https://github.com/google/nucleus/blob/v0.5.6/install.sh#L143-L152)). Note that we don't plan to update these pre-built CLIF binaries, so we
 recommend building CLIF binaries from scratch.
