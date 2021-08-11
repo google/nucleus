@@ -31,7 +31,7 @@
 # ------------------------------------------------------------------------------
 
 NUCLEUS_BAZEL_VERSION="3.7.2"
-NUCLEUS_TENSORFLOW_VERSION="2.5.0"
+NUCLEUS_TENSORFLOW_VERSION="2.6.0"
 
 function note_build_stage {
   echo "========== [$(date)] Stage '${1}' starting"
@@ -85,7 +85,7 @@ python3 -m pip install --user 'setuptools==49.6.0'
 
 # These are required to build TensorFlow from source.
 python3 -m pip install --user 'keras_preprocessing==1.1.2' --no-deps
-python3 -m pip install --user 'h5py==2.10.0'
+python3 -m pip install --user 'h5py==3.1.0'
 python3 -m pip install --user enum34
 python3 -m pip install --user 'protobuf==3.13.0'
 
