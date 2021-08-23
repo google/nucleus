@@ -26,8 +26,7 @@ class StatusorClifWrapTest(absltest.TestCase):
     self.assertEqual(statusor_examples.MakeIntOK(), 42)
 
   def test_make_int_fail(self):
-    # TODO(b/194924033): Swap statement after error code string is updated
-    # with self.assertRaisesRegexp(ValueError, 'INVALID_ARGUMENT: MakeIntFail'):
+    # TODO(b/196638558): OpError exception not propagated.
     with self.assertRaisesRegexp(ValueError, 'MakeIntFail'):
       statusor_examples.MakeIntFail()
 
@@ -39,8 +38,7 @@ class StatusorClifWrapTest(absltest.TestCase):
   #   self.assertEqual(statusor_examples.MakeStrOKStrippedType(), 'hello')
 
   def test_make_str_fail(self):
-    # TODO(b/194924033): Swap statement after error code string is updated
-    # with self.assertRaisesRegexp(ValueError, 'INVALID_ARGUMENT: MakeStrFail'):
+    # TODO(b/196638558): OpError exception not propagated.
     with self.assertRaisesRegexp(ValueError, 'MakeStrFail'):
       statusor_examples.MakeStrFail()
 
@@ -48,9 +46,7 @@ class StatusorClifWrapTest(absltest.TestCase):
     self.assertEqual(statusor_examples.MakeIntUniquePtrOK(), 421)
 
   def test_make_int_unique_ptr_fail(self):
-    # TODO(b/194924033): Swap statement after error code string is updated
-    # with self.assertRaisesRegexp(ValueError,
-    #                              'INVALID_ARGUMENT: MakeIntUniquePtrFail'):
+    # TODO(b/196638558): OpError exception not propagated.
     with self.assertRaisesRegexp(ValueError, 'MakeIntUniquePtrFail'):
       statusor_examples.MakeIntUniquePtrFail()
 
@@ -58,9 +54,7 @@ class StatusorClifWrapTest(absltest.TestCase):
     self.assertEqual(statusor_examples.MakeIntVectorOK(), [1, 2, 42])
 
   def test_make_int_vector_fail(self):
-    # TODO(b/194924033): Swap statement after error code string is updated
-    # with self.assertRaisesRegexp(ValueError,
-    #                              'INVALID_ARGUMENT: MakeIntVectorFail'):
+    # TODO(b/196638558): OpError exception not propagated.
     with self.assertRaisesRegexp(ValueError, 'MakeIntVectorFail'):
       statusor_examples.MakeIntVectorFail()
 
@@ -68,10 +62,8 @@ class StatusorClifWrapTest(absltest.TestCase):
     self.assertEqual(statusor_examples.FuncReturningStatusOK(), None)
 
   def test_returning_status_fail_raises(self):
-    # TODO(b/194924033): Swap statement after error code string is updated
-    # with self.assertRaisesRegexp(ValueError,
-    #                              'INVALID_ARGUMENT: FuncReturningStatusFail'):
-    with self.assertRaisesRegexp(ValueError,'FuncReturningStatusFail'):
+    # TODO(b/196638558): OpError exception not propagated.
+    with self.assertRaisesRegexp(ValueError, 'FuncReturningStatusFail'):
       statusor_examples.FuncReturningStatusFail()
 
 

@@ -66,13 +66,9 @@ class WrapReferenceTest(parameterized.TestCase):
                                                 fai_filename):
     fasta = test_utils.genomics_core_testdata(fasta_filename)
     fai = test_utils.genomics_core_testdata(fai_filename)
-    # TODO(b/194924033): Swap statement after error code string is updated
-    # with self.assertRaisesRegexp(
-    #     ValueError,
-    #     'NOT_FOUND: could not load fasta and/or fai for fasta ' + fasta):
+    # TODO(b/196638558): OpError exception not propagated.
     with self.assertRaisesRegexp(
-        ValueError,
-        'could not load fasta and/or fai for fasta ' + fasta):
+        ValueError, 'could not load fasta and/or fai for fasta ' + fasta):
       reference.IndexedFastaReader.from_file(fasta, fai,
                                              fasta_pb2.FastaReaderOptions())
 

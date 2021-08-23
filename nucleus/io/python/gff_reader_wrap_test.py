@@ -61,11 +61,8 @@ class GffReaderTest(parameterized.TestCase):
       self.assertEqual(actual[1], self.second)
 
   def test_from_file_raises_with_missing_gff(self):
-    # TODO(b/194924033): Swap statement after error code string is updated
-    # with self.assertRaisesRegexp(ValueError,
-    #                              'NOT_FOUND: Could not open missing.gff'):
-    with self.assertRaisesRegexp(ValueError,
-                                 'Could not open missing.gff'):
+    # TODO(b/196638558): OpError exception not propagated.
+    with self.assertRaisesRegexp(ValueError, 'Could not open missing.gff'):
       gff_reader.GffReader.from_file('missing.gff', self.options)
 
   def test_ops_on_closed_reader_raise(self):
