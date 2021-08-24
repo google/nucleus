@@ -80,7 +80,7 @@ Note that install.sh extensively depends on apt-get, so it is unlikely to run
 without extensive modifications on non-Debian-based systems.
 
 Nucleus depends on TensorFlow. By default, install.sh will install a CPU-only
-version of a stable TensorFlow release (currently 2.6). If that isn't what you
+version of a stable TensorFlow release (currently 2.5). If that isn't what you
 want, there are several other options that can be enabled with a simple edit to
 `install.sh`.
 
@@ -99,7 +99,6 @@ This is Nucleus 0.6.0. Nucleus follows
 
 New in 0.6.0:
 
-*   Upgrade to support TensorFlow 2.6.0 specifically.
 *   Upgrade to Python 3.8.
 
 New in 0.5.9:

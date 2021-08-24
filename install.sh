@@ -31,7 +31,7 @@
 # ------------------------------------------------------------------------------
 
 NUCLEUS_BAZEL_VERSION="3.7.2"
-NUCLEUS_TENSORFLOW_VERSION="2.6.0"
+NUCLEUS_TENSORFLOW_VERSION="2.5.0"
 
 function note_build_stage {
   echo "========== [$(date)] Stage '${1}' starting"
