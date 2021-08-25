@@ -9,6 +9,9 @@
 # installed in a specific location, and there doesn't seem to be a
 # way to refer to it symbolically, like BUILD files can.)
 import %workspace%/../tensorflow/.bazelrc
+# In tensorflow/.bazelrc v2.6.0, setting this to false broke our build.
+# So, setting it back to true.
+build:linux --distinct_host_configuration=true
 
 # Use 128 jobs to build. Unfortunately there doesn't seem to be any way to set
 # the number of jobs to the number of actual cores on the machine (e.g., by
