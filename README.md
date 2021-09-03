@@ -41,7 +41,9 @@ To install Nucleus, run
 pip install --user google-nucleus
 ```
 
-Note that Nucleus doesn't yet work with Python 3.8. Also, you can ignore any
+Note that each version of Nucleus works with a specific TensorFlow version. Check the [releases](https://github.com/google/nucleus/releases) page for specifics.
+
+You can ignore any
 "Failed building wheel for google-nucleus" error messages -- these are expected
 and won't prevent Nucleus from installing successfully.
 
